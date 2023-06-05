@@ -296,5 +296,75 @@ WHERE EmployeeID='${EmployeeID}'`);
       res.status(500).json({ error: `${error}` });
     }
   },
+  async updatesecondWorkRequest(req, res, next) {
+    try {
+      const EmployeeID = req.params.EmployeeID;
+      let pool = await sql.connect(config);
+
+      var today = new Date();
+
+      let data = await pool
+        .request()
+
+        .input("RequestDateTime", sql.DateTime, req.body.RequestDateTime)
+        .input("WorkType", sql.VarChar, req.body.WorkType)
+        .input("WorkTrade", sql.VarChar, req.body.WorkTrade)
+        .input("WorkPriority", sql.VarChar, req.body.WorkPriority)
+        .input("ProblemCategory", sql.VarChar, req.body.ProblemCategory)
+        .input("ProblemDescription", sql.VarChar, req.body.ProblemDescription)
+        .input("AssetItemTag", sql.VarChar, req.body.AssetItemTag)
+        .input("WorkOrder", sql.VarChar, req.body.WorkOrder)
+        .input("CompletedByEmp", sql.VarChar, req.body.CompletedByEmp)
+        .input("Feedback_Remarks", sql.VarChar, req.body.Feedback_Remarks)
+        .input("FeedbackEmp", sql.VarChar, req.body.FeedbackEmp).query(`
+
+    
+   UPDATE [dbo].[tblWorkRequest]
+SET
+[RequestDateTime] =@RequestDateTime
+,[WorkType] =@WorkType
+,[WorkTrade] =@WorkTrade
+,[WorkPriority] =@WorkPriority
+,[ProblemCategory] =@ProblemCategory
+,[ProblemDescription] =@ProblemDescription
+,[AssetItemTag] =@AssetItemTag
+
+,[WorkOrder] =@WorkOrder
+,[CompletedByEmp] =@CompletedByEmp
+,[Feedback_Remarks] =@Feedback_Remarks
+
+,[FeedbackEmp] =@FeedbackEmp
+
+
+
+ 
+ 
+
+
+
+  
+  
+WHERE EmployeeID='${EmployeeID}'`);
+      res.status(202).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async deletesecondWorkRequest(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const EmployeeID = req.params.EmployeeID;
+      let data = await pool
+        .request()
+
+        .query(`delete from tblWorkRequest where EmployeeID='${EmployeeID}'`);
+      console.log(data);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
 };
 export default FATSDB;
