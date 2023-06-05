@@ -40,4 +40,5 @@ router.put(
   FATSDB.updateWorkRequest
 );
 router.delete("/deleteWorkRequest/:EmployeeID", FATSDB.deleteWorkRequest);
+router.post("/AddworkRequestsecondPOST", FATSDB.AddworkRequestsecondPOST);
 export default router;

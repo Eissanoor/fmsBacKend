@@ -195,5 +195,76 @@ WHERE EmployeeID='${EmployeeID}'`);
       res.status(500).json({ error: `${error}` });
     }
   }, //
+
+  async AddworkRequestsecondPOST(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const EmployeeID = req.body.EmployeeID;
+      let data = await pool
+        .request()
+        .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
+        .input("RequestDateTime", sql.DateTime, req.body.RequestDateTime)
+        .input("WorkType", sql.VarChar, req.body.WorkType)
+        .input("WorkTrade", sql.VarChar, req.body.WorkTrade)
+
+        .input("WorkPriority", sql.VarChar, req.body.WorkPriority)
+        .input("ProblemCategory", sql.VarChar, req.body.ProblemCategory)
+        .input("ProblemDescription", sql.VarChar, req.body.ProblemDescription)
+        .input("AssetItemTag", sql.VarChar, req.body.AssetItemTag)
+        .input("CompletedByEmp", sql.VarChar, req.body.CompletedByEmp)
+        .input("FeedbackEmp", sql.VarChar, req.body.FeedbackEmp)
+        .input("Feedback_Remarks", sql.VarChar, req.body.Feedback_Remarks)
+
+        .query(
+          ` 
+            INSERT INTO [dbo].[tblWorkRequest]
+                       ([EmployeeID]
+                        ,[RequestDateTime]
+                        ,[WorkType]
+                         ,[WorkTrade]
+                          ,[WorkPriority]
+                           ,[ProblemCategory]
+                            ,[ProblemDescription]
+                             ,[AssetItemTag]
+                               ,[CompletedByEmp]
+                              ,[FeedbackEmp]
+                             
+                                ,[Feedback_Remarks]
+                     
+                        )
+                 VALUES
+                       (@EmployeeID
+                       
+                               ,@RequestDateTime
+                                 ,@WorkType
+                                   ,@WorkTrade
+                                     ,@WorkPriority
+                                       ,@ProblemCategory
+                                         ,@ProblemDescription
+                                             ,@AssetItemTag
+                                           ,@CompletedByEmp
+                                             ,@FeedbackEmp
+                                               ,@Feedback_Remarks
+                                              
+                       )
+                    
+
+                     
+                       
+                       
+            `
+        );
+      //
+      let dataaa = await pool
+        .request()
+        .input("EmployeeID", sql.VarChar, EmployeeID)
+        .query(`select * from tblWorkRequest where EmployeeID=@EmployeeID`);
+      res.status(201).json(dataaa);
+      console.log(dataaa);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
 };
 export default FATSDB;
