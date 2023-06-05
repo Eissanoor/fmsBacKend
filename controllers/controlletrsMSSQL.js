@@ -206,7 +206,7 @@ WHERE EmployeeID='${EmployeeID}'`);
         .input("RequestDateTime", sql.DateTime, req.body.RequestDateTime)
         .input("WorkType", sql.VarChar, req.body.WorkType)
         .input("WorkTrade", sql.VarChar, req.body.WorkTrade)
-
+        .input("WorkOrder", sql.VarChar, req.body.WorkOrder)
         .input("WorkPriority", sql.VarChar, req.body.WorkPriority)
         .input("ProblemCategory", sql.VarChar, req.body.ProblemCategory)
         .input("ProblemDescription", sql.VarChar, req.body.ProblemDescription)
@@ -223,6 +223,7 @@ WHERE EmployeeID='${EmployeeID}'`);
                         ,[WorkType]
                          ,[WorkTrade]
                           ,[WorkPriority]
+                            ,[WorkOrder]
                            ,[ProblemCategory]
                             ,[ProblemDescription]
                              ,[AssetItemTag]
@@ -239,6 +240,7 @@ WHERE EmployeeID='${EmployeeID}'`);
                                  ,@WorkType
                                    ,@WorkTrade
                                      ,@WorkPriority
+                                       ,@WorkOrder
                                        ,@ProblemCategory
                                          ,@ProblemDescription
                                              ,@AssetItemTag
