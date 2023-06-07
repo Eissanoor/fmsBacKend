@@ -41,6 +41,10 @@ router.post(
   "/AddBuildingInworkRequestPOST",
   FATSDB.AddBuildingInworkRequestPOST
 );
+router.post(
+  "/AddLocationInworkRequestPOST",
+  FATSDB.AddLocationInworkRequestPOST
+);
 //--------------------------------------------------------------------------
 
 //-------------------------------GET_API---------------------------------------------

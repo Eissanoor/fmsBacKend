@@ -159,6 +159,33 @@ const FATSDB = {
       res.status(500).json({ error: `${error}` });
     }
   },
+  async AddLocationInworkRequestPOST(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+
+      let data = await pool
+        .request()
+        .input("LocationCode", sql.VarChar, req.body.LocationCode)
+        .input("LocationDesc", sql.VarChar, req.body.LocationDesc)
+
+        .query(
+          ` 
+            INSERT INTO [dbo].[prmLocation]
+                       ([LocationCode]
+                        ,[LocationDesc]
+                        )
+                 VALUES
+                       (@LocationCode
+                       
+                               ,@LocationDesc                   
+                       )`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   async getworkRequest(req, res, next) {
     try {
       let pool = await sql.connect(config);
