@@ -119,6 +119,46 @@ const FATSDB = {
       res.status(500).json({ error: `${error}` });
     }
   },
+  async AddBuildingInworkRequestPOST(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+
+      let data = await pool
+        .request()
+        .input("BuildingCode", sql.VarChar, req.body.BuildingCode)
+        .input("BuildingDesc", sql.VarChar, req.body.BuildingDesc)
+
+        .query(
+          ` 
+            INSERT INTO [dbo].[prmBuilding]
+                       ([BuildingCode]
+                        ,[BuildingDesc]
+                     
+                     
+                        )
+                 VALUES
+                       (@BuildingCode
+                       
+                               ,@BuildingDesc
+                          
+                                           
+                                              
+                       )
+                    
+
+                     
+                       
+                       
+            `
+        );
+      //
+
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   async getworkRequest(req, res, next) {
     try {
       let pool = await sql.connect(config);
