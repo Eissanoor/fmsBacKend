@@ -32,7 +32,7 @@ const FATSDB = {
         .input("Middlename", sql.VarChar, req.body.Middlename)
         .input("Lastname", sql.VarChar, req.body.Lastname)
 
-        .input("MobileaNumber", sql.VarChar, req.body.MobileaNumber)
+        .input("MobileNumber", sql.VarChar, req.body.MobileNumber)
         .input("LandlineNumber", sql.VarChar, req.body.LandlineNumber)
 
         .query(
@@ -43,7 +43,7 @@ const FATSDB = {
                          ,[Middlename]
                           ,[Lastname]
                           
-                            ,[MobileaNumber]
+                            ,[MobileNumber]
                              ,[LandlineNumber]
                              
                      
@@ -55,7 +55,7 @@ const FATSDB = {
                                  ,@Middlename
                                    ,@Lastname
                                    
-                                       ,@MobileaNumber
+                                       ,@MobileNumber
                                          ,@LandlineNumber
                                            
                                               
