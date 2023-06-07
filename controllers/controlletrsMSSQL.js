@@ -79,6 +79,46 @@ const FATSDB = {
       res.status(500).json({ error: `${error}` });
     }
   },
+  async AddDepartmentInworkRequestPOST(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+
+      let data = await pool
+        .request()
+        .input("DepartmentCode", sql.VarChar, req.body.DepartmentCode)
+        .input("DepartmentDesc", sql.VarChar, req.body.DepartmentDesc)
+
+        .query(
+          ` 
+            INSERT INTO [dbo].[prmDepartment]
+                       ([DepartmentCode]
+                        ,[DepartmentDesc]
+                     
+                     
+                        )
+                 VALUES
+                       (@DepartmentCode
+                       
+                               ,@DepartmentDesc
+                          
+                                           
+                                              
+                       )
+                    
+
+                     
+                       
+                       
+            `
+        );
+      //
+
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   async getworkRequest(req, res, next) {
     try {
       let pool = await sql.connect(config);

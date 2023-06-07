@@ -33,6 +33,10 @@ const cpUpload = upload.fields([
 ]);
 //----------------POST_API---------------------------------------------------------
 router.post("/AddworkRequestPOST", FATSDB.AddworkRequestPOST);
+router.post(
+  "/AddDepartmentInworkRequestPOST",
+  FATSDB.AddDepartmentInworkRequestPOST
+);
 
 //--------------------------------------------------------------------------
 
