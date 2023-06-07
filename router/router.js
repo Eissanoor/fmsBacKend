@@ -32,36 +32,17 @@ const cpUpload = upload.fields([
   { name: "selfieIDImage" },
 ]);
 //----------------POST_API---------------------------------------------------------
-router.post("/AddworkRequestPOST", cpUpload, FATSDB.AddworkRequestPOST);
-router.post("/AddworkRequestsecondPOST", FATSDB.AddworkRequestsecondPOST);
+router.post("/AddworkRequestPOST", FATSDB.AddworkRequestPOST);
 
 //--------------------------------------------------------------------------
 
 //-------------------------------GET_API---------------------------------------------
-router.get("/getworkRequest/:EmployeeID", FATSDB.getworkRequest);
-router.get("/getAllLISTworkRequest", FATSDB.getAllLISTworkRequest);
-router.get("/getworkRequestsecond/:EmployeeID", FATSDB.getworkRequestsecond);
-router.get(
-  "/getAllLISTworkRequestSecondWork",
-  FATSDB.getAllLISTworkRequestSecondWork
-);
+
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
-router.put(
-  "/updateWorkRequest/:EmployeeID",
-  cpUpload,
-  FATSDB.updateWorkRequest
-);
-router.put(
-  "/updatesecondWorkRequest/:EmployeeID",
-  FATSDB.updatesecondWorkRequest
-);
+
 //--------------------------------------------------------------------------------
 //-----------------------------------DELETE_API-----------------------------------------
-router.delete("/deleteWorkRequest/:EmployeeID", FATSDB.deleteWorkRequest);
-router.delete(
-  "/deletesecondWorkRequest/:EmployeeID",
-  FATSDB.deletesecondWorkRequest
-);
+
 //----------------------------------------------------------------------------
 export default router;

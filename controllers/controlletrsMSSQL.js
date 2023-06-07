@@ -22,9 +22,6 @@ function generateUpdateQuery(fields, tableName) {
 const FATSDB = {
   async AddworkRequestPOST(req, res, next) {
     try {
-      const file = req.files["EmployeeImage"];
-
-      const url = `http://gs1ksa.org:3021/api/profile/${file[0].filename}`;
       const EmployeeID = req.body.EmployeeID;
       let pool = await sql.connect(config);
 
@@ -34,13 +31,9 @@ const FATSDB = {
         .input("Firstname", sql.VarChar, req.body.Firstname)
         .input("Middlename", sql.VarChar, req.body.Middlename)
         .input("Lastname", sql.VarChar, req.body.Lastname)
-        .input("EmployeeImage", sql.VarChar, url)
+
         .input("MobileaNumber", sql.VarChar, req.body.MobileaNumber)
         .input("LandlineNumber", sql.VarChar, req.body.LandlineNumber)
-        .input("DepartmentCode", sql.VarChar, req.body.DepartmentCode)
-        .input("BuildingCode", sql.VarChar, req.body.BuildingCode)
-        .input("LocationCode", sql.VarChar, req.body.LocationCode)
-        .input("HiringDate", sql.Date, req.body.HiringDate)
 
         .query(
           ` 
@@ -49,13 +42,10 @@ const FATSDB = {
                         ,[Firstname]
                          ,[Middlename]
                           ,[Lastname]
-                           ,[EmployeeImage]
+                          
                             ,[MobileaNumber]
                              ,[LandlineNumber]
-                               ,[BuildingCode]
-                              ,[DepartmentCode]
-                               ,[LocationCode]
-                                ,[HiringDate]
+                             
                      
                         )
                  VALUES
@@ -64,13 +54,10 @@ const FATSDB = {
                                ,@Firstname
                                  ,@Middlename
                                    ,@Lastname
-                                     ,@EmployeeImage
+                                   
                                        ,@MobileaNumber
                                          ,@LandlineNumber
-                                             ,@BuildingCode
-                                           ,@DepartmentCode
-                                             ,@LocationCode
-                                               ,@HiringDate
+                                           
                                               
                        )
                     
@@ -361,6 +348,75 @@ WHERE EmployeeID='${EmployeeID}'`);
         .query(`delete from tblWorkRequest where EmployeeID='${EmployeeID}'`);
       console.log(data);
       res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async AddworkOrderPOST(req, res, next) {
+    try {
+      const EmployeeID = req.body.EmployeeID;
+      let pool = await sql.connect(config);
+
+      let data = await pool
+        .request()
+        .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
+        .input("Firstname", sql.VarChar, req.body.Firstname)
+        .input("Middlename", sql.VarChar, req.body.Middlename)
+        .input("Lastname", sql.VarChar, req.body.Lastname)
+        .input("EmployeeImage", sql.VarChar, url)
+        .input("MobileaNumber", sql.VarChar, req.body.MobileaNumber)
+        .input("LandlineNumber", sql.VarChar, req.body.LandlineNumber)
+        .input("DepartmentCode", sql.VarChar, req.body.DepartmentCode)
+        .input("BuildingCode", sql.VarChar, req.body.BuildingCode)
+        .input("LocationCode", sql.VarChar, req.body.LocationCode)
+        .input("HiringDate", sql.Date, req.body.HiringDate)
+
+        .query(
+          ` 
+            INSERT INTO [dbo].[tblEmployeeMaster]
+                       ([EmployeeID]
+                        ,[Firstname]
+                         ,[Middlename]
+                          ,[Lastname]
+                           ,[EmployeeImage]
+                            ,[MobileaNumber]
+                             ,[LandlineNumber]
+                               ,[BuildingCode]
+                              ,[DepartmentCode]
+                               ,[LocationCode]
+                                ,[HiringDate]
+                     
+                        )
+                 VALUES
+                       (@EmployeeID
+                       
+                               ,@Firstname
+                                 ,@Middlename
+                                   ,@Lastname
+                                     ,@EmployeeImage
+                                       ,@MobileaNumber
+                                         ,@LandlineNumber
+                                             ,@BuildingCode
+                                           ,@DepartmentCode
+                                             ,@LocationCode
+                                               ,@HiringDate
+                                              
+                       )
+                    
+
+                     
+                       
+                       
+            `
+        );
+      //
+      let dataaa = await pool
+        .request()
+        .input("EmployeeID", sql.VarChar, EmployeeID)
+        .query(`select * from tblEmployeeMaster where EmployeeID=@EmployeeID`);
+      res.status(201).json(dataaa);
+      console.log(dataaa);
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
