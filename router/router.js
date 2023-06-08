@@ -57,6 +57,10 @@ router.post(
   "/AddWorkTradeInworkRequestPOST",
   FATSDB.AddWorkTradeInworkRequestPOST
 );
+router.post(
+  "/AddassetItemInworkRequestPOST",
+  FATSDB.AddassetItemInworkRequestPOST
+);
 //--------------------------------------------------------------------------
 
 //-------------------------------GET_API---------------------------------------------

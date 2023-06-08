@@ -274,6 +274,39 @@ const FATSDB = {
       res.status(500).json({ error: `${error}` });
     }
   },
+  async AddassetItemInworkRequestPOST(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+
+      let data = await pool
+        .request()
+        .input(
+          "AssetItemDescription",
+          sql.VarChar,
+          req.body.AssetItemDescription
+        )
+        .input("AssetType", sql.VarChar, req.body.AssetType)
+
+        .query(
+          ` 
+            INSERT INTO [dbo].[prmWorkTrade]
+                       ([AssetItemDescription]
+                        ,[AssetType]
+                      
+                        )
+                 VALUES
+                       (@AssetItemDescription
+                       
+                               ,@AssetType    
+                                            
+                       )`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //
   //----------------------------------------------POST--------------------------------
   async getworkRequest(req, res, next) {
