@@ -49,6 +49,10 @@ router.post(
   "/AddWorkTypeInworkRequestPOST",
   FATSDB.AddWorkTypeInworkRequestPOST
 );
+router.post(
+  "/AddWorkPriorityInworkRequestPOST",
+  FATSDB.AddWorkPriorityInworkRequestPOST
+);
 //--------------------------------------------------------------------------
 
 //-------------------------------GET_API---------------------------------------------

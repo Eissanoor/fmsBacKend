@@ -213,6 +213,36 @@ const FATSDB = {
       res.status(500).json({ error: `${error}` });
     }
   },
+  async AddWorkPriorityInworkRequestPOST(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+
+      let data = await pool
+        .request()
+        .input("WorkPriorityCode", sql.VarChar, req.body.WorkPriorityCode)
+        .input("WorkPriorityDesc", sql.VarChar, req.body.WorkPriorityDesc)
+        .input("WorkPrioritySeq", sql.VarChar, req.body.WorkPrioritySeq)
+
+        .query(
+          ` 
+            INSERT INTO [dbo].[prmWorkType]
+                       ([WorkPriorityCode]
+                        ,[WorkPriorityDesc]
+                         ,[WorkPrioritySeq]
+                        )
+                 VALUES
+                       (@WorkPriorityCode
+                       
+                               ,@WorkPriorityDesc    
+                               ,@WorkPrioritySeq                 
+                       )`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   async getworkRequest(req, res, next) {
     try {
       let pool = await sql.connect(config);
