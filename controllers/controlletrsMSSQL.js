@@ -289,7 +289,7 @@ const FATSDB = {
 
         .query(
           ` 
-            INSERT INTO [dbo].[prmWorkTrade]
+            INSERT INTO [dbo].[tblAssetsMaster]
                        ([AssetItemDescription]
                         ,[AssetType]
                       
