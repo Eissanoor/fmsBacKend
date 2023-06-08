@@ -61,6 +61,10 @@ router.post(
   "/AddassetItemInworkRequestPOST",
   FATSDB.AddassetItemInworkRequestPOST
 );
+router.post(
+  "/AddAssetItemTagIDInworkRequestPOST",
+  FATSDB.AddAssetItemTagIDInworkRequestPOST
+);
 //--------------------------------------------------------------------------
 
 //-------------------------------GET_API---------------------------------------------

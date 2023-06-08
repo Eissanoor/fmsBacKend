@@ -313,6 +313,33 @@ const FATSDB = {
       res.status(500).json({ error: `${error}` });
     }
   },
+  async AddAssetItemTagIDInworkRequestPOST(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+
+      let data = await pool
+        .request()
+        .input("AssetItemTagID", sql.VarChar, req.body.AssetItemTagID)
+
+        .query(
+          ` 
+            INSERT INTO [dbo].[tblAssetTransactions]
+                       ([AssetItemTagID]
+                       
+                        )
+                 VALUES
+                       (@AssetItemTagID
+                       
+                                             
+                       )`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+
   //
   //----------------------------------------------POST--------------------------------
   async getworkRequest(req, res, next) {
