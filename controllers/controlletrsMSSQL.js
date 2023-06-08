@@ -285,19 +285,25 @@ const FATSDB = {
           sql.VarChar,
           req.body.AssetItemDescription
         )
-        .input("AssetType", sql.VarChar, req.body.AssetType)
+        .input("AssetCategory", sql.VarChar, req.body.AssetCategory)
+        .input("Manufacturer", sql.VarChar, req.body.Manufacturer)
+        .input("Model", sql.VarChar, req.body.Model)
 
         .query(
           ` 
             INSERT INTO [dbo].[tblAssetsMaster]
                        ([AssetItemDescription]
-                        ,[AssetType]
+                        ,[AssetCategory]
+                         ,[Manufacturer]
+                          ,[Model]
                       
                         )
                  VALUES
                        (@AssetItemDescription
                        
-                               ,@AssetType    
+                               ,@AssetCategory    
+                                 ,@Manufacturer 
+                                   ,@Model 
                                             
                        )`
         );
