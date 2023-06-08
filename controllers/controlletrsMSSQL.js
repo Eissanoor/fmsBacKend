@@ -225,7 +225,7 @@ const FATSDB = {
 
         .query(
           ` 
-            INSERT INTO [dbo].[prmWorkType]
+            INSERT INTO [dbo].[prmWorkPriority]
                        ([WorkPriorityCode]
                         ,[WorkPriorityDesc]
                          ,[WorkPrioritySeq]
