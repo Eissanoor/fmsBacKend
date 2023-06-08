@@ -65,6 +65,10 @@ router.post(
   "/AddAssetItemTagIDInworkRequestPOST",
   FATSDB.AddAssetItemTagIDInworkRequestPOST
 );
+router.post(
+  "/AddprmProblemCategoryInworkRequestPOST",
+  FATSDB.AddprmProblemCategoryInworkRequestPOST
+);
 //--------------------------------------------------------------------------
 
 //-------------------------------GET_API---------------------------------------------

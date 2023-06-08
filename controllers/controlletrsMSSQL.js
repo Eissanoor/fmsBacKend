@@ -339,6 +339,33 @@ const FATSDB = {
       res.status(500).json({ error: `${error}` });
     }
   },
+  async AddprmProblemCategoryInworkRequestPOST(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+
+      let data = await pool
+        .request()
+        .input("ProblemCategoryCode", sql.VarChar, req.body.ProblemCategoryCode)
+        .input("ProblemCategoryDesc", sql.VarChar, req.body.ProblemCategoryDesc)
+
+        .query(
+          ` 
+            INSERT INTO [dbo].[prmProblemCategory]
+                       ([ProblemCategoryCode]
+                       ,[ProblemCategoryDesc]
+                        )
+                 VALUES
+                       (@ProblemCategoryCode
+                       ,@ProblemCategoryDesc
+                                             
+                       )`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
 
   //
   //----------------------------------------------POST--------------------------------
