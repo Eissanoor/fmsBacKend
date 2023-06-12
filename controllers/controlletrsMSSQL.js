@@ -375,6 +375,39 @@ const FATSDB = {
         .request()
         .input("WorkTypeCode", sql.VarChar, req.body.WorkTypeCode)
         .input("WorkTypeDesc", sql.VarChar, req.body.WorkTypeDesc)
+        .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
+        .query(
+          ` 
+            INSERT INTO [dbo].[prmWorkType]
+                       ([WorkTypeCode]
+                       ,[WorkTypeDesc]
+                       ,[EmployeeID]
+                        )
+                 VALUES
+                       (@WorkTypeCode
+                       ,@WorkTypeDesc
+                           ,@EmployeeID                  
+                       )`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+
+  //
+  //-----------------------------------------------------------------------------------
+
+  //---------------------------PUT--------------------------------------------------------
+  async WorkType_Put(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+
+      let data = await pool
+        .request()
+        .input("WorkTypeCode", sql.VarChar, req.body.WorkTypeCode)
+        .input("WorkTypeDesc", sql.VarChar, req.body.WorkTypeDesc)
 
         .query(
           ` 
@@ -394,9 +427,7 @@ const FATSDB = {
       res.status(500).json({ error: `${error}` });
     }
   },
-
-  //
-  //----------------------------------------------POST--------------------------------
+  //-------------------------------------------------------------------------------------
   async getworkRequest(req, res, next) {
     try {
       let pool = await sql.connect(config);
