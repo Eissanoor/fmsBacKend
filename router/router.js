@@ -80,6 +80,6 @@ router.get("/WorkType_GET_LIST", FATSDB.WorkType_GET_LIST);
 router.put("/WorkType_Put/:EmployeeID", FATSDB.WorkType_Put);
 //--------------------------------------------------------------------------------
 //-----------------------------------DELETE_API-----------------------------------------
-
+router.delete("/WORKTYPE_DELETE_BYID/:EmployeeID", FATSDB.WORKTYPE_DELETE_BYID);
 //----------------------------------------------------------------------------
 export default router;
