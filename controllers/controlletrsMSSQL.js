@@ -424,6 +424,23 @@ WHERE EmployeeID='${EmployeeID}'`
     }
   },
   //-------------------------------------------------------------------------------------
+
+  //---------------------------GET--------------------------------------------------------
+  async WorkType_GET_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const EmployeeID = req.params.EmployeeID;
+      let data = await pool
+        .request()
+
+        .query(`select * from prmWorkType where EmployeeID='${EmployeeID}'`);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  //-----------------------------------------------------------------------------------
   async getworkRequest(req, res, next) {
     try {
       let pool = await sql.connect(config);
