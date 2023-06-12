@@ -415,8 +415,7 @@ const FATSDB = {
 SET
 [WorkTypeCode] =@WorkTypeCode
 ,[WorkTypeDesc] =@WorkTypeDesc
-WHERE EmployeeID='${EmployeeID}'
- )`
+WHERE EmployeeID='${EmployeeID}'`
         );
       res.status(201).json(data);
     } catch (error) {
