@@ -403,7 +403,7 @@ const FATSDB = {
   async WorkType_Put(req, res, next) {
     try {
       let pool = await sql.connect(config);
-
+      const EmployeeID = req.params.EmployeeID;
       let data = await pool
         .request()
         .input("WorkTypeCode", sql.VarChar, req.body.WorkTypeCode)
@@ -411,15 +411,12 @@ const FATSDB = {
 
         .query(
           ` 
-            INSERT INTO [dbo].[prmWorkType]
-                       ([WorkTypeCode]
-                       ,[WorkTypeDesc]
-                        )
-                 VALUES
-                       (@WorkTypeCode
-                       ,@WorkTypeDesc
-                                             
-                       )`
+          UPDATE [dbo].[prmWorkType]
+SET
+[WorkTypeCode] =@WorkTypeCode
+,[WorkTypeDesc] =@WorkTypeDesc
+WHERE EmployeeID='${EmployeeID}'
+ )`
         );
       res.status(201).json(data);
     } catch (error) {
