@@ -507,6 +507,16 @@ WHERE WorkTypeCode='${WorkTypeCode}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async WorkTRADE_GET_LIST(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      let data = await pool.request().query(`select * from prmWorkTrade`);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-----------------------------------------------------------------------------------
 
   //---------------------------DELETE--------------------------------------------------------
