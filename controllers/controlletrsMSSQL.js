@@ -526,6 +526,21 @@ WHERE WorkTypeCode='${WorkTypeCode}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async WORKTRADE_DELETE_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const WorkTypeCode = req.params.WorkTypeCode;
+      let data = await pool
+        .request()
+
+        .query(`delete from prmWorkTrade where WorkTypeCode='${WorkTypeCode}'`);
+      console.log(data);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //------------------------------------------------------------------------------------------
   async getworkRequest(req, res, next) {
     try {

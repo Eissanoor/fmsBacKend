@@ -86,5 +86,9 @@ router.delete(
   "/WORKTYPE_DELETE_BYID/:WorkTypeCode",
   FATSDB.WORKTYPE_DELETE_BYID
 );
+router.delete(
+  "/WORKTRADE_DELETE_BYID/:WorkTypeCode",
+  FATSDB.WORKTRADE_DELETE_BYID
+);
 //----------------------------------------------------------------------------
 export default router;
