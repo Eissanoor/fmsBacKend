@@ -459,11 +459,11 @@ WHERE WorkTypeCode='${WorkTypeCode}'`
   async WORKTYPE_DELETE_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
-      const EmployeeID = req.params.EmployeeID;
+      const WorkTypeCode = req.params.WorkTypeCode;
       let data = await pool
         .request()
 
-        .query(`delete from prmWorkType where EmployeeID='${EmployeeID}'`);
+        .query(`delete from prmWorkType where WorkTypeCode='${WorkTypeCode}'`);
       console.log(data);
       res.status(200).json(data);
     } catch (error) {
