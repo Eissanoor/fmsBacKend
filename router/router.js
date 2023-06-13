@@ -71,6 +71,7 @@ router.post(
 );
 router.post("/WorkType_post", FATSDB.WorkType_post);
 router.post("/WorkTrade_post", FATSDB.WorkTrade_post);
+router.post("/WorkStatus_post", FATSDB.WorkStatus_post);
 //--------------------------------------------------------------------------
 
 //-------------------------------GET_API---------------------------------------------

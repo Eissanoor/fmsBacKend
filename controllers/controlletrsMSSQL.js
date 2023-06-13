@@ -426,7 +426,36 @@ const FATSDB = {
       res.status(500).json({ error: `${error}` });
     }
   },
+  async WorkStatus_post(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
 
+      let data = await pool
+        .request()
+        .input("WorkStatusCode", sql.VarChar, req.body.WorkStatusCode)
+        .input("WorkStatusDesc", sql.VarChar, req.body.WorkStatusDesc)
+
+        .query(
+          ` 
+            INSERT INTO [dbo].[prmWorkStatus]
+                       ([WorkStatusCode]
+                       ,[WorkStatusDesc]
+                       
+                      
+                        )
+                 VALUES
+                       (@WorkStatusCode
+                       ,@WorkStatusDesc
+                     
+                                           
+                       )`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //
   //-----------------------------------------------------------------------------------
 
