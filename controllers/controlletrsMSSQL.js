@@ -506,6 +506,29 @@ WHERE WorkTypeCode='${WorkTypeCode}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async WorkStatus_Put(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const WorkStatusCode = req.params.WorkStatusCode;
+      let data = await pool
+        .request()
+
+        .input("WorkStatusDesc", sql.VarChar, req.body.WorkStatusDesc)
+
+        .query(
+          ` 
+          UPDATE [dbo].[prmWorkStatus]
+SET
+
+[WorkStatusDesc] =@WorkStatusDesc
+WHERE WorkStatusCode='${WorkStatusCode}'`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
 
   //-------------------------------------------------------------------------------------
 
