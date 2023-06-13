@@ -375,18 +375,18 @@ const FATSDB = {
         .request()
         .input("WorkTypeCode", sql.VarChar, req.body.WorkTypeCode)
         .input("WorkTypeDesc", sql.VarChar, req.body.WorkTypeDesc)
-        .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
+
         .query(
           ` 
             INSERT INTO [dbo].[prmWorkType]
                        ([WorkTypeCode]
                        ,[WorkTypeDesc]
-                       ,[EmployeeID]
+                      
                         )
                  VALUES
                        (@WorkTypeCode
                        ,@WorkTypeDesc
-                           ,@EmployeeID                  
+                                           
                        )`
         );
       res.status(201).json(data);
@@ -403,7 +403,7 @@ const FATSDB = {
   async WorkType_Put(req, res, next) {
     try {
       let pool = await sql.connect(config);
-      const EmployeeID = req.params.EmployeeID;
+      const WorkTypeCode = req.params.WorkTypeCode;
       let data = await pool
         .request()
         .input("WorkTypeCode", sql.VarChar, req.body.WorkTypeCode)
@@ -415,7 +415,7 @@ const FATSDB = {
 SET
 [WorkTypeCode] =@WorkTypeCode
 ,[WorkTypeDesc] =@WorkTypeDesc
-WHERE EmployeeID='${EmployeeID}'`
+WHERE WorkTypeCode='${WorkTypeCode}'`
         );
       res.status(201).json(data);
     } catch (error) {
@@ -429,11 +429,13 @@ WHERE EmployeeID='${EmployeeID}'`
   async WorkType_GET_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
-      const EmployeeID = req.params.EmployeeID;
+      const WorkTypeCode = req.params.WorkTypeCode;
       let data = await pool
         .request()
 
-        .query(`select * from prmWorkType where EmployeeID='${EmployeeID}'`);
+        .query(
+          `select * from prmWorkType where WorkTypeCode='${WorkTypeCode}'`
+        );
       res.status(200).json(data);
     } catch (error) {
       console.log(error);

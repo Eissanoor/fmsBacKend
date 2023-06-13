@@ -73,13 +73,16 @@ router.post("/WorkType_post", FATSDB.WorkType_post);
 //--------------------------------------------------------------------------
 
 //-------------------------------GET_API---------------------------------------------
-router.get("/WorkType_GET_BYID/:EmployeeID", FATSDB.WorkType_GET_BYID);
+router.get("/WorkType_GET_BYID/:WorkTypeCode", FATSDB.WorkType_GET_BYID);
 router.get("/WorkType_GET_LIST", FATSDB.WorkType_GET_LIST);
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
-router.put("/WorkType_Put/:EmployeeID", FATSDB.WorkType_Put);
+router.put("/WorkType_Put/:WorkTypeCode", FATSDB.WorkType_Put);
 //--------------------------------------------------------------------------------
 //-----------------------------------DELETE_API-----------------------------------------
-router.delete("/WORKTYPE_DELETE_BYID/:EmployeeID", FATSDB.WORKTYPE_DELETE_BYID);
+router.delete(
+  "/WORKTYPE_DELETE_BYID/:WorkTypeCode",
+  FATSDB.WORKTYPE_DELETE_BYID
+);
 //----------------------------------------------------------------------------
 export default router;
