@@ -70,6 +70,7 @@ router.post(
   FATSDB.AddprmProblemCategoryInworkRequestPOST
 );
 router.post("/WorkType_post", FATSDB.WorkType_post);
+router.post("/WorkTrade_post", FATSDB.WorkTrade_post);
 //--------------------------------------------------------------------------
 
 //-------------------------------GET_API---------------------------------------------

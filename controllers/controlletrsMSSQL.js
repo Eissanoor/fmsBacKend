@@ -395,6 +395,37 @@ const FATSDB = {
       res.status(500).json({ error: `${error}` });
     }
   },
+  async WorkTrade_post(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+
+      let data = await pool
+        .request()
+        .input("WorkTypeCode", sql.VarChar, req.body.WorkTypeCode)
+        .input("WorkTradeCode", sql.VarChar, req.body.WorkTradeCode)
+        .input("WorkTradeDesc", sql.VarChar, req.body.WorkTradeDesc)
+
+        .query(
+          ` 
+            INSERT INTO [dbo].[prmWorkTrade]
+                       ([WorkTypeCode]
+                       ,[WorkTradeCode]
+                         ,[WorkTradeDesc]
+                      
+                        )
+                 VALUES
+                       (@WorkTypeCode
+                       ,@WorkTradeCode
+                       ,@WorkTradeDesc
+                                           
+                       )`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
 
   //
   //-----------------------------------------------------------------------------------
