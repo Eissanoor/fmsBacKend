@@ -406,15 +406,15 @@ const FATSDB = {
       const WorkTypeCode = req.params.WorkTypeCode;
       let data = await pool
         .request()
-        .input("WorkTypeCode", sql.VarChar, req.body.WorkTypeCode)
+
         .input("WorkTypeDesc", sql.VarChar, req.body.WorkTypeDesc)
 
         .query(
           ` 
           UPDATE [dbo].[prmWorkType]
 SET
-[WorkTypeCode] =@WorkTypeCode
-,[WorkTypeDesc] =@WorkTypeDesc
+
+[WorkTypeDesc] =@WorkTypeDesc
 WHERE WorkTypeCode='${WorkTypeCode}'`
         );
       res.status(201).json(data);
