@@ -645,6 +645,23 @@ WHERE WorkStatusCode='${WorkStatusCode}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async WORKStatus_DELETE_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const WorkStatusCode = req.params.WorkStatusCode;
+      let data = await pool
+        .request()
+
+        .query(
+          `delete from prmWorkStatus where WorkStatusCode='${WorkStatusCode}'`
+        );
+      console.log(data);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //------------------------------------------------------------------------------------------
   async getworkRequest(req, res, next) {
     try {
