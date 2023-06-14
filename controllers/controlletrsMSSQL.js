@@ -561,6 +561,30 @@ WHERE WorkStatusCode='${WorkStatusCode}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async WorkPriority_Put(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const WorkPriorityCode = req.params.WorkPriorityCode;
+      let data = await pool
+        .request()
+
+        .input("WorkPriorityDesc", sql.VarChar, req.body.WorkPriorityDesc)
+        .input("WorkPrioritySeq", sql.SmallInt, req.body.WorkPrioritySeq)
+        .query(
+          ` 
+          UPDATE [dbo].[prmWorkPriority]
+SET
+
+[WorkPriorityDesc] =@WorkPriorityDesc
+,[WorkPrioritySeq] =@WorkPrioritySeq
+WHERE WorkPriorityCode='${WorkPriorityCode}'`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
 
   //-------------------------------------------------------------------------------------
 
