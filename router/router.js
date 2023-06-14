@@ -79,6 +79,8 @@ router.get("/WorkType_GET_BYID/:WorkTypeCode", FATSDB.WorkType_GET_BYID);
 router.get("/WorkType_GET_LIST", FATSDB.WorkType_GET_LIST);
 router.get("/WorkTRADE_GET_LIST", FATSDB.WorkTRADE_GET_LIST);
 router.get("/WorkTRADE_GET_BYID/:WorkTypeCode", FATSDB.WorkTRADE_GET_BYID);
+router.get("/WorkStatus_GET_LIST", FATSDB.WorkStatus_GET_LIST);
+router.get("/WorkStatus_GET_BYID/:WorkStatusCode", FATSDB.WorkStatus_GET_BYID);
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);

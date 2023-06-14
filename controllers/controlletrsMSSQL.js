@@ -585,6 +585,32 @@ WHERE WorkStatusCode='${WorkStatusCode}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async WorkStatus_GET_LIST(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      let data = await pool.request().query(`select * from prmWorkStatus`);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async WorkStatus_GET_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const WorkStatusCode = req.params.WorkStatusCode;
+      let data = await pool
+        .request()
+
+        .query(
+          `select * from prmWorkStatus where WorkStatusCode='${WorkStatusCode}'`
+        );
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-----------------------------------------------------------------------------------
 
   //---------------------------DELETE--------------------------------------------------------
