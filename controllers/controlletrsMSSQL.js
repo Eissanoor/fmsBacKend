@@ -464,7 +464,7 @@ const FATSDB = {
         .request()
         .input("WorkPriorityCode", sql.VarChar, req.body.WorkPriorityCode)
         .input("WorkPriorityDesc", sql.VarChar, req.body.WorkPriorityDesc)
-        .input("WorkPrioritySeq", sql.VarChar, req.body.WorkPrioritySeq)
+        .input("WorkPrioritySeq", sql.SmallInt, req.body.WorkPrioritySeq)
 
         .query(
           ` 
