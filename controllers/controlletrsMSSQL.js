@@ -677,6 +677,22 @@ WHERE WorkPriorityCode='${WorkPriorityCode}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async WorkPriority_GET_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const WorkPriorityCode = req.params.WorkPriorityCode;
+      let data = await pool
+        .request()
+
+        .query(
+          `select * from prmWorkPriority where WorkPriorityCode='${WorkPriorityCode}'`
+        );
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-----------------------------------------------------------------------------------
 
   //---------------------------DELETE--------------------------------------------------------
