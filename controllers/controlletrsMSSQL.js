@@ -488,6 +488,37 @@ const FATSDB = {
       res.status(500).json({ error: `${error}` });
     }
   },
+  async WorkCatagres_post(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+
+      let data = await pool
+        .request()
+        .input("WorkCategoryCode", sql.VarChar, req.body.WorkCategoryCode)
+        .input("WorkCategoryDesc", sql.VarChar, req.body.WorkCategoryDesc)
+
+        .query(
+          ` 
+            INSERT INTO [dbo].[prmWorkCategory]
+                       ([WorkCategoryCode]
+                       ,[WorkCategoryDesc]
+                        ,[WorkPrioritySeq]
+                       
+                      
+                        )
+                 VALUES
+                       (@WorkCategoryCode
+                       ,@WorkCategoryDesc
+                    
+                                           
+                       )`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //
   //-----------------------------------------------------------------------------------
 
