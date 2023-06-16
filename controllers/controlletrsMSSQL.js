@@ -502,7 +502,7 @@ const FATSDB = {
             INSERT INTO [dbo].[prmWorkCategory]
                        ([WorkCategoryCode]
                        ,[WorkCategoryDesc]
-                        ,[WorkPrioritySeq]
+                     
                        
                       
                         )
