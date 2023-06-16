@@ -616,6 +616,29 @@ WHERE WorkPriorityCode='${WorkPriorityCode}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async WorkCatagres_Put(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const WorkCategoryCode = req.params.WorkCategoryCode;
+      let data = await pool
+        .request()
+
+        .input("WorkCategoryDesc", sql.VarChar, req.body.WorkCategoryDesc)
+
+        .query(
+          ` 
+          UPDATE [dbo].[prmWorkCategory]
+SET
+
+[WorkCategoryDesc] =@WorkCategoryDesc
+WHERE WorkCategoryCode='${WorkCategoryCode}'`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
 
   //-------------------------------------------------------------------------------------
 
