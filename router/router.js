@@ -88,6 +88,11 @@ router.get(
   "/WorkPriority_GET_BYID/:WorkPriorityCode",
   FATSDB.WorkPriority_GET_BYID
 );
+router.get("/WorkCatagres_GET_LIST", FATSDB.WorkCatagres_GET_LIST);
+router.get(
+  "/WorkCatagres_GET_BYID/:WorkCategoryCode",
+  FATSDB.WorkCatagres_GET_BYID
+);
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);
