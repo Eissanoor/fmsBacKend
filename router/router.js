@@ -118,5 +118,9 @@ router.delete(
   "/WORKPriority_DELETE_BYID/:WorkPriorityCode",
   FATSDB.WORKPriority_DELETE_BYID
 );
+router.delete(
+  "/WORKCatagres_DELETE_BYID/:WorkCategoryCode",
+  FATSDB.WORKCatagres_DELETE_BYID
+);
 //----------------------------------------------------------------------------
 export default router;
