@@ -94,6 +94,8 @@ router.get(
   "/WorkCatagres_GET_BYID/:WorkCategoryCode",
   FATSDB.WorkCatagres_GET_BYID
 );
+router.get("/Department_GET_LIST", FATSDB.Department_GET_LIST);
+router.get("/Department_GET_BYID/:DepartmentCode", FATSDB.Department_GET_BYID);
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);
