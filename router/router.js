@@ -101,6 +101,7 @@ router.put("/WorkType_Put/:WorkTypeCode", FATSDB.WorkType_Put);
 router.put("/WorkStatus_Put/:WorkStatusCode", FATSDB.WorkStatus_Put);
 router.put("/WorkPriority_Put/:WorkPriorityCode", FATSDB.WorkPriority_Put);
 router.put("/WorkCatagres_Put/:WorkCategoryCode", FATSDB.WorkCatagres_Put);
+router.put("/Department_Put/:DepartmentCode", FATSDB.Department_Put);
 //--------------------------------------------------------------------------------
 //-----------------------------------DELETE_API-----------------------------------------
 router.delete(

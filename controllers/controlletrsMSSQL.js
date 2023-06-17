@@ -670,6 +670,29 @@ WHERE WorkCategoryCode='${WorkCategoryCode}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async Department_Put(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const DepartmentCode = req.params.DepartmentCode;
+      let data = await pool
+        .request()
+
+        .input("DepartmentDesc", sql.VarChar, req.body.DepartmentDesc)
+
+        .query(
+          ` 
+          UPDATE [dbo].[prmDepartment]
+SET
+
+[DepartmentDesc] =@DepartmentDesc
+WHERE DepartmentCode='${DepartmentCode}'`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
 
   //-------------------------------------------------------------------------------------
 
