@@ -126,5 +126,9 @@ router.delete(
   "/WORKCatagres_DELETE_BYID/:WorkCategoryCode",
   FATSDB.WORKCatagres_DELETE_BYID
 );
+router.delete(
+  "/Department_DELETE_BYID/:DepartmentCode",
+  FATSDB.Department_DELETE_BYID
+);
 //----------------------------------------------------------------------------
 export default router;
