@@ -612,6 +612,37 @@ const FATSDB = {
       res.status(500).json({ error: `${error}` });
     }
   },
+  async ProblemCategory_post(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+
+      let data = await pool
+        .request()
+        .input("ProblemCategoryCode", sql.VarChar, req.body.ProblemCategoryCode)
+        .input("ProblemCategoryDesc", sql.VarChar, req.body.ProblemCategoryDesc)
+
+        .query(
+          ` 
+            INSERT INTO [dbo].[prmProblemCategory]
+                       ([ProblemCategoryCode]
+                       ,[ProblemCategoryDesc]
+                     
+                       
+                      
+                        )
+                 VALUES
+                       (@ProblemCategoryCode
+                       ,@ProblemCategoryDesc
+                    
+                                           
+                       )`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //
   //-----------------------------------------------------------------------------------
 
@@ -794,6 +825,29 @@ SET
 
 [LocationDesc] =@LocationDesc
 WHERE LocationCode='${LocationCode}'`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async ProblemCategory_Put(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const ProblemCategoryCode = req.params.ProblemCategoryCode;
+      let data = await pool
+        .request()
+
+        .input("ProblemCategoryDesc", sql.VarChar, req.body.ProblemCategoryDesc)
+
+        .query(
+          ` 
+          UPDATE [dbo].[prmProblemCategory]
+SET
+
+[ProblemCategoryDesc] =@ProblemCategoryDesc
+WHERE ProblemCategoryCode='${ProblemCategoryCode}'`
         );
       res.status(201).json(data);
     } catch (error) {
@@ -1012,6 +1066,32 @@ WHERE LocationCode='${LocationCode}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async ProblemCategory_GET_LIST(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      let data = await pool.request().query(`select * from prmProblemCategory`);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async ProblemCategory_GET_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const ProblemCategoryCode = req.params.ProblemCategoryCode;
+      let data = await pool
+        .request()
+
+        .query(
+          `select * from prmProblemCategory where ProblemCategoryCode='${ProblemCategoryCode}'`
+        );
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-----------------------------------------------------------------------------------
 
   //---------------------------DELETE--------------------------------------------------------
@@ -1137,6 +1217,23 @@ WHERE LocationCode='${LocationCode}'`
         .request()
 
         .query(`delete from prmLocation where LocationCode='${LocationCode}'`);
+      console.log(data);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async ProblemCategory_DELETE_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const ProblemCategoryCode = req.params.ProblemCategoryCode;
+      let data = await pool
+        .request()
+
+        .query(
+          `delete from prmProblemCategory where ProblemCategoryCode='${ProblemCategoryCode}'`
+        );
       console.log(data);
       res.status(200).json(data);
     } catch (error) {

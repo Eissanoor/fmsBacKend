@@ -77,6 +77,7 @@ router.post("/WorkCatagres_post", FATSDB.WorkCatagres_post);
 router.post("/Department_post", FATSDB.Department_post);
 router.post("/Building_post", FATSDB.Building_post);
 router.post("/Location_post", FATSDB.Location_post);
+router.post("/ProblemCategory_post", FATSDB.ProblemCategory_post);
 //--------------------------------------------------------------------------
 
 //-------------------------------GET_API---------------------------------------------
@@ -102,6 +103,11 @@ router.get("/Building_GET_LIST", FATSDB.Building_GET_LIST);
 router.get("/Building_GET_BYID/:BuildingCode", FATSDB.Building_GET_BYID);
 router.get("/Location_GET_LIST", FATSDB.Location_GET_LIST);
 router.get("/Location_GET_BYID/:LocationCode", FATSDB.Location_GET_BYID);
+router.get("/ProblemCategory_GET_LIST", FATSDB.ProblemCategory_GET_LIST);
+router.get(
+  "/ProblemCategory_GET_BYID/:ProblemCategoryCode",
+  FATSDB.ProblemCategory_GET_BYID
+);
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);
@@ -112,6 +118,10 @@ router.put("/WorkCatagres_Put/:WorkCategoryCode", FATSDB.WorkCatagres_Put);
 router.put("/Department_Put/:DepartmentCode", FATSDB.Department_Put);
 router.put("/Building_Put/:BuildingCode", FATSDB.Building_Put);
 router.put("/Location_Put/:LocationCode", FATSDB.Location_Put);
+router.put(
+  "/ProblemCategory_Put/:ProblemCategoryCode",
+  FATSDB.ProblemCategory_Put
+);
 //--------------------------------------------------------------------------------
 //-----------------------------------DELETE_API-----------------------------------------
 router.delete(
@@ -146,5 +156,6 @@ router.delete(
   "/Location_DELETE_BYID/:LocationCode",
   FATSDB.Location_DELETE_BYID
 );
+router.delete("/ProblemCategory_DELETE_BYID/:ProblemCategoryCode");
 //----------------------------------------------------------------------------
 export default router;
