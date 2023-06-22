@@ -156,6 +156,9 @@ router.delete(
   "/Location_DELETE_BYID/:LocationCode",
   FATSDB.Location_DELETE_BYID
 );
-router.delete("/ProblemCategory_DELETE_BYID/:ProblemCategoryCode");
+router.delete(
+  "/ProblemCategory_DELETE_BYID/:ProblemCategoryCode",
+  FATSDB.ProblemCategory_DELETE_BYID
+);
 //----------------------------------------------------------------------------
 export default router;
