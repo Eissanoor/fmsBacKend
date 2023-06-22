@@ -724,6 +724,29 @@ WHERE DepartmentCode='${DepartmentCode}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async Building_Put(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const BuildingCode = req.params.BuildingCode;
+      let data = await pool
+        .request()
+
+        .input("BuildingDesc", sql.VarChar, req.body.BuildingDesc)
+
+        .query(
+          ` 
+          UPDATE [dbo].[prmBuilding]
+SET
+
+[BuildingDesc] =@BuildingDesc
+WHERE BuildingCode='${BuildingCode}'`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
 
   //-------------------------------------------------------------------------------------
 
