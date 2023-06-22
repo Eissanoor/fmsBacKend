@@ -134,5 +134,9 @@ router.delete(
   "/Department_DELETE_BYID/:DepartmentCode",
   FATSDB.Department_DELETE_BYID
 );
+router.delete(
+  "/Building_DELETE_BYID/:BuildingCode",
+  FATSDB.Building_DELETE_BYID
+);
 //----------------------------------------------------------------------------
 export default router;
