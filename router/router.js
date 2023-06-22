@@ -76,6 +76,7 @@ router.post("/Workpriority_post", FATSDB.Workpriority_post);
 router.post("/WorkCatagres_post", FATSDB.WorkCatagres_post);
 router.post("/Department_post", FATSDB.Department_post);
 router.post("/Building_post", FATSDB.Building_post);
+router.post("/Location_post", FATSDB.Location_post);
 //--------------------------------------------------------------------------
 
 //-------------------------------GET_API---------------------------------------------
@@ -99,6 +100,8 @@ router.get("/Department_GET_LIST", FATSDB.Department_GET_LIST);
 router.get("/Department_GET_BYID/:DepartmentCode", FATSDB.Department_GET_BYID);
 router.get("/Building_GET_LIST", FATSDB.Building_GET_LIST);
 router.get("/Building_GET_BYID/:BuildingCode", FATSDB.Building_GET_BYID);
+router.get("/Location_GET_LIST", FATSDB.Location_GET_LIST);
+router.get("/Location_GET_BYID/:LocationCode", FATSDB.Location_GET_BYID);
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);
@@ -108,6 +111,7 @@ router.put("/WorkPriority_Put/:WorkPriorityCode", FATSDB.WorkPriority_Put);
 router.put("/WorkCatagres_Put/:WorkCategoryCode", FATSDB.WorkCatagres_Put);
 router.put("/Department_Put/:DepartmentCode", FATSDB.Department_Put);
 router.put("/Building_Put/:BuildingCode", FATSDB.Building_Put);
+router.put("/Location_Put/:LocationCode", FATSDB.Location_Put);
 //--------------------------------------------------------------------------------
 //-----------------------------------DELETE_API-----------------------------------------
 router.delete(
@@ -137,6 +141,10 @@ router.delete(
 router.delete(
   "/Building_DELETE_BYID/:BuildingCode",
   FATSDB.Building_DELETE_BYID
+);
+router.delete(
+  "/Location_DELETE_BYID/:LocationCode",
+  FATSDB.Location_DELETE_BYID
 );
 //----------------------------------------------------------------------------
 export default router;

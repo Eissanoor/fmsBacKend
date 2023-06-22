@@ -581,6 +581,37 @@ const FATSDB = {
       res.status(500).json({ error: `${error}` });
     }
   },
+  async Location_post(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+
+      let data = await pool
+        .request()
+        .input("LocationCode", sql.VarChar, req.body.LocationCode)
+        .input("LocationDesc", sql.VarChar, req.body.LocationDesc)
+
+        .query(
+          ` 
+            INSERT INTO [dbo].[prmLocation]
+                       ([LocationCode]
+                       ,[LocationDesc]
+                     
+                       
+                      
+                        )
+                 VALUES
+                       (@LocationCode
+                       ,@LocationDesc
+                    
+                                           
+                       )`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //
   //-----------------------------------------------------------------------------------
 
@@ -747,7 +778,29 @@ WHERE BuildingCode='${BuildingCode}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async Location_Put(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const LocationCode = req.params.LocationCode;
+      let data = await pool
+        .request()
 
+        .input("LocationDesc", sql.VarChar, req.body.LocationDesc)
+
+        .query(
+          ` 
+          UPDATE [dbo].[prmLocation]
+SET
+
+[LocationDesc] =@LocationDesc
+WHERE LocationCode='${LocationCode}'`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-------------------------------------------------------------------------------------
 
   //---------------------------GET--------------------------------------------------------
@@ -933,6 +986,32 @@ WHERE BuildingCode='${BuildingCode}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async Location_GET_LIST(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      let data = await pool.request().query(`select * from prmLocation`);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async Location_GET_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const LocationCode = req.params.LocationCode;
+      let data = await pool
+        .request()
+
+        .query(
+          `select * from prmLocation where LocationCode='${LocationCode}'`
+        );
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-----------------------------------------------------------------------------------
 
   //---------------------------DELETE--------------------------------------------------------
@@ -1043,6 +1122,21 @@ WHERE BuildingCode='${BuildingCode}'`
         .request()
 
         .query(`delete from prmBuilding where BuildingCode='${BuildingCode}'`);
+      console.log(data);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async Location_DELETE_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const LocationCode = req.params.LocationCode;
+      let data = await pool
+        .request()
+
+        .query(`delete from prmLocation where LocationCode='${LocationCode}'`);
       console.log(data);
       res.status(200).json(data);
     } catch (error) {
