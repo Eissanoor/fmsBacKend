@@ -907,6 +907,32 @@ WHERE BuildingCode='${BuildingCode}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async Building_GET_LIST(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      let data = await pool.request().query(`select * from prmBuilding`);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async Building_GET_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const BuildingCode = req.params.BuildingCode;
+      let data = await pool
+        .request()
+
+        .query(
+          `select * from prmBuilding where BuildingCode='${BuildingCode}'`
+        );
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-----------------------------------------------------------------------------------
 
   //---------------------------DELETE--------------------------------------------------------
@@ -1002,6 +1028,21 @@ WHERE BuildingCode='${BuildingCode}'`
         .query(
           `delete from prmDepartment where DepartmentCode='${DepartmentCode}'`
         );
+      console.log(data);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async Building_DELETE_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const BuildingCode = req.params.BuildingCode;
+      let data = await pool
+        .request()
+
+        .query(`delete from prmBuilding where BuildingCode='${BuildingCode}'`);
       console.log(data);
       res.status(200).json(data);
     } catch (error) {

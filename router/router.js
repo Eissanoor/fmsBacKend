@@ -97,6 +97,8 @@ router.get(
 );
 router.get("/Department_GET_LIST", FATSDB.Department_GET_LIST);
 router.get("/Department_GET_BYID/:DepartmentCode", FATSDB.Department_GET_BYID);
+router.get("/Building_GET_LIST", FATSDB.Building_GET_LIST);
+router.get("/Building_GET_BYID/:BuildingCode", FATSDB.Building_GET_BYID);
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);
