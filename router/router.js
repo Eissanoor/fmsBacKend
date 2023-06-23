@@ -80,6 +80,7 @@ router.post("/Location_post", FATSDB.Location_post);
 router.post("/ProblemCategory_post", FATSDB.ProblemCategory_post);
 router.post("/RequestStatus_post", FATSDB.RequestStatus_post);
 router.post("/Failure_post", FATSDB.Failure_post);
+router.post("/Solution_post", FATSDB.Solution_post);
 //--------------------------------------------------------------------------
 
 //-------------------------------GET_API---------------------------------------------
@@ -117,6 +118,8 @@ router.get(
 );
 router.get("/Failure_GET_LIST", FATSDB.Failure_GET_LIST);
 router.get("/Failure_GET_BYID/:FailureStatusCode", FATSDB.Failure_GET_BYID);
+router.get("/Solution_GET_LIST", FATSDB.Solution_GET_LIST);
+router.get("/Solution_GET_BYID/:SolutiontatusCode", FATSDB.Solution_GET_BYID);
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);
@@ -133,6 +136,7 @@ router.put(
 );
 router.put("/RequestStatus_Put/:RequestStatusCode", FATSDB.RequestStatus_Put);
 router.put("/Failure_Put/:FailureStatusCode", FATSDB.Failure_Put);
+router.put("/Solution_Put/:SolutiontatusCode", FATSDB.Solution_Put);
 //--------------------------------------------------------------------------------
 //-----------------------------------DELETE_API-----------------------------------------
 router.delete(
@@ -178,6 +182,10 @@ router.delete(
 router.delete(
   "/Failure_DELETE_BYID/:FailureStatusCode",
   FATSDB.Failure_DELETE_BYID
+);
+router.delete(
+  "/Solution_DELETE_BYID/:SolutiontatusCode",
+  FATSDB.Solution_DELETE_BYID
 );
 //----------------------------------------------------------------------------
 export default router;

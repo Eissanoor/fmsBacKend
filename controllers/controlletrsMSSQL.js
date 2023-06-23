@@ -705,6 +705,37 @@ const FATSDB = {
       res.status(500).json({ error: `${error}` });
     }
   },
+  async Solution_post(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+
+      let data = await pool
+        .request()
+        .input("SolutiontatusCode", sql.VarChar, req.body.SolutiontatusCode)
+        .input("SolutionStatusDesc", sql.VarChar, req.body.SolutionStatusDesc)
+
+        .query(
+          ` 
+            INSERT INTO [dbo].[prmSolution]
+                       ([SolutiontatusCode]
+                       ,[SolutionStatusDesc]
+                     
+                       
+                      
+                        )
+                 VALUES
+                       (@SolutiontatusCode
+                       ,@SolutionStatusDesc
+                    
+                                           
+                       )`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //
   //-----------------------------------------------------------------------------------
 
@@ -956,6 +987,29 @@ SET
 
 [FailureStatusDesc] =@FailureStatusDesc
 WHERE FailureStatusCode='${FailureStatusCode}'`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async Solution_Put(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const SolutiontatusCode = req.params.SolutiontatusCode;
+      let data = await pool
+        .request()
+
+        .input("SolutionStatusDesc", sql.VarChar, req.body.SolutionStatusDesc)
+
+        .query(
+          ` 
+          UPDATE [dbo].[prmSolution]
+SET
+
+[SolutionStatusDesc] =@SolutionStatusDesc
+WHERE SolutiontatusCode='${SolutiontatusCode}'`
         );
       res.status(201).json(data);
     } catch (error) {
@@ -1252,6 +1306,32 @@ WHERE FailureStatusCode='${FailureStatusCode}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async Solution_GET_LIST(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      let data = await pool.request().query(`select * from prmSolution`);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async Solution_GET_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const SolutiontatusCode = req.params.SolutiontatusCode;
+      let data = await pool
+        .request()
+
+        .query(
+          `select * from prmSolution where SolutiontatusCode='${SolutiontatusCode}'`
+        );
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-----------------------------------------------------------------------------------
 
   //---------------------------DELETE--------------------------------------------------------
@@ -1427,6 +1507,23 @@ WHERE FailureStatusCode='${FailureStatusCode}'`
 
         .query(
           `delete from prmFailure where FailureStatusCode='${FailureStatusCode}'`
+        );
+      console.log(data);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async Solution_DELETE_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const SolutiontatusCode = req.params.SolutiontatusCode;
+      let data = await pool
+        .request()
+
+        .query(
+          `delete from prmSolution where SolutiontatusCode='${SolutiontatusCode}'`
         );
       console.log(data);
       res.status(200).json(data);
