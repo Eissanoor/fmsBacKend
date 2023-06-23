@@ -674,6 +674,37 @@ const FATSDB = {
       res.status(500).json({ error: `${error}` });
     }
   },
+  async Failure_post(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+
+      let data = await pool
+        .request()
+        .input("FailureStatusCode", sql.VarChar, req.body.FailureStatusCode)
+        .input("FailureStatusDesc", sql.VarChar, req.body.FailureStatusDesc)
+
+        .query(
+          ` 
+            INSERT INTO [dbo].[prmFailure]
+                       ([FailureStatusCode]
+                       ,[FailureStatusDesc]
+                     
+                       
+                      
+                        )
+                 VALUES
+                       (@FailureStatusCode
+                       ,@FailureStatusDesc
+                    
+                                           
+                       )`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //
   //-----------------------------------------------------------------------------------
 
@@ -902,6 +933,29 @@ SET
 
 [RequestStatusDesc] =@RequestStatusDesc
 WHERE RequestStatusCode='${RequestStatusCode}'`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async Failure_Put(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const FailureStatusCode = req.params.FailureStatusCode;
+      let data = await pool
+        .request()
+
+        .input("FailureStatusDesc", sql.VarChar, req.body.FailureStatusDesc)
+
+        .query(
+          ` 
+          UPDATE [dbo].[prmFailure]
+SET
+
+[FailureStatusDesc] =@FailureStatusDesc
+WHERE FailureStatusCode='${FailureStatusCode}'`
         );
       res.status(201).json(data);
     } catch (error) {
@@ -1172,6 +1226,32 @@ WHERE RequestStatusCode='${RequestStatusCode}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async Failure_GET_LIST(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      let data = await pool.request().query(`select * from prmFailure`);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async Failure_GET_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const FailureStatusCode = req.params.FailureStatusCode;
+      let data = await pool
+        .request()
+
+        .query(
+          `select * from prmFailure where FailureStatusCode='${FailureStatusCode}'`
+        );
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-----------------------------------------------------------------------------------
 
   //---------------------------DELETE--------------------------------------------------------
@@ -1330,6 +1410,23 @@ WHERE RequestStatusCode='${RequestStatusCode}'`
 
         .query(
           `delete from prmRequestStatus where RequestStatusCode='${RequestStatusCode}'`
+        );
+      console.log(data);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async Failure_DELETE_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const FailureStatusCode = req.params.FailureStatusCode;
+      let data = await pool
+        .request()
+
+        .query(
+          `delete from prmFailure where FailureStatusCode='${FailureStatusCode}'`
         );
       console.log(data);
       res.status(200).json(data);
