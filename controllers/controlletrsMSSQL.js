@@ -643,6 +643,37 @@ const FATSDB = {
       res.status(500).json({ error: `${error}` });
     }
   },
+  async RequestStatus_post(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+
+      let data = await pool
+        .request()
+        .input("RequestStatusCode", sql.VarChar, req.body.RequestStatusCode)
+        .input("RequestStatusDesc", sql.VarChar, req.body.RequestStatusDesc)
+
+        .query(
+          ` 
+            INSERT INTO [dbo].[prmRequestStatus]
+                       ([RequestStatusCode]
+                       ,[RequestStatusDesc]
+                     
+                       
+                      
+                        )
+                 VALUES
+                       (@RequestStatusCode
+                       ,@RequestStatusDesc
+                    
+                                           
+                       )`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //
   //-----------------------------------------------------------------------------------
 
@@ -848,6 +879,29 @@ SET
 
 [ProblemCategoryDesc] =@ProblemCategoryDesc
 WHERE ProblemCategoryCode='${ProblemCategoryCode}'`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async RequestStatus_Put(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const RequestStatusCode = req.params.RequestStatusCode;
+      let data = await pool
+        .request()
+
+        .input("RequestStatusDesc", sql.VarChar, req.body.RequestStatusDesc)
+
+        .query(
+          ` 
+          UPDATE [dbo].[prmRequestStatus]
+SET
+
+[RequestStatusDesc] =@RequestStatusDesc
+WHERE RequestStatusCode='${RequestStatusCode}'`
         );
       res.status(201).json(data);
     } catch (error) {
@@ -1092,6 +1146,32 @@ WHERE ProblemCategoryCode='${ProblemCategoryCode}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async RequestStatus_GET_LIST(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      let data = await pool.request().query(`select * from prmRequestStatus`);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async RequestStatus_GET_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const RequestStatusCode = req.params.RequestStatusCode;
+      let data = await pool
+        .request()
+
+        .query(
+          `select * from prmRequestStatus where RequestStatusCode='${RequestStatusCode}'`
+        );
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-----------------------------------------------------------------------------------
 
   //---------------------------DELETE--------------------------------------------------------
@@ -1233,6 +1313,23 @@ WHERE ProblemCategoryCode='${ProblemCategoryCode}'`
 
         .query(
           `delete from prmProblemCategory where ProblemCategoryCode='${ProblemCategoryCode}'`
+        );
+      console.log(data);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async RequestStatus_DELETE_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const RequestStatusCode = req.params.RequestStatusCode;
+      let data = await pool
+        .request()
+
+        .query(
+          `delete from prmRequestStatus where RequestStatusCode='${RequestStatusCode}'`
         );
       console.log(data);
       res.status(200).json(data);
