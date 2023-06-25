@@ -120,6 +120,7 @@ router.get("/Failure_GET_LIST", FATSDB.Failure_GET_LIST);
 router.get("/Failure_GET_BYID/:FailureStatusCode", FATSDB.Failure_GET_BYID);
 router.get("/Solution_GET_LIST", FATSDB.Solution_GET_LIST);
 router.get("/Solution_GET_BYID/:SolutiontatusCode", FATSDB.Solution_GET_BYID);
+router.get("/getworkRequest/:EmployeeID", FATSDB.getworkRequest);
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);
