@@ -1536,10 +1536,10 @@ WHERE SolutiontatusCode='${SolutiontatusCode}'`
   async getworkRequest(req, res, next) {
     try {
       let pool = await sql.connect(config);
-      const EmployeeID = req.body.EmployeeID;
+
       let data = await pool
         .request()
-
+        .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
         .query(
           `select * from tblEmployeeMaster where EmployeeID='${EmployeeID}'`
         );
