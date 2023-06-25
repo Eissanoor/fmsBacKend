@@ -1540,9 +1540,7 @@ WHERE SolutiontatusCode='${SolutiontatusCode}'`
       let data = await pool
         .request()
         .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
-        .query(
-          `select * from tblEmployeeMaster where EmployeeID='${EmployeeID}'`
-        );
+        .query(`select * from tblEmployeeMaster where EmployeeID=@EmployeeID`);
       res.status(200).json(data);
     } catch (error) {
       console.log(error);
