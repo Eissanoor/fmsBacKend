@@ -1536,7 +1536,7 @@ WHERE SolutiontatusCode='${SolutiontatusCode}'`
   async getworkRequest(req, res, next) {
     try {
       let pool = await sql.connect(config);
-      const EmployeeID = req.body.EmployeeID;
+      const EmployeeID = req.params.EmployeeID;
       let data = await pool
         .request()
 
