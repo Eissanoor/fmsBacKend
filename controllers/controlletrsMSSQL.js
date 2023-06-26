@@ -1594,8 +1594,7 @@ WHERE SolutiontatusCode='${SolutiontatusCode}'`
         .input("LandlineNumber", sql.VarChar, req.body.LandlineNumber)
         .input("DepartmentCode", sql.VarChar, req.body.DepartmentCode)
         .input("BuildingCode", sql.VarChar, req.body.BuildingCode)
-        .input("LocationCode", sql.VarChar, req.body.LocationCode)
-        .input("HiringDate", sql.Date, today).query(`
+        .input("LocationCode", sql.VarChar, req.body.LocationCode).query(`
 
     
    UPDATE [dbo].[tblEmployeeMaster]
@@ -1611,7 +1610,7 @@ SET
 ,[LocationCode] =@LocationCode
 ,[BuildingCode] =@BuildingCode
 
-,[HiringDate] =@HiringDate
+
 
 
 
