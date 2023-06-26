@@ -25,6 +25,9 @@ const FATSDB = {
     try {
       const EmployeeID = req.body.EmployeeID;
       let pool = await sql.connect(config);
+      DepartmentCode;
+      BuildingCode;
+      LocationCode;
 
       let data = await pool
         .request()
@@ -35,6 +38,9 @@ const FATSDB = {
 
         .input("MobileNumber", sql.VarChar, req.body.MobileNumber)
         .input("LandlineNumber", sql.VarChar, req.body.LandlineNumber)
+        .input("DepartmentCode", sql.VarChar, req.body.DepartmentCode)
+        .input("BuildingCode", sql.VarChar, req.body.BuildingCode)
+        .input("LocationCode", sql.VarChar, req.body.LocationCode)
 
         .query(
           ` 
@@ -46,6 +52,9 @@ const FATSDB = {
                           
                             ,[MobileNumber]
                              ,[LandlineNumber]
+                              ,[DepartmentCode]
+                               ,[BuildingCode]
+                                ,[LocationCode]
                              
                      
                         )
@@ -58,6 +67,9 @@ const FATSDB = {
                                    
                                        ,@MobileNumber
                                          ,@LandlineNumber
+                                            ,@DepartmentCode
+                                               ,@BuildingCode
+                                                  ,@LocationCode
                                            
                                               
                        )
