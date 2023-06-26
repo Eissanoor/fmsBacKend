@@ -1575,9 +1575,9 @@ WHERE SolutiontatusCode='${SolutiontatusCode}'`
   },
   async updateWorkRequest(req, res, next) {
     try {
-      const file = req.files["EmployeeImage"];
+      // const file = req.files["EmployeeImage"];
 
-      const url = `http://gs1ksa.org:3021/api/profile/${file[0].filename}`;
+      // const url = `http://gs1ksa.org:3021/api/profile/${file[0].filename}`;
       const EmployeeID = req.params.EmployeeID;
       let pool = await sql.connect(config);
 

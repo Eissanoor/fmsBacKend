@@ -138,6 +138,7 @@ router.put(
 router.put("/RequestStatus_Put/:RequestStatusCode", FATSDB.RequestStatus_Put);
 router.put("/Failure_Put/:FailureStatusCode", FATSDB.Failure_Put);
 router.put("/Solution_Put/:SolutiontatusCode", FATSDB.Solution_Put);
+router.put("/updateWorkRequest/:EmployeeID", FATSDB.updateWorkRequest);
 //--------------------------------------------------------------------------------
 //-----------------------------------DELETE_API-----------------------------------------
 router.delete(
