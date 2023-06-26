@@ -1589,7 +1589,7 @@ WHERE SolutiontatusCode='${SolutiontatusCode}'`
         .input("Firstname", sql.VarChar, req.body.Firstname)
         .input("Middlename", sql.VarChar, req.body.Middlename)
         .input("Lastname", sql.VarChar, req.body.Lastname)
-        .input("EmployeeImage", sql.VarChar, url)
+
         .input("MobileaNumber", sql.VarChar, req.body.MobileaNumber)
         .input("LandlineNumber", sql.VarChar, req.body.LandlineNumber)
         .input("DepartmentCode", sql.VarChar, req.body.DepartmentCode)
@@ -1603,7 +1603,7 @@ SET
 [Firstname] =@Firstname
 ,[Middlename] =@Middlename
 ,[Lastname] =@Lastname
-,[EmployeeImage] =@EmployeeImage
+
 ,[MobileaNumber] =@MobileaNumber
 ,[LandlineNumber] =@LandlineNumber
 
