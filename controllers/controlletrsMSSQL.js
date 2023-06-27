@@ -1575,7 +1575,7 @@ WHERE SolutiontatusCode='${SolutiontatusCode}'`
       // const file = req.files["EmployeeImage"];
 
       // const url = `http://gs1ksa.org:3021/api/profile/${file[0].filename}`;
-      const EmployeeID = req.params.EmployeeID;
+      const EmployeeID = req.body.EmployeeID;
       let pool = await sql.connect(config);
 
       var today = new Date();
