@@ -25,9 +25,6 @@ const FATSDB = {
     try {
       const EmployeeID = req.body.EmployeeID;
       let pool = await sql.connect(config);
-      DepartmentCode;
-      BuildingCode;
-      LocationCode;
 
       let data = await pool
         .request()
