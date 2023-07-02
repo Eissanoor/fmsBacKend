@@ -1649,51 +1649,30 @@ WHERE EmployeeID='${EmployeeID}'`);
       const EmployeeID = req.body.EmployeeID;
       let data = await pool
         .request()
-        .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
-        .input("RequestDateTime", sql.DateTime, req.body.RequestDateTime)
+        .input("RequestNumber", sql.VarChar, req.body.RequestNumber)
         .input("WorkType", sql.VarChar, req.body.WorkType)
         .input("WorkTrade", sql.VarChar, req.body.WorkTrade)
-        .input("WorkOrder", sql.VarChar, req.body.WorkOrder)
+
         .input("WorkPriority", sql.VarChar, req.body.WorkPriority)
-        .input("ProblemCategory", sql.VarChar, req.body.ProblemCategory)
-        .input("ProblemDescription", sql.VarChar, req.body.ProblemDescription)
-        .input("AssetItemTag", sql.VarChar, req.body.AssetItemTag)
-        .input("CompletedByEmp", sql.VarChar, req.body.CompletedByEmp)
-        .input("FeedbackEmp", sql.VarChar, req.body.FeedbackEmp)
-        .input("Feedback_Remarks", sql.VarChar, req.body.Feedback_Remarks)
 
         .query(
           ` 
             INSERT INTO [dbo].[tblWorkRequest]
-                       ([EmployeeID]
-                        ,[RequestDateTime]
+                      [RequestNumber]
                         ,[WorkType]
                          ,[WorkTrade]
                           ,[WorkPriority]
-                            ,[WorkOrder]
-                           ,[ProblemCategory]
-                            ,[ProblemDescription]
-                             ,[AssetItemTag]
-                               ,[CompletedByEmp]
-                              ,[FeedbackEmp]
-                             
-                                ,[Feedback_Remarks]
+                          
                      
                         )
                  VALUES
-                       (@EmployeeID
+                       (@RequestNumber
                        
-                               ,@RequestDateTime
+                              
                                  ,@WorkType
                                    ,@WorkTrade
                                      ,@WorkPriority
-                                       ,@WorkOrder
-                                       ,@ProblemCategory
-                                         ,@ProblemDescription
-                                             ,@AssetItemTag
-                                           ,@CompletedByEmp
-                                             ,@FeedbackEmp
-                                               ,@Feedback_Remarks
+                                      
                                               
                        )
                     
@@ -1706,8 +1685,10 @@ WHERE EmployeeID='${EmployeeID}'`);
       //
       let dataaa = await pool
         .request()
-        .input("EmployeeID", sql.VarChar, EmployeeID)
-        .query(`select * from tblWorkRequest where EmployeeID=@EmployeeID`);
+        .input("RequestNumber", sql.VarChar, RequestNumber)
+        .query(
+          `select * from tblWorkRequest where RequestNumber=@RequestNumber`
+        );
       res.status(201).json(dataaa);
       console.log(dataaa);
     } catch (error) {
