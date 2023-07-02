@@ -1658,7 +1658,7 @@ WHERE EmployeeID='${EmployeeID}'`);
         .query(
           ` 
             INSERT INTO [dbo].[tblWorkRequest]
-                    (  [RequestNumber]
+                    ([RequestNumber]
                         ,[WorkType]
                          ,[WorkTrade]
                           ,[WorkPriority]
@@ -1687,7 +1687,7 @@ WHERE EmployeeID='${EmployeeID}'`);
         .request()
         .input("RequestNumber", sql.VarChar, RequestNumber)
         .query(
-          `select * from tblWorkRequest where RequestNumber=@RequestNumber`
+          `select * from tblWorkRequest where RequestNumber='${RequestNumber}'`
         );
       res.status(201).json(dataaa);
       console.log(dataaa);
