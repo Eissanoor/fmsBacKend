@@ -128,6 +128,7 @@ router.get("/Building_LIST", FATSDB.Building_LIST);
 router.get("/Location_LIST", FATSDB.Location_LIST);
 router.get("/WorkType_LIST", FATSDB.WorkType_LIST);
 router.get("/WorkPriority_LIST", FATSDB.WorkPriority_LIST);
+router.get("/WorkTrade_LIST", FATSDB.WorkTrade_LIST);
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);
