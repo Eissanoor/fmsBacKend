@@ -1730,7 +1730,7 @@ WHERE EmployeeID='${EmployeeID}'`);
   },
   async updatesecondWorkRequest(req, res, next) {
     try {
-      const EmployeeID = req.params.EmployeeID;
+      const RequestNumber = req.body.RequestNumber;
       let pool = await sql.connect(config);
 
       var today = new Date();
@@ -1738,34 +1738,18 @@ WHERE EmployeeID='${EmployeeID}'`);
       let data = await pool
         .request()
 
-        .input("RequestDateTime", sql.DateTime, req.body.RequestDateTime)
         .input("WorkType", sql.VarChar, req.body.WorkType)
         .input("WorkTrade", sql.VarChar, req.body.WorkTrade)
-        .input("WorkPriority", sql.VarChar, req.body.WorkPriority)
-        .input("ProblemCategory", sql.VarChar, req.body.ProblemCategory)
-        .input("ProblemDescription", sql.VarChar, req.body.ProblemDescription)
-        .input("AssetItemTag", sql.VarChar, req.body.AssetItemTag)
-        .input("WorkOrder", sql.VarChar, req.body.WorkOrder)
-        .input("CompletedByEmp", sql.VarChar, req.body.CompletedByEmp)
-        .input("Feedback_Remarks", sql.VarChar, req.body.Feedback_Remarks)
-        .input("FeedbackEmp", sql.VarChar, req.body.FeedbackEmp).query(`
+        .input("WorkPriority", sql.VarChar, req.body.WorkPriority).query(`
 
     
    UPDATE [dbo].[tblWorkRequest]
 SET
-[RequestDateTime] =@RequestDateTime
-,[WorkType] =@WorkType
+
+[WorkType] =@WorkType
 ,[WorkTrade] =@WorkTrade
 ,[WorkPriority] =@WorkPriority
-,[ProblemCategory] =@ProblemCategory
-,[ProblemDescription] =@ProblemDescription
-,[AssetItemTag] =@AssetItemTag
 
-,[WorkOrder] =@WorkOrder
-,[CompletedByEmp] =@CompletedByEmp
-,[Feedback_Remarks] =@Feedback_Remarks
-
-,[FeedbackEmp] =@FeedbackEmp
 
 
 
@@ -1776,7 +1760,7 @@ SET
 
   
   
-WHERE EmployeeID='${EmployeeID}'`);
+WHERE RequestNumber='${RequestNumber}'`);
       res.status(202).json(data);
     } catch (error) {
       console.log(error);
