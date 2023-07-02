@@ -1658,7 +1658,7 @@ WHERE EmployeeID='${EmployeeID}'`);
         .query(
           ` 
             INSERT INTO [dbo].[tblWorkRequest]
-                      [RequestNumber]
+                    (  [RequestNumber]
                         ,[WorkType]
                          ,[WorkTrade]
                           ,[WorkPriority]
