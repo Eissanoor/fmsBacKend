@@ -1701,7 +1701,7 @@ WHERE EmployeeID='${EmployeeID}'`);
   async getworkRequestsecond(req, res, next) {
     try {
       let pool = await sql.connect(config);
-      const RequestNumber = req.params.RequestNumber;
+      const RequestNumber = req.body.RequestNumber;
       let data = await pool
         .request()
 
