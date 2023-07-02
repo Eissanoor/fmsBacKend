@@ -81,6 +81,7 @@ router.post("/ProblemCategory_post", FATSDB.ProblemCategory_post);
 router.post("/RequestStatus_post", FATSDB.RequestStatus_post);
 router.post("/Failure_post", FATSDB.Failure_post);
 router.post("/Solution_post", FATSDB.Solution_post);
+router.post("/AddworkRequestsecondPOST", FATSDB.AddworkRequestsecondPOST);
 //--------------------------------------------------------------------------
 
 //-------------------------------GET_API---------------------------------------------
