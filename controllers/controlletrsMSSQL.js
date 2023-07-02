@@ -1646,7 +1646,7 @@ WHERE EmployeeID='${EmployeeID}'`);
   async AddworkRequestsecondPOST(req, res, next) {
     try {
       let pool = await sql.connect(config);
-      const EmployeeID = req.body.EmployeeID;
+      const RequestNumber = req.body.RequestNumber;
       let data = await pool
         .request()
         .input("RequestNumber", sql.VarChar, req.body.RequestNumber)
