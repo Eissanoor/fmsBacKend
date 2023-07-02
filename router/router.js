@@ -124,6 +124,7 @@ router.get("/Solution_GET_BYID/:SolutiontatusCode", FATSDB.Solution_GET_BYID);
 router.post("/getworkRequest", FATSDB.getworkRequest);
 router.post("/getworkRequestsecond", FATSDB.getworkRequestsecond);
 router.get("/Department_LIST", FATSDB.Department_LIST);
+router.get("/Building_LIST", FATSDB.Building_LIST);
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);
