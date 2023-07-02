@@ -1654,7 +1654,7 @@ WHERE EmployeeID='${EmployeeID}'`);
         .input("WorkTrade", sql.VarChar, req.body.WorkTrade)
 
         .input("WorkPriority", sql.VarChar, req.body.WorkPriority)
-
+        .input("AssetItemTagID", sql.VarChar, req.body.AssetItemTagID)
         .query(
           ` 
             INSERT INTO [dbo].[tblWorkRequest]
@@ -1662,6 +1662,7 @@ WHERE EmployeeID='${EmployeeID}'`);
                         ,[WorkType]
                          ,[WorkTrade]
                           ,[WorkPriority]
+                              ,[AssetItemTagID]
                           
                      
                         )
@@ -1672,6 +1673,7 @@ WHERE EmployeeID='${EmployeeID}'`);
                                  ,@WorkType
                                    ,@WorkTrade
                                      ,@WorkPriority
+                                      ,@AssetItemTagID
                                       
                                               
                        )
