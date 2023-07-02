@@ -1437,6 +1437,18 @@ WHERE SolutiontatusCode='${SolutiontatusCode}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async RequestStatus_LIST(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      let data = await pool
+        .request()
+        .query(`select RequestStatusCode from prmRequestStatus`);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-----------------------------------------------------------------------------------
 
   //---------------------------DELETE--------------------------------------------------------

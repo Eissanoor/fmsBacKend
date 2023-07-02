@@ -131,6 +131,7 @@ router.get("/WorkPriority_LIST", FATSDB.WorkPriority_LIST);
 router.get("/WorkTrade_LIST", FATSDB.WorkTrade_LIST);
 router.get("/AssetType_LIST", FATSDB.AssetType_LIST);
 router.get("/ProblemCategory_LIST", FATSDB.ProblemCategory_LIST);
+router.get("/RequestStatus_LIST", FATSDB.RequestStatus_LIST);
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);
