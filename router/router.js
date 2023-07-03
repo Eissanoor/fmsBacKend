@@ -141,6 +141,10 @@ router.get(
   "/WorkTrade_descri_LIST/:WorkTradeCode",
   FATSDB.WorkTrade_descri_LIST
 );
+router.get(
+  "/AssetType_descrip_LIST/:AssetTypeCode",
+  FATSDB.AssetType_descrip_LIST
+);
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);
