@@ -1434,11 +1434,11 @@ WHERE SolutiontatusCode='${SolutiontatusCode}'`
   async WorkTrade_LIST(req, res, next) {
     try {
       let pool = await sql.connect(config);
-       const WorkTypeCode = req.params.WorkTypeCode;
+      const WorkTypeCode = req.params.WorkTypeCode;
       let data = await pool
         .request()
         .query(
-          `select WorkTypeCode from prmWorkTrade  WorkTypeCode= '${WorkTypeCode}'`
+          `select WorkTypeCode from prmWorkTrade where  WorkTypeCode='${WorkTypeCode}'`
         );
       res.status(200).json(data);
     } catch (error) {
@@ -1503,7 +1503,7 @@ WHERE SolutiontatusCode='${SolutiontatusCode}'`
   async ProblemCategory_descrip_LIST(req, res, next) {
     try {
       let pool = await sql.connect(config);
-        const ProblemCategoryCode = req.params.ProblemCategoryCode;
+      const ProblemCategoryCode = req.params.ProblemCategoryCode;
       let data = await pool
         .request()
         .query(
