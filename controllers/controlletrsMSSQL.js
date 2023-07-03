@@ -1356,7 +1356,7 @@ WHERE SolutiontatusCode='${SolutiontatusCode}'`
   async Department_desc_LIST(req, res, next) {
     try {
       let pool = await sql.connect(config);
-      const DepartmentCode = req.body.DepartmentCode;
+      const DepartmentCode = req.params.DepartmentCode;
       let data = await pool
         .request()
         .query(
