@@ -137,6 +137,10 @@ router.get(
   FATSDB.Department_desc_LIST
 );
 router.get("/WorkType_descri_LIST/:WorkTypeCode", FATSDB.WorkType_descri_LIST);
+router.get(
+  "/WorkTrade_descri_LIST/:WorkTradeCode",
+  FATSDB.WorkTrade_descri_LIST
+);
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);

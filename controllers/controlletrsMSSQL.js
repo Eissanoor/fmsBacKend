@@ -1443,6 +1443,21 @@ WHERE SolutiontatusCode='${SolutiontatusCode}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async WorkTrade_descri_LIST(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const WorkTradeCode = req.params.WorkTradeCode;
+      let data = await pool
+        .request()
+        .query(
+          `select WorkTradeDesc from prmWorkTrade where WorkTradeCode= '${WorkTradeCode}' `
+        );
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   async AssetType_LIST(req, res, next) {
     try {
       let pool = await sql.connect(config);
