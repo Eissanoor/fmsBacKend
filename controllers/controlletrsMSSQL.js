@@ -1434,9 +1434,12 @@ WHERE SolutiontatusCode='${SolutiontatusCode}'`
   async WorkTrade_LIST(req, res, next) {
     try {
       let pool = await sql.connect(config);
+       const WorkTypeCode = req.params.WorkTypeCode;
       let data = await pool
         .request()
-        .query(`select WorkTypeCode from prmWorkTrade`);
+        .query(
+          `select WorkTypeCode from prmWorkTrade  WorkTypeCode= '${WorkTypeCode}'`
+        );
       res.status(200).json(data);
     } catch (error) {
       console.log(error);

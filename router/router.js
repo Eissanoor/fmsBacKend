@@ -128,7 +128,7 @@ router.get("/Building_LIST", FATSDB.Building_LIST);
 router.get("/Location_LIST", FATSDB.Location_LIST);
 router.get("/WorkType_LIST", FATSDB.WorkType_LIST);
 router.get("/WorkPriority_LIST", FATSDB.WorkPriority_LIST);
-router.get("/WorkTrade_LIST", FATSDB.WorkTrade_LIST);
+router.get("/WorkTrade_LIST/:WorkTypeCode", FATSDB.WorkTrade_LIST);
 router.get("/AssetType_LIST", FATSDB.AssetType_LIST);
 router.get("/ProblemCategory_LIST", FATSDB.ProblemCategory_LIST);
 router.get("/RequestStatus_LIST", FATSDB.RequestStatus_LIST);
