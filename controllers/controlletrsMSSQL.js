@@ -1438,7 +1438,7 @@ WHERE SolutiontatusCode='${SolutiontatusCode}'`
       let data = await pool
         .request()
         .query(
-          `select WorkTradeCode from prmWorkTrade where  WorkTypeCode='${WorkTypeCode}'`
+          `select WorkTypeCode from prmWorkTrade where  WorkTypeCode='${WorkTypeCode}'`
         );
       res.status(200).json(data);
     } catch (error) {
