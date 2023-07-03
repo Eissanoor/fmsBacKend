@@ -1404,6 +1404,21 @@ WHERE SolutiontatusCode='${SolutiontatusCode}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async WorkType_descri_LIST(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const WorkTypeCode = req.params.WorkTypeCode;
+      let data = await pool
+        .request()
+        .query(
+          `select WorkTypeDesc from prmWorkType where  WorkTypeCode= '${WorkTypeCode}' `
+        );
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   async WorkPriority_LIST(req, res, next) {
     try {
       let pool = await sql.connect(config);
