@@ -1353,6 +1353,21 @@ WHERE SolutiontatusCode='${SolutiontatusCode}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async Department_desc_LIST(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const DepartmentCode = req.body.DepartmentCode;
+      let data = await pool
+        .request()
+        .query(
+          `select DepartmentDesc from prmDepartment where DepartmentCode= '${DepartmentCode}'`
+        );
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   async Building_LIST(req, res, next) {
     try {
       let pool = await sql.connect(config);
