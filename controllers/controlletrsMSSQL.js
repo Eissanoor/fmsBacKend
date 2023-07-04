@@ -1476,11 +1476,11 @@ WHERE SolutiontatusCode='${SolutiontatusCode}'`
   async AssetType_descrip_LIST(req, res, next) {
     try {
       let pool = await sql.connect(config);
-      const AssetTypeCode = req.params.AssetTypeCode;
+      const AssetItemTagID = req.params.AssetItemTagID;
       let data = await pool
         .request()
         .query(
-          `select AssetTypeDesc from prmAssetType where AssetTypeCode= '${AssetTypeCode}' `
+          `select AssetItemDescription from tblAssetTransactions where AssetItemTagID= '${AssetItemTagID}' `
         );
       res.status(200).json(data);
     } catch (error) {

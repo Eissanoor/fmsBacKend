@@ -142,7 +142,7 @@ router.get(
   FATSDB.WorkTrade_descri_LIST
 );
 router.get(
-  "/AssetType_descrip_LIST/:AssetTypeCode",
+  "/AssetType_descrip_LIST/:AssetItemTagID",
   FATSDB.AssetType_descrip_LIST
 );
 router.get(
