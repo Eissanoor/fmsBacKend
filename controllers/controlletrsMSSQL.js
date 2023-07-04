@@ -1466,7 +1466,7 @@ WHERE SolutiontatusCode='${SolutiontatusCode}'`
       let pool = await sql.connect(config);
       let data = await pool
         .request()
-        .query(`select AssetTypeCode from prmAssetType`);
+        .query(`select AssetItemTagID from tblAssetTransactions`);
       res.status(200).json(data);
     } catch (error) {
       console.log(error);
