@@ -149,6 +149,10 @@ router.get(
   "/ProblemCategory_descrip_LIST/:ProblemCategoryCode",
   FATSDB.ProblemCategory_descrip_LIST
 );
+router.get(
+  "/AssetType_model_all_LIST/:AssetItemDescription",
+  FATSDB.AssetType_model_all_LIST
+);
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);
