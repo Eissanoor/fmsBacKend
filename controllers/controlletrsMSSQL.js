@@ -1869,6 +1869,12 @@ WHERE EmployeeID='${EmployeeID}'`);
         .input("WorkType", sql.VarChar, req.body.WorkType)
         .input("WorkTrade", sql.VarChar, req.body.WorkTrade)
 
+        .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
+        .input("RequestStatus", sql.VarChar, req.body.RequestStatus)
+        .input("DepartmentCode", sql.VarChar, req.body.DepartmentCode)
+        .input("BuildingCode", sql.VarChar, req.body.BuildingCode)
+        .input("LocationCode", sql.VarChar, req.body.LocationCode)
+
         .input("WorkPriority", sql.VarChar, req.body.WorkPriority)
         .input("AssetItemTagID", sql.VarChar, req.body.AssetItemTagID)
         .query(
@@ -1879,6 +1885,12 @@ WHERE EmployeeID='${EmployeeID}'`);
                          ,[WorkTrade]
                           ,[WorkPriority]
                               ,[AssetItemTagID]
+
+                               ,[EmployeeID]
+                                ,[RequestStatus]
+                                 ,[DepartmentCode]
+                                  ,[BuildingCode]
+                                   ,[LocationCode]
                           
                      
                         )
@@ -1890,6 +1902,11 @@ WHERE EmployeeID='${EmployeeID}'`);
                                    ,@WorkTrade
                                      ,@WorkPriority
                                       ,@AssetItemTagID
+                                       ,@EmployeeID
+                                        ,@RequestStatus
+                                         ,@DepartmentCode
+                                          ,@BuildingCode
+                                           ,@LocationCode
                                       
                                               
                        )
