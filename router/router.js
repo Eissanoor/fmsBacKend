@@ -153,6 +153,7 @@ router.get(
   "/AssetType_model_all_LIST/:AssetItemDescription",
   FATSDB.AssetType_model_all_LIST
 );
+router.get("/Transactions_LIST/:EmployeeID", FATSDB.Transactions_LIST);
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);
