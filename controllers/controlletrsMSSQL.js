@@ -1862,6 +1862,7 @@ WHERE EmployeeID='${EmployeeID}'`);
   async AddworkRequestsecondPOST(req, res, next) {
     try {
       let pool = await sql.connect(config);
+
       const RequestNumber = req.body.RequestNumber;
       let data = await pool
         .request()
@@ -1877,6 +1878,9 @@ WHERE EmployeeID='${EmployeeID}'`);
 
         .input("WorkPriority", sql.VarChar, req.body.WorkPriority)
         .input("AssetItemTagID", sql.VarChar, req.body.AssetItemTagID)
+
+        .input("ProblemCategory", sql.VarChar, req.body.ProblemCategory)
+        .input("ProblemDescription", sql.VarChar, req.body.ProblemDescription)
         .query(
           ` 
             INSERT INTO [dbo].[tblWorkRequest]
@@ -1891,6 +1895,8 @@ WHERE EmployeeID='${EmployeeID}'`);
                                  ,[DepartmentCode]
                                   ,[BuildingCode]
                                    ,[LocationCode]
+                                     ,[ProblemCategory]
+                                       ,[ProblemDescription]
                           
                      
                         )
@@ -1907,7 +1913,8 @@ WHERE EmployeeID='${EmployeeID}'`);
                                          ,@DepartmentCode
                                           ,@BuildingCode
                                            ,@LocationCode
-                                      
+                                      ,@ProblemCategory
+                                      ,@ProblemDescription
                                               
                        )
                     
