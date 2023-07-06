@@ -1881,7 +1881,7 @@ WHERE EmployeeID='${EmployeeID}'`);
 
         .input("ProblemCategory", sql.VarChar, req.body.ProblemCategory)
         .input("ProblemDescription", sql.VarChar, req.body.ProblemDescription)
-        .input("RequestDateTime", sql.datetime, req.body.RequestDateTime)
+        .input("RequestDateTime", sql.Date, req.body.RequestDateTime)
         .query(
           ` 
             INSERT INTO [dbo].[tblWorkRequest]
