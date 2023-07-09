@@ -29,7 +29,6 @@ const FATSDB = {
       let data = await pool
         .request()
         .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
-        .input("EmployeeStatus", sql.VarChar, req.body.EmployeeStatus)
         .input("Firstname", sql.VarChar, req.body.Firstname)
         .input("Middlename", sql.VarChar, req.body.Middlename)
         .input("Lastname", sql.VarChar, req.body.Lastname)
@@ -44,7 +43,6 @@ const FATSDB = {
           ` 
             INSERT INTO [dbo].[tblEmployeeMaster]
                        ([EmployeeID]
-                         ,[EmployeeStatus]
                         ,[Firstname]
                          ,[Middlename]
                           ,[Lastname]
@@ -59,7 +57,7 @@ const FATSDB = {
                         )
                  VALUES
                        (@EmployeeID
-                         ,@EmployeeStatus
+                       
                                ,@Firstname
                                  ,@Middlename
                                    ,@Lastname
