@@ -1,7 +1,7 @@
 // using mssql .....................................................................................
 import jwt from "jsonwebtoken";
 import sql from "mssql";
-console.log(sql);
+
 import config from "../config/dbconfig.js";
 import * as dotenv from "dotenv";
 import path from "path";
