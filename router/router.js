@@ -84,6 +84,7 @@ router.post("/Solution_post", FATSDB.Solution_post);
 router.post("/AddworkRequestsecondPOST", FATSDB.AddworkRequestsecondPOST);
 router.post("/Days_post", FATSDB.Days_post);
 router.post("/Frequency_post", FATSDB.Frequency_post);
+router.post("/WorkRequestItems_post", FATSDB.WorkRequestItems_post);
 //--------------------------------------------------------------------------
 
 //-------------------------------GET_API---------------------------------------------

@@ -814,6 +814,42 @@ const FATSDB = {
       res.status(500).json({ error: `${error}` });
     }
   },
+  async WorkRequestItems_post(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+
+      let data = await pool
+        .request()
+        .input("RequestNumber", sql.VarChar, req.body.RequestNumber)
+        .input("AssetItemTagID", sql.VarChar, req.body.AssetItemTagID)
+        .input("AssetItemQty", sql.Int, req.body.AssetItemQty)
+        .input("AssetItemQtyUsed", sql.Int, req.body.AssetItemQtyUsed)
+        .query(
+          ` 
+            INSERT INTO [dbo].[tblWorkRequestItems]
+                       ([RequestNumber]
+                       ,[AssetItemTagID]
+                        ,[AssetItemQty]
+                        ,[AssetItemQtyUsed]
+                     
+                       
+                      
+                        )
+                 VALUES
+                       (@RequestNumber
+                       ,@AssetItemTagID
+                       ,@AssetItemQty
+                        ,@AssetItemQtyUsed
+                    
+                                           
+                       )`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //
   //-----------------------------------------------------------------------------------
 
