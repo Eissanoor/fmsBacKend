@@ -82,6 +82,7 @@ router.post("/RequestStatus_post", FATSDB.RequestStatus_post);
 router.post("/Failure_post", FATSDB.Failure_post);
 router.post("/Solution_post", FATSDB.Solution_post);
 router.post("/AddworkRequestsecondPOST", FATSDB.AddworkRequestsecondPOST);
+router.post("/Days_post", FATSDB.Days_post);
 //--------------------------------------------------------------------------
 
 //-------------------------------GET_API---------------------------------------------
@@ -154,6 +155,8 @@ router.get(
   FATSDB.AssetType_model_all_LIST
 );
 router.get("/Transactions_LIST/:EmployeeID", FATSDB.Transactions_LIST);
+router.get("/Days_GET_LIST", FATSDB.Days_GET_LIST);
+router.get("/Days_GET_BYID/:DaysCode", FATSDB.Days_GET_BYID);
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);
@@ -173,6 +176,7 @@ router.put("/Failure_Put/:FailureStatusCode", FATSDB.Failure_Put);
 router.put("/Solution_Put/:SolutiontatusCode", FATSDB.Solution_Put);
 router.put("/updateWorkRequest", FATSDB.updateWorkRequest);
 router.put("/updatesecondWorkRequest", FATSDB.updatesecondWorkRequest);
+router.put("/Days_Put/:DaysCode");
 //--------------------------------------------------------------------------------
 //-----------------------------------DELETE_API-----------------------------------------
 router.delete(
@@ -223,5 +227,6 @@ router.delete(
   "/Solution_DELETE_BYID/:SolutiontatusCode",
   FATSDB.Solution_DELETE_BYID
 );
+router.delete("/DAYS_DELETE_BYID/:DaysCode", FATSDB.DAYS_DELETE_BYID);
 //----------------------------------------------------------------------------
 export default router;

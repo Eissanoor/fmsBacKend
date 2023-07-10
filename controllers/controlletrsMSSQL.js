@@ -746,6 +746,40 @@ const FATSDB = {
       res.status(500).json({ error: `${error}` });
     }
   },
+  async Days_post(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+
+      let data = await pool
+        .request()
+        .input("DaysCode", sql.VarChar, req.body.DaysCode)
+        .input("DaysDesc", sql.VarChar, req.body.DaysDesc)
+        .input("DaysSeq", sql.smallint, req.body.DaysSeq)
+
+        .query(
+          ` 
+            INSERT INTO [dbo].[prmDays]
+                       ([DaysCode]
+                       ,[DaysDesc]
+                        ,[DaysSeq]
+                     
+                       
+                      
+                        )
+                 VALUES
+                       (@DaysCode
+                       ,@DaysDesc
+                       ,@DaysSeq
+                    
+                                           
+                       )`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //
   //-----------------------------------------------------------------------------------
 
@@ -1020,6 +1054,31 @@ SET
 
 [SolutionStatusDesc] =@SolutionStatusDesc
 WHERE SolutiontatusCode='${SolutiontatusCode}'`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async Days_Put(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const DaysCode = req.params.DaysCode;
+      let data = await pool
+        .request()
+
+        .input("DaysDesc", sql.VarChar, req.body.DaysDesc)
+        .input("DaysSeq", sql.smallint, req.body.DaysSeq)
+
+        .query(
+          ` 
+          UPDATE [dbo].[prmDays]
+SET
+
+[DaysDesc] =@DaysDesc
+,[DaysSeq] =@DaysSeq
+WHERE DaysCode='${DaysCode}'`
         );
       res.status(201).json(data);
     } catch (error) {
@@ -1558,6 +1617,30 @@ WHERE SolutiontatusCode='${SolutiontatusCode}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async Days_GET_LIST(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      let data = await pool.request().query(`select * from prmDays`);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async Days_GET_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const DaysCode = req.params.DaysCode;
+      let data = await pool
+        .request()
+
+        .query(`select * from prmDays where DaysCode='${DaysCode}'`);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-----------------------------------------------------------------------------------
 
   //---------------------------DELETE--------------------------------------------------------
@@ -1751,6 +1834,21 @@ WHERE SolutiontatusCode='${SolutiontatusCode}'`
         .query(
           `delete from prmSolution where SolutiontatusCode='${SolutiontatusCode}'`
         );
+      console.log(data);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async DAYS_DELETE_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const DaysCode = req.params.DaysCode;
+      let data = await pool
+        .request()
+
+        .query(`delete from prmDays where DaysCode='${DaysCode}'`);
       console.log(data);
       res.status(200).json(data);
     } catch (error) {
