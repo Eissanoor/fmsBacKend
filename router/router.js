@@ -161,6 +161,10 @@ router.get("/Days_GET_LIST", FATSDB.Days_GET_LIST);
 router.get("/Days_GET_BYID/:DaysCode", FATSDB.Days_GET_BYID);
 router.get("/Frequency_GET_LIST", FATSDB.Frequency_GET_LIST);
 router.get("/Frequency_GET_BYID/:FreqCode", FATSDB.Frequency_GET_BYID);
+router.get(
+  "/WorkRequestItems_GET_BYID/:RequestNumber",
+  FATSDB.WorkRequestItems_GET_BYID
+);
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);
