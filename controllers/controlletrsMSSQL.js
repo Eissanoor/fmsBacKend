@@ -754,7 +754,7 @@ const FATSDB = {
         .request()
         .input("DaysCode", sql.VarChar, req.body.DaysCode)
         .input("DaysDesc", sql.VarChar, req.body.DaysDesc)
-        .input("DaysSeq", sql.smallint, req.body.DaysSeq)
+        .input("DaysSeq", sql.SmallInt, req.body.DaysSeq)
 
         .query(
           ` 
@@ -1069,7 +1069,7 @@ WHERE SolutiontatusCode='${SolutiontatusCode}'`
         .request()
 
         .input("DaysDesc", sql.VarChar, req.body.DaysDesc)
-        .input("DaysSeq", sql.smallint, req.body.DaysSeq)
+        .input("DaysSeq", sql.SmallInt, req.body.DaysSeq)
 
         .query(
           ` 
