@@ -176,7 +176,7 @@ router.put("/Failure_Put/:FailureStatusCode", FATSDB.Failure_Put);
 router.put("/Solution_Put/:SolutiontatusCode", FATSDB.Solution_Put);
 router.put("/updateWorkRequest", FATSDB.updateWorkRequest);
 router.put("/updatesecondWorkRequest", FATSDB.updatesecondWorkRequest);
-router.put("/Days_Put/:DaysCode");
+router.put("/Days_Put/:DaysCode", FATSDB.Days_Put);
 //--------------------------------------------------------------------------------
 //-----------------------------------DELETE_API-----------------------------------------
 router.delete(
