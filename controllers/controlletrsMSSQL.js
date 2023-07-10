@@ -780,6 +780,40 @@ const FATSDB = {
       res.status(500).json({ error: `${error}` });
     }
   },
+  async Frequency_post(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+
+      let data = await pool
+        .request()
+        .input("FreqCode", sql.VarChar, req.body.FreqCode)
+        .input("FreqDesc", sql.VarChar, req.body.FreqDesc)
+        .input("FreqSeq", sql.SmallInt, req.body.FreqSeq)
+
+        .query(
+          ` 
+            INSERT INTO [dbo].[prmFrequency]
+                       ([FreqCode]
+                       ,[FreqDesc]
+                        ,[FreqSeq]
+                     
+                       
+                      
+                        )
+                 VALUES
+                       (@FreqCode
+                       ,@FreqDesc
+                       ,@FreqSeq
+                    
+                                           
+                       )`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //
   //-----------------------------------------------------------------------------------
 
@@ -1079,6 +1113,31 @@ SET
 [DaysDesc] =@DaysDesc
 ,[DaysSeq] =@DaysSeq
 WHERE DaysCode='${DaysCode}'`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async Frequency_Put(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const FreqCode = req.params.FreqCode;
+      let data = await pool
+        .request()
+
+        .input("FreqDesc", sql.VarChar, req.body.FreqDesc)
+        .input("FreqSeq", sql.SmallInt, req.body.FreqSeq)
+
+        .query(
+          ` 
+          UPDATE [dbo].[prmFrequency]
+SET
+
+[FreqDesc] =@FreqDesc
+,[FreqSeq] =@FreqSeq
+WHERE FreqCode='${FreqCode}'`
         );
       res.status(201).json(data);
     } catch (error) {
@@ -1641,6 +1700,30 @@ WHERE DaysCode='${DaysCode}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async Frequency_GET_LIST(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      let data = await pool.request().query(`select * from prmFrequency`);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async Frequency_GET_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const FreqCode = req.params.FreqCode;
+      let data = await pool
+        .request()
+
+        .query(`select * from prmFrequency where FreqCode='${FreqCode}'`);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-----------------------------------------------------------------------------------
 
   //---------------------------DELETE--------------------------------------------------------
@@ -1849,6 +1932,21 @@ WHERE DaysCode='${DaysCode}'`
         .request()
 
         .query(`delete from prmDays where DaysCode='${DaysCode}'`);
+      console.log(data);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async Frequency_DELETE_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const FreqCode = req.params.FreqCode;
+      let data = await pool
+        .request()
+
+        .query(`delete from prmFrequency where FreqCode='${FreqCode}'`);
       console.log(data);
       res.status(200).json(data);
     } catch (error) {
