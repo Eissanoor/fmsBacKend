@@ -165,6 +165,8 @@ router.get(
   "/WorkRequestItems_GET_BYID/:RequestNumber",
   FATSDB.WorkRequestItems_GET_BYID
 );
+router.get("/workRequest_GET_LIST", FATSDB.workRequest_GET_LIST);
+router.get("/Employeenumber_GET_LIST", FATSDB.Employeenumber_GET_LIST);
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);
