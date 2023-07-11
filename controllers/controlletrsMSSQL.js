@@ -2126,7 +2126,6 @@ WHERE EmployeeID='${EmployeeID}'`);
         .input("LocationCode", sql.VarChar, req.body.LocationCode)
 
         .input("WorkPriority", sql.VarChar, req.body.WorkPriority)
-        .input("AssetItemTagID", sql.VarChar, req.body.AssetItemTagID)
 
         .input("ProblemCategory", sql.VarChar, req.body.ProblemCategory)
         .input("ProblemDescription", sql.VarChar, req.body.ProblemDescription)
@@ -2138,7 +2137,7 @@ WHERE EmployeeID='${EmployeeID}'`);
                         ,[WorkType]
                          ,[WorkTrade]
                           ,[WorkPriority]
-                              ,[AssetItemTagID]
+                           
 
                                ,[EmployeeID]
                                 ,[RequestStatus]
@@ -2158,7 +2157,7 @@ WHERE EmployeeID='${EmployeeID}'`);
                                  ,@WorkType
                                    ,@WorkTrade
                                      ,@WorkPriority
-                                      ,@AssetItemTagID
+                                     
                                        ,@EmployeeID
                                         ,@RequestStatus
                                          ,@DepartmentCode
