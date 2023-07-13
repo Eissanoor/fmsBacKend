@@ -910,6 +910,35 @@ const FATSDB = {
       res.status(500).json({ error: `${error}` });
     }
   },
+  async MaritalStatus_post(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+
+      let data = await pool
+        .request()
+        .input("MaritalCode", sql.VarChar, req.body.MaritalCode)
+        .input("MaritalDesc", sql.VarChar, req.body.MaritalDesc)
+
+        .query(
+          ` 
+            INSERT INTO [dbo].[prmMaritalStatus]
+                       ([MaritalCode]
+                       ,[MaritalDesc]
+      
+                        )
+                 VALUES
+                       (@MaritalCode
+                       ,@MaritalDesc
+                    
+                                           
+                       )`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //
   //-----------------------------------------------------------------------------------
 
@@ -1280,6 +1309,29 @@ SET
 
 [TitleDesc] =@TitleDesc
 WHERE TitleCode='${TitleCode}'`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async MaritalStatus_Put(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const MaritalCode = req.params.MaritalCode;
+      let data = await pool
+        .request()
+
+        .input("MaritalDesc", sql.VarChar, req.body.MaritalDesc)
+
+        .query(
+          ` 
+          UPDATE [dbo].[prmMaritalStatus]
+SET
+
+[MaritalDesc] =@MaritalDesc
+WHERE MaritalCode='${MaritalCode}'`
         );
       res.status(201).json(data);
     } catch (error) {
@@ -1962,6 +2014,32 @@ WHERE TitleCode='${TitleCode}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async MaritalStatus_GET_LIST(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      let data = await pool.request().query(`select * from prmMaritalStatus`);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async MaritalStatus_GET_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const MaritalCode = req.params.MaritalCode;
+      let data = await pool
+        .request()
+
+        .query(
+          `select * from prmMaritalStatus where MaritalCode='${MaritalCode}'`
+        );
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-----------------------------------------------------------------------------------
 
   //---------------------------DELETE--------------------------------------------------------
@@ -2215,6 +2293,23 @@ WHERE TitleCode='${TitleCode}'`
         .request()
 
         .query(`delete from prmTitle where TitleCode='${TitleCode}'`);
+      console.log(data);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async MaritalStatus_DELETE_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const MaritalCode = req.params.MaritalCode;
+      let data = await pool
+        .request()
+
+        .query(
+          `delete from prmMaritalStatus where MaritalCode='${MaritalCode}'`
+        );
       console.log(data);
       res.status(200).json(data);
     } catch (error) {
