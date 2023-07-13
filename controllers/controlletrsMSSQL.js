@@ -881,6 +881,35 @@ const FATSDB = {
       res.status(500).json({ error: `${error}` });
     }
   },
+  async Title_post(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+
+      let data = await pool
+        .request()
+        .input("TitleCode", sql.VarChar, req.body.TitleCode)
+        .input("TitleDesc", sql.VarChar, req.body.TitleDesc)
+
+        .query(
+          ` 
+            INSERT INTO [dbo].[prmTitle]
+                       ([TitleCode]
+                       ,[TitleDesc]
+      
+                        )
+                 VALUES
+                       (@TitleCode
+                       ,@TitleDesc
+                    
+                                           
+                       )`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //
   //-----------------------------------------------------------------------------------
 
@@ -1228,6 +1257,29 @@ SET
 
 [GenderDesc] =@GenderDesc
 WHERE GenderCode='${GenderCode}'`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async Title_Put(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const TitleCode = req.params.TitleCode;
+      let data = await pool
+        .request()
+
+        .input("TitleDesc", sql.VarChar, req.body.TitleDesc)
+
+        .query(
+          ` 
+          UPDATE [dbo].[prmTitle]
+SET
+
+[TitleDesc] =@TitleDesc
+WHERE TitleCode='${TitleCode}'`
         );
       res.status(201).json(data);
     } catch (error) {
@@ -1886,6 +1938,30 @@ WHERE GenderCode='${GenderCode}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async Title_GET_LIST(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      let data = await pool.request().query(`select * from prmTitle`);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async Title_GET_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const TitleCode = req.params.TitleCode;
+      let data = await pool
+        .request()
+
+        .query(`select * from prmTitle where TitleCode='${TitleCode}'`);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-----------------------------------------------------------------------------------
 
   //---------------------------DELETE--------------------------------------------------------
@@ -2124,6 +2200,21 @@ WHERE GenderCode='${GenderCode}'`
         .request()
 
         .query(`delete from prmGender where GenderCode='${GenderCode}'`);
+      console.log(data);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async Title_DELETE_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const TitleCode = req.params.TitleCode;
+      let data = await pool
+        .request()
+
+        .query(`delete from prmTitle where TitleCode='${TitleCode}'`);
       console.log(data);
       res.status(200).json(data);
     } catch (error) {

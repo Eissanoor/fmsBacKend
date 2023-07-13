@@ -86,6 +86,7 @@ router.post("/Days_post", FATSDB.Days_post);
 router.post("/Frequency_post", FATSDB.Frequency_post);
 router.post("/WorkRequestItems_post", FATSDB.WorkRequestItems_post);
 router.post("/Gender_post", FATSDB.Gender_post);
+router.post("/Title_post", FATSDB.Title_post);
 //--------------------------------------------------------------------------
 
 //-------------------------------GET_API---------------------------------------------
@@ -171,6 +172,8 @@ router.get("/Employeenumber_GET_LIST", FATSDB.Employeenumber_GET_LIST);
 router.get("/WorkRequestItems_GET_LIST", FATSDB.WorkRequestItems_GET_LIST);
 router.get("/Gender_GET_BYID/:GenderCode", FATSDB.Gender_GET_BYID);
 router.get("/Gender_GET_LIST", FATSDB.Gender_GET_LIST);
+router.get("/Title_GET_LIST", FATSDB.Title_GET_LIST);
+router.get("/Title_GET_BYID/:TitleCode", FATSDB.Title_GET_BYID);
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);
@@ -193,6 +196,7 @@ router.put("/updatesecondWorkRequest", FATSDB.updatesecondWorkRequest);
 router.put("/Days_Put/:DaysCode", FATSDB.Days_Put);
 router.put("/Frequency_Put/:FreqCode", FATSDB.Frequency_Put);
 router.put("/Gender_Put/:GenderCode", FATSDB.Gender_Put);
+router.put("/Title_Put/:TitleCode", FATSDB.Title_Put);
 //--------------------------------------------------------------------------------
 //-----------------------------------DELETE_API-----------------------------------------
 router.delete(
@@ -246,5 +250,6 @@ router.delete(
 router.delete("/DAYS_DELETE_BYID/:DaysCode", FATSDB.DAYS_DELETE_BYID);
 router.delete("/Frequency_DELETE_BYID/:FreqCode", FATSDB.Frequency_DELETE_BYID);
 router.delete("/Gender_DELETE_BYID/:GenderCode", FATSDB.Gender_DELETE_BYID);
+router.delete("/Title_DELETE_BYID/:TitleCode", FATSDB.Title_DELETE_BYID);
 //----------------------------------------------------------------------------////
 export default router;
