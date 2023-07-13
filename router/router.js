@@ -85,6 +85,7 @@ router.post("/AddworkRequestsecondPOST", FATSDB.AddworkRequestsecondPOST);
 router.post("/Days_post", FATSDB.Days_post);
 router.post("/Frequency_post", FATSDB.Frequency_post);
 router.post("/WorkRequestItems_post", FATSDB.WorkRequestItems_post);
+router.post("/Gender_post", FATSDB.Gender_post);
 //--------------------------------------------------------------------------
 
 //-------------------------------GET_API---------------------------------------------
@@ -168,6 +169,8 @@ router.get(
 router.get("/workRequest_GET_LIST", FATSDB.workRequest_GET_LIST);
 router.get("/Employeenumber_GET_LIST", FATSDB.Employeenumber_GET_LIST);
 router.get("/WorkRequestItems_GET_LIST", FATSDB.WorkRequestItems_GET_LIST);
+router.get("/Gender_GET_BYID/:GenderCode", FATSDB.Gender_GET_BYID);
+router.get("/Gender_GET_LIST", FATSDB.Gender_GET_LIST);
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);
@@ -189,6 +192,7 @@ router.put("/updateWorkRequest", FATSDB.updateWorkRequest);
 router.put("/updatesecondWorkRequest", FATSDB.updatesecondWorkRequest);
 router.put("/Days_Put/:DaysCode", FATSDB.Days_Put);
 router.put("/Frequency_Put/:FreqCode", FATSDB.Frequency_Put);
+router.put("/Gender_Put/:GenderCode", FATSDB.Gender_Put);
 //--------------------------------------------------------------------------------
 //-----------------------------------DELETE_API-----------------------------------------
 router.delete(
@@ -241,5 +245,6 @@ router.delete(
 );
 router.delete("/DAYS_DELETE_BYID/:DaysCode", FATSDB.DAYS_DELETE_BYID);
 router.delete("/Frequency_DELETE_BYID/:FreqCode", FATSDB.Frequency_DELETE_BYID);
+router.delete("/Gender_DELETE_BYID/:GenderCode", FATSDB.Gender_DELETE_BYID);
 //----------------------------------------------------------------------------////
 export default router;

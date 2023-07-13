@@ -850,6 +850,37 @@ const FATSDB = {
       res.status(500).json({ error: `${error}` });
     }
   },
+  async Gender_post(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+
+      let data = await pool
+        .request()
+        .input("GenderCode", sql.VarChar, req.body.GenderCode)
+        .input("GenderDesc", sql.VarChar, req.body.GenderDesc)
+
+        .query(
+          ` 
+            INSERT INTO [dbo].[prmGender]
+                       ([GenderCode]
+                       ,[GenderDesc]
+                     
+                       
+                      
+                        )
+                 VALUES
+                       (@GenderCode
+                       ,@GenderDesc
+                    
+                                           
+                       )`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //
   //-----------------------------------------------------------------------------------
 
@@ -1174,6 +1205,29 @@ SET
 [FreqDesc] =@FreqDesc
 ,[FreqSeq] =@FreqSeq
 WHERE FreqCode='${FreqCode}'`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async Gender_Put(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const GenderCode = req.params.GenderCode;
+      let data = await pool
+        .request()
+
+        .input("GenderDesc", sql.VarChar, req.body.GenderDesc)
+
+        .query(
+          ` 
+          UPDATE [dbo].[prmGender]
+SET
+
+[GenderDesc] =@GenderDesc
+WHERE GenderCode='${GenderCode}'`
         );
       res.status(201).json(data);
     } catch (error) {
@@ -1808,6 +1862,30 @@ WHERE FreqCode='${FreqCode}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async Gender_GET_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const GenderCode = req.params.GenderCode;
+      let data = await pool
+        .request()
+
+        .query(`select * from prmGender where GenderCode='${GenderCode}'`);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async Gender_GET_LIST(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      let data = await pool.request().query(`select * from prmGender`);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-----------------------------------------------------------------------------------
 
   //---------------------------DELETE--------------------------------------------------------
@@ -2031,6 +2109,21 @@ WHERE FreqCode='${FreqCode}'`
         .request()
 
         .query(`delete from prmFrequency where FreqCode='${FreqCode}'`);
+      console.log(data);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async Gender_DELETE_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const GenderCode = req.params.GenderCode;
+      let data = await pool
+        .request()
+
+        .query(`delete from prmGender where GenderCode='${GenderCode}'`);
       console.log(data);
       res.status(200).json(data);
     } catch (error) {
