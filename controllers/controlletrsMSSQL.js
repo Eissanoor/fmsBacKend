@@ -1937,7 +1937,11 @@ WHERE MaritalCode='${MaritalCode}'`
   async workRequest_GET_LIST(req, res, next) {
     try {
       let pool = await sql.connect(config);
-      let data = await pool.request().query(`select * from tblWorkRequest`);
+      let data = await pool.request().query(`SELECT *
+FROM tblWorkRequest o
+INNER JOIN tblEmployeeMaster i
+ON o.EmployeeID = i.EmployeeID`);
+
       res.status(200).json(data);
     } catch (error) {
       console.log(error);
