@@ -129,6 +129,7 @@ router.get("/Solution_GET_LIST", FATSDB.Solution_GET_LIST);
 router.get("/Solution_GET_BYID/:SolutiontatusCode", FATSDB.Solution_GET_BYID);
 router.post("/getworkRequest", FATSDB.getworkRequest);
 router.post("/getworkRequestsecond", FATSDB.getworkRequestsecond);
+router.get("/getworkRequestsecond", FATSDB.getworkRequestsecond);
 router.get("/Department_LIST", FATSDB.Department_LIST);
 router.get("/Building_LIST", FATSDB.Building_LIST);
 router.get("/Location_LIST", FATSDB.Location_LIST);
