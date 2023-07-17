@@ -939,6 +939,35 @@ const FATSDB = {
       res.status(500).json({ error: `${error}` });
     }
   },
+  async Nationality_post(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+
+      let data = await pool
+        .request()
+        .input("NationalityCode", sql.VarChar, req.body.NationalityCode)
+        .input("NationalityDesc", sql.VarChar, req.body.NationalityDesc)
+
+        .query(
+          ` 
+            INSERT INTO [dbo].[prmNationality]
+                       ([NationalityCode]
+                       ,[NationalityDesc]
+      
+                        )
+                 VALUES
+                       (@NationalityCode
+                       ,@NationalityDesc
+                    
+                                           
+                       )`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //
   //-----------------------------------------------------------------------------------
 
@@ -1339,9 +1368,58 @@ WHERE MaritalCode='${MaritalCode}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async Nationality_Put(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const NationalityCode = req.params.NationalityCode;
+      let data = await pool
+        .request()
+
+        .input("NationalityDesc", sql.VarChar, req.body.NationalityDesc)
+
+        .query(
+          ` 
+          UPDATE [dbo].[prmNationality]
+SET
+
+[NationalityDesc] =@NationalityDesc
+WHERE NationalityCode='${NationalityCode}'`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-------------------------------------------------------------------------------------
 
   //---------------------------GET--------------------------------------------------------
+  async Nationality_GET_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const NationalityCode = req.params.NationalityCode;
+      let data = await pool
+        .request()
+
+        .query(
+          `select * from prmNationality where NationalityCode='${NationalityCode}'`
+        );
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async Nationality_GET_LIST(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      let data = await pool.request().query(`select * from prmNationality`);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   async WorkType_GET_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
@@ -2047,7 +2125,23 @@ ON o.EmployeeID=i.EmployeeID`);
   //-----------------------------------------------------------------------------------
 
   //---------------------------DELETE--------------------------------------------------------
+  async Nationality_DELETE_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const NationalityCode = req.params.NationalityCode;
+      let data = await pool
+        .request()
 
+        .query(
+          `delete from prmNationality where NationalityCode='${NationalityCode}'`
+        );
+      console.log(data);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   async WORKTYPE_DELETE_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);

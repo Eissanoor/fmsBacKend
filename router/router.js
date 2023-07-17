@@ -88,6 +88,7 @@ router.post("/WorkRequestItems_post", FATSDB.WorkRequestItems_post);
 router.post("/Gender_post", FATSDB.Gender_post);
 router.post("/Title_post", FATSDB.Title_post);
 router.post("/MaritalStatus_post", FATSDB.MaritalStatus_post);
+router.post("/Nationality_post", FATSDB.Nationality_post);
 //--------------------------------------------------------------------------
 
 //-------------------------------GET_API---------------------------------------------
@@ -181,6 +182,11 @@ router.get(
   FATSDB.MaritalStatus_GET_BYID
 );
 router.get("/MaritalStatus_GET_LIST", FATSDB.MaritalStatus_GET_LIST);
+router.get(
+  "/Nationality_GET_BYID/:NationalityCode",
+  FATSDB.Nationality_GET_BYID
+);
+router.get("/Nationality_GET_LIST", FATSDB.Nationality_GET_LIST);
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);
@@ -205,6 +211,7 @@ router.put("/Frequency_Put/:FreqCode", FATSDB.Frequency_Put);
 router.put("/Gender_Put/:GenderCode", FATSDB.Gender_Put);
 router.put("/Title_Put/:TitleCode", FATSDB.Title_Put);
 router.put("/MaritalStatus_Put/:MaritalCode", FATSDB.MaritalStatus_Put);
+router.put("/Nationality_Put/:NationalityCode", FATSDB.Nationality_Put);
 //--------------------------------------------------------------------------------
 //-----------------------------------DELETE_API-----------------------------------------
 router.delete(
@@ -262,6 +269,10 @@ router.delete("/Title_DELETE_BYID/:TitleCode", FATSDB.Title_DELETE_BYID);
 router.delete(
   "/MaritalStatus_DELETE_BYID/:MaritalCode",
   FATSDB.MaritalStatus_DELETE_BYID
+);
+router.delete(
+  "/Nationality_DELETE_BYID/:NationalityCode",
+  FATSDB.Nationality_DELETE_BYID
 );
 //----------------------------------------------------------------------------////
 export default router;
