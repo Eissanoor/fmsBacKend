@@ -968,6 +968,58 @@ const FATSDB = {
       res.status(500).json({ error: `${error}` });
     }
   },
+  async AssetsMaster_post(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+
+      let data = await pool
+        .request()
+        .input(
+          "AssetItemDescription",
+          sql.VarChar,
+          req.body.AssetItemDescription
+        )
+        .input("AssetItemGroup", sql.VarChar, req.body.AssetItemGroup)
+        .input("AssetType", sql.VarChar, req.body.AssetType)
+        .input("AssetCategory", sql.VarChar, req.body.AssetCategory)
+        .input("AssetSubCategory", sql.VarChar, req.body.AssetSubCategory)
+        .input("Manufacturer", sql.VarChar, req.body.Manufacturer)
+        .input("Model", sql.VarChar, req.body.Model)
+        .input("Brand", sql.VarChar, req.body.Brand)
+
+        .query(
+          ` 
+            INSERT INTO [dbo].[tblAssetsMaster]
+                       ([AssetItemDescription]
+                       ,[AssetItemGroup]
+
+                       ,[AssetType]
+                       ,[AssetCategory]
+                       ,[AssetSubCategory]
+                       ,[Manufacturer]
+                       ,[Model]
+                       ,[Brand]
+      
+                        )
+                 VALUES
+                       (@AssetItemDescription
+                       ,@AssetItemGroup
+                        ,@AssetType
+                         ,@AssetCategory
+                          ,@AssetSubCategory
+                           ,@Manufacturer
+                            ,@Model
+                             ,@Brand
+                    
+                                           
+                       )`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //
   //-----------------------------------------------------------------------------------
 
@@ -1391,9 +1443,72 @@ WHERE NationalityCode='${NationalityCode}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async AssetsMaster_Put(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const AssetItemDescription = req.params.AssetItemDescription;
+      let data = await pool
+        .request()
+
+        .input("AssetItemGroup", sql.VarChar, req.body.AssetItemGroup)
+        .input("AssetType", sql.VarChar, req.body.AssetType)
+
+        .input("AssetCategory", sql.VarChar, req.body.AssetCategory)
+        .input("AssetSubCategory", sql.VarChar, req.body.AssetSubCategory)
+        .input("Manufacturer", sql.VarChar, req.body.Manufacturer)
+        .input("Model", sql.VarChar, req.body.Model)
+        .input("Brand", sql.VarChar, req.body.Brand)
+
+        .query(
+          ` 
+          UPDATE [dbo].[tblAssetsMaster]
+SET
+
+[AssetItemGroup] =@AssetItemGroup
+,[AssetType] =@AssetType
+
+,[AssetCategory] =@AssetCategory
+,[AssetSubCategory] =@AssetSubCategory
+,[Manufacturer] =@Manufacturer
+,[Model] =@Model
+,[Brand] =@Brand
+WHERE AssetItemDescription='${AssetItemDescription}'`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-------------------------------------------------------------------------------------
 
   //---------------------------GET--------------------------------------------------------
+  async AssetsMaster_GET_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const AssetItemDescription = req.params.AssetItemDescription;
+      let data = await pool
+        .request()
+
+        .query(
+          `select * from tblAssetsMaster where AssetItemDescription='${AssetItemDescription}'`
+        );
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async AssetsMaster_GET_LIST(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      let data = await pool.request().query(`select * from tblAssetsMaster`);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   async Nationality_GET_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
@@ -2125,6 +2240,23 @@ ON o.EmployeeID=i.EmployeeID`);
   //-----------------------------------------------------------------------------------
 
   //---------------------------DELETE--------------------------------------------------------
+  async AssetsMaster_DELETE_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const AssetItemDescription = req.params.AssetItemDescription;
+      let data = await pool
+        .request()
+
+        .query(
+          `delete from tblAssetsMaster where AssetItemDescription='${AssetItemDescription}'`
+        );
+      console.log(data);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   async Nationality_DELETE_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);

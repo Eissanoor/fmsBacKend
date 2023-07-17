@@ -89,6 +89,7 @@ router.post("/Gender_post", FATSDB.Gender_post);
 router.post("/Title_post", FATSDB.Title_post);
 router.post("/MaritalStatus_post", FATSDB.MaritalStatus_post);
 router.post("/Nationality_post", FATSDB.Nationality_post);
+router.post("/AssetsMaster_post", FATSDB.AssetsMaster_post);
 //--------------------------------------------------------------------------
 
 //-------------------------------GET_API---------------------------------------------
@@ -187,6 +188,11 @@ router.get(
   FATSDB.Nationality_GET_BYID
 );
 router.get("/Nationality_GET_LIST", FATSDB.Nationality_GET_LIST);
+router.get(
+  "/AssetsMaster_GET_BYID/:AssetItemDescription",
+  FATSDB.AssetsMaster_GET_BYID
+);
+router.get("/AssetsMaster_GET_LIST", FATSDB.AssetsMaster_GET_LIST);
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);
@@ -212,6 +218,7 @@ router.put("/Gender_Put/:GenderCode", FATSDB.Gender_Put);
 router.put("/Title_Put/:TitleCode", FATSDB.Title_Put);
 router.put("/MaritalStatus_Put/:MaritalCode", FATSDB.MaritalStatus_Put);
 router.put("/Nationality_Put/:NationalityCode", FATSDB.Nationality_Put);
+router.put("/AssetsMaster_Put/:AssetItemDescription", FATSDB.AssetsMaster_Put);
 //--------------------------------------------------------------------------------
 //-----------------------------------DELETE_API-----------------------------------------
 router.delete(
@@ -273,6 +280,10 @@ router.delete(
 router.delete(
   "/Nationality_DELETE_BYID/:NationalityCode",
   FATSDB.Nationality_DELETE_BYID
+);
+router.delete(
+  "/AssetsMaster_DELETE_BYID/:AssetItemDescription",
+  FATSDB.AssetsMaster_DELETE_BYID
 );
 //----------------------------------------------------------------------------////
 export default router;
