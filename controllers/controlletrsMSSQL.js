@@ -1020,6 +1020,35 @@ const FATSDB = {
       res.status(500).json({ error: `${error}` });
     }
   },
+  async AssetType_post(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+
+      let data = await pool
+        .request()
+        .input("AssetTypeCode", sql.VarChar, req.body.AssetTypeCode)
+        .input("AssetTypeDesc", sql.VarChar, req.body.AssetTypeDesc)
+
+        .query(
+          ` 
+            INSERT INTO [dbo].[prmAssetType]
+                       ([AssetTypeCode]
+                       ,[AssetTypeDesc]
+      
+                        )
+                 VALUES
+                       (@AssetTypeCode
+                       ,@AssetTypeDesc
+                    
+                                           
+                       )`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //
   //-----------------------------------------------------------------------------------
 
@@ -1480,9 +1509,59 @@ WHERE AssetItemDescription='${AssetItemDescription}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+
+  async AssetType_Put(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const AssetTypeCode = req.params.AssetTypeCode;
+      let data = await pool
+        .request()
+
+        .input("AssetTypeDesc", sql.VarChar, req.body.AssetTypeDesc)
+
+        .query(
+          ` 
+          UPDATE [dbo].[prmAssetType]
+SET
+
+[AssetTypeDesc] =@AssetTypeDesc
+WHERE AssetTypeCode='${AssetTypeCode}'`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-------------------------------------------------------------------------------------
 
   //---------------------------GET--------------------------------------------------------
+  async AssetType_GET_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const AssetTypeCode = req.params.AssetTypeCode;
+      let data = await pool
+        .request()
+
+        .query(
+          `select * from prmAssetType where AssetTypeCode='${AssetTypeCode}'`
+        );
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async AssetType_GET_LIST(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      let data = await pool.request().query(`select * from prmAssetType`);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   async AssetsMaster_GET_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
@@ -2240,6 +2319,24 @@ ON o.EmployeeID=i.EmployeeID`);
   //-----------------------------------------------------------------------------------
 
   //---------------------------DELETE--------------------------------------------------------
+
+  async AssetType_DELETE_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const AssetTypeCode = req.params.AssetTypeCode;
+      let data = await pool
+        .request()
+
+        .query(
+          `delete from prmAssetType where AssetTypeCode='${AssetTypeCode}'`
+        );
+      console.log(data);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   async AssetsMaster_DELETE_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
