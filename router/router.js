@@ -91,6 +91,7 @@ router.post("/MaritalStatus_post", FATSDB.MaritalStatus_post);
 router.post("/Nationality_post", FATSDB.Nationality_post);
 router.post("/AssetsMaster_post", FATSDB.AssetsMaster_post);
 router.post("/AssetType_post", FATSDB.AssetType_post);
+router.post("/AssetCategory_post", FATSDB.AssetCategory_post);
 //--------------------------------------------------------------------------
 
 //-------------------------------GET_API---------------------------------------------
@@ -196,6 +197,11 @@ router.get(
 router.get("/AssetsMaster_GET_LIST", FATSDB.AssetsMaster_GET_LIST);
 router.get("/AssetType_GET_BYID/:AssetTypeCode", FATSDB.AssetType_GET_BYID);
 router.get("/AssetType_GET_LIST", FATSDB.AssetType_GET_LIST);
+router.get(
+  "/AssetCategory_GET_BYID/:AssetCategoryCode",
+  FATSDB.AssetCategory_GET_BYID
+);
+router.get("/AssetCategory_GET_LIST", FATSDB.AssetCategory_GET_LIST);
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);
@@ -223,6 +229,7 @@ router.put("/MaritalStatus_Put/:MaritalCode", FATSDB.MaritalStatus_Put);
 router.put("/Nationality_Put/:NationalityCode", FATSDB.Nationality_Put);
 router.put("/AssetsMaster_Put/:AssetItemDescription", FATSDB.AssetsMaster_Put);
 router.put("/AssetType_Put/:AssetTypeCode", FATSDB.AssetType_Put);
+router.put("/AssetCategory_Put/:AssetCategoryCode", FATSDB.AssetCategory_Put);
 //--------------------------------------------------------------------------------
 //-----------------------------------DELETE_API-----------------------------------------
 router.delete(
@@ -292,6 +299,10 @@ router.delete(
 router.delete(
   "/AssetType_DELETE_BYID/:AssetTypeCode",
   FATSDB.AssetType_DELETE_BYID
+);
+router.delete(
+  "/AssetCategory_DELETE_BYID/:AssetCategoryCode",
+  FATSDB.AssetCategory_DELETE_BYID
 );
 //----------------------------------------------------------------------------////
 export default router;
