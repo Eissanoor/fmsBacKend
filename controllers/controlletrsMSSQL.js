@@ -1569,18 +1569,14 @@ WHERE AssetTypeCode='${AssetTypeCode}'`
       let data = await pool
         .request()
 
-        .input(
-          "AssetTypeAssetCategoryDescDesc",
-          sql.VarChar,
-          req.body.AssetTypeAssetCategoryDescDesc
-        )
+        .input("AssetCategoryDesc", sql.VarChar, req.body.AssetCategoryDesc)
 
         .query(
           ` 
           UPDATE [dbo].[prmAssetCategory]
 SET
 
-[AssetTypeAssetCategoryDescDesc] =@AssetTypeAssetCategoryDescDesc
+[AssetCategoryDesc] =@AssetCategoryDesc
 WHERE AssetCategoryCode='${AssetCategoryCode}'`
         );
       res.status(201).json(data);
