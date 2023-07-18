@@ -1174,10 +1174,163 @@ const FATSDB = {
       res.status(500).json({ error: `${error}` });
     }
   },
+
+  async EmployeeMaster_post(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+
+      let data = await pool
+        .request()
+        .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
+        .input("EmployeeStatus", sql.VarChar, req.body.EmployeeStatus)
+        .input("Gender", sql.VarChar, req.body.Gender)
+        .input("Title", sql.VarChar, req.body.Title)
+        .input("BirthDate", sql.Date, req.body.BirthDate)
+        .input("Age", sql.SmallInt, req.body.Age)
+        .input("Lastname", sql.VarChar, req.body.Lastname)
+        .input("Firstname", sql.VarChar, req.body.Firstname)
+        .input("Middlename", sql.VarChar, req.body.Middlename)
+        .input("NationalityCode", sql.VarChar, req.body.NationalityCode)
+        .input("MaritalStatus", sql.VarChar, req.body.MaritalStatus)
+        .input("NationalID", sql.VarChar, req.body.NationalID)
+        .input("PassportNumber", sql.VarChar, req.body.PassportNumber)
+        .input("MobileNumber", sql.VarChar, req.body.MobileNumber)
+        .input("LandlineNumber", sql.VarChar, req.body.LandlineNumber)
+        .input("DesignationCode", sql.VarChar, req.body.DesignationCode)
+        .input("Email", sql.VarChar, req.body.Email)
+        .input("DepartmentCode", sql.VarChar, req.body.DepartmentCode)
+        .input("BuildingCode", sql.VarChar, req.body.BuildingCode)
+        .input("LocationCode", sql.VarChar, req.body.LocationCode)
+        .input("JoiningDate", sql.Date, req.body.JoiningDate)
+        
+
+
+        .query(
+          ` 
+            INSERT INTO [dbo].[tblEmployeeMaster]
+                       ([EmployeeID]
+                       ,[EmployeeStatus]
+                         ,[Gender]
+                        ,[Title]
+                         ,[BirthDate]
+                         ,[Age]
+                        ,[Lastname]
+                         ,[Firstname]
+                        ,[Middlename]
+                         ,[NationalityCode]
+                         ,[MaritalStatus]
+                        ,[NationalID]
+                         ,[PassportNumber]
+                         ,[MobileNumber]
+                         ,[LandlineNumber]
+                         ,[DesignationCode]
+                          ,[Email]
+                         ,[DepartmentCode]
+                        ,[BuildingCode]
+                      ,[LocationCode]
+                   ,[JoiningDate]
+                                                             
+      
+                        )
+                 VALUES
+                       (@EmployeeID
+                       ,@EmployeeStatus
+                       ,@Gender
+                       ,@Title
+                       ,@BirthDate
+                       ,@Age
+                       ,@Lastname
+                       ,@Firstname
+                       ,@Middlename
+                       ,@NationalityCode
+                       ,@MaritalStatus
+                       ,@NationalID
+                       ,@PassportNumber
+                       ,@MobileNumber
+                       ,@LandlineNumber
+                       ,@DesignationCode
+                       ,@Email
+                       ,@DepartmentCode
+                       ,@BuildingCode
+                       ,@LocationCode
+                       ,@JoiningDate
+                       
+                    
+                                           
+                       )`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //
   //-----------------------------------------------------------------------------------
 
   //---------------------------PUT--------------------------------------------------------
+
+  async EmployeeMaster_Put(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const EmployeeID = req.params.EmployeeID;
+      let data = await pool
+        .request()
+
+        .input("EmployeeStatus", sql.VarChar, req.body.EmployeeStatus)
+        .input("Gender", sql.VarChar, req.body.Gender)
+        .input("Title", sql.SmallInt, req.body.Title)
+        .input("BirthDate", sql.Date, req.body.BirthDate)
+        .input("Age", sql.SmallInt, req.body.Age)
+        .input("Lastname", sql.VarChar, req.body.Lastname)
+        .input("Firstname", sql.VarChar, req.body.Firstname)
+        .input("Middlename", sql.VarChar, req.body.Middlename)
+        .input("NationalityCode", sql.VarChar, req.body.NationalityCode)
+        .input("MaritalStatus", sql.VarChar, req.body.MaritalStatus)
+        .input("NationalID", sql.VarChar, req.body.NationalID)
+        .input("PassportNumber", sql.VarChar, req.body.PassportNumber)
+        .input("MobileNumber", sql.VarChar, req.body.MobileNumber)
+        .input("LandlineNumber", sql.VarChar, req.body.LandlineNumber)
+        .input("DesignationCode", sql.VarChar, req.body.DesignationCode)
+        .input("Email", sql.VarChar, req.body.Email)
+        .input("DepartmentCode", sql.VarChar, req.body.DepartmentCode)
+        .input("BuildingCode", sql.VarChar, req.body.BuildingCode)
+        .input("LocationCode", sql.VarChar, req.body.LocationCode)
+        .input("JoiningDate", sql.Date, req.body.JoiningDate)
+        
+        .query(
+          ` 
+          UPDATE [dbo].[tblEmployeeMaster]
+SET
+
+[EmployeeStatus] =@EmployeeStatus
+,[Gender] =@Gender
+,[Title] =@Title
+,[BirthDate] =@BirthDate
+,[Age] =@Age
+,[Lastname] =@Lastname
+,[Firstname] =@Firstname
+,[Middlename] =@Middlename
+,[NationalityCode] =@NationalityCode
+,[MaritalStatus] =@MaritalStatus
+,[NationalID] =@NationalID
+,[PassportNumber] =@PassportNumber
+,[MobileNumber] =@MobileNumber
+,[LandlineNumber] =@LandlineNumber
+,[DesignationCode] =@DesignationCode
+,[Email] =@Email
+,[DepartmentCode] =@DepartmentCode
+,[BuildingCode] =@BuildingCode
+,[LocationCode] =@LocationCode
+,[JoiningDate] =@JoiningDate
+WHERE EmployeeID='${EmployeeID}'`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   async WorkType_Put(req, res, next) {
     try {
       let pool = await sql.connect(config);
@@ -1757,6 +1910,32 @@ WHERE WarrantyPeriodCode='${WarrantyPeriodCode}'`
   //-------------------------------------------------------------------------------------
 
   //---------------------------GET--------------------------------------------------------
+  async EmployeeMaster_GET_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const EmployeeID = req.params.EmployeeID;
+      let data = await pool
+        .request()
+
+        .query(
+          `select * from tblEmployeeMaster where EmployeeID='${EmployeeID}'`
+        );
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async EmployeeMaster_GET_LIST(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      let data = await pool.request().query(`select * from tblEmployeeMaster`);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   async WarrantyPeriod_GET_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
@@ -3039,6 +3218,23 @@ ON o.EmployeeID=i.EmployeeID`);
       res.status(500).json({ error: `${error}` });
     }
   },
+  async EmployeeMaster_DELETE_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const EmployeeID = req.params.EmployeeID;
+      let data = await pool
+        .request()
+
+        .query(
+          `delete from tblEmployeeMaster where EmployeeID='${EmployeeID}'`
+        );
+      console.log(data);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //------------------------------------------------------------------------------------------
   async getworkRequest(req, res, next) {
     try {
@@ -3378,3 +3574,4 @@ WHERE RequestNumber='${RequestNumber}'`);
   },
 };
 export default FATSDB;
+
