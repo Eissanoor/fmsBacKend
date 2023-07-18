@@ -1279,7 +1279,7 @@ const FATSDB = {
 
         .input("EmployeeStatus", sql.VarChar, req.body.EmployeeStatus)
         .input("Gender", sql.VarChar, req.body.Gender)
-        .input("Title", sql.SmallInt, req.body.Title)
+        .input("Title", sql.VarChar, req.body.Title)
         .input("BirthDate", sql.Date, req.body.BirthDate)
         .input("Age", sql.SmallInt, req.body.Age)
         .input("Lastname", sql.VarChar, req.body.Lastname)
