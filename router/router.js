@@ -93,6 +93,7 @@ router.post("/AssetsMaster_post", FATSDB.AssetsMaster_post);
 router.post("/AssetType_post", FATSDB.AssetType_post);
 router.post("/AssetCategory_post", FATSDB.AssetCategory_post);
 router.post("/AssetSubCategory_post", FATSDB.AssetSubCategory_post);
+router.post("/AssetCondition_post", FATSDB.AssetCondition_post);
 //--------------------------------------------------------------------------
 
 //-------------------------------GET_API---------------------------------------------
@@ -208,6 +209,11 @@ router.get(
   "/AssetSubCategory_GET_BYID/:AssetSubCategoryCode",
   FATSDB.AssetSubCategory_GET_BYID
 );
+router.get(
+  "/AssetCondition_GET_BYID/:AssetConditionCode",
+  FATSDB.AssetCondition_GET_BYID
+);
+router.get("/AssetCondition_GET_LIST", FATSDB.AssetCondition_GET_LIST);
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);
@@ -239,6 +245,10 @@ router.put("/AssetCategory_Put/:AssetCategoryCode", FATSDB.AssetCategory_Put);
 router.put(
   "/AssetSubCategory_Put/:AssetSubCategoryCode",
   FATSDB.AssetSubCategory_Put
+);
+router.put(
+  "/AssetCondition_Put/:AssetConditionCode",
+  FATSDB.AssetCondition_Put
 );
 //--------------------------------------------------------------------------------
 //-----------------------------------DELETE_API-----------------------------------------
@@ -317,6 +327,10 @@ router.delete(
 router.delete(
   "/AssetSubCategory_DELETE_BYID/:AssetSubCategoryCode",
   FATSDB.AssetSubCategory_DELETE_BYID
+);
+router.delete(
+  "/AssetCondition_DELETE_BYID/:AssetConditionCode",
+  FATSDB.AssetCondition_DELETE_BYID
 );
 //----------------------------------------------------------------------------////
 export default router;

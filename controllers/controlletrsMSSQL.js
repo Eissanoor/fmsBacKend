@@ -1116,6 +1116,35 @@ const FATSDB = {
       res.status(500).json({ error: `${error}` });
     }
   },
+  async AssetCondition_post(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+
+      let data = await pool
+        .request()
+        .input("AssetConditionCode", sql.VarChar, req.body.AssetConditionCode)
+        .input("AssetConditionDesc", sql.VarChar, req.body.AssetConditionDesc)
+
+        .query(
+          ` 
+            INSERT INTO [dbo].[prmAssetCondition]
+                       ([AssetConditionCode]
+                       ,[AssetConditionDesc]
+      
+                        )
+                 VALUES
+                       (@AssetConditionCode
+                       ,@AssetConditionDesc
+                    
+                                           
+                       )`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //
   //-----------------------------------------------------------------------------------
 
@@ -1650,9 +1679,59 @@ WHERE AssetSubCategoryCode='${AssetSubCategoryCode}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async AssetCondition_Put(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const AssetConditionCode = req.params.AssetConditionCode;
+      let data = await pool
+        .request()
+
+        .input("AssetConditionDesc", sql.VarChar, req.body.AssetConditionDesc)
+
+        .query(
+          ` 
+          UPDATE [dbo].[prmAssetCondition]
+SET
+
+[AssetConditionDesc] =@AssetConditionDesc
+WHERE AssetConditionCode='${AssetConditionCode}'`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-------------------------------------------------------------------------------------
 
   //---------------------------GET--------------------------------------------------------
+
+  async AssetCondition_GET_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const AssetConditionCode = req.params.AssetConditionCode;
+      let data = await pool
+        .request()
+
+        .query(
+          `select * from prmAssetCondition where AssetConditionCode='${AssetConditionCode}'`
+        );
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async AssetCondition_GET_LIST(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      let data = await pool.request().query(`select * from prmAssetCondition`);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   async AssetSubCategory_GET_LIST(req, res, next) {
     try {
       let pool = await sql.connect(config);
@@ -2841,6 +2920,23 @@ ON o.EmployeeID=i.EmployeeID`);
 
         .query(
           `delete from prmAssetSubCategory where AssetSubCategoryCode='${AssetSubCategoryCode}'`
+        );
+      console.log(data);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async AssetCondition_DELETE_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const AssetConditionCode = req.params.AssetConditionCode;
+      let data = await pool
+        .request()
+
+        .query(
+          `delete from prmAssetCondition where AssetConditionCode='${AssetConditionCode}'`
         );
       console.log(data);
       res.status(200).json(data);
