@@ -1145,6 +1145,35 @@ const FATSDB = {
       res.status(500).json({ error: `${error}` });
     }
   },
+  async WarrantyPeriod_post(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+
+      let data = await pool
+        .request()
+        .input("WarrantyPeriodCode", sql.VarChar, req.body.WarrantyPeriodCode)
+        .input("WarrantyPeriodDesc", sql.VarChar, req.body.WarrantyPeriodDesc)
+
+        .query(
+          ` 
+            INSERT INTO [dbo].[prmWarrantyPeriod]
+                       ([WarrantyPeriodCode]
+                       ,[WarrantyPeriodDesc]
+      
+                        )
+                 VALUES
+                       (@WarrantyPeriodCode
+                       ,@WarrantyPeriodDesc
+                    
+                                           
+                       )`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //
   //-----------------------------------------------------------------------------------
 
@@ -1702,10 +1731,58 @@ WHERE AssetConditionCode='${AssetConditionCode}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async WarrantyPeriod_Put(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const WarrantyPeriodCode = req.params.WarrantyPeriodCode;
+      let data = await pool
+        .request()
+
+        .input("WarrantyPeriodDesc", sql.VarChar, req.body.WarrantyPeriodDesc)
+
+        .query(
+          ` 
+          UPDATE [dbo].[prmWarrantyPeriod]
+SET
+
+[WarrantyPeriodDesc] =@WarrantyPeriodDesc
+WHERE WarrantyPeriodCode='${WarrantyPeriodCode}'`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-------------------------------------------------------------------------------------
 
   //---------------------------GET--------------------------------------------------------
+  async WarrantyPeriod_GET_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const WarrantyPeriodCode = req.params.WarrantyPeriodCode;
+      let data = await pool
+        .request()
 
+        .query(
+          `select * from prmWarrantyPeriod where WarrantyPeriodCode='${WarrantyPeriodCode}'`
+        );
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async WarrantyPeriod_GET_LIST(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      let data = await pool.request().query(`select * from prmWarrantyPeriod`);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   async AssetCondition_GET_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
@@ -2945,6 +3022,23 @@ ON o.EmployeeID=i.EmployeeID`);
       res.status(500).json({ error: `${error}` });
     }
   },
+  async WarrantyPeriod_DELETE_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const WarrantyPeriodCode = req.params.WarrantyPeriodCode;
+      let data = await pool
+        .request()
+
+        .query(
+          `delete from prmWarrantyPeriod where WarrantyPeriodCode='${WarrantyPeriodCode}'`
+        );
+      console.log(data);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //------------------------------------------------------------------------------------------
   async getworkRequest(req, res, next) {
     try {
@@ -3212,6 +3306,7 @@ WHERE RequestNumber='${RequestNumber}'`);
       res.status(500).json({ error: `${error}` });
     }
   },
+  //
   async AddworkOrderPOST(req, res, next) {
     try {
       const EmployeeID = req.body.EmployeeID;

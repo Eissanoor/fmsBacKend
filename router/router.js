@@ -94,6 +94,7 @@ router.post("/AssetType_post", FATSDB.AssetType_post);
 router.post("/AssetCategory_post", FATSDB.AssetCategory_post);
 router.post("/AssetSubCategory_post", FATSDB.AssetSubCategory_post);
 router.post("/AssetCondition_post", FATSDB.AssetCondition_post);
+router.post("/WarrantyPeriod_post", FATSDB.WarrantyPeriod_post);
 //--------------------------------------------------------------------------
 
 //-------------------------------GET_API---------------------------------------------
@@ -214,6 +215,11 @@ router.get(
   FATSDB.AssetCondition_GET_BYID
 );
 router.get("/AssetCondition_GET_LIST", FATSDB.AssetCondition_GET_LIST);
+router.get(
+  "/WarrantyPeriod_GET_BYID/:WarrantyPeriodCode",
+  FATSDB.WarrantyPeriod_GET_BYID
+);
+router.get("/WarrantyPeriod_GET_LIST", FATSDB.WarrantyPeriod_GET_LIST);
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);
@@ -249,6 +255,10 @@ router.put(
 router.put(
   "/AssetCondition_Put/:AssetConditionCode",
   FATSDB.AssetCondition_Put
+);
+router.put(
+  "/WarrantyPeriod_Put/:WarrantyPeriodCode",
+  FATSDB.WarrantyPeriod_Put
 );
 //--------------------------------------------------------------------------------
 //-----------------------------------DELETE_API-----------------------------------------
@@ -331,6 +341,10 @@ router.delete(
 router.delete(
   "/AssetCondition_DELETE_BYID/:AssetConditionCode",
   FATSDB.AssetCondition_DELETE_BYID
+);
+router.delete(
+  "/WarrantyPeriod_DELETE_BYID/:WarrantyPeriodCode",
+  FATSDB.WarrantyPeriod_DELETE_BYID
 );
 //----------------------------------------------------------------------------////
 export default router;
