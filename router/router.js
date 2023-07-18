@@ -92,6 +92,7 @@ router.post("/Nationality_post", FATSDB.Nationality_post);
 router.post("/AssetsMaster_post", FATSDB.AssetsMaster_post);
 router.post("/AssetType_post", FATSDB.AssetType_post);
 router.post("/AssetCategory_post", FATSDB.AssetCategory_post);
+router.post("/AssetSubCategory_post", FATSDB.AssetSubCategory_post);
 //--------------------------------------------------------------------------
 
 //-------------------------------GET_API---------------------------------------------
@@ -202,6 +203,11 @@ router.get(
   FATSDB.AssetCategory_GET_BYID
 );
 router.get("/AssetCategory_GET_LIST", FATSDB.AssetCategory_GET_LIST);
+router.get("/AssetSubCategory_GET_LIST", FATSDB.AssetSubCategory_GET_LIST);
+router.get(
+  "/AssetSubCategory_GET_BYID/:AssetSubCategoryCode",
+  FATSDB.AssetSubCategory_GET_BYID
+);
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);
@@ -230,6 +236,10 @@ router.put("/Nationality_Put/:NationalityCode", FATSDB.Nationality_Put);
 router.put("/AssetsMaster_Put/:AssetItemDescription", FATSDB.AssetsMaster_Put);
 router.put("/AssetType_Put/:AssetTypeCode", FATSDB.AssetType_Put);
 router.put("/AssetCategory_Put/:AssetCategoryCode", FATSDB.AssetCategory_Put);
+router.put(
+  "/AssetSubCategory_Put/:AssetSubCategoryCode",
+  FATSDB.AssetSubCategory_Put
+);
 //--------------------------------------------------------------------------------
 //-----------------------------------DELETE_API-----------------------------------------
 router.delete(
@@ -303,6 +313,10 @@ router.delete(
 router.delete(
   "/AssetCategory_DELETE_BYID/:AssetCategoryCode",
   FATSDB.AssetCategory_DELETE_BYID
+);
+router.delete(
+  "/AssetSubCategory_DELETE_BYID/:AssetSubCategoryCode",
+  FATSDB.AssetSubCategory_DELETE_BYID
 );
 //----------------------------------------------------------------------------////
 export default router;

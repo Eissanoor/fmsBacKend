@@ -1078,6 +1078,44 @@ const FATSDB = {
       res.status(500).json({ error: `${error}` });
     }
   },
+
+  async AssetSubCategory_post(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+
+      let data = await pool
+        .request()
+        .input(
+          "AssetSubCategoryCode",
+          sql.VarChar,
+          req.body.AssetSubCategoryCode
+        )
+        .input(
+          "AssetSubCategoryDesc",
+          sql.VarChar,
+          req.body.AssetSubCategoryDesc
+        )
+
+        .query(
+          ` 
+            INSERT INTO [dbo].[prmAssetSubCategory]
+                       ([AssetSubCategoryCode]
+                       ,[AssetSubCategoryDesc]
+      
+                        )
+                 VALUES
+                       (@AssetSubCategoryCode
+                       ,@AssetSubCategoryDesc
+                    
+                                           
+                       )`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //
   //-----------------------------------------------------------------------------------
 
@@ -1585,9 +1623,64 @@ WHERE AssetCategoryCode='${AssetCategoryCode}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async AssetSubCategory_Put(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const AssetSubCategoryCode = req.params.AssetSubCategoryCode;
+      let data = await pool
+        .request()
+
+        .input(
+          "AssetSubCategoryDesc",
+          sql.VarChar,
+          req.body.AssetSubCategoryDesc
+        )
+
+        .query(
+          ` 
+          UPDATE [dbo].[prmAssetSubCategory]
+SET
+
+[AssetSubCategoryDesc] =@AssetSubCategoryDesc
+WHERE AssetSubCategoryCode='${AssetSubCategoryCode}'`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-------------------------------------------------------------------------------------
 
   //---------------------------GET--------------------------------------------------------
+  async AssetSubCategory_GET_LIST(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      let data = await pool
+        .request()
+        .query(`select * from prmAssetSubCategory`);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async AssetSubCategory_GET_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const AssetSubCategoryCode = req.params.AssetSubCategoryCode;
+      let data = await pool
+        .request()
+
+        .query(
+          `select * from prmAssetSubCategory where AssetSubCategoryCode='${AssetSubCategoryCode}'`
+        );
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   async AssetCategory_GET_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
@@ -2731,6 +2824,23 @@ ON o.EmployeeID=i.EmployeeID`);
 
         .query(
           `delete from prmAssetCategory where AssetCategoryCode='${AssetCategoryCode}'`
+        );
+      console.log(data);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async AssetSubCategory_DELETE_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const AssetSubCategoryCode = req.params.AssetSubCategoryCode;
+      let data = await pool
+        .request()
+
+        .query(
+          `delete from prmAssetSubCategory where AssetSubCategoryCode='${AssetSubCategoryCode}'`
         );
       console.log(data);
       res.status(200).json(data);
