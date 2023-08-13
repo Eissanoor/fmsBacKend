@@ -263,7 +263,8 @@ router.put(
   "/WarrantyPeriod_Put/:WarrantyPeriodCode",
   FATSDB.WarrantyPeriod_Put
 );
-router.put("/EmployeeMaster_Put/:EmployeeID",FATSDB.EmployeeMaster_Put)
+router.put("/EmployeeMaster_Put/:EmployeeID", FATSDB.EmployeeMaster_Put)
+router.put("/AssetsMaster_Put_status/:AssetItemDescription",FATSDB.AssetsMaster_Put_status)
 //--------------------------------------------------------------------------------
 //-----------------------------------DELETE_API-----------------------------------------
 router.delete(

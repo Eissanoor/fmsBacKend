@@ -376,7 +376,6 @@ const FATSDB = {
       res.status(500).json({ error: `${error}` });
     }
   },
-
   async WorkType_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
@@ -1779,6 +1778,31 @@ SET
 ,[Manufacturer] =@Manufacturer
 ,[Model] =@Model
 ,[Brand] =@Brand
+WHERE AssetItemDescription='${AssetItemDescription}'`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async AssetsMaster_Put_status(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const AssetItemDescription = req.params.AssetItemDescription;
+      let data = await pool
+        .request()
+
+        
+        .input("status", sql.Numeric, 1)
+
+        .query(
+          ` 
+          UPDATE [dbo].[tblAssetsMaster]
+SET
+
+[status] =@status
+
 WHERE AssetItemDescription='${AssetItemDescription}'`
         );
       res.status(201).json(data);
