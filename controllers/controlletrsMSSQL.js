@@ -2872,6 +2872,22 @@ ON o.EmployeeID=i.EmployeeID`);
       res.status(500).json({ error: `${error}` });
     }
   },
+  async assetworkrequest_GET_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const EmployeeID = req.params.EmployeeID;
+      let data = await pool
+        .request()
+
+        .query(
+          `select * from assetworkrequest where EmployeeID='${EmployeeID}'`
+        );
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-----------------------------------------------------------------------------------
 
   //---------------------------DELETE--------------------------------------------------------

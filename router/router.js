@@ -223,7 +223,8 @@ router.get(
 );
 router.get("/WarrantyPeriod_GET_LIST", FATSDB.WarrantyPeriod_GET_LIST);
 router.get("/EmployeeMaster_GET_BYID/:EmployeeID", FATSDB.EmployeeMaster_GET_BYID);
-router.get("/EmployeeMaster_GET_LIST",FATSDB.EmployeeMaster_GET_LIST)
+router.get("/EmployeeMaster_GET_LIST", FATSDB.EmployeeMaster_GET_LIST)
+router.get("/assetworkrequest_GET_BYID/:EmployeeID",FATSDB.assetworkrequest_GET_BYID)
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);
