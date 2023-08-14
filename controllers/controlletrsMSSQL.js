@@ -1173,7 +1173,6 @@ const FATSDB = {
       res.status(500).json({ error: `${error}` });
     }
   },
-
   async EmployeeMaster_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
@@ -1256,6 +1255,33 @@ const FATSDB = {
                        
                     
                                            
+                       )`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async assetworkrequest_post(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+
+      let data = await pool
+        .request()
+        .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
+        .input("AssetItemDescription", sql.VarChar, req.body.AssetItemDescription)
+        
+
+        .query(
+          ` 
+            INSERT INTO [dbo].[assetworkrequest]
+                       ([EmployeeID]
+                       ,[AssetItemDescription]
+                        )
+                 VALUES
+                       (@EmployeeID
+                       ,@AssetItemDescription                
                        )`
         );
       res.status(201).json(data);
