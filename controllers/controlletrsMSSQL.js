@@ -1266,7 +1266,7 @@ const FATSDB = {
   async assetworkrequest_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-
+const EmployeeID =req.body.EmployeeID
       let data = await pool
         .request()
         .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
@@ -1287,7 +1287,7 @@ const FATSDB = {
         
         let result = await pool
         .request().query(
-          `select * from assetworkrequest where EmployeeID='@EmployeeID'`
+          `select * from assetworkrequest where EmployeeID='${EmployeeID}'`
         );
       res.status(201).json(result);
     } catch (error) {
