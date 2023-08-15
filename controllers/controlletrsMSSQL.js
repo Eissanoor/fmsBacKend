@@ -1287,7 +1287,7 @@ const FATSDB = {
         
         let result = await pool
         .request().query(
-          `select * from assetworkrequest where EmployeeID='@EmployeeID'`
+          `select * from assetworkrequest where EmployeeID=@EmployeeID`
         );
       res.status(201).json(result);
     } catch (error) {
