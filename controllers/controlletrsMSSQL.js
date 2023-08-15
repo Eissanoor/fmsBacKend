@@ -1283,8 +1283,13 @@ const FATSDB = {
                        (@EmployeeID
                        ,@AssetItemDescription                
                        )`
+      )
+        
+        let result = await pool
+        .request().query(
+          `select * from assetworkrequest where EmployeeID='@EmployeeID'`
         );
-      res.status(201).json(data);
+      res.status(201).json(result);
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
