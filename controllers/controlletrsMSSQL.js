@@ -3360,6 +3360,23 @@ ON o.EmployeeID=i.EmployeeID`);
       res.status(500).json({ error: `${error}` });
     }
   },
+  async assetworkrequest_DELETE_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const EmployeeID = req.params.EmployeeID;
+      let data = await pool
+        .request()
+
+        .query(
+          `delete from assetworkrequest where EmployeeID='${EmployeeID}'`
+        );
+      console.log(data);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //------------------------------------------------------------------------------------------
   async getworkRequest(req, res, next) {
     try {
