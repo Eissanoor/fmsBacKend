@@ -357,6 +357,6 @@ router.delete(
   FATSDB.WarrantyPeriod_DELETE_BYID
 );
 router.delete("/EmployeeMaster_DELETE_BYID/:EmployeeID", FATSDB.EmployeeMaster_DELETE_BYID)
-router.delete("/assetworkrequest_DELETE_BYID/:EmployeeID", FATSDBassetworkrequest_DELETE_BYID)
+router.delete("/assetworkrequest_DELETE_BYID/:EmployeeID", FATSDB.assetworkrequest_DELETE_BYID)
 //----------------------------------------------------------------------------////
 export default router;
