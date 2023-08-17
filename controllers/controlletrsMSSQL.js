@@ -1968,7 +1968,7 @@ WHERE WarrantyPeriodCode='${WarrantyPeriodCode}'`
       let data = await pool
         .request()
 
-        .input("RequestNumber", sql.VarChar, req.body.RequestNumber)
+        .input("RequestNumber", sql.Numeric, req.body.RequestNumber)
 
         .query(
           ` 
