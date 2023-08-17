@@ -3363,12 +3363,12 @@ ON o.EmployeeID=i.EmployeeID`);
   async assetworkrequest_DELETE_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
-      const EmployeeID = req.params.EmployeeID;
+      const seq = req.params.seq;
       let data = await pool
         .request()
 
         .query(
-          `delete from assetworkrequest where EmployeeID='${EmployeeID}'`
+          `delete from assetworkrequest where seq='${seq}'`
         );
       console.log(data);
       res.status(200).json(data);
