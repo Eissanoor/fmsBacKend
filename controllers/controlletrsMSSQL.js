@@ -1961,6 +1961,29 @@ WHERE WarrantyPeriodCode='${WarrantyPeriodCode}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async workRequestCount_Put(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const No = req.params.No;
+      let data = await pool
+        .request()
+
+        .input("RequestNumber", sql.VarChar, req.body.RequestNumber)
+
+        .query(
+          ` 
+          UPDATE [dbo].[workRequestCount]
+SET
+
+[RequestNumber] =@RequestNumber
+WHERE No='${No}'`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-------------------------------------------------------------------------------------
 
   //---------------------------GET--------------------------------------------------------
