@@ -1842,7 +1842,6 @@ WHERE AssetItemDescription='${AssetItemDescription}'`
       res.status(500).json({ error: `${error}` });
     }
   },
-
   async AssetType_Put(req, res, next) {
     try {
       let pool = await sql.connect(config);
@@ -2902,6 +2901,22 @@ ON o.EmployeeID=i.EmployeeID`);
 
         .query(
           `select * from tblAssetsMaster where AssetItemDescription='${AssetItemDescription}'`
+        );
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async workRequestCount_GET_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const No = req.params.No;
+      let data = await pool
+        .request()
+
+        .query(
+          `select * from workRequestCount where No='${No}'`
         );
       res.status(200).json(data);
     } catch (error) {
