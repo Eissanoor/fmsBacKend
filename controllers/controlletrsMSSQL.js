@@ -3385,12 +3385,19 @@ ON o.EmployeeID=i.EmployeeID`);
         .request()
 
         .query(
-          `DELETE FROM tblWorkRequest , tblEmployeeMaster 
-   WHERE tblWorkRequest.EmployeeID = tblEmployeeMaster.EmployeeID 
-   and EmployeeID='${EmployeeID}' `
-        );
+          `DELETE FROM tblWorkRequest
+WHERE EmployeeID = '${EmployeeID}'`
+      );
+      let data2 = await pool
+        .request()
+
+        .query(
+          `DELETE FROM tblEmployeeMaster
+WHERE EmployeeID = '${EmployeeID}'`
+      );
+      
       console.log(data);
-      res.status(200).json(data);
+      res.status(200).json("Work Request has been deleted");
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
