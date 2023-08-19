@@ -3387,7 +3387,7 @@ ON o.EmployeeID=i.EmployeeID`);
         .query(
           `DELETE FROM tblWorkRequest , tblEmployeeMaster 
    WHERE tblWorkRequest.EmployeeID = tblEmployeeMaster.EmployeeID 
-   and EmployeeID=${EmployeeID} `
+   and EmployeeID='${EmployeeID}' `
         );
       console.log(data);
       res.status(200).json(data);
