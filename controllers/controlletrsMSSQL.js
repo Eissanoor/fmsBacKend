@@ -3511,7 +3511,7 @@ WHERE EmployeeID='${EmployeeID}'`);
 
       const RequestNumber = req.body.RequestNumber;
       const Employeeid = req.body.EmployeeID;
-      if (Employeeid = "") {
+      if (Employeeid == "") {
         res.status(404).json("EmployeeID is require");
       }
       else {
