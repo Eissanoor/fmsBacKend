@@ -3510,8 +3510,8 @@ WHERE EmployeeID='${EmployeeID}'`);
       let pool = await sql.connect(config);
 
       const RequestNumber = req.body.RequestNumber;
-      const EmployeeID = req.body.EmployeeID;
-      if (EmployeeID = "") {
+      const Employeeid = req.body.EmployeeID;
+      if (Employeeid = "") {
         res.status(404).json("EmployeeID is require");
       }
       else {
@@ -3521,7 +3521,7 @@ WHERE EmployeeID='${EmployeeID}'`);
         .input("WorkType", sql.VarChar, req.body.WorkType)
         .input("WorkTrade", sql.VarChar, req.body.WorkTrade)
 
-        .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
+        .input("EmployeeID", sql.VarChar, Employeeid)
         .input("RequestStatus", sql.VarChar, req.body.RequestStatus)
         .input("DepartmentCode", sql.VarChar, req.body.DepartmentCode)
         .input("BuildingCode", sql.VarChar, req.body.BuildingCode)
