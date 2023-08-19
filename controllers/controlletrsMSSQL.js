@@ -3510,7 +3510,12 @@ WHERE EmployeeID='${EmployeeID}'`);
       let pool = await sql.connect(config);
 
       const RequestNumber = req.body.RequestNumber;
-      let data = await pool
+      const EmployeeID = req.body.EmployeeID;
+      if (EmployeeID = "") {
+        res.status(404).json("EmployeeID is require");
+      }
+      else {
+         let data = await pool
         .request()
         .input("RequestNumber", sql.VarChar, req.body.RequestNumber)
         .input("WorkType", sql.VarChar, req.body.WorkType)
@@ -3581,6 +3586,8 @@ WHERE EmployeeID='${EmployeeID}'`);
         );
       res.status(201).json(dataaa);
       console.log(dataaa);
+      }
+     
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
