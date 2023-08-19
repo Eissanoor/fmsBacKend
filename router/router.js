@@ -358,5 +358,6 @@ router.delete(
 );
 router.delete("/EmployeeMaster_DELETE_BYID/:EmployeeID", FATSDB.EmployeeMaster_DELETE_BYID)
 router.delete("/assetworkrequest_DELETE_BYID/:seq", FATSDB.assetworkrequest_DELETE_BYID)
+router.delete("/all_work_request_DELETE_BYID/:EmployeeID", FATSDB.all_work_request_DELETE_BYID)
 //----------------------------------------------------------------------------////
 export default router;
