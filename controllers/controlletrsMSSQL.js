@@ -25,7 +25,11 @@ const FATSDB = {
   async AddworkRequestPOST(req, res, next) {
     try {
       const EmployeeID = req.body.EmployeeID;
-      let pool = await sql.connect(config);
+      if (EmployeeID == "") {
+         res.status(404).json("EmployeeID is required");
+      }
+      else {
+         let pool = await sql.connect(config);
 
       let data = await pool
         .request()
@@ -85,6 +89,8 @@ const FATSDB = {
         .query(`select * from tblEmployeeMaster where EmployeeID=@EmployeeID`);
       res.status(201).json(dataaa);
       console.log(dataaa);
+      }
+     
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
