@@ -1272,8 +1272,12 @@ const FATSDB = {
   async assetworkrequest_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-const EmployeeID =req.body.EmployeeID
-      let data = await pool
+      const EmployeeID = req.body.EmployeeID
+      if (EmployeeID == "") {
+         res.status(404).json("EmployeeID is required");
+      }
+      else {
+         let data = await pool
         .request()
         .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
         .input("AssetItemDescription", sql.VarChar, req.body.AssetItemDescription)
@@ -1296,6 +1300,9 @@ const EmployeeID =req.body.EmployeeID
           `select * from assetworkrequest where EmployeeID='${EmployeeID}'`
         );
       res.status(201).json(result);
+        
+      }
+     
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
