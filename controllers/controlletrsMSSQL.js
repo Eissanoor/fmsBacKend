@@ -1287,7 +1287,7 @@ const RequestNumber =req.body.RequestNumber
         
         let result = await pool
         .request().query(
-          `select * from assetworkrequest where EmployeeID='${EmployeeID}'`
+          `select * from assetworkrequest where RequestNumber='${RequestNumber}'`
         );
       res.status(201).json(result);
     } catch (error) {
