@@ -2794,8 +2794,8 @@ WHERE No='${No}'`
     try {
       let pool = await sql.connect(config);
       let data = await pool.request().query(`SELECT *
-FROM tblWorkRequest o
-INNER JOIN tblEmployeeMaster i
+FROM tblEmployeeMaster o
+INNER JOIN tblWorkRequest i
 ON o.RequestNumber=i.RequestNumber`);
 
       res.status(200).json(data);
