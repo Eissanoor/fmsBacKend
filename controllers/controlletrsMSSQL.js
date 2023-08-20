@@ -25,11 +25,7 @@ const FATSDB = {
   async AddworkRequestPOST(req, res, next) {
     try {
       const EmployeeID = req.body.EmployeeID;
-      if (EmployeeID == "") {
-         res.status(404).json("EmployeeID is required");
-      }
-      else {
-         let pool = await sql.connect(config);
+      let pool = await sql.connect(config);
 
       let data = await pool
         .request()
@@ -89,8 +85,6 @@ const FATSDB = {
         .query(`select * from tblEmployeeMaster where EmployeeID=@EmployeeID`);
       res.status(201).json(dataaa);
       console.log(dataaa);
-      }
-     
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
@@ -1272,12 +1266,8 @@ const FATSDB = {
   async assetworkrequest_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-      const EmployeeID = req.body.EmployeeID
-      if (EmployeeID == "") {
-         res.status(404).json("EmployeeID is required");
-      }
-      else {
-         let data = await pool
+const EmployeeID =req.body.EmployeeID
+      let data = await pool
         .request()
         .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
         .input("AssetItemDescription", sql.VarChar, req.body.AssetItemDescription)
@@ -1300,9 +1290,6 @@ const FATSDB = {
           `select * from assetworkrequest where EmployeeID='${EmployeeID}'`
         );
       res.status(201).json(result);
-        
-      }
-     
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
@@ -3523,18 +3510,13 @@ WHERE EmployeeID='${EmployeeID}'`);
       let pool = await sql.connect(config);
 
       const RequestNumber = req.body.RequestNumber;
-      const Employeeid = req.body.EmployeeID;
-      if (Employeeid == "") {
-        res.status(404).json("EmployeeID is require");
-      }
-      else {
-         let data = await pool
+      let data = await pool
         .request()
         .input("RequestNumber", sql.VarChar, req.body.RequestNumber)
         .input("WorkType", sql.VarChar, req.body.WorkType)
         .input("WorkTrade", sql.VarChar, req.body.WorkTrade)
 
-        .input("EmployeeID", sql.VarChar, Employeeid)
+        .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
         .input("RequestStatus", sql.VarChar, req.body.RequestStatus)
         .input("DepartmentCode", sql.VarChar, req.body.DepartmentCode)
         .input("BuildingCode", sql.VarChar, req.body.BuildingCode)
@@ -3599,8 +3581,6 @@ WHERE EmployeeID='${EmployeeID}'`);
         );
       res.status(201).json(dataaa);
       console.log(dataaa);
-      }
-     
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
