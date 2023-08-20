@@ -1266,21 +1266,21 @@ const FATSDB = {
   async assetworkrequest_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-const EmployeeID =req.body.EmployeeID
+const RequestNumber =req.body.RequestNumber
       let data = await pool
         .request()
-        .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
+        .input("RequestNumber", sql.VarChar, req.body.RequestNumber)
         .input("AssetItemDescription", sql.VarChar, req.body.AssetItemDescription)
         
 
         .query(
           ` 
             INSERT INTO [dbo].[assetworkrequest]
-                       ([EmployeeID]
+                       ([RequestNumber]
                        ,[AssetItemDescription]
                         )
                  VALUES
-                       (@EmployeeID
+                       (@RequestNumber
                        ,@AssetItemDescription                
                        )`
       )
