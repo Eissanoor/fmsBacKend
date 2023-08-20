@@ -3438,14 +3438,14 @@ WHERE RequestNumber = '${RequestNumber}'`
       // const file = req.files["EmployeeImage"];
 
       // const url = `http://gs1ksa.org:3021/api/profile/${file[0].filename}`;
-      const EmployeeID = req.body.EmployeeID;
+      const RequestNumber = req.body.RequestNumber;
       let pool = await sql.connect(config);
 
       var today = new Date();
 
       let data = await pool
         .request()
-
+.input("EmployeeID", sql.VarChar, req.body.EmployeeID)
         .input("Firstname", sql.VarChar, req.body.Firstname)
         .input("Middlename", sql.VarChar, req.body.Middlename)
         .input("Lastname", sql.VarChar, req.body.Lastname)
@@ -3459,6 +3459,7 @@ WHERE RequestNumber = '${RequestNumber}'`
     
    UPDATE [dbo].[tblEmployeeMaster]
 SET
+
 [Firstname] =@Firstname
 ,[Middlename] =@Middlename
 ,[Lastname] =@Lastname
@@ -3469,7 +3470,7 @@ SET
 ,[DepartmentCode] =@DepartmentCode
 ,[LocationCode] =@LocationCode
 ,[BuildingCode] =@BuildingCode
-
+,[EmployeeID] =@EmployeeID
 
 
 
@@ -3481,7 +3482,7 @@ SET
 
   
   
-WHERE EmployeeID='${EmployeeID}'`);
+WHERE RequestNumber='${RequestNumber}'`);
       res.status(202).json(data);
     } catch (error) {
       console.log(error);
