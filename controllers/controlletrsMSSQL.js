@@ -2902,12 +2902,12 @@ ON o.EmployeeID=i.EmployeeID`);
   async assetworkrequest_GET_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
-      const EmployeeID = req.params.EmployeeID;
+      const RequestNumber = req.params.RequestNumber;
       let data = await pool
         .request()
 
         .query(
-          `select * from assetworkrequest where EmployeeID='${EmployeeID}'`
+          `select * from assetworkrequest where RequestNumber='${RequestNumber}'`
         );
       res.status(200).json(data);
     } catch (error) {
