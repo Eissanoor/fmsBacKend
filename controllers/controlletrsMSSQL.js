@@ -39,6 +39,7 @@ const FATSDB = {
         .input("DepartmentCode", sql.VarChar, req.body.DepartmentCode)
         .input("BuildingCode", sql.VarChar, req.body.BuildingCode)
         .input("LocationCode", sql.VarChar, req.body.LocationCode)
+        .input("RequestNumber", sql.VarChar, req.body.RequestNumber)
 
         .query(
           ` 
@@ -53,7 +54,7 @@ const FATSDB = {
                               ,[DepartmentCode]
                                ,[BuildingCode]
                                 ,[LocationCode]
-                             
+                              ,[RequestNumber]
                      
                         )
                  VALUES
@@ -68,7 +69,7 @@ const FATSDB = {
                                             ,@DepartmentCode
                                                ,@BuildingCode
                                                   ,@LocationCode
-                                           
+                                            ,@RequestNumber
                                               
                        )
                     
