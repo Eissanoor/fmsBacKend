@@ -2796,7 +2796,7 @@ WHERE No='${No}'`
       let data = await pool.request().query(`SELECT *
 FROM tblWorkRequest o
 INNER JOIN tblEmployeeMaster i
-ON o.EmployeeID=i.EmployeeID`);
+ON o.RequestNumber=i.RequestNumber`);
 
       res.status(200).json(data);
     } catch (error) {
