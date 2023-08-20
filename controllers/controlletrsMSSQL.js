@@ -3381,20 +3381,20 @@ ON o.EmployeeID=i.EmployeeID`);
   async all_work_request_DELETE_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
-      const EmployeeID = req.params.EmployeeID;
+      const RequestNumber = req.params.RequestNumber;
       let data = await pool
         .request()
 
         .query(
           `DELETE FROM tblWorkRequest
-WHERE EmployeeID = '${EmployeeID}'`
+WHERE RequestNumber = '${RequestNumber}'`
       );
       let data2 = await pool
         .request()
 
         .query(
           `DELETE FROM tblEmployeeMaster
-WHERE EmployeeID = '${EmployeeID}'`
+WHERE RequestNumber = '${RequestNumber}'`
       );
       
       console.log(data);
