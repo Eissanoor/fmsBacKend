@@ -226,7 +226,8 @@ router.get("/EmployeeMaster_GET_BYID/:EmployeeID", FATSDB.EmployeeMaster_GET_BYI
 router.get("/EmployeeMaster_GET_LIST", FATSDB.EmployeeMaster_GET_LIST)
 router.get("/assetworkrequest_GET_BYID/:RequestNumber", FATSDB.assetworkrequest_GET_BYID)
 router.get("/tblAssetsMaster_GET_BYID/:AssetItemDescription", FATSDB.tblAssetsMaster_GET_BYID)
-router.get("/workRequestCount_GET_BYID/:No",FATSDB.workRequestCount_GET_BYID)
+router.get("/workRequestCount_GET_BYID/:No", FATSDB.workRequestCount_GET_BYID)
+router.get("/getworkRequest_by_EPID",FATSDB.getworkRequest_by_EPID)
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);

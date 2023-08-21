@@ -3419,6 +3419,20 @@ WHERE RequestNumber = '${RequestNumber}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async getworkRequest_by_EPID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+
+      let data = await pool
+        .request()
+        .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
+        .query(`select * from tblEmployeeMaster where EmployeeID=@EmployeeID`);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   async getAllLISTworkRequest(req, res, next) {
     try {
       let pool = await sql.connect(config);
