@@ -3642,6 +3642,7 @@ WHERE RequestNumber='${RequestNumber}'`);
       let data = await pool
         .request()
 
+.input("RequestStatus", sql.VarChar, req.body.RequestStatus)
         .input("WorkType", sql.VarChar, req.body.WorkType)
         .input("WorkTrade", sql.VarChar, req.body.WorkTrade)
         .input("WorkPriority", sql.VarChar, req.body.WorkPriority).query(`
@@ -3653,7 +3654,7 @@ SET
 [WorkType] =@WorkType
 ,[WorkTrade] =@WorkTrade
 ,[WorkPriority] =@WorkPriority
-
+,[RequestStatus] =@RequestStatus
 
 
 
