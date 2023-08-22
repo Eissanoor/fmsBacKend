@@ -1275,7 +1275,7 @@ const FATSDB = {
           `SELECT * FROM assetworkrequest WHERE RequestNumber='${RequestNumber}' AND AssetItemDescription='${AssetItemDescription}'`
         );
       if (result1.rowsAffected[0]==1) {
-        return res.status(400).json({error: "RequestNumber and AssetItemDescription already exists"});
+        return res.status(400).json({error: "This Asset already exists"});
       }
       else {
         let data = await pool
