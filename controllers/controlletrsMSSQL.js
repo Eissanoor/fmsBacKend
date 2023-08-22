@@ -1282,9 +1282,9 @@ const FATSDB = {
           ([RequestNumber]
           ,[AssetItemDescription])
 VALUES
-    (@RequestNumber, @AssetItemDescription
-    @RequestNumber, @AssetItemDescription
-      @RequestNumber, @AssetItemDescription)`
+   (@RequestNumber, @AssetItemDescription),
+    (@RequestNumber, @AssetItemDescription),
+    (@RequestNumber, @AssetItemDescription)`
 
       )
         
