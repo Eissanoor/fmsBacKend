@@ -3659,7 +3659,7 @@ WHERE RequestNumber='${RequestNumber}'`);
     try {
       const RequestNumber = req.body.RequestNumber;
       const RequestStatus = req.body.RequestStatus;
-      if (RequestStatus=="closed") {
+      if (RequestStatus=="Closed") {
          let pool = await sql.connect(config);
 
       var today = new Date();
