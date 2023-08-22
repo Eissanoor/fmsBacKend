@@ -1276,8 +1276,8 @@ FROM assetworkrequest
 GROUP BY RequestNumber, AssetItemDescription
 HAVING COUNT(*)>1`
       );
-      if(result1.rowsAffected[0]>0){
-        res.status(500).json({ error: `Duplicate RequestNumber and AssetItemDescription` });
+      if(result1){
+        res.status(500).json( result1);
       }
       else {
         let data = await pool
