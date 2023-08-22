@@ -3658,7 +3658,9 @@ WHERE RequestNumber='${RequestNumber}'`);
   async updatesecondWorkRequest(req, res, next) {
     try {
       const RequestNumber = req.body.RequestNumber;
-      let pool = await sql.connect(config);
+      const RequestStatus = req.body.RequestStatus;
+      if (RequestStatus=="closed") {
+         let pool = await sql.connect(config);
 
       var today = new Date();
 
@@ -3678,18 +3680,37 @@ SET
 ,[WorkTrade] =@WorkTrade
 ,[WorkPriority] =@WorkPriority
 ,[RequestStatus] =@RequestStatus
-
-
-
  
- 
-
-
-
-  
-  
 WHERE RequestNumber='${RequestNumber}'`);
-      res.status(202).json(data);
+      res.status(202).json({message:"Work Request has been closed"});
+      }
+      else {
+           let pool = await sql.connect(config);
+
+      var today = new Date();
+
+      let data = await pool
+        .request()
+
+.input("RequestStatus", sql.VarChar, req.body.RequestStatus)
+        .input("WorkType", sql.VarChar, req.body.WorkType)
+        .input("WorkTrade", sql.VarChar, req.body.WorkTrade)
+        .input("WorkPriority", sql.VarChar, req.body.WorkPriority).query(`
+
+    
+   UPDATE [dbo].[tblWorkRequest]
+SET
+
+[WorkType] =@WorkType
+,[WorkTrade] =@WorkTrade
+,[WorkPriority] =@WorkPriority
+,[RequestStatus] =@RequestStatus
+ 
+WHERE RequestNumber='${RequestNumber}'`);
+      res.status(202).json({message:"Work Request has been updated"});
+
+      }
+     
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
