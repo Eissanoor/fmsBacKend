@@ -1267,7 +1267,19 @@ const FATSDB = {
   async assetworkrequest_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-const RequestNumber =req.body.RequestNumber
+      const RequestNumber = req.body.RequestNumber
+      
+       let result1 = await pool
+        .request().query(
+          `SELECT RequestNumber, AssetItemDescription, COUNT(*)
+FROM assetworkrequest
+GROUP BY RequestNumber, AssetItemDescription
+HAVING COUNT(*)>1`
+      );
+      if(result1.rowsAffected[0]>0){
+        res.status(500).json({ error: `Duplicate RequestNumber and AssetItemDescription` });
+      }
+
       let data = await pool
         .request()
         .input("RequestNumber", sql.VarChar, req.body.RequestNumber)
