@@ -1269,18 +1269,7 @@ const FATSDB = {
       let pool = await sql.connect(config);
       const RequestNumber = req.body.RequestNumber
       
-       let result1 = await pool
-        .request().query(
-          `SELECT RequestNumber, AssetItemDescription, COUNT(*)
-FROM assetworkrequest
-GROUP BY RequestNumber, AssetItemDescription
-HAVING COUNT(*)>1`
-      );
-      if(result1){
-        res.status(500).json( result1);
-      }
-      else {
-        let data = await pool
+      let data = await pool
         .request()
         .input("RequestNumber", sql.VarChar, req.body.RequestNumber)
         .input("AssetItemDescription", sql.VarChar, req.body.AssetItemDescription)
@@ -1303,8 +1292,6 @@ HAVING COUNT(*)>1`
           `select * from assetworkrequest where RequestNumber='${RequestNumber}'`
         );
       res.status(201).json(result);
-}
-      
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
