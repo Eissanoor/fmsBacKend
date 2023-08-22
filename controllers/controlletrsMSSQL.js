@@ -1279,8 +1279,8 @@ HAVING COUNT(*)>1`
       if(result1.rowsAffected[0]>0){
         res.status(500).json({ error: `Duplicate RequestNumber and AssetItemDescription` });
       }
-
-      let data = await pool
+      else {
+        let data = await pool
         .request()
         .input("RequestNumber", sql.VarChar, req.body.RequestNumber)
         .input("AssetItemDescription", sql.VarChar, req.body.AssetItemDescription)
@@ -1303,6 +1303,8 @@ HAVING COUNT(*)>1`
           `select * from assetworkrequest where RequestNumber='${RequestNumber}'`
         );
       res.status(201).json(result);
+}
+      
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
