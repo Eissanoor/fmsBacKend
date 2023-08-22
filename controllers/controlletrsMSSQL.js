@@ -1269,8 +1269,15 @@ const FATSDB = {
       let pool = await sql.connect(config);
       const RequestNumber = req.body.RequestNumber
       const AssetItemDescription = req.body.AssetItemDescription
-    
-      
+      const result1 = await pool
+        .request()
+        .query(
+          `SELECT * FROM assetworkrequest WHERE RequestNumber='${RequestNumber}' AND AssetItemDescription='${AssetItemDescription}'`
+        );
+      if (result1.rowsAffected[0]==1) {
+        return res.status(400).json({error: "This Asset already exists"});
+      }
+      else {
         let data = await pool
         .request()
         .input("RequestNumber", sql.VarChar, req.body.RequestNumber)
@@ -1291,7 +1298,7 @@ VALUES
           `select * from assetworkrequest where RequestNumber='${RequestNumber}'`
         );
       res.status(201).json(result);
-      
+      }
       
     } catch (error) {
       console.log(error);
