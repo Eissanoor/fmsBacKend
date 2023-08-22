@@ -1285,15 +1285,14 @@ const FATSDB = {
         
 
         .query(
-          ` 
-            INSERT INTO [dbo].[assetworkrequest]
-                       ([RequestNumber]
-                       ,[AssetItemDescription]
-                        )
-                 VALUES
-                       (@RequestNumber
-                       ,@AssetItemDescription                
-                       )`
+         `INSERT INTO [dbo].[assetworkrequest]
+          ([RequestNumber]
+          ,[AssetItemDescription])
+VALUES
+    (@RequestNumber, @AssetItemDescription),
+    (@RequestNumber, @AssetItemDescription),
+    (@RequestNumber, @AssetItemDescription)`
+
       )
         
         let result = await pool
