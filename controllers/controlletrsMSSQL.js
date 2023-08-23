@@ -1181,7 +1181,7 @@ const FATSDB = {
       let data = await pool
         .request()
         .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
-        .input("EmployeeStatus", sql.VarChar, req.body.EmployeeStatus)
+       
         .input("Gender", sql.VarChar, req.body.Gender)
         .input("Title", sql.VarChar, req.body.Title)
         .input("BirthDate", sql.Date, req.body.BirthDate)
@@ -1208,7 +1208,7 @@ const FATSDB = {
           ` 
             INSERT INTO [dbo].[tblEmployeeMaster]
                        ([EmployeeID]
-                       ,[EmployeeStatus]
+                      
                          ,[Gender]
                         ,[Title]
                          ,[BirthDate]
@@ -1233,7 +1233,7 @@ const FATSDB = {
                         )
                  VALUES
                        (@EmployeeID
-                       ,@EmployeeStatus
+                       
                        ,@Gender
                        ,@Title
                        ,@BirthDate
@@ -1276,7 +1276,7 @@ const FATSDB = {
         .query(
           `SELECT * FROM assetworkrequest WHERE RequestNumber='${RequestNumber}' AND AssetItemDescription='${AssetItemDescription}'`
       );
-      console.log("-----------------------------------------"+result1);
+      
       if (result1.rowsAffected[0] != 1) {
         await pool
           .request()
@@ -1317,7 +1317,7 @@ const FATSDB = {
       let data = await pool
         .request()
 
-        .input("EmployeeStatus", sql.VarChar, req.body.EmployeeStatus)
+        
         .input("Gender", sql.VarChar, req.body.Gender)
         .input("Title", sql.VarChar, req.body.Title)
         .input("BirthDate", sql.Date, req.body.BirthDate)
@@ -1343,8 +1343,8 @@ const FATSDB = {
           UPDATE [dbo].[tblEmployeeMaster]
 SET
 
-[EmployeeStatus] =@EmployeeStatus
-,[Gender] =@Gender
+
+[Gender] =@Gender
 ,[Title] =@Title
 ,[BirthDate] =@BirthDate
 ,[Age] =@Age
