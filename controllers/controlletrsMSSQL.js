@@ -3406,13 +3406,7 @@ WHERE No='${No}'`
           `DELETE FROM tblWorkRequest
 WHERE RequestNumber = '${RequestNumber}'`
       );
-      let data2 = await pool
-        .request()
-
-        .query(
-          `DELETE FROM tblEmployeeMaster
-WHERE RequestNumber = '${RequestNumber}'`
-      );
+      
       
       console.log(data);
       res.status(200).json("Work Request has been deleted");
