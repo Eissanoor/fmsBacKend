@@ -3469,14 +3469,14 @@ WHERE RequestNumber = '${RequestNumber}'`
       // const file = req.files["EmployeeImage"];
 
       // const url = `http://gs1ksa.org:3021/api/profile/${file[0].filename}`;
-      const RequestNumber = req.body.RequestNumber;
+      const EmployeeID = req.body.EmployeeID;
       let pool = await sql.connect(config);
 
       var today = new Date();
 
       let data = await pool
         .request()
-.input("EmployeeID", sql.VarChar, req.body.EmployeeID)
+
         .input("Firstname", sql.VarChar, req.body.Firstname)
         .input("Middlename", sql.VarChar, req.body.Middlename)
         .input("Lastname", sql.VarChar, req.body.Lastname)
@@ -3501,19 +3501,8 @@ SET
 ,[DepartmentCode] =@DepartmentCode
 ,[LocationCode] =@LocationCode
 ,[BuildingCode] =@BuildingCode
-,[EmployeeID] =@EmployeeID
 
-
-
-
- 
- 
-
-
-
-  
-  
-WHERE RequestNumber='${RequestNumber}'`);
+WHERE EmployeeID='${EmployeeID}'`);
       res.status(202).json(data);
     } catch (error) {
       console.log(error);
