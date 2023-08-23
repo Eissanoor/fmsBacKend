@@ -1265,49 +1265,45 @@ const FATSDB = {
     }
   },
   async assetworkrequest_post(req, res, next) {
-    try {
-      let pool = await sql.connect(config);
-      const RequestNumber = req.body.RequestNumber
-      const AssetItemDescription = req.body.AssetItemDescription
+  try {
+    let pool = await sql.connect(config);
+    const RequestNumber = req.body.RequestNumber;
+    const AssetItemDescriptions = req.body.AssetItemDescriptions; // Assuming this is an array
+
+    for (const AssetItemDescription of AssetItemDescriptions) {
       const result1 = await pool
         .request()
         .query(
           `SELECT * FROM assetworkrequest WHERE RequestNumber='${RequestNumber}' AND AssetItemDescription='${AssetItemDescription}'`
         );
-      if (result1.rowsAffected[0]==1) {
-        return res.status(400).json({error: "This Asset already exists"});
-      }
-      else {
-        let data = await pool
-        .request()
-        .input("RequestNumber", sql.VarChar, req.body.RequestNumber)
-        .input("AssetItemDescription", sql.VarChar, req.body.AssetItemDescription)
-        
-
-        .query(
-          ` 
-            INSERT INTO [dbo].[assetworkrequest]
+      if (result1.rowsAffected[0] != 1) {
+        await pool
+          .request()
+          .input("RequestNumber", sql.VarChar, RequestNumber)
+          .input("AssetItemDescription", sql.VarChar, AssetItemDescription)
+          .query(
+            `INSERT INTO [dbo].[assetworkrequest]
                        ([RequestNumber]
                        ,[AssetItemDescription]
                         )
                  VALUES
                        (@RequestNumber
-                       ,@AssetItemDescription                
-                       )`
-      )
-        
-        let result = await pool
-        .request().query(
-          `select * from assetworkrequest where RequestNumber='${RequestNumber}'`
-        );
-      res.status(201).json(result);
+                       ,@AssetItemDescription)`
+          );
       }
-      
-    } catch (error) {
-      console.log(error);
-      res.status(500).json({ error: `${error}` });
     }
-  },
+
+    let result = await pool
+      .request()
+      .query(
+        `SELECT * FROM assetworkrequest WHERE RequestNumber='${RequestNumber}'`
+      );
+    res.status(201).json(result);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: `${error}` });
+  }
+},
   //
   //-----------------------------------------------------------------------------------
 
