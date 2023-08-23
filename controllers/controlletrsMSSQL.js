@@ -1293,7 +1293,6 @@ const FATSDB = {
           );
       }
     }
-
     let result = await pool
       .request()
       .query(
