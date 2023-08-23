@@ -2957,7 +2957,7 @@ WHERE No='${No}'`
   async EmployeeID_GET_LIST(req, res, next) {
     try {
       let pool = await sql.connect(config);
-      let data = await pool.request().query(`select EmployeeID from tblEmployeeMaster`);
+      let data = await pool.request().query(`select EmployeeID , Firstname from tblEmployeeMaster`);
       res.status(200).json(data);
     } catch (error) {
       console.log(error);
