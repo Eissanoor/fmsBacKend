@@ -3687,7 +3687,8 @@ WHERE RequestNumber='${RequestNumber}'`);
       let data = await pool
         .request()
 
-.input("RequestStatus", sql.VarChar, req.body.RequestStatus)
+        .input("RequestStatus", sql.VarChar, req.body.RequestStatus)
+        .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
         .input("WorkType", sql.VarChar, req.body.WorkType)
         .input("WorkTrade", sql.VarChar, req.body.WorkTrade)
         .input("WorkPriority", sql.VarChar, req.body.WorkPriority).query(`
@@ -3700,7 +3701,7 @@ SET
 ,[WorkTrade] =@WorkTrade
 ,[WorkPriority] =@WorkPriority
 ,[RequestStatus] =@RequestStatus
- 
+ ,[EmployeeID] =@EmployeeID
 WHERE RequestNumber='${RequestNumber}'`);
       res.status(202).json({message:"Work Request has been updated"});
 
