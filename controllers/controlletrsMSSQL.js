@@ -1292,6 +1292,10 @@ const FATSDB = {
                        ,@AssetItemDescription)`
           );
       }
+      else {
+        res.status(500).json({ error: `This Asset already exist` });
+
+      }
     }
 
     let result = await pool
