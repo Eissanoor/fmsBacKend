@@ -3428,8 +3428,8 @@ WHERE RequestNumber = '${RequestNumber}'`
 
       let data = await pool
         .request()
-        .input("RequestNumber", sql.VarChar, req.body.RequestNumber)
-        .query(`select * from tblEmployeeMaster where RequestNumber=@RequestNumber`);
+        .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
+        .query(`select * from tblEmployeeMaster where EmployeeID=@EmployeeID`);
       res.status(200).json(data);
     } catch (error) {
       console.log(error);
