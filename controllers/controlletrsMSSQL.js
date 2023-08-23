@@ -1275,7 +1275,8 @@ const FATSDB = {
         .request()
         .query(
           `SELECT * FROM assetworkrequest WHERE RequestNumber='${RequestNumber}' AND AssetItemDescription='${AssetItemDescription}'`
-        );
+      );
+      console.log("-----------------------------------------"+result1);
       if (result1.rowsAffected[0] != 1) {
         await pool
           .request()
@@ -2801,10 +2802,7 @@ WHERE No='${No}'`
   async workRequest_GET_LIST(req, res, next) {
     try {
       let pool = await sql.connect(config);
-      let data = await pool.request().query(`SELECT *
-FROM tblEmployeeMaster o
-INNER JOIN tblWorkRequest i
-ON o.RequestNumber=i.RequestNumber`);
+      let data = await pool.request().query(`SELECT * FROM tblWorkRequest`);
 
       res.status(200).json(data);
     } catch (error) {
