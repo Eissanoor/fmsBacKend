@@ -97,7 +97,7 @@ router.post("/AssetCondition_post", FATSDB.AssetCondition_post);
 router.post("/WarrantyPeriod_post", FATSDB.WarrantyPeriod_post);
 router.post("/EmployeeMaster_post", FATSDB.EmployeeMaster_post)
 router.post("/assetworkrequest_post", FATSDB.assetworkrequest_post)
-router.post("/Designation_post",FATSDB.Designation_post)
+
 //--------------------------------------------------------------------------
 
 //-------------------------------GET_API---------------------------------------------
@@ -230,7 +230,8 @@ router.get("/tblAssetsMaster_GET_BYID/:AssetItemDescription", FATSDB.tblAssetsMa
 router.get("/workRequestCount_GET_BYID/:No", FATSDB.workRequestCount_GET_BYID)
 router.get("/EmployeeID_GET_LIST", FATSDB.EmployeeID_GET_LIST)
 router.get("/Nationality_GET_LIST_Nationality", FATSDB.Nationality_GET_LIST_Nationality)
-router.get("/Nationality_GET_LIST_NationalityDES/:NationalityCode",FATSDB.Nationality_GET_LIST_NationalityDES)
+router.get("/Nationality_GET_LIST_NationalityDES/:NationalityCode", FATSDB.Nationality_GET_LIST_NationalityDES)
+router.get("/Designation_GET_LIST",FATSDB.Designation_GET_LIST)
 router.post("/getworkRequest_by_EPID",FATSDB.getworkRequest_by_EPID)
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
