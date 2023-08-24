@@ -231,7 +231,8 @@ router.get("/workRequestCount_GET_BYID/:No", FATSDB.workRequestCount_GET_BYID)
 router.get("/EmployeeID_GET_LIST", FATSDB.EmployeeID_GET_LIST)
 router.get("/Nationality_GET_LIST_Nationality", FATSDB.Nationality_GET_LIST_Nationality)
 router.get("/Nationality_GET_LIST_NationalityDES/:NationalityCode", FATSDB.Nationality_GET_LIST_NationalityDES)
-router.get("/Designation_GET_LIST",FATSDB.Designation_GET_LIST)
+router.get("/Designation_GET_LIST", FATSDB.Designation_GET_LIST)
+router.get("/Designation_GET_BYID/:DesignationCode",FATSDB.Designation_GET_BYID)
 router.post("/getworkRequest_by_EPID",FATSDB.getworkRequest_by_EPID)
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------

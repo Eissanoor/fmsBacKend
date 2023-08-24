@@ -2926,6 +2926,22 @@ WHERE No='${No}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+   async Designation_GET_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const DesignationCode = req.params.DesignationCode;
+      let data = await pool
+        .request()
+
+        .query(
+          `select DesignationDesc from prmDesignation where DesignationCode='${DesignationCode}'`
+        );
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   async MaritalStatus_GET_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
