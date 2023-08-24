@@ -1303,7 +1303,35 @@ const FATSDB = {
     console.log(error);
     res.status(500).json({ error: `${error}` });
   }
-},
+  },
+   async Designation_post(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+
+      let data = await pool
+        .request()
+        .input("DesignationCode", sql.VarChar, req.body.DesignationCode)
+        .input("DesignationDesc", sql.VarChar, req.body.DesignationDesc)
+        
+
+        .query(
+          ` 
+            INSERT INTO [dbo].[prmDesignation]
+                       ([DesignationCode]
+                       ,[DesignationDesc]
+                        )
+                 VALUES
+                       (@DesignationCode
+                       ,@DesignationDesc
+                       
+                       )`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //
   //-----------------------------------------------------------------------------------
 

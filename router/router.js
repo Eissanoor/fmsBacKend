@@ -96,7 +96,8 @@ router.post("/AssetSubCategory_post", FATSDB.AssetSubCategory_post);
 router.post("/AssetCondition_post", FATSDB.AssetCondition_post);
 router.post("/WarrantyPeriod_post", FATSDB.WarrantyPeriod_post);
 router.post("/EmployeeMaster_post", FATSDB.EmployeeMaster_post)
-router.post("/assetworkrequest_post",FATSDB.assetworkrequest_post)
+router.post("/assetworkrequest_post", FATSDB.assetworkrequest_post)
+router.post("/Designation_post",FATSDB.Designation_post)
 //--------------------------------------------------------------------------
 
 //-------------------------------GET_API---------------------------------------------
