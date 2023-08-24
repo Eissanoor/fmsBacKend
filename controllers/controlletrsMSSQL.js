@@ -2919,7 +2919,7 @@ WHERE No='${No}'`
    async Designation_GET_LIST(req, res, next) {
     try {
       let pool = await sql.connect(config);
-      let data = await pool.request().query(`select DesignationCode from prmDesignation`);
+      let data = await pool.request().query(`select * from prmDesignation`);
       res.status(200).json(data);
     } catch (error) {
       console.log(error);
