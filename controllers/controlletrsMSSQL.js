@@ -1279,13 +1279,8 @@ if (EmployeeID=="") {
     const AssetItemDescriptions = req.body.AssetItemDescriptions; // Assuming this is an array
 
     for (const AssetItemDescription of AssetItemDescriptions) {
-      const result1 = await pool
-        .request()
-        .query(
-          `SELECT * FROM assetworkrequest WHERE RequestNumber='${RequestNumber}' AND AssetItemDescription='${AssetItemDescription}'`
-      );
+     
       
-      if (result1.rowsAffected[0] != 1) {
         await pool
           .request()
           .input("RequestNumber", sql.VarChar, RequestNumber)
@@ -1299,7 +1294,7 @@ if (EmployeeID=="") {
                        (@RequestNumber
                        ,@AssetItemDescription)`
           );
-      }
+      
     }
     let result = await pool
       .request()
