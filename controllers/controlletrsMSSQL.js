@@ -1174,9 +1174,15 @@ const FATSDB = {
       res.status(500).json({ error: `${error}` });
     }
   },
-  async EmployeeMaster_post(req, res, next) {
+  async EmployeeMaster_post(req, res, next)
+  {
+    const EmployeeID = req.body.EmployeeID
+    
     try {
-      let pool = await sql.connect(config);
+if (EmployeeID=="") {
+      res.status(404).json({error:"EmployeeID is required"});
+    } else {
+       let pool = await sql.connect(config);
 
       let data = await pool
         .request()
@@ -1259,6 +1265,8 @@ const FATSDB = {
                        )`
         );
       res.status(201).json(data);
+    }
+     
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
