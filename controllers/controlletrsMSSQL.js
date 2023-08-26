@@ -380,7 +380,7 @@ const FATSDB = {
   async WorkType_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-
+const WorkTypeCode= req.body.WorkTypeCode
       let data = await pool
         .request()
         .input("WorkTypeCode", sql.VarChar, req.body.WorkTypeCode)
@@ -398,8 +398,14 @@ const FATSDB = {
                        ,@WorkTypeDesc
                                            
                        )`
+      );
+      let data1 = await pool
+        .request()
+
+        .query(
+          `select * from prmWorkType where WorkTypeCode='${WorkTypeCode}'`
         );
-      res.status(201).json(data);
+      res.status(201).json(data1);
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
