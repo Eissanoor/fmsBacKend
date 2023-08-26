@@ -98,7 +98,7 @@ router.post("/WarrantyPeriod_post", FATSDB.WarrantyPeriod_post);
 router.post("/EmployeeMaster_post", FATSDB.EmployeeMaster_post)
 router.post("/assetworkrequest_post", FATSDB.assetworkrequest_post)
 router.post("/Designation_post",FATSDB.Designation_post)
-
+router.post("/EmployeeStatus_post",FATSDB.EmployeeStatus_post)
 //--------------------------------------------------------------------------
 
 //-------------------------------GET_API---------------------------------------------
@@ -236,7 +236,9 @@ router.get("/Designation_GET_LIST", FATSDB.Designation_GET_LIST)
 router.get("/Designation_GET_BYID/:DesignationCode",FATSDB.Designation_GET_BYID)
 router.post("/getworkRequest_by_EPID", FATSDB.getworkRequest_by_EPID)
 router.get("/Designation_GET_LIST", FATSDB.Designation_GET_LIST)
-router.get("/Designation_GET_BYID/:DesignationCode",FATSDB.Designation_GET_BYID)
+router.get("/Designation_GET_BYID/:DesignationCode", FATSDB.Designation_GET_BYID)
+router.get("/EmployeeStatus_GET_BYID/:EmployeeStatusCode", FATSDB.EmployeeStatus_GET_BYID)
+router.get("/EmployeeStatus_GET_LIST",FATSDB.EmployeeStatus_GET_LIST)
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);
@@ -281,7 +283,8 @@ router.put("/EmployeeMaster_Put/:EmployeeID", FATSDB.EmployeeMaster_Put)
 router.put("/AssetsMaster_Put_status/:AssetItemDescription", FATSDB.AssetsMaster_Put_status)
 router.put("/workRequestCount_Put/:No", FATSDB.workRequestCount_Put)
 router.put("/EmployeeIDCount_Put/:No", FATSDB.EmployeeIDCount_Put)
-router.put("/Designation_Put/:DesignationCode",FATSDB.Designation_Put)
+router.put("/Designation_Put/:DesignationCode", FATSDB.Designation_Put)
+router.put("/EmployeeStatus_Put/:EmployeeStatusCode", FATSDB.EmployeeStatus_Put)
 //--------------------------------------------------------------------------------
 //-----------------------------------DELETE_API-----------------------------------------
 router.delete(
@@ -371,6 +374,7 @@ router.delete(
 router.delete("/EmployeeMaster_DELETE_BYID/:EmployeeID", FATSDB.EmployeeMaster_DELETE_BYID)
 router.delete("/assetworkrequest_DELETE_BYID/:seq", FATSDB.assetworkrequest_DELETE_BYID)
 router.delete("/all_work_request_DELETE_BYID/:RequestNumber", FATSDB.all_work_request_DELETE_BYID)
-router.delete("/Designation_DELETE_BYID/:DesignationCode",FATSDB.Designation_DELETE_BYID)
+router.delete("/Designation_DELETE_BYID/:DesignationCode", FATSDB.Designation_DELETE_BYID)
+router.delete("/EmployeeStatus_DELETE_BYID/:EmployeeStatusCode",FATSDB.EmployeeStatus_DELETE_BYID)
 //----------------------------------------------------------------------------////
 export default router;

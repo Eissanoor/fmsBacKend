@@ -1499,6 +1499,41 @@ if (EmployeeID=="") {
       res.status(500).json({ error: `${error}` });
     }
   },
+  async EmployeeStatus_post(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+     const EmployeeStatusCode = req.body.EmployeeStatusCode;
+      let data = await pool
+        .request()
+        .input("EmployeeStatusCode", sql.VarChar, req.body.EmployeeStatusCode)
+        .input("EmployeeStatusDesc", sql.VarChar, req.body.EmployeeStatusDesc)
+
+        .query(
+          ` 
+            INSERT INTO [dbo].[prmEmployeeStatus]
+                       ([EmployeeStatusCode]
+                       ,[EmployeeStatusDesc]
+      
+                        )
+                 VALUES
+                       (@EmployeeStatusCode
+                       ,@EmployeeStatusDesc
+                    
+                                           
+                       )`
+        );
+      let data1 = await pool
+        .request()
+
+        .query(
+          `select * from prmEmployeeStatus where EmployeeStatusCode='${EmployeeStatusCode}'`
+        );
+      res.status(201).json(data1);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //
   //-----------------------------------------------------------------------------------
 
@@ -2227,6 +2262,29 @@ SET
 
 [DesignationDesc] =@DesignationDesc
 WHERE DesignationCode='${DesignationCode}'`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async EmployeeStatus_Put(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const EmployeeStatusCode = req.params.EmployeeStatusCode;
+      let data = await pool
+        .request()
+
+        .input("EmployeeStatusDesc", sql.VarChar, req.body.EmployeeStatusDesc)
+
+        .query(
+          ` 
+          UPDATE [dbo].[prmEmployeeStatus]
+SET
+
+[EmployeeStatusDesc] =@EmployeeStatusDesc
+WHERE EmployeeStatusCode='${EmployeeStatusCode}'`
         );
       res.status(201).json(data);
     } catch (error) {
@@ -3282,6 +3340,32 @@ WHERE DesignationCode='${DesignationCode}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async EmployeeStatus_GET_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const EmployeeStatusCode = req.params.EmployeeStatusCode;
+      let data = await pool
+        .request()
+
+        .query(
+          `select * from prmEmployeeStatus where EmployeeStatusCode='${EmployeeStatusCode}'`
+        );
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async EmployeeStatus_GET_LIST(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      let data = await pool.request().query(`select * from prmEmployeeStatus`);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-----------------------------------------------------------------------------------
 
   //---------------------------DELETE--------------------------------------------------------
@@ -3741,6 +3825,23 @@ WHERE RequestNumber = '${RequestNumber}'`
 
         .query(
           `delete from prmDesignation where DesignationCode='${DesignationCode}'`
+        );
+      console.log(data);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async EmployeeStatus_DELETE_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const EmployeeStatusCode = req.params.EmployeeStatusCode;
+      let data = await pool
+        .request()
+
+        .query(
+          `delete from prmEmployeeStatus where EmployeeStatusCode='${EmployeeStatusCode}'`
         );
       console.log(data);
       res.status(200).json(data);
