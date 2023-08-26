@@ -276,7 +276,8 @@ router.put(
 );
 router.put("/EmployeeMaster_Put/:EmployeeID", FATSDB.EmployeeMaster_Put)
 router.put("/AssetsMaster_Put_status/:AssetItemDescription", FATSDB.AssetsMaster_Put_status)
-router.put("/workRequestCount_Put/:No",FATSDB.workRequestCount_Put)
+router.put("/workRequestCount_Put/:No", FATSDB.workRequestCount_Put)
+router.put("/EmployeeIDCount_Put/:No",FATSDB.EmployeeIDCount_Put)
 //--------------------------------------------------------------------------------
 //-----------------------------------DELETE_API-----------------------------------------
 router.delete(

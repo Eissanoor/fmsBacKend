@@ -2154,6 +2154,29 @@ WHERE No='${No}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async EmployeeIDCount_Put(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const No = req.params.No;
+      let data = await pool
+        .request()
+
+        .input("EmployeeID", sql.Numeric, req.body.EmployeeID)
+
+        .query(
+          ` 
+          UPDATE [dbo].[workRequestCount]
+SET
+
+[EmployeeID] =@EmployeeID
+WHERE No='${No}'`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-------------------------------------------------------------------------------------
 
   //---------------------------GET--------------------------------------------------------
