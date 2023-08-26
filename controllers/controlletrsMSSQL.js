@@ -414,7 +414,7 @@ const WorkTypeCode= req.body.WorkTypeCode
   async WorkTrade_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-
+               const    WorkTypeCode    =    req.body.WorkTypeCode
       let data = await pool
         .request()
         .input("WorkTypeCode", sql.VarChar, req.body.WorkTypeCode)
@@ -435,8 +435,14 @@ const WorkTypeCode= req.body.WorkTypeCode
                        ,@WorkTradeDesc
                                            
                        )`
+      );
+      let data1 = await pool
+        .request()
+
+        .query(
+          `select * from prmWorkTrade where WorkTypeCode='${WorkTypeCode}'`
         );
-      res.status(201).json(data);
+      res.status(201).json(data1);
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
@@ -445,7 +451,7 @@ const WorkTypeCode= req.body.WorkTypeCode
   async WorkStatus_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-
+      const WorkStatusCode=  req.body.WorkStatusCode
       let data = await pool
         .request()
         .input("WorkStatusCode", sql.VarChar, req.body.WorkStatusCode)
@@ -466,7 +472,13 @@ const WorkTypeCode= req.body.WorkTypeCode
                                            
                        )`
         );
-      res.status(201).json(data);
+       let data1 = await pool
+        .request()
+
+        .query(
+          `select * from prmWorkStatus where WorkStatusCode='${WorkStatusCode}'`
+        );
+      res.status(201).json(data1);
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
@@ -475,7 +487,7 @@ const WorkTypeCode= req.body.WorkTypeCode
   async Workpriority_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-
+  const WorkPriorityCode= req.body.WorkPriorityCode
       let data = await pool
         .request()
         .input("WorkPriorityCode", sql.VarChar, req.body.WorkPriorityCode)
@@ -498,7 +510,13 @@ const WorkTypeCode= req.body.WorkTypeCode
                                            
                        )`
         );
-      res.status(201).json(data);
+       let data1 = await pool
+        .request()
+
+        .query(
+          `select * from prmWorkPriority where WorkPriorityCode='${WorkPriorityCode}'`
+        );
+      res.status(201).json(data1);
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
@@ -507,7 +525,7 @@ const WorkTypeCode= req.body.WorkTypeCode
   async WorkCatagres_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-
+ const   WorkCategoryCode=req.body.WorkCategoryCode
       let data = await pool
         .request()
         .input("WorkCategoryCode", sql.VarChar, req.body.WorkCategoryCode)
@@ -529,7 +547,13 @@ const WorkTypeCode= req.body.WorkTypeCode
                                            
                        )`
         );
-      res.status(201).json(data);
+       let data1 = await pool
+        .request()
+
+        .query(
+          `select * from prmWorkCategory where WorkCategoryCode='${WorkCategoryCode}'`
+        );
+      res.status(201).json(data1);
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
@@ -538,7 +562,7 @@ const WorkTypeCode= req.body.WorkTypeCode
   async Department_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-
+ const DepartmentCode=req.body.DepartmentCode
       let data = await pool
         .request()
         .input("DepartmentCode", sql.VarChar, req.body.DepartmentCode)
@@ -560,7 +584,13 @@ const WorkTypeCode= req.body.WorkTypeCode
                                            
                        )`
         );
-      res.status(201).json(data);
+      let data1 = await pool
+        .request()
+
+        .query(
+          `select * from prmDepartment where DepartmentCode='${DepartmentCode}'`
+        );
+      res.status(201).json(data1);
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
@@ -569,7 +599,7 @@ const WorkTypeCode= req.body.WorkTypeCode
   async Building_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-
+     const BuildingCode=req.body.BuildingCode
       let data = await pool
         .request()
         .input("BuildingCode", sql.VarChar, req.body.BuildingCode)
@@ -591,7 +621,13 @@ const WorkTypeCode= req.body.WorkTypeCode
                                            
                        )`
         );
-      res.status(201).json(data);
+      let data1 = await pool
+        .request()
+
+        .query(
+          `select * from prmBuilding where BuildingCode='${BuildingCode}'`
+        );
+      res.status(201).json(data1);
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
@@ -600,7 +636,7 @@ const WorkTypeCode= req.body.WorkTypeCode
   async Location_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-
+const LocationCode = req.body.LocationCode
       let data = await pool
         .request()
         .input("LocationCode", sql.VarChar, req.body.LocationCode)
@@ -622,7 +658,13 @@ const WorkTypeCode= req.body.WorkTypeCode
                                            
                        )`
         );
-      res.status(201).json(data);
+     let data1 = await pool
+        .request()
+
+        .query(
+          `select * from prmLocation where LocationCode='${LocationCode}'`
+        );
+      res.status(201).json(data1);
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
@@ -631,7 +673,7 @@ const WorkTypeCode= req.body.WorkTypeCode
   async ProblemCategory_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-
+     const ProblemCategoryCode = req.body.ProblemCategoryCode
       let data = await pool
         .request()
         .input("ProblemCategoryCode", sql.VarChar, req.body.ProblemCategoryCode)
@@ -653,7 +695,13 @@ const WorkTypeCode= req.body.WorkTypeCode
                                            
                        )`
         );
-      res.status(201).json(data);
+      let data1 = await pool
+        .request()
+
+        .query(
+          `select * from prmProblemCategory where ProblemCategoryCode='${ProblemCategoryCode}'`
+        );
+      res.status(201).json(data1);
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
@@ -662,7 +710,7 @@ const WorkTypeCode= req.body.WorkTypeCode
   async RequestStatus_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-
+    const  RequestStatusCode = req.body.RequestStatusCode
       let data = await pool
         .request()
         .input("RequestStatusCode", sql.VarChar, req.body.RequestStatusCode)
@@ -684,7 +732,13 @@ const WorkTypeCode= req.body.WorkTypeCode
                                            
                        )`
         );
-      res.status(201).json(data);
+      let data1 = await pool
+        .request()
+
+        .query(
+          `select * from prmRequestStatus where RequestStatusCode='${RequestStatusCode}'`
+        );
+      res.status(201).json(data1);
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
@@ -693,7 +747,7 @@ const WorkTypeCode= req.body.WorkTypeCode
   async Failure_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-
+     const FailureStatusCode = req.body.FailureStatusCode
       let data = await pool
         .request()
         .input("FailureStatusCode", sql.VarChar, req.body.FailureStatusCode)
@@ -715,7 +769,13 @@ const WorkTypeCode= req.body.WorkTypeCode
                                            
                        )`
         );
-      res.status(201).json(data);
+      let data1 = await pool
+        .request()
+
+        .query(
+          `select * from prmFailure where FailureStatusCode='${FailureStatusCode}'`
+        );
+      res.status(201).json(data1);
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
@@ -724,7 +784,7 @@ const WorkTypeCode= req.body.WorkTypeCode
   async Solution_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-
+     const SolutiontatusCode = req.body.SolutiontatusCode
       let data = await pool
         .request()
         .input("SolutiontatusCode", sql.VarChar, req.body.SolutiontatusCode)
@@ -746,7 +806,13 @@ const WorkTypeCode= req.body.WorkTypeCode
                                            
                        )`
         );
-      res.status(201).json(data);
+      let data1 = await pool
+        .request()
+
+        .query(
+          `select * from prmSolution where SolutiontatusCode='${SolutiontatusCode}'`
+        );
+      res.status(201).json(data1);
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
@@ -755,7 +821,7 @@ const WorkTypeCode= req.body.WorkTypeCode
   async Days_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-
+const DaysCode= req.body.DaysCode
       let data = await pool
         .request()
         .input("DaysCode", sql.VarChar, req.body.DaysCode)
@@ -780,7 +846,13 @@ const WorkTypeCode= req.body.WorkTypeCode
                                            
                        )`
         );
-      res.status(201).json(data);
+      let data1 = await pool
+        .request()
+
+        .query(
+          `select * from prmDays where DaysCode='${DaysCode}'`
+        );
+      res.status(201).json(data1);
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
@@ -789,8 +861,8 @@ const WorkTypeCode= req.body.WorkTypeCode
   async Frequency_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-
-      let data = await pool
+ const FreqCode = req.body.FreqCode
+      let data =  await pool
         .request()
         .input("FreqCode", sql.VarChar, req.body.FreqCode)
         .input("FreqDesc", sql.VarChar, req.body.FreqDesc)
@@ -813,8 +885,15 @@ const WorkTypeCode= req.body.WorkTypeCode
                     
                                            
                        )`
+      );
+      
+      let data1 = await pool
+        .request()
+
+        .query(
+          `select * from prmFrequency where FreqCode='${FreqCode}'`
         );
-      res.status(201).json(data);
+      res.status(201).json(data1);
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
@@ -823,7 +902,7 @@ const WorkTypeCode= req.body.WorkTypeCode
   async WorkRequestItems_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-
+ const RequestNumber= req.body.RequestNumber
       let data = await pool
         .request()
         .input("RequestNumber", sql.VarChar, req.body.RequestNumber)
@@ -850,7 +929,13 @@ const WorkTypeCode= req.body.WorkTypeCode
                                            
                        )`
         );
-      res.status(201).json(data);
+       let data1 = await pool
+        .request()
+
+        .query(
+          `select * from tblWorkRequestItems where RequestNumber='${RequestNumber}'`
+        );
+      res.status(201).json(data1);
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
@@ -859,7 +944,7 @@ const WorkTypeCode= req.body.WorkTypeCode
   async Gender_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-
+    const  GenderCode = req.body.GenderCode
       let data = await pool
         .request()
         .input("GenderCode", sql.VarChar, req.body.GenderCode)
@@ -881,7 +966,13 @@ const WorkTypeCode= req.body.WorkTypeCode
                                            
                        )`
         );
-      res.status(201).json(data);
+       let data1 = await pool
+        .request()
+
+        .query(
+          `select * from prmGender where GenderCode='${GenderCode}'`
+        );
+      res.status(201).json(data1);
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
@@ -890,7 +981,7 @@ const WorkTypeCode= req.body.WorkTypeCode
   async Title_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-
+ const TitleCode = req.body.TitleCode
       let data = await pool
         .request()
         .input("TitleCode", sql.VarChar, req.body.TitleCode)
@@ -910,7 +1001,13 @@ const WorkTypeCode= req.body.WorkTypeCode
                                            
                        )`
         );
-      res.status(201).json(data);
+     let data1 = await pool
+        .request()
+
+        .query(
+          `select * from prmTitle where TitleCode='${TitleCode}'`
+        );
+      res.status(201).json(data1);
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
@@ -919,7 +1016,7 @@ const WorkTypeCode= req.body.WorkTypeCode
   async MaritalStatus_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-
+ const MaritalCode = req.body.MaritalCode
       let data = await pool
         .request()
         .input("MaritalCode", sql.VarChar, req.body.MaritalCode)
@@ -939,7 +1036,13 @@ const WorkTypeCode= req.body.WorkTypeCode
                                            
                        )`
         );
-      res.status(201).json(data);
+       let data1 = await pool
+        .request()
+
+        .query(
+          `select * from prmMaritalStatus where MaritalCode='${MaritalCode}'`
+        );
+      res.status(201).json(data1);
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
@@ -948,7 +1051,7 @@ const WorkTypeCode= req.body.WorkTypeCode
   async Nationality_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-
+ const NationalityCode = req.body.NationalityCode
       let data = await pool
         .request()
         .input("NationalityCode", sql.VarChar, req.body.NationalityCode)
@@ -968,7 +1071,13 @@ const WorkTypeCode= req.body.WorkTypeCode
                                            
                        )`
         );
-      res.status(201).json(data);
+      let data1 = await pool
+        .request()
+
+        .query(
+          `select * from prmNationality where NationalityCode='${NationalityCode}'`
+        );
+      res.status(201).json(data1);
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
@@ -977,7 +1086,7 @@ const WorkTypeCode= req.body.WorkTypeCode
   async AssetsMaster_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-
+ const AssetItemDescription = req.body.AssetItemDescription
       let data = await pool
         .request()
         .input(
@@ -1020,7 +1129,13 @@ const WorkTypeCode= req.body.WorkTypeCode
                                            
                        )`
         );
-      res.status(201).json(data);
+      let data1 = await pool
+        .request()
+
+        .query(
+          `select * from tblAssetsMaster where AssetItemDescription='${AssetItemDescription}'`
+        );
+      res.status(201).json(data1);
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
@@ -1029,7 +1144,7 @@ const WorkTypeCode= req.body.WorkTypeCode
   async AssetType_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-
+ const AssetTypeCode = req.body.AssetTypeCode
       let data = await pool
         .request()
         .input("AssetTypeCode", sql.VarChar, req.body.AssetTypeCode)
@@ -1049,7 +1164,13 @@ const WorkTypeCode= req.body.WorkTypeCode
                                            
                        )`
         );
-      res.status(201).json(data);
+      let data1 = await pool
+        .request()
+
+        .query(
+          `select * from prmAssetType where AssetTypeCode='${AssetTypeCode}'`
+        );
+      res.status(201).json(data1);
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
@@ -1058,7 +1179,7 @@ const WorkTypeCode= req.body.WorkTypeCode
   async AssetCategory_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-
+ const  AssetCategoryCode = req.body.AssetCategoryCode
       let data = await pool
         .request()
         .input("AssetCategoryCode", sql.VarChar, req.body.AssetCategoryCode)
@@ -1078,7 +1199,13 @@ const WorkTypeCode= req.body.WorkTypeCode
                                            
                        )`
         );
-      res.status(201).json(data);
+      let data1 = await pool
+        .request()
+
+        .query(
+          `select * from prmAssetCategory where AssetCategoryCode='${AssetCategoryCode}'`
+        );
+      res.status(201).json(data1);
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
@@ -1088,7 +1215,7 @@ const WorkTypeCode= req.body.WorkTypeCode
   async AssetSubCategory_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-
+ const AssetSubCategoryCode = req.body.AssetSubCategoryCode
       let data = await pool
         .request()
         .input(
@@ -1116,7 +1243,13 @@ const WorkTypeCode= req.body.WorkTypeCode
                                            
                        )`
         );
-      res.status(201).json(data);
+      let data1 = await pool
+        .request()
+
+        .query(
+          `select * from prmAssetSubCategory where AssetSubCategoryCode='${AssetSubCategoryCode}'`
+        );
+      res.status(201).json(data1);
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
@@ -1125,7 +1258,7 @@ const WorkTypeCode= req.body.WorkTypeCode
   async AssetCondition_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-
+const  AssetConditionCode = req.body.AssetConditionCode
       let data = await pool
         .request()
         .input("AssetConditionCode", sql.VarChar, req.body.AssetConditionCode)
@@ -1145,7 +1278,13 @@ const WorkTypeCode= req.body.WorkTypeCode
                                            
                        )`
         );
-      res.status(201).json(data);
+      let data1 = await pool
+        .request()
+
+        .query(
+          `select * from prmAssetCondition where AssetConditionCode='${AssetConditionCode}'`
+        );
+      res.status(201).json(data1);
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
@@ -1154,7 +1293,7 @@ const WorkTypeCode= req.body.WorkTypeCode
   async WarrantyPeriod_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-
+     const WarrantyPeriodCode = req.body.WarrantyPeriodCode;
       let data = await pool
         .request()
         .input("WarrantyPeriodCode", sql.VarChar, req.body.WarrantyPeriodCode)
@@ -1174,7 +1313,13 @@ const WorkTypeCode= req.body.WorkTypeCode
                                            
                        )`
         );
-      res.status(201).json(data);
+      let data1 = await pool
+        .request()
+
+        .query(
+          `select * from prmWarrantyPeriod where WarrantyPeriodCode='${WarrantyPeriodCode}'`
+        );
+      res.status(201).json(data1);
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
