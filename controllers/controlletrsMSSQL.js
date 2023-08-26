@@ -1415,7 +1415,13 @@ if (EmployeeID=="") {
                                            
                        )`
         );
-      res.status(201).json(data);
+       let data1 = await pool
+        .request()
+
+        .query(
+          `select * from tblEmployeeMaster where EmployeeID='${EmployeeID}'`
+        );
+      res.status(201).json(data1);
     }
      
     } catch (error) {
