@@ -235,6 +235,7 @@ router.get("/Nationality_GET_LIST_NationalityDES/:NationalityCode", FATSDB.Natio
 router.get("/Designation_GET_LIST", FATSDB.Designation_GET_LIST)
 router.get("/Designation_GET_BYID/:DesignationCode",FATSDB.Designation_GET_BYID)
 router.post("/getworkRequest_by_EPID", FATSDB.getworkRequest_by_EPID)
+router.get("/Filter_WR",FATSDB.Filter_WR)
 router.get("/Designation_GET_LIST", FATSDB.Designation_GET_LIST)
 router.get("/Designation_GET_BYID/:DesignationCode", FATSDB.Designation_GET_BYID)
 router.get("/EmployeeStatus_GET_BYID/:EmployeeStatusCode", FATSDB.EmployeeStatus_GET_BYID)
