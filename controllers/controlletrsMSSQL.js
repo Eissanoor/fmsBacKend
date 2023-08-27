@@ -2668,6 +2668,16 @@ WHERE EmployeeStatusCode='${EmployeeStatusCode}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async WorkCatagres_GET_CODE_LIST(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      let data = await pool.request().query(`select WorkCategoryCode from prmWorkCategory`);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   async WorkCatagres_GET_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
@@ -2824,6 +2834,16 @@ WHERE EmployeeStatusCode='${EmployeeStatusCode}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+   async Failure_GET_CODELIST(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      let data = await pool.request().query(`select FailureStatusCode from prmFailure`);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   async Failure_GET_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
@@ -2844,6 +2864,16 @@ WHERE EmployeeStatusCode='${EmployeeStatusCode}'`
     try {
       let pool = await sql.connect(config);
       let data = await pool.request().query(`select * from prmSolution`);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async Solution_GET_CODE_LIST(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      let data = await pool.request().query(`select SolutiontatusCode from prmSolution`);
       res.status(200).json(data);
     } catch (error) {
       console.log(error);

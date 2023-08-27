@@ -239,7 +239,10 @@ router.get("/Filter_WR",FATSDB.Filter_WR)
 router.get("/Designation_GET_LIST", FATSDB.Designation_GET_LIST)
 router.get("/Designation_GET_BYID/:DesignationCode", FATSDB.Designation_GET_BYID)
 router.get("/EmployeeStatus_GET_BYID/:EmployeeStatusCode", FATSDB.EmployeeStatus_GET_BYID)
-router.get("/EmployeeStatus_GET_LIST",FATSDB.EmployeeStatus_GET_LIST)
+router.get("/EmployeeStatus_GET_LIST", FATSDB.EmployeeStatus_GET_LIST)
+router.get("/WorkCatagres_GET_CODE_LIST", FATSDB.WorkCatagres_GET_CODE_LIST)
+router.get("/Failure_GET_CODELIST", FATSDB.Failure_GET_CODELIST)
+router.get("/Solution_GET_CODE_LIST",FATSDB.Solution_GET_CODE_LIST)
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);
