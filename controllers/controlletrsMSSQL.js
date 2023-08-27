@@ -4079,12 +4079,12 @@ WHERE EmployeeID='${EmployeeID}'`);
   async Filter_WR(req, res, next) {
     try {
       let pool = await sql.connect(config);
-      const RequestNumber = req.body.RequestNumber;
+     
       let data = await pool
         .request()
 
         .query(
-          `select RequestStatus , RequestNumber from tblWorkRequest where RequestNumber='${RequestNumber}'`
+          `select RequestStatus , RequestNumber from tblWorkRequest`
         );
       res.status(200).json(data);
     } catch (error) {
