@@ -4095,7 +4095,7 @@ SET
 ,[RequestStatus] =@RequestStatus
  ,[EmployeeID] =@EmployeeID
 WHERE RequestNumber='${RequestNumber}'`);
-      res.status(202).json({message:"Work Request has been closed"});
+      res.status(202).json({message:`Work Request no.'${RequestNumber}'  has been closed`});
       }
       else {
            let pool = await sql.connect(config);
@@ -4121,7 +4121,7 @@ SET
 ,[RequestStatus] =@RequestStatus
  ,[EmployeeID] =@EmployeeID
 WHERE RequestNumber='${RequestNumber}'`);
-      res.status(202).json({message:"Work Request has been updated"});
+      res.status(202).json({message:`Work Request no.'${RequestNumber}'  has been updated`});
 
       }
      
