@@ -285,6 +285,7 @@ router.put("/workRequestCount_Put/:No", FATSDB.workRequestCount_Put)
 router.put("/EmployeeIDCount_Put/:No", FATSDB.EmployeeIDCount_Put)
 router.put("/Designation_Put/:DesignationCode", FATSDB.Designation_Put)
 router.put("/EmployeeStatus_Put/:EmployeeStatusCode", FATSDB.EmployeeStatus_Put)
+router.put("/WorkOrderNumberCount_Put/:No",FATSDB.WorkOrderNumberCount_Put)
 //--------------------------------------------------------------------------------
 //-----------------------------------DELETE_API-----------------------------------------
 router.delete(
