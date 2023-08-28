@@ -4336,12 +4336,12 @@ WHERE RequestNumber = '${RequestNumber}'`
   async SystemModules_DELETE_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
-      const SystemModuleSeq = req.params.SystemModuleSeq;
+      const SystemModuleCode = req.params.SystemModuleCode;
       let data = await pool
         .request()
 
         .query(
-          `delete from prmSystemModules where SystemModuleSeq='${SystemModuleSeq}'`
+          `delete from prmSystemModules where SystemModuleCode='${SystemModuleCode}'`
         );
       console.log(data);
       res.status(200).json(data);

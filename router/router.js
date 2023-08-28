@@ -394,7 +394,7 @@ router.delete("/all_work_request_DELETE_BYID/:RequestNumber", FATSDB.all_work_re
 router.delete("/Designation_DELETE_BYID/:DesignationCode", FATSDB.Designation_DELETE_BYID)
 router.delete("/EmployeeStatus_DELETE_BYID/:EmployeeStatusCode", FATSDB.EmployeeStatus_DELETE_BYID)
 router.delete("/WorkOrders_DELETE_BYID/:WorkOrderNumber", FATSDB.WorkOrders_DELETE_BYID)
-router.delete("/SystemModules_DELETE_BYID/:SystemModuleSeq", FATSDB.SystemModules_DELETE_BYID)
+router.delete("/SystemModules_DELETE_BYID/:SystemModuleCode", FATSDB.SystemModules_DELETE_BYID)
 router.delete("/VendorMaster_DELETE_BYID/:VendorID",FATSDB.VendorMaster_DELETE_BYID)
 //----------------------------------------------------------------------------////
 export default router;
