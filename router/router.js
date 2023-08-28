@@ -300,7 +300,7 @@ router.put("/Designation_Put/:DesignationCode", FATSDB.Designation_Put)
 router.put("/EmployeeStatus_Put/:EmployeeStatusCode", FATSDB.EmployeeStatus_Put)
 router.put("/WorkOrderNumberCount_Put/:No", FATSDB.WorkOrderNumberCount_Put)
 router.put("/WorkOrders_Put/:WorkOrderNumber", FATSDB.WorkOrders_Put)
-router.put("/SystemModules_Put/:SystemModuleSeq", FATSDB.SystemModules_Put)
+router.put("/SystemModules_Put/:SystemModuleCode", FATSDB.SystemModules_Put)
 router.put("/VendorMaster_Put/:VendorID",FATSDB.VendorMaster_Put)
 //--------------------------------------------------------------------------------
 //-----------------------------------DELETE_API-----------------------------------------
