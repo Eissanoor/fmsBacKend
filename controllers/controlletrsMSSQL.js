@@ -1331,8 +1331,10 @@ const  AssetConditionCode = req.body.AssetConditionCode
    const BirthDate= req.body.BirthDate
     try {
       
-if (EmployeeID=="") {
-      res.status(404).json({error:"EmployeeID is required"});
+ if (EmployeeID === "") {
+      res.status(404).json({ error: "EmployeeID is required" });
+    } else if (!BirthDate || isNaN(new Date(BirthDate))) {
+      res.status(400).json({ error: "Invalid BirthDate format" });
     } else {
        let pool = await sql.connect(config);
 
