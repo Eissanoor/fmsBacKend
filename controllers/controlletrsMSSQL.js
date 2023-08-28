@@ -2587,11 +2587,11 @@ WHERE WorkOrderNumber='${WorkOrderNumber}'`
   async SystemModules_Put(req, res, next) {
     try {
       let pool = await sql.connect(config);
-      const SystemModuleSeq = req.params.SystemModuleSeq;
+      const SystemModuleCode = req.params.SystemModuleCode;
       let data = await pool
         .request()
 
-        .input("SystemModuleCode", sql.VarChar, req.body.SystemModuleCode)
+        .input("SystemModuleSeq", sql.SmallInt, req.body.SystemModuleSeq)
 .input("SystemModuleDesc", sql.VarChar, req.body.SystemModuleDesc)
         .query(
           ` 
@@ -2600,7 +2600,7 @@ SET
 
 [SystemModuleCode] =@SystemModuleCode
 ,[SystemModuleDesc] =@SystemModuleDesc
-WHERE SystemModuleSeq='${SystemModuleSeq}'`
+WHERE SystemModuleCode='${SystemModuleCode}'`
         );
       res.status(201).json(data);
     } catch (error) {
