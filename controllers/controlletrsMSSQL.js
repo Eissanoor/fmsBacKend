@@ -1681,8 +1681,8 @@ if (VendorID=="") {
        
         .input("VendorName", sql.VarChar, req.body.VendorName)
         .input("VendorAddress", sql.VarChar, req.body.VendorAddress)
-        .input("ContactLastname", sql.Date, req.body.ContactLastname)
-        .input("ContactFirstname", sql.SmallInt, req.body.ContactFirstname)
+        .input("ContactLastname", sql.VarChar, req.body.ContactLastname)
+        .input("ContactFirstname", sql.VarChar, req.body.ContactFirstname)
         .input("ContactMiddlename", sql.VarChar, req.body.ContactMiddlename)
         .input("ContactMobileNumber", sql.VarChar, req.body.ContactMobileNumber)
         .input("ContactLandlineNumber", sql.VarChar, req.body.ContactLandlineNumber)
@@ -2621,8 +2621,8 @@ WHERE SystemModuleSeq='${SystemModuleSeq}'`
        
         .input("VendorName", sql.VarChar, req.body.VendorName)
         .input("VendorAddress", sql.VarChar, req.body.VendorAddress)
-        .input("ContactLastname", sql.Date, req.body.ContactLastname)
-        .input("ContactFirstname", sql.SmallInt, req.body.ContactFirstname)
+        .input("ContactLastname", sql.VarChar, req.body.ContactLastname)
+        .input("ContactFirstname", sql.VarChar, req.body.ContactFirstname)
         .input("ContactMiddlename", sql.VarChar, req.body.ContactMiddlename)
         .input("ContactMobileNumber", sql.VarChar, req.body.ContactMobileNumber)
         .input("ContactLandlineNumber", sql.VarChar, req.body.ContactLandlineNumber)
