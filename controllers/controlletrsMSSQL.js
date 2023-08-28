@@ -1665,6 +1665,82 @@ if (WorkRequestNumber=="") {
       res.status(500).json({ error: `${error}` });
     }
   },
+  async VendorMaster_post(req, res, next)
+  {
+    const VendorID = req.body.VendorID
+    
+    try {
+if (VendorID=="") {
+      res.status(404).json({error:"VendorID is required"});
+    } else {
+       let pool = await sql.connect(config);
+
+      let data = await pool
+        .request()
+        .input("VendorID", sql.VarChar, req.body.VendorID)
+       
+        .input("VendorName", sql.VarChar, req.body.VendorName)
+        .input("VendorAddress", sql.VarChar, req.body.VendorAddress)
+        .input("ContactLastname", sql.Date, req.body.ContactLastname)
+        .input("ContactFirstname", sql.SmallInt, req.body.ContactFirstname)
+        .input("ContactMiddlename", sql.VarChar, req.body.ContactMiddlename)
+        .input("ContactMobileNumber", sql.VarChar, req.body.ContactMobileNumber)
+        .input("ContactLandlineNumber", sql.VarChar, req.body.ContactLandlineNumber)
+        .input("ContactEmail", sql.VarChar, req.body.ContactEmail)
+        .input("VendorInformation", sql.VarChar, req.body.VendorInformation)
+       
+
+
+        .query(
+          ` 
+            INSERT INTO [dbo].[tblVendorMaster]
+                       ([VendorID]
+                      
+                         ,[VendorName]
+                        ,[VendorAddress]
+                         ,[ContactLastname]
+                         ,[ContactFirstname]
+                        ,[ContactMiddlename]
+                         ,[ContactMobileNumber]
+                        ,[ContactLandlineNumber]
+                         ,[ContactEmail]
+                         ,[VendorInformation]
+                       
+                                                             
+      
+                        )
+                 VALUES
+                       (@VendorID
+                       
+                       ,@VendorName
+                       ,@VendorAddress
+                       ,@ContactLastname
+                       ,@ContactFirstname
+                       ,@ContactMiddlename
+                       ,@ContactMobileNumber
+                       ,@ContactLandlineNumber
+                       ,@ContactEmail
+                       ,@VendorInformation
+                      
+                       
+                    
+                                           
+                       )`
+        );
+       let data1 = await pool
+        .request()
+
+        .query(
+          `select * from tblVendorMaster where VendorID='${VendorID}'`
+        );
+      res.status(201).json(data1);
+    }
+     
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //
   //-----------------------------------------------------------------------------------
 
@@ -2525,6 +2601,51 @@ SET
 [SystemModuleCode] =@SystemModuleCode
 ,[SystemModuleDesc] =@SystemModuleDesc
 WHERE SystemModuleSeq='${SystemModuleSeq}'`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async VendorMaster_Put(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const VendorID = req.params.VendorID;
+      let data = await pool
+        .request()
+
+        
+        .request()
+        
+       
+        .input("VendorName", sql.VarChar, req.body.VendorName)
+        .input("VendorAddress", sql.VarChar, req.body.VendorAddress)
+        .input("ContactLastname", sql.Date, req.body.ContactLastname)
+        .input("ContactFirstname", sql.SmallInt, req.body.ContactFirstname)
+        .input("ContactMiddlename", sql.VarChar, req.body.ContactMiddlename)
+        .input("ContactMobileNumber", sql.VarChar, req.body.ContactMobileNumber)
+        .input("ContactLandlineNumber", sql.VarChar, req.body.ContactLandlineNumber)
+        .input("ContactEmail", sql.VarChar, req.body.ContactEmail)
+        .input("VendorInformation", sql.VarChar, req.body.VendorInformation)
+        
+        .query(
+          ` 
+          UPDATE [dbo].[tblVendorMaster]
+SET
+
+
+[VendorName] =@VendorName
+,[VendorAddress] =@VendorAddress
+,[ContactLastname] =@ContactLastname
+,[ContactFirstname] =@ContactFirstname
+,[ContactMiddlename] =@ContactMiddlename
+,[ContactMobileNumber] =@ContactMobileNumber
+,[ContactLandlineNumber] =@ContactLandlineNumber
+,[ContactEmail] =@ContactEmail
+,[VendorInformation] =@VendorInformation
+
+WHERE VendorID='${VendorID}'`
         );
       res.status(201).json(data);
     } catch (error) {
@@ -3688,6 +3809,32 @@ WHERE SystemModuleSeq='${SystemModuleSeq}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+   async VendorMaster_GET_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const VendorID = req.params.VendorID;
+      let data = await pool
+        .request()
+
+        .query(
+          `select * from tblVendorMaster where VendorID='${VendorID}'`
+        );
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+   async VendorMaster_GET_LIST(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      let data = await pool.request().query(`select * from tblVendorMaster`);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-----------------------------------------------------------------------------------
 
   //---------------------------DELETE--------------------------------------------------------
@@ -4198,6 +4345,23 @@ WHERE RequestNumber = '${RequestNumber}'`
 
         .query(
           `delete from prmSystemModules where SystemModuleSeq='${SystemModuleSeq}'`
+        );
+      console.log(data);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async VendorMaster_DELETE_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const VendorID = req.params.VendorID;
+      let data = await pool
+        .request()
+
+        .query(
+          `delete from tblVendorMaster where VendorID='${VendorID}'`
         );
       console.log(data);
       res.status(200).json(data);
