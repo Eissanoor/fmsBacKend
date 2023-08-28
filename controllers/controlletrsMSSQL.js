@@ -1334,7 +1334,7 @@ const  AssetConditionCode = req.body.AssetConditionCode
 if (EmployeeID=="") {
       res.status(404).json({error:"EmployeeID is required"});
 }
-if (BirthDate=="") {
+if (BirthDate=="0/0/000") {
          let pool = await sql.connect(config);
 
       let data = await pool
