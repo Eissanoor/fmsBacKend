@@ -1328,11 +1328,103 @@ const  AssetConditionCode = req.body.AssetConditionCode
   async EmployeeMaster_post(req, res, next)
   {
     const EmployeeID = req.body.EmployeeID
-    
+   const BirthDate= req.body.BirthDate
     try {
+      
 if (EmployeeID=="") {
       res.status(404).json({error:"EmployeeID is required"});
-    } else {
+}
+if (BirthDate=="") {
+         let pool = await sql.connect(config);
+
+      let data = await pool
+        .request()
+        .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
+       
+        .input("Gender", sql.VarChar, req.body.Gender)
+        .input("Title", sql.VarChar, req.body.Title)
+        .input("BirthDate", sql.Date, req.body.BirthDate)
+        .input("Age", sql.SmallInt, req.body.Age)
+        .input("Lastname", sql.VarChar, req.body.Lastname)
+        .input("Firstname", sql.VarChar, req.body.Firstname)
+        .input("Middlename", sql.VarChar, req.body.Middlename)
+        .input("NationalityCode", sql.VarChar, req.body.NationalityCode)
+        .input("MaritalStatus", sql.VarChar, req.body.MaritalStatus)
+        .input("NationalID", sql.VarChar, req.body.NationalID)
+        .input("PassportNumber", sql.VarChar, req.body.PassportNumber)
+        .input("MobileNumber", sql.VarChar, req.body.MobileNumber)
+        .input("LandlineNumber", sql.VarChar, req.body.LandlineNumber)
+        .input("DesignationCode", sql.VarChar, req.body.DesignationCode)
+        .input("Email", sql.VarChar, req.body.Email)
+        .input("DepartmentCode", sql.VarChar, req.body.DepartmentCode)
+        .input("BuildingCode", sql.VarChar, req.body.BuildingCode)
+        .input("LocationCode", sql.VarChar, req.body.LocationCode)
+        .input("JoiningDate", sql.Date, req.body.JoiningDate)
+        
+
+
+        .query(
+          ` 
+            INSERT INTO [dbo].[tblEmployeeMaster]
+                       ([EmployeeID]
+                      
+                         ,[Gender]
+                        ,[Title]
+                         ,[BirthDate]
+                         ,[Age]
+                        ,[Lastname]
+                         ,[Firstname]
+                        ,[Middlename]
+                         ,[NationalityCode]
+                         ,[MaritalStatus]
+                        ,[NationalID]
+                         ,[PassportNumber]
+                         ,[MobileNumber]
+                         ,[LandlineNumber]
+                         ,[DesignationCode]
+                          ,[Email]
+                         ,[DepartmentCode]
+                        ,[BuildingCode]
+                      ,[LocationCode]
+                   ,[JoiningDate]
+                                                             
+      
+                        )
+                 VALUES
+                       (@EmployeeID
+                       
+                       ,@Gender
+                       ,@Title
+                       ,@BirthDate
+                       ,@Age
+                       ,@Lastname
+                       ,@Firstname
+                       ,@Middlename
+                       ,@NationalityCode
+                       ,@MaritalStatus
+                       ,@NationalID
+                       ,@PassportNumber
+                       ,@MobileNumber
+                       ,@LandlineNumber
+                       ,@DesignationCode
+                       ,@Email
+                       ,@DepartmentCode
+                       ,@BuildingCode
+                       ,@LocationCode
+                       ,@JoiningDate
+                       
+                    
+                                           
+                       )`
+        );
+       let data1 = await pool
+        .request()
+
+        .query(
+          `select * from tblEmployeeMaster where EmployeeID='${EmployeeID}'`
+        );
+      res.status(201).json(data1);
+      }else {
        let pool = await sql.connect(config);
 
       let data = await pool
