@@ -1630,6 +1630,41 @@ if (WorkRequestNumber=="") {
       res.status(500).json({ error: `${error}` });
     }
   },
+  async SystemModules_post(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+     const SystemModuleSeq = req.body.SystemModuleSeq;
+      let data = await pool
+        .request()
+        .input("SystemModuleSeq", sql.SmallInt, req.body.SystemModuleSeq)
+        .input("SystemModuleCode", sql.VarChar, req.body.SystemModuleCode)
+.input("SystemModuleDesc", sql.VarChar, req.body.SystemModuleDesc)
+        .query(
+          ` 
+            INSERT INTO [dbo].[prmSystemModules]
+                       ([SystemModuleSeq]
+                       ,[SystemModuleCode]
+                        ,[SystemModuleDesc]
+                        )
+                 VALUES
+                       (@SystemModuleSeq
+                       ,@SystemModuleCode
+                      ,@SystemModuleDesc
+
+                       )`
+        );
+      let data1 = await pool
+        .request()
+
+        .query(
+          `select * from prmSystemModules where SystemModuleSeq='${SystemModuleSeq}'`
+        );
+      res.status(201).json(data1);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //
   //-----------------------------------------------------------------------------------
 
@@ -2466,6 +2501,30 @@ SET
 ,[CompletionDateTime] =@CompletionDateTime
 
 WHERE WorkOrderNumber='${WorkOrderNumber}'`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async SystemModules_Put(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const SystemModuleSeq = req.params.SystemModuleSeq;
+      let data = await pool
+        .request()
+
+        .input("SystemModuleCode", sql.VarChar, req.body.SystemModuleCode)
+.input("SystemModuleDesc", sql.VarChar, req.body.SystemModuleDesc)
+        .query(
+          ` 
+          UPDATE [dbo].[prmSystemModules]
+SET
+
+[EmployeeStatusDesc] =@EmployeeStatusDesc
+,[SystemModuleDesc] =@SystemModuleDesc
+WHERE SystemModuleSeq='${SystemModuleSeq}'`
         );
       res.status(201).json(data);
     } catch (error) {
@@ -3603,6 +3662,32 @@ WHERE WorkOrderNumber='${WorkOrderNumber}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async SystemModules_GET_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const SystemModuleSeq = req.params.SystemModuleSeq;
+      let data = await pool
+        .request()
+
+        .query(
+          `select * from prmSystemModules where SystemModuleSeq='${SystemModuleSeq}'`
+        );
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+   async SystemModules_GET_LIST(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      let data = await pool.request().query(`select * from prmSystemModules`);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-----------------------------------------------------------------------------------
 
   //---------------------------DELETE--------------------------------------------------------
@@ -4096,6 +4181,23 @@ WHERE RequestNumber = '${RequestNumber}'`
 
         .query(
           `delete from tblWorkOrders where WorkOrderNumber='${WorkOrderNumber}'`
+        );
+      console.log(data);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async SystemModules_DELETE_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const SystemModuleSeq = req.params.SystemModuleSeq;
+      let data = await pool
+        .request()
+
+        .query(
+          `delete from prmSystemModules where SystemModuleSeq='${SystemModuleSeq}'`
         );
       console.log(data);
       res.status(200).json(data);
