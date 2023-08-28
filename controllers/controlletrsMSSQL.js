@@ -1534,6 +1534,102 @@ if (EmployeeID=="") {
       res.status(500).json({ error: `${error}` });
     }
   },
+  async WorkOrders_post(req, res, next)
+  {
+    const WorkRequestNumber = req.body.WorkRequestNumber
+ const WorkOrderNumber=  req.body.WorkOrderNumber
+    try {
+if (WorkRequestNumber=="") {
+      res.status(404).json({error:"WorkRequestNumber is required"});
+    } else {
+       let pool = await sql.connect(config);
+
+      let data = await pool
+        .request()
+        .input("WorkOrderNumber", sql.VarChar, req.body.WorkOrderNumber)
+       
+        .input("WorkRequestNumber", sql.VarChar, req.body.WorkRequestNumber)
+        .input("WorkStatus", sql.VarChar, req.body.WorkStatus)
+        .input("WorkPriority", sql.VarChar, req.body.WorkPriority)
+        .input("WorkCategoryCode", sql.VarChar, req.body.WorkCategoryCode)
+        .input("WorkDescription", sql.VarChar, req.body.WorkDescription)
+        .input("FailureCode", sql.VarChar, req.body.FailureCode)
+        .input("SolutionCode", sql.VarChar, req.body.SolutionCode)
+        .input("AssignedtoEmployeeID", sql.VarChar, req.body.AssignedtoEmployeeID)
+        .input("AppointmentDateTime", sql.DateTime, req.body.AppointmentDateTime)
+        .input("ScheduledDateTime", sql.DateTime, req.body.ScheduledDateTime)
+        .input("StartWorkOrderDateTime", sql.DateTime, req.body.StartWorkOrderDateTime)
+        .input("EndWorkOrderDateTime", sql.DateTime, req.body.EndWorkOrderDateTime)
+        .input("TotalDays", sql.Numeric, req.body.TotalDays)
+        .input("TotalHours", sql.Numeric, req.body.TotalHours)
+        .input("TotalMinutes", sql.Numeric, req.body.TotalMinutes)
+        .input("TotalCostofWork", sql.Numeric, req.body.TotalCostofWork)
+        .input("CompletedByEmployeeID", sql.VarChar, req.body.CompletedByEmployeeID)
+        .input("CompletionDateTime", sql.DateTime, req.body.CompletionDateTime)
+
+        .query(
+          ` 
+            INSERT INTO [dbo].[tblWorkOrders]
+                       ([WorkOrderNumber]
+                      
+                         ,[WorkRequestNumber]
+                        ,[WorkStatus]
+                         ,[WorkPriority]
+                         ,[WorkCategoryCode]
+                        ,[WorkDescription]
+                         ,[FailureCode]
+                        ,[SolutionCode]
+                         ,[AssignedtoEmployeeID]
+                         ,[AppointmentDateTime]
+                        ,[ScheduledDateTime]
+                         ,[EndWorkOrderDateTime]
+                         ,[StartWorkOrderDateTime]
+                         ,[TotalDays]
+                         ,[TotalHours]
+                         ,[TotalMinutes]
+                          ,[TotalCostofWork]
+                         ,[CompletedByEmployeeID]
+                        ,[CompletionDateTime]
+
+                        )
+                 VALUES
+                       (@WorkOrderNumber
+                       
+                       ,@WorkRequestNumber
+                       ,@WorkStatus
+                       ,@WorkPriority
+                       ,@WorkCategoryCode
+                       ,@WorkDescription
+                       ,@FailureCode
+                       ,@SolutionCode
+                       ,@AssignedtoEmployeeID
+                       ,@AppointmentDateTime
+                       ,@ScheduledDateTime
+                        ,@EndWorkOrderDateTime
+                       ,@StartWorkOrderDateTime
+                       ,@TotalDays
+                       ,@TotalHours
+                       ,@TotalMinutes
+                       ,@TotalCostofWork
+                       ,@CompletedByEmployeeID
+                       ,@CompletionDateTime
+                                   
+                       )`
+        );
+       let data1 = await pool
+        .request()
+
+        .query(
+          `select * from tblWorkOrders where WorkOrderNumber='${WorkOrderNumber}'`
+        );
+      res.status(201).json(data1);
+    }
+     
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //
   //-----------------------------------------------------------------------------------
 
@@ -2308,6 +2404,68 @@ SET
 
 [EmployeeStatusDesc] =@EmployeeStatusDesc
 WHERE EmployeeStatusCode='${EmployeeStatusCode}'`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async WorkOrders_Put(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const WorkOrderNumber = req.params.WorkOrderNumber;
+      let data = await pool
+        .request()
+
+        
+       
+       
+        .input("WorkRequestNumber", sql.VarChar, req.body.WorkRequestNumber)
+        .input("WorkStatus", sql.VarChar, req.body.WorkStatus)
+        .input("WorkPriority", sql.VarChar, req.body.WorkPriority)
+        .input("WorkCategoryCode", sql.VarChar, req.body.WorkCategoryCode)
+        .input("WorkDescription", sql.VarChar, req.body.WorkDescription)
+        .input("FailureCode", sql.VarChar, req.body.FailureCode)
+        .input("SolutionCode", sql.VarChar, req.body.SolutionCode)
+        .input("AssignedtoEmployeeID", sql.VarChar, req.body.AssignedtoEmployeeID)
+        .input("AppointmentDateTime", sql.DateTime, req.body.AppointmentDateTime)
+        .input("ScheduledDateTime", sql.DateTime, req.body.ScheduledDateTime)
+        .input("StartWorkOrderDateTime", sql.DateTime, req.body.StartWorkOrderDateTime)
+        .input("EndWorkOrderDateTime", sql.DateTime, req.body.EndWorkOrderDateTime)
+        .input("TotalDays", sql.Numeric, req.body.TotalDays)
+        .input("TotalHours", sql.Numeric, req.body.TotalHours)
+        .input("TotalMinutes", sql.Numeric, req.body.TotalMinutes)
+        .input("TotalCostofWork", sql.Numeric, req.body.TotalCostofWork)
+        .input("CompletedByEmployeeID", sql.VarChar, req.body.CompletedByEmployeeID)
+        .input("CompletionDateTime", sql.DateTime, req.body.CompletionDateTime)
+        
+        .query(
+          ` 
+          UPDATE [dbo].[tblWorkOrders]
+SET
+
+
+[WorkRequestNumber] =@WorkRequestNumber
+,[WorkStatus] =@WorkStatus
+,[WorkPriority] =@WorkPriority
+,[WorkCategoryCode] =@WorkCategoryCode
+,[WorkDescription] =@WorkDescription
+,[FailureCode] =@FailureCode
+,[SolutionCode] =@SolutionCode
+,[AssignedtoEmployeeID] =@AssignedtoEmployeeID
+,[AppointmentDateTime] =@AppointmentDateTime
+,[ScheduledDateTime] =@ScheduledDateTime
+,[StartWorkOrderDateTime] =@StartWorkOrderDateTime
+,[EndWorkOrderDateTime] =@EndWorkOrderDateTime
+,[TotalDays] =@TotalDays
+,[TotalHours] =@TotalHours
+,[TotalMinutes] =@TotalMinutes
+,[TotalCostofWork] =@TotalCostofWork
+,[CompletedByEmployeeID] =@CompletedByEmployeeID
+,[CompletionDateTime] =@CompletionDateTime
+
+WHERE WorkOrderNumber='${WorkOrderNumber}'`
         );
       res.status(201).json(data);
     } catch (error) {
@@ -3419,6 +3577,32 @@ WHERE EmployeeStatusCode='${EmployeeStatusCode}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async WorkOrders_GET_LIST(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      let data = await pool.request().query(`select * from tblWorkOrders`);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async WorkOrders_GET_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const WorkOrderNumber = req.params.WorkOrderNumber;
+      let data = await pool
+        .request()
+
+        .query(
+          `select * from tblWorkOrders where WorkOrderNumber='${WorkOrderNumber}'`
+        );
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-----------------------------------------------------------------------------------
 
   //---------------------------DELETE--------------------------------------------------------
@@ -3895,6 +4079,23 @@ WHERE RequestNumber = '${RequestNumber}'`
 
         .query(
           `delete from prmEmployeeStatus where EmployeeStatusCode='${EmployeeStatusCode}'`
+        );
+      console.log(data);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async WorkOrders_DELETE_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const WorkOrderNumber = req.params.WorkOrderNumber;
+      let data = await pool
+        .request()
+
+        .query(
+          `delete from tblWorkOrders where WorkOrderNumber='${WorkOrderNumber}'`
         );
       console.log(data);
       res.status(200).json(data);
