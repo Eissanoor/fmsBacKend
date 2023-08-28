@@ -3783,12 +3783,12 @@ WHERE VendorID='${VendorID}'`
   async SystemModules_GET_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
-      const SystemModuleSeq = req.params.SystemModuleSeq;
+      const SystemModuleCode = req.params.SystemModuleCode;
       let data = await pool
         .request()
 
         .query(
-          `select * from prmSystemModules where SystemModuleSeq='${SystemModuleSeq}'`
+          `select * from prmSystemModules where SystemModuleCode='${SystemModuleCode}'`
         );
       res.status(200).json(data);
     } catch (error) {
