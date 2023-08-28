@@ -250,7 +250,7 @@ router.get("/WorkOrders_GET_LIST", FATSDB.WorkOrders_GET_LIST)
 router.get("/WorkOrders_GET_BYID/:WorkOrderNumber", FATSDB.WorkOrders_GET_BYID)
 router.get("/SystemModules_GET_BYID/:SystemModuleSeq", FATSDB.SystemModules_GET_BYID)
 router.get("/SystemModules_GET_LIST", FATSDB.SystemModules_GET_LIST)
-router.get("/VendorMaster_GET_BYID/:VendorMaster", FATSDB.VendorMaster_GET_BYID)
+router.get("/VendorMaster_GET_BYID/:VendorID", FATSDB.VendorMaster_GET_BYID)
 router.get("/VendorMaster_GET_LIST",FATSDB.VendorMaster_GET_LIST)
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
