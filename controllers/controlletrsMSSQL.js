@@ -2522,7 +2522,7 @@ WHERE WorkOrderNumber='${WorkOrderNumber}'`
           UPDATE [dbo].[prmSystemModules]
 SET
 
-[EmployeeStatusDesc] =@EmployeeStatusDesc
+[SystemModuleCode] =@SystemModuleCode
 ,[SystemModuleDesc] =@SystemModuleDesc
 WHERE SystemModuleSeq='${SystemModuleSeq}'`
         );
