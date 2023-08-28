@@ -1328,13 +1328,11 @@ const  AssetConditionCode = req.body.AssetConditionCode
   async EmployeeMaster_post(req, res, next)
   {
     const EmployeeID = req.body.EmployeeID
-   const BirthDate= req.body.BirthDate
+    
     try {
       
- if (EmployeeID === "") {
-      res.status(404).json({ error: "EmployeeID is required" });
-    } else if (!BirthDate || isNaN(new Date(BirthDate))) {
-      res.status(400).json({ error: "Invalid BirthDate format" });
+if (EmployeeID=="") {
+      res.status(404).json({error:"EmployeeID is required"});
     } else {
        let pool = await sql.connect(config);
 
