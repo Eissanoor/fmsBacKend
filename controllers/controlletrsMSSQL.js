@@ -2615,10 +2615,7 @@ WHERE SystemModuleSeq='${SystemModuleSeq}'`
       let data = await pool
         .request()
 
-        
-        .request()
-        
-       
+ 
         .input("VendorName", sql.VarChar, req.body.VendorName)
         .input("VendorAddress", sql.VarChar, req.body.VendorAddress)
         .input("ContactLastname", sql.VarChar, req.body.ContactLastname)
