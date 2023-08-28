@@ -1342,7 +1342,7 @@ if (EmployeeID=="") {
        
         .input("Gender", sql.VarChar, req.body.Gender)
         .input("Title", sql.VarChar, req.body.Title)
-        .input("BirthDate", sql.Date, req.body.BirthDate)
+        .input("BirthDate", sql.VarChar, req.body.BirthDate)
         .input("Age", sql.SmallInt, req.body.Age)
         .input("Lastname", sql.VarChar, req.body.Lastname)
         .input("Firstname", sql.VarChar, req.body.Firstname)
@@ -1757,7 +1757,7 @@ if (VendorID=="") {
         
         .input("Gender", sql.VarChar, req.body.Gender)
         .input("Title", sql.VarChar, req.body.Title)
-        .input("BirthDate", sql.Date, req.body.BirthDate)
+        .input("BirthDate", sql.VarChar, req.body.BirthDate)
         .input("Age", sql.SmallInt, req.body.Age)
         .input("Lastname", sql.VarChar, req.body.Lastname)
         .input("Firstname", sql.VarChar, req.body.Firstname)
