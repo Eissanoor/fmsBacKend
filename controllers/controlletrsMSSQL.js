@@ -1742,6 +1742,41 @@ if (VendorID=="") {
       res.status(500).json({ error: `${error}` });
     }
   },
+   async AssetItemGroup_post(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+     const AssetItemGroupCode = req.body.AssetItemGroupCode;
+      let data = await pool
+        .request()
+        .input("AssetItemGroupCode", sql.VarChar, req.body.AssetItemGroupCode)
+        .input("AssetItemGroupCodeDesc", sql.VarChar, req.body.AssetItemGroupCodeDesc)
+
+        .query(
+          ` 
+            INSERT INTO [dbo].[prmAssetItemGroup]
+                       ([AssetItemGroupCode]
+                       ,[AssetItemGroupCodeDesc]
+      
+                        )
+                 VALUES
+                       (@AssetItemGroupCode
+                       ,@AssetItemGroupCodeDesc
+                    
+                                           
+                       )`
+        );
+      let data1 = await pool
+        .request()
+
+        .query(
+          `select * from prmAssetItemGroup where AssetItemGroupCode='${AssetItemGroupCode}'`
+        );
+      res.status(201).json(data1);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //
   //-----------------------------------------------------------------------------------
 
@@ -2644,6 +2679,29 @@ SET
 ,[VendorInformation] =@VendorInformation
 
 WHERE VendorID='${VendorID}'`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async AssetItemGroup_Put(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const AssetItemGroupCode = req.params.AssetItemGroupCode;
+      let data = await pool
+        .request()
+
+        .input("AssetItemGroupCodeDesc", sql.VarChar, req.body.AssetItemGroupCodeDesc)
+
+        .query(
+          ` 
+          UPDATE [dbo].[prmAssetItemGroup]
+SET
+
+[AssetItemGroupCodeDesc] =@AssetItemGroupCodeDesc
+WHERE AssetItemGroupCode='${AssetItemGroupCode}'`
         );
       res.status(201).json(data);
     } catch (error) {
@@ -3833,6 +3891,32 @@ WHERE VendorID='${VendorID}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+   async AssetItemGroup_GET_LIST(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      let data = await pool.request().query(`select * from prmAssetItemGroup`);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+   async AssetItemGroup_GET_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const AssetItemGroupCode = req.params.AssetItemGroupCode;
+      let data = await pool
+        .request()
+
+        .query(
+          `select * from prmAssetItemGroup where AssetItemGroupCode='${AssetItemGroupCode}'`
+        );
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-----------------------------------------------------------------------------------
 
   //---------------------------DELETE--------------------------------------------------------
@@ -4360,6 +4444,23 @@ WHERE RequestNumber = '${RequestNumber}'`
 
         .query(
           `delete from tblVendorMaster where VendorID='${VendorID}'`
+        );
+      console.log(data);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async AssetItemGroup_DELETE_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const AssetItemGroupCode = req.params.AssetItemGroupCode;
+      let data = await pool
+        .request()
+
+        .query(
+          `delete from prmAssetItemGroup where AssetItemGroupCode='${AssetItemGroupCode}'`
         );
       console.log(data);
       res.status(200).json(data);
