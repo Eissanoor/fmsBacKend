@@ -2526,7 +2526,7 @@ WHERE No='${No}'`
           UPDATE [dbo].[workRequestCount]
 SET
 
-[WorkOrderNumber] =@WorkOrderNumber
+[VendorID] =@VendorID
 WHERE No='${No}'`
         );
       res.status(201).json(data);
