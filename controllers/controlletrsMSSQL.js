@@ -3943,6 +3943,32 @@ WHERE AssetItemGroupCode='${AssetItemGroupCode}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+   async WarrantyPeriod_GET_LIST(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      let data = await pool.request().query(`select WarrantyPeriodCode from prmWarrantyPeriod`);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+   async WarrantyPeriod_GET_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const WarrantyPeriodCode = req.params.WarrantyPeriodCode;
+      let data = await pool
+        .request()
+
+        .query(
+          `select WarrantyPeriodDesc from prmWarrantyPeriod where WarrantyPeriodCode='${WarrantyPeriodCode}'`
+        );
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-----------------------------------------------------------------------------------
 
   //---------------------------DELETE--------------------------------------------------------
