@@ -254,7 +254,9 @@ router.get("/SystemModules_GET_LIST", FATSDB.SystemModules_GET_LIST)
 router.get("/VendorMaster_GET_BYID/:VendorID", FATSDB.VendorMaster_GET_BYID)
 router.get("/VendorMaster_GET_LIST", FATSDB.VendorMaster_GET_LIST)
 router.get("/AssetItemGroup_GET_LIST", FATSDB.AssetItemGroup_GET_LIST)
-router.get("/AssetItemGroup_GET_BYID/:AssetItemGroupCode",FATSDB.AssetItemGroup_GET_BYID)
+router.get("/AssetItemGroup_GET_BYID/:AssetItemGroupCode", FATSDB.AssetItemGroup_GET_BYID)
+router.get("/MaterialUnits_GET_BYID/:MaterialUnitCode", FATSDB.MaterialUnits_GET_BYID)
+router.get("/MaterialUnits_GET_LIST",FATSDB.MaterialUnits_GET_LIST)
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);
