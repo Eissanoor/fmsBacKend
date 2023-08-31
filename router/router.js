@@ -310,7 +310,8 @@ router.put("/WorkOrderNumberCount_Put/:No", FATSDB.WorkOrderNumberCount_Put)
 router.put("/WorkOrders_Put/:WorkOrderNumber", FATSDB.WorkOrders_Put)
 router.put("/SystemModules_Put/:SystemModuleCode", FATSDB.SystemModules_Put)
 router.put("/VendorMaster_Put/:VendorID", FATSDB.VendorMaster_Put)
-router.put("/AssetItemGroup_Put/:AssetItemGroupCode",FATSDB.AssetItemGroup_Put)
+router.put("/AssetItemGroup_Put/:AssetItemGroupCode", FATSDB.AssetItemGroup_Put)
+router.put("/VendorIDCount_Put/:No",FATSDB.VendorIDCount_Put)
 //--------------------------------------------------------------------------------
 //-----------------------------------DELETE_API-----------------------------------------
 router.delete(

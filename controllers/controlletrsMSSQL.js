@@ -2512,6 +2512,29 @@ WHERE No='${No}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+   async VendorIDCount_Put(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const No = req.params.No;
+      let data = await pool
+        .request()
+
+        .input("VendorID", sql.Numeric, req.body.VendorID)
+
+        .query(
+          ` 
+          UPDATE [dbo].[workRequestCount]
+SET
+
+[WorkOrderNumber] =@WorkOrderNumber
+WHERE No='${No}'`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   async Designation_Put(req, res, next) {
     try {
       let pool = await sql.connect(config);
