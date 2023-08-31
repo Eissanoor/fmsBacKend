@@ -1102,18 +1102,56 @@ const DaysCode= req.body.DaysCode
         .input("Model", sql.VarChar, req.body.Model)
         .input("Brand", sql.VarChar, req.body.Brand)
 
+        .input("PurchaseDate", sql.VarChar, req.body.PurchaseDate)
+        .input("PurchaseAmount", sql.Numeric, req.body.PurchaseAmount)
+        .input("Warranty", sql.Int, req.body.Warranty)
+        .input("WarrantyPeriod", sql.VarChar, req.body.WarrantyPeriod)
+        .input("WarrantyStartDate", sql.VarChar, req.body.WarrantyStartDate)
+        .input("WarrantyEndDate", sql.VarChar, req.body.WarrantyEndDate)
+        .input("OnHandQty", sql.Numeric, req.body.OnHandQty)
+
+        .input("ReOrderLevel", sql.Numeric, req.body.ReOrderLevel)
+        .input("MinimumOrderLevel", sql.Numeric, req.body.MinimumOrderLevel)
+        .input("MaximumOrderLevel", sql.Numeric, req.body.MaximumOrderLevel)
+        .input("MaterialUnitCode", sql.VarChar, req.body.MaterialUnitCode)
+        .input("LastPurchaseDate", sql.VarChar, req.body.LastPurchaseDate)
+        .input("LastPOReference", sql.VarChar, req.body.LastPOReference)
+        .input("LastPOAmount", sql.Float, req.body.LastPOAmount)
+
+        .input("LastPOQty", sql.Numeric, req.body.LastPOQty)
+        .input("LastVendorID", sql.VarChar, req.body.LastVendorID)
+        .input("Details_Remarks_Notes", sql.VarChar, req.body.Details_Remarks_Notes)
         .query(
           ` 
             INSERT INTO [dbo].[tblAssetsMaster]
                        ([AssetItemDescription]
                        ,[AssetItemGroup]
-
                        ,[AssetType]
                        ,[AssetCategory]
                        ,[AssetSubCategory]
                        ,[Manufacturer]
                        ,[Model]
                        ,[Brand]
+
+                       ,[PurchaseDate]
+                       ,[PurchaseAmount]
+                       ,[Warranty]
+                       ,[WarrantyPeriod]
+                       ,[WarrantyStartDate]
+                       ,[WarrantyEndDate]
+                       ,[OnHandQty]
+
+                       ,[ReOrderLevel]
+                       ,[MinimumOrderLevel]
+                       ,[MaximumOrderLevel]
+                       ,[MaterialUnitCode]
+                       ,[LastPurchaseDate]
+                       ,[LastPOReference]
+                       ,[LastPOAmount]
+
+                        ,[LastPOQty]
+                       ,[LastVendorID]
+                       ,[Details_Remarks_Notes]
       
                         )
                  VALUES
@@ -1125,7 +1163,26 @@ const DaysCode= req.body.DaysCode
                            ,@Manufacturer
                             ,@Model
                              ,@Brand
-                    
+
+                             ,@PurchaseDate
+                        ,@PurchaseAmount
+                         ,@Warranty
+                          ,@WarrantyPeriod
+                           ,@WarrantyStartDate
+                             ,@WarrantyEndDate
+                             ,@OnHandQty
+
+                             ,@ReOrderLevel
+                        ,@MinimumOrderLevel
+                         ,@MaximumOrderLevel
+                          ,@MaterialUnitCode
+                           ,@LastPurchaseDate
+                             ,@LastPOReference
+                             ,@LastPOAmount
+
+                             ,@LastPOQty
+                             ,@LastVendorID
+                             ,@Details_Remarks_Notes
                                            
                        )`
         );
@@ -2269,14 +2326,34 @@ WHERE NationalityCode='${NationalityCode}'`
       let data = await pool
         .request()
 
+         
         .input("AssetItemGroup", sql.VarChar, req.body.AssetItemGroup)
         .input("AssetType", sql.VarChar, req.body.AssetType)
-
         .input("AssetCategory", sql.VarChar, req.body.AssetCategory)
         .input("AssetSubCategory", sql.VarChar, req.body.AssetSubCategory)
         .input("Manufacturer", sql.VarChar, req.body.Manufacturer)
         .input("Model", sql.VarChar, req.body.Model)
         .input("Brand", sql.VarChar, req.body.Brand)
+
+        .input("PurchaseDate", sql.VarChar, req.body.PurchaseDate)
+        .input("PurchaseAmount", sql.Numeric, req.body.PurchaseAmount)
+        .input("Warranty", sql.Int, req.body.Warranty)
+        .input("WarrantyPeriod", sql.VarChar, req.body.WarrantyPeriod)
+        .input("WarrantyStartDate", sql.VarChar, req.body.WarrantyStartDate)
+        .input("WarrantyEndDate", sql.VarChar, req.body.WarrantyEndDate)
+        .input("OnHandQty", sql.Numeric, req.body.OnHandQty)
+
+        .input("ReOrderLevel", sql.Numeric, req.body.ReOrderLevel)
+        .input("MinimumOrderLevel", sql.Numeric, req.body.MinimumOrderLevel)
+        .input("MaximumOrderLevel", sql.Numeric, req.body.MaximumOrderLevel)
+        .input("MaterialUnitCode", sql.VarChar, req.body.MaterialUnitCode)
+        .input("LastPurchaseDate", sql.VarChar, req.body.LastPurchaseDate)
+        .input("LastPOReference", sql.VarChar, req.body.LastPOReference)
+        .input("LastPOAmount", sql.Float, req.body.LastPOAmount)
+
+        .input("LastPOQty", sql.Numeric, req.body.LastPOQty)
+        .input("LastVendorID", sql.VarChar, req.body.LastVendorID)
+        .input("Details_Remarks_Notes", sql.VarChar, req.body.Details_Remarks_Notes)
 
         .query(
           ` 
@@ -2285,12 +2362,32 @@ SET
 
 [AssetItemGroup] =@AssetItemGroup
 ,[AssetType] =@AssetType
-
 ,[AssetCategory] =@AssetCategory
 ,[AssetSubCategory] =@AssetSubCategory
 ,[Manufacturer] =@Manufacturer
 ,[Model] =@Model
 ,[Brand] =@Brand
+
+,[PurchaseDate] =@PurchaseDate
+,[PurchaseAmount] =@PurchaseAmount
+,[Warranty] =@Warranty
+,[WarrantyPeriod] =@WarrantyPeriod
+,[WarrantyStartDate] =@WarrantyStartDate
+,[WarrantyEndDate] =@WarrantyEndDate
+,[OnHandQty] =@OnHandQty
+
+,[ReOrderLevel] =@ReOrderLevel
+,[MinimumOrderLevel] =@MinimumOrderLevel
+,[MaximumOrderLevel] =@MaximumOrderLevel
+,[MaterialUnitCode] =@MaterialUnitCode
+,[LastPurchaseDate] =@LastPurchaseDate
+,[LastPOReference] =@LastPOReference
+,[LastPOAmount] =@LastPOAmount
+
+,[LastPOQty] =@LastPOQty
+,[LastVendorID] =@LastVendorID
+,[Details_Remarks_Notes] =@Details_Remarks_Notes
+
 WHERE AssetItemDescription='${AssetItemDescription}'`
         );
       res.status(201).json(data);
