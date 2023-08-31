@@ -4740,6 +4740,22 @@ WHERE EmployeeID='${EmployeeID}'`);
       res.status(500).json({ error: `${error}` });
     }
   },
+  async Filter_VendorMaster(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+     
+      let data = await pool
+        .request()
+
+        .query(
+          `select VendorID , VendorName from tblVendorMaster`
+        );
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   async getAllLISTworkRequestSecondWork(req, res, next) {
     try {
       let pool = await sql.connect(config);

@@ -258,7 +258,8 @@ router.get("/AssetItemGroup_GET_BYID/:AssetItemGroupCode", FATSDB.AssetItemGroup
 router.get("/MaterialUnits_GET_BYID/:MaterialUnitCode", FATSDB.MaterialUnits_GET_BYID)
 router.get("/MaterialUnits_GET_LIST", FATSDB.MaterialUnits_GET_LIST)
 router.get("/WarrantyPeriod_GET_LIST", FATSDB.WarrantyPeriod_GET_LIST)
-router.get("/WarrantyPeriod_GET_BYID/:WarrantyPeriodCode",FATSDB.WarrantyPeriod_GET_BYID)
+router.get("/WarrantyPeriod_GET_BYID/:WarrantyPeriodCode", FATSDB.WarrantyPeriod_GET_BYID)
+router.get("/Filter_VendorMaster",FATSDB.Filter_VendorMaster)
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);
