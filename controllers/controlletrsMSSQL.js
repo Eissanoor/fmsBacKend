@@ -4089,6 +4089,22 @@ WHERE AssetItemGroupCode='${AssetItemGroupCode}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+   async AssetTransactions_GET_ItemDescription(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const AssetItemDescription = req.params.AssetItemDescription;
+      let data = await pool
+        .request()
+
+        .query(
+          `select AssetItemTagID from tblAssetTransactions where AssetItemDescription='${AssetItemDescription}'`
+        );
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-----------------------------------------------------------------------------------
 
   //---------------------------DELETE--------------------------------------------------------
