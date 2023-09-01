@@ -4092,7 +4092,7 @@ WHERE AssetItemGroupCode='${AssetItemGroupCode}'`
    async AssetTransactions_GET_ItemDescription(req, res, next) {
     try {
       let pool = await sql.connect(config);
-      const AssetItemDescription = req.body.AssetItemDescription;
+      const AssetItemDescription = req.params.AssetItemDescription;
       let data = await pool
         .request()
 
