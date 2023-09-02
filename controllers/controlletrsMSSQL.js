@@ -1834,6 +1834,97 @@ if (VendorID=="") {
       res.status(500).json({ error: `${error}` });
     }
   },
+   async PreventiveMaintenance_post(req, res, next)
+  {
+    const RequestNumber = req.body.RequestNumber
+    
+    try {
+      
+if (RequestNumber=="") {
+      res.status(404).json({error:"RequestNumber is required"});
+    } else {
+       let pool = await sql.connect(config);
+
+      let data = await pool
+        .request()
+        .input("RequestNumber", sql.VarChar, req.body.RequestNumber)
+       
+        .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
+        .input("RequestDateTime", sql.VarChar, req.body.RequestDateTime)
+        .input("WorkType", sql.VarChar, req.body.WorkType)
+        .input("WorkPriority", sql.VarChar, req.body.WorkPriority)
+        .input("AssetItemTagID", sql.VarChar, req.body.AssetItemTagID)
+        .input("DepartmentCode", sql.VarChar, req.body.DepartmentCode)
+        .input("BuildingCode", sql.VarChar, req.body.BuildingCode)
+        .input("LocationCode", sql.VarChar, req.body.LocationCode)
+        .input("MaintenanceDescription", sql.VarChar, req.body.MaintenanceDescription)
+        .input("Frequency", sql.VarChar, req.body.Frequency)
+        .input("ScheduleStartDateTime", sql.VarChar, req.body.ScheduleStartDateTime)
+        .input("ScheduleEndDateTime", sql.VarChar, req.body.ScheduleEndDateTime)
+        .input("ScheduledDay", sql.VarChar, req.body.ScheduledDay)
+        .input("SchedulingPriority", sql.VarChar, req.body.SchedulingPriority)
+       
+
+        .query(
+          ` 
+            INSERT INTO [dbo].[tblPreventiveMaintenance]
+                       ([RequestNumber]
+                      
+                         ,[EmployeeID]
+                        ,[RequestDateTime]
+                         ,[WorkType]
+                         ,[WorkPriority]
+                        ,[AssetItemTagID]
+                         ,[DepartmentCode]
+                        ,[BuildingCode]
+                         ,[LocationCode]
+                         ,[MaintenanceDescription]
+                        ,[Frequency]
+                         ,[ScheduleStartDateTime]
+                         ,[ScheduleEndDateTime]
+                         ,[ScheduledDay]
+                         ,[SchedulingPriority]
+                         
+                                                             
+      
+                        )
+                 VALUES
+                       (@RequestNumber
+                       
+                       ,@EmployeeID
+                       ,@RequestDateTime
+                       ,@WorkType
+                       ,@WorkPriority
+                       ,@AssetItemTagID
+                       ,@DepartmentCode
+                       ,@BuildingCode
+                       ,@LocationCode
+                       ,@MaintenanceDescription
+                       ,@Frequency
+                       ,@ScheduleStartDateTime
+                       ,@ScheduleEndDateTime
+                       ,@ScheduledDay
+                       ,@SchedulingPriority
+                      
+                       
+                    
+                                           
+                       )`
+        );
+       let data1 = await pool
+        .request()
+
+        .query(
+          `select * from tblPreventiveMaintenance where RequestNumber='${RequestNumber}'`
+        );
+      res.status(201).json(data1);
+    }
+     
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //
   //-----------------------------------------------------------------------------------
 
@@ -2822,6 +2913,60 @@ SET
 
 [AssetItemGroupCodeDesc] =@AssetItemGroupCodeDesc
 WHERE AssetItemGroupCode='${AssetItemGroupCode}'`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async PreventiveMaintenance_Put(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const RequestNumber = req.params.RequestNumber;
+      let data = await pool
+        .request()
+
+        
+   
+       
+        .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
+        .input("RequestDateTime", sql.VarChar, req.body.RequestDateTime)
+        .input("WorkType", sql.VarChar, req.body.WorkType)
+        .input("WorkPriority", sql.VarChar, req.body.WorkPriority)
+        .input("AssetItemTagID", sql.VarChar, req.body.AssetItemTagID)
+        .input("DepartmentCode", sql.VarChar, req.body.DepartmentCode)
+        .input("BuildingCode", sql.VarChar, req.body.BuildingCode)
+        .input("LocationCode", sql.VarChar, req.body.LocationCode)
+        .input("MaintenanceDescription", sql.VarChar, req.body.MaintenanceDescription)
+        .input("Frequency", sql.VarChar, req.body.Frequency)
+        .input("ScheduleStartDateTime", sql.VarChar, req.body.ScheduleStartDateTime)
+        .input("ScheduleEndDateTime", sql.VarChar, req.body.ScheduleEndDateTime)
+        .input("ScheduledDay", sql.VarChar, req.body.ScheduledDay)
+        .input("SchedulingPriority", sql.VarChar, req.body.SchedulingPriority)
+        
+        .query(
+          ` 
+          UPDATE [dbo].[tblPreventiveMaintenance]
+SET
+
+
+[EmployeeID] =@EmployeeID
+,[RequestDateTime] =@RequestDateTime
+,[WorkType] =@WorkType
+,[WorkPriority] =@WorkPriority
+,[AssetItemTagID] =@AssetItemTagID
+,[DepartmentCode] =@DepartmentCode
+,[BuildingCode] =@BuildingCode
+,[LocationCode] =@LocationCode
+,[MaintenanceDescription] =@MaintenanceDescription
+,[Frequency] =@Frequency
+,[ScheduleStartDateTime] =@ScheduleStartDateTime
+,[ScheduleEndDateTime] =@ScheduleEndDateTime
+,[ScheduledDay] =@ScheduledDay
+,[SchedulingPriority] =@SchedulingPriority
+
+WHERE RequestNumber='${RequestNumber}'`
         );
       res.status(201).json(data);
     } catch (error) {
@@ -4105,6 +4250,32 @@ WHERE AssetItemGroupCode='${AssetItemGroupCode}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+   async PreventiveMaintenance_GET_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const RequestNumber = req.params.RequestNumber;
+      let data = await pool
+        .request()
+
+        .query(
+          `select * from tblPreventiveMaintenance where RequestNumber='${RequestNumber}'`
+        );
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+   async PreventiveMaintenance_GET_LIST(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      let data = await pool.request().query(`select * from tblPreventiveMaintenance`);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-----------------------------------------------------------------------------------
 
   //---------------------------DELETE--------------------------------------------------------
@@ -4649,6 +4820,23 @@ WHERE RequestNumber = '${RequestNumber}'`
 
         .query(
           `delete from prmAssetItemGroup where AssetItemGroupCode='${AssetItemGroupCode}'`
+        );
+      console.log(data);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async PreventiveMaintenance_DELETE_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const RequestNumber = req.params.RequestNumber;
+      let data = await pool
+        .request()
+
+        .query(
+          `delete from tblPreventiveMaintenance where RequestNumber='${RequestNumber}'`
         );
       console.log(data);
       res.status(200).json(data);
