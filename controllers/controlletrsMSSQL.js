@@ -1925,6 +1925,97 @@ if (RequestNumber=="") {
       res.status(500).json({ error: `${error}` });
     }
   },
+   async CleaningWorks_post(req, res, next)
+  {
+    const RequestNumber = req.body.RequestNumber
+    
+    try {
+      
+if (RequestNumber=="") {
+      res.status(404).json({error:"RequestNumber is required"});
+    } else {
+       let pool = await sql.connect(config);
+
+      let data = await pool
+        .request()
+        .input("RequestNumber", sql.VarChar, req.body.RequestNumber)
+       
+        .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
+        .input("RequestDateTime", sql.VarChar, req.body.RequestDateTime)
+        .input("WorkType", sql.VarChar, req.body.WorkType)
+        .input("WorkPriority", sql.VarChar, req.body.WorkPriority)
+        .input("AssetItemTagID", sql.VarChar, req.body.AssetItemTagID)
+        .input("DepartmentCode", sql.VarChar, req.body.DepartmentCode)
+        .input("BuildingCode", sql.VarChar, req.body.BuildingCode)
+        .input("LocationCode", sql.VarChar, req.body.LocationCode)
+        .input("CleaningGroup", sql.VarChar, req.body.CleaningGroup)
+        .input("Intruction_Remarks", sql.VarChar, req.body.Intruction_Remarks)
+        .input("ScheduleStartDateTime", sql.VarChar, req.body.ScheduleStartDateTime)
+        .input("ScheduleEndDateTime", sql.VarChar, req.body.ScheduleEndDateTime)
+        .input("ScheduledDay", sql.VarChar, req.body.ScheduledDay)
+        .input("SchedulingPriority", sql.VarChar, req.body.SchedulingPriority)
+       .input("Frequency", sql.VarChar, req.body.Frequency)
+
+        .query(
+          ` 
+            INSERT INTO [dbo].[tblCleaningWorks]
+                       ([RequestNumber]
+                      
+                         ,[EmployeeID]
+                        ,[RequestDateTime]
+                         ,[WorkType]
+                         ,[WorkPriority]
+                        ,[AssetItemTagID]
+                         ,[DepartmentCode]
+                        ,[BuildingCode]
+                         ,[LocationCode]
+                         ,[CleaningGroup]
+                        ,[Intruction_Remarks]
+                         ,[ScheduleStartDateTime]
+                         ,[ScheduleEndDateTime]
+                         ,[ScheduledDay]
+                         ,[SchedulingPriority]
+                         ,[Frequency]
+                                                             
+      
+                        )
+                 VALUES
+                       (@RequestNumber
+                       
+                       ,@EmployeeID
+                       ,@RequestDateTime
+                       ,@WorkType
+                       ,@WorkPriority
+                       ,@AssetItemTagID
+                       ,@DepartmentCode
+                       ,@BuildingCode
+                       ,@LocationCode
+                       ,@CleaningGroup
+                       ,@Intruction_Remarks
+                       ,@ScheduleStartDateTime
+                       ,@ScheduleEndDateTime
+                       ,@ScheduledDay
+                       ,@SchedulingPriority
+                      ,@Frequency
+                       
+                    
+                                           
+                       )`
+        );
+       let data1 = await pool
+        .request()
+
+        .query(
+          `select * from tblCleaningWorks where RequestNumber='${RequestNumber}'`
+        );
+      res.status(201).json(data1);
+    }
+     
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //
   //-----------------------------------------------------------------------------------
 
@@ -2966,6 +3057,61 @@ SET
 ,[ScheduledDay] =@ScheduledDay
 ,[SchedulingPriority] =@SchedulingPriority
 
+WHERE RequestNumber='${RequestNumber}'`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async CleaningWorks_Put(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const RequestNumber = req.params.RequestNumber;
+      let data = await pool
+        .request()
+
+        
+   
+       
+        .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
+        .input("RequestDateTime", sql.VarChar, req.body.RequestDateTime)
+        .input("WorkType", sql.VarChar, req.body.WorkType)
+        .input("WorkPriority", sql.VarChar, req.body.WorkPriority)
+        .input("AssetItemTagID", sql.VarChar, req.body.AssetItemTagID)
+        .input("DepartmentCode", sql.VarChar, req.body.DepartmentCode)
+        .input("BuildingCode", sql.VarChar, req.body.BuildingCode)
+        .input("LocationCode", sql.VarChar, req.body.LocationCode)
+        .input("CleaningGroup", sql.VarChar, req.body.CleaningGroup)
+        .input("Intruction_Remarks", sql.VarChar, req.body.Intruction_Remarks)
+        .input("ScheduleStartDateTime", sql.VarChar, req.body.ScheduleStartDateTime)
+        .input("ScheduleEndDateTime", sql.VarChar, req.body.ScheduleEndDateTime)
+        .input("ScheduledDay", sql.VarChar, req.body.ScheduledDay)
+        .input("SchedulingPriority", sql.VarChar, req.body.SchedulingPriority)
+       .input("Frequency", sql.VarChar, req.body.Frequency)
+        
+        .query(
+          ` 
+          UPDATE [dbo].[tblCleaningWorks]
+SET
+
+
+[EmployeeID] =@EmployeeID
+,[RequestDateTime] =@RequestDateTime
+,[WorkType] =@WorkType
+,[WorkPriority] =@WorkPriority
+,[AssetItemTagID] =@AssetItemTagID
+,[DepartmentCode] =@DepartmentCode
+,[BuildingCode] =@BuildingCode
+,[LocationCode] =@LocationCode
+,[CleaningGroup] =@CleaningGroup
+,[Frequency] =@Frequency
+,[ScheduleStartDateTime] =@ScheduleStartDateTime
+,[ScheduleEndDateTime] =@ScheduleEndDateTime
+,[ScheduledDay] =@ScheduledDay
+,[SchedulingPriority] =@SchedulingPriority
+,[Intruction_Remarks] =@Intruction_Remarks
 WHERE RequestNumber='${RequestNumber}'`
         );
       res.status(201).json(data);
@@ -4276,6 +4422,32 @@ WHERE RequestNumber='${RequestNumber}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+   async CleaningWorks_GET_LIST(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      let data = await pool.request().query(`select * from tblCleaningWorks`);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async CleaningWorks_GET_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const RequestNumber = req.params.RequestNumber;
+      let data = await pool
+        .request()
+
+        .query(
+          `select * from tblCleaningWorks where RequestNumber='${RequestNumber}'`
+        );
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-----------------------------------------------------------------------------------
 
   //---------------------------DELETE--------------------------------------------------------
@@ -4837,6 +5009,23 @@ WHERE RequestNumber = '${RequestNumber}'`
 
         .query(
           `delete from tblPreventiveMaintenance where RequestNumber='${RequestNumber}'`
+        );
+      console.log(data);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+   async CleaningWorks_DELETE_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const RequestNumber = req.params.RequestNumber;
+      let data = await pool
+        .request()
+
+        .query(
+          `delete from tblCleaningWorks where RequestNumber='${RequestNumber}'`
         );
       console.log(data);
       res.status(200).json(data);
