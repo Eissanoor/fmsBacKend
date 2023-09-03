@@ -4458,6 +4458,32 @@ WHERE RequestNumber='${RequestNumber}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async CleaningGroup_GET_LIST(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      let data = await pool.request().query(`select CleaningGroupCode from prmCleaningGroup`);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async CleaningGroup_GET_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const CleaningGroupCode = req.params.CleaningGroupCode;
+      let data = await pool
+        .request()
+
+        .query(
+          `select * from prmCleaningGroup where CleaningGroupCode='${CleaningGroupCode}'`
+        );
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-----------------------------------------------------------------------------------
 
   //---------------------------DELETE--------------------------------------------------------

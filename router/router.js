@@ -267,7 +267,9 @@ router.get("/PreventiveMaintenance_GET_BYID/:RequestNumber", FATSDB.PreventiveMa
 router.get("/PreventiveMaintenance_GET_LIST", FATSDB.PreventiveMaintenance_GET_LIST)
 router.get("/CleaningWorks_GET_LIST", FATSDB.CleaningWorks_GET_LIST)
 router.get("/CleaningWorks_GET_BYID/:RequestNumber", FATSDB.CleaningWorks_GET_BYID)
-router.get("/SchedPriority_GET_LIST",FATSDB.SchedPriority_GET_LIST)
+router.get("/SchedPriority_GET_LIST", FATSDB.SchedPriority_GET_LIST)
+router.get("/CleaningGroup_GET_LIST", FATSDB.CleaningGroup_GET_LIST)
+router.get("/CleaningGroup_GET_BYID/:CleaningGroupCode",FATSDB.CleaningGroup_GET_BYID)
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);
