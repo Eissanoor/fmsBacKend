@@ -1931,33 +1931,46 @@ if (RequestNumber=="") {
     
     try {
       
-if (RequestNumber=="") {
-      res.status(405).json({error:"RequestNumber is required"});
-    } else {
-       let pool = await sql.connect(config);
+      if (RequestNumber === "") {
+        res.status(405).json({ error: "RequestNumber is required" });
+      } else {
+        let pool = await sql.connect(config);
 
-      let data = await pool
-        .request()
-        .input("RequestNumber", sql.VarChar, req.body.RequestNumber)
+        // Check if the RequestNumber already exists
+        const existingRecord = await pool
+          .request()
+          .query(
+            `SELECT TOP 1 * FROM tblCleaningWorks WHERE RequestNumber = '${RequestNumber}'`
+          );
+
+        if (existingRecord.recordset.length > 0) {
+          // A record with the same RequestNumber already exists
+          res.status(409).json({ error: "RequestNumber already exists" });
+        } else {
+          let pool = await sql.connect(config);
+
+          let data = await pool
+            .request()
+            .input("RequestNumber", sql.VarChar, req.body.RequestNumber)
        
-        .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
-        .input("RequestDateTime", sql.VarChar, req.body.RequestDateTime)
-        .input("WorkType", sql.VarChar, req.body.WorkType)
-        .input("WorkPriority", sql.VarChar, req.body.WorkPriority)
-        .input("AssetItemTagID", sql.VarChar, req.body.AssetItemTagID)
-        .input("DepartmentCode", sql.VarChar, req.body.DepartmentCode)
-        .input("BuildingCode", sql.VarChar, req.body.BuildingCode)
-        .input("LocationCode", sql.VarChar, req.body.LocationCode)
-        .input("CleaningGroup", sql.VarChar, req.body.CleaningGroup)
-        .input("Intruction_Remarks", sql.VarChar, req.body.Intruction_Remarks)
-        .input("ScheduleStartDateTime", sql.VarChar, req.body.ScheduleStartDateTime)
-        .input("ScheduleEndDateTime", sql.VarChar, req.body.ScheduleEndDateTime)
-        .input("ScheduledDay", sql.VarChar, req.body.ScheduledDay)
-        .input("SchedulingPriority", sql.VarChar, req.body.SchedulingPriority)
-       .input("Frequency", sql.VarChar, req.body.Frequency)
+            .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
+            .input("RequestDateTime", sql.VarChar, req.body.RequestDateTime)
+            .input("WorkType", sql.VarChar, req.body.WorkType)
+            .input("WorkPriority", sql.VarChar, req.body.WorkPriority)
+            .input("AssetItemTagID", sql.VarChar, req.body.AssetItemTagID)
+            .input("DepartmentCode", sql.VarChar, req.body.DepartmentCode)
+            .input("BuildingCode", sql.VarChar, req.body.BuildingCode)
+            .input("LocationCode", sql.VarChar, req.body.LocationCode)
+            .input("CleaningGroup", sql.VarChar, req.body.CleaningGroup)
+            .input("Intruction_Remarks", sql.VarChar, req.body.Intruction_Remarks)
+            .input("ScheduleStartDateTime", sql.VarChar, req.body.ScheduleStartDateTime)
+            .input("ScheduleEndDateTime", sql.VarChar, req.body.ScheduleEndDateTime)
+            .input("ScheduledDay", sql.VarChar, req.body.ScheduledDay)
+            .input("SchedulingPriority", sql.VarChar, req.body.SchedulingPriority)
+            .input("Frequency", sql.VarChar, req.body.Frequency)
 
-        .query(
-          ` 
+            .query(
+              ` 
             INSERT INTO [dbo].[tblCleaningWorks]
                        ([RequestNumber]
                       
@@ -2001,16 +2014,16 @@ if (RequestNumber=="") {
                     
                                            
                        )`
-        );
-       let data1 = await pool
-        .request()
+            );
+          let data1 = await pool
+            .request()
 
-        .query(
-          `select * from tblCleaningWorks where RequestNumber='${RequestNumber}'`
-        );
-      res.status(201).json(data1);
-    }
-     
+            .query(
+              `select * from tblCleaningWorks where RequestNumber='${RequestNumber}'`
+            );
+          res.status(201).json(data1);
+        }
+      }
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
