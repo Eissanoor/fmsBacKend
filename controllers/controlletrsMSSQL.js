@@ -1930,7 +1930,17 @@ if (RequestNumber=="") {
     const RequestNumber = req.body.RequestNumber
     
     try {
-      
+       let pool = await sql.connect(config);
+      const RequestNumber = req.body.RequestNumber;
+      let data = await pool
+        .request()
+
+        .query(
+          `select * from tblCleaningWorks where RequestNumber='${RequestNumber}'`
+      );
+      if (data) {
+        res.status(400).json({error:"RequestNumber already is exist"});
+      }
 if (RequestNumber=="") {
       res.status(404).json({error:"RequestNumber is required"});
     } else {
