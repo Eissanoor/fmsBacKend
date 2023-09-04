@@ -1939,7 +1939,7 @@ if (RequestNumber=="") {
           `select * from tblCleaningWorks where RequestNumber='${RequestNumber}'`
       );
       if (data) {
-        res.status(400).json({error:"RequestNumber already is exist"});
+        res.status(400).json(data);
       }
 if (RequestNumber=="") {
       res.status(404).json({error:"RequestNumber is required"});
