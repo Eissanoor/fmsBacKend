@@ -1932,7 +1932,7 @@ if (RequestNumber=="") {
     try {
       
 if (RequestNumber=="") {
-      res.status(404).json({error:"RequestNumber is required"});
+      res.status(405).json({error:"RequestNumber is required"});
     } else {
        let pool = await sql.connect(config);
 
