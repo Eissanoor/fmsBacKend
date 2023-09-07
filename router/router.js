@@ -229,7 +229,7 @@ router.get(
   "/WarrantyPeriod_GET_BYID/:WarrantyPeriodCode",
   FATSDB.WarrantyPeriod_GET_BYID
 );
-router.get("/WarrantyPeriod_GET_LIST", FATSDB.WarrantyPeriod_GET_LIST);
+router.get("/WarrantyPeriod_GET_LISTS", FATSDB.WarrantyPeriod_GET_LISTS);
 router.get("/EmployeeMaster_GET_BYID/:EmployeeID", FATSDB.EmployeeMaster_GET_BYID);
 router.get("/EmployeeMaster_GET_LIST", FATSDB.EmployeeMaster_GET_LIST)
 router.get("/assetworkrequest_GET_BYID/:RequestNumber", FATSDB.assetworkrequest_GET_BYID)
