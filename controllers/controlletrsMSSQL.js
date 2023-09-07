@@ -1385,6 +1385,9 @@ const  AssetConditionCode = req.body.AssetConditionCode
   async EmployeeMaster_post(req, res, next)
   {
     const EmployeeID = req.body.EmployeeID
+     const file = req.files["EmployeeImage"];
+
+    const url = file ? `http://gs1ksa.org:3021/api/profile/${file[0].filename}` : null;
     
     try {
       
@@ -1396,7 +1399,7 @@ if (EmployeeID=="") {
       let data = await pool
         .request()
         .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
-       
+       .input("EmployeeImage", sql.VarChar, url)
         .input("Gender", sql.VarChar, req.body.Gender)
         .input("Title", sql.VarChar, req.body.Title)
         .input("BirthDate", sql.VarChar, req.body.BirthDate)
@@ -1423,7 +1426,7 @@ if (EmployeeID=="") {
           ` 
             INSERT INTO [dbo].[tblEmployeeMaster]
                        ([EmployeeID]
-                      
+                      ,[EmployeeImage]
                          ,[Gender]
                         ,[Title]
                          ,[BirthDate]
@@ -1448,7 +1451,7 @@ if (EmployeeID=="") {
                         )
                  VALUES
                        (@EmployeeID
-                       
+                       ,@EmployeeImage
                        ,@Gender
                        ,@Title
                        ,@BirthDate
@@ -2051,12 +2054,30 @@ if (VendorID=="") {
     try {
       let pool = await sql.connect(config);
       const EmployeeID = req.params.EmployeeID;
+      const file = req.files["EmployeeImage"];
+
+    let url = ""; // Initialize the URL variable
+
+    if (file && file.length > 0) {
+      url = `http://gs1ksa.org:3021/api/profile/${file[0].filename}`;
+      }
+       if (typeof req.body.EmployeeImage === "string" || !url) {
+      // No new EmployeeImage provided or it's an empty string, keep the old one
+      const existingData = await pool
+        .request()
+        .query(`SELECT [EmployeeImage] FROM [dbo].[tblEmployeeMaster] WHERE EmployeeID='${EmployeeID}'`);
+
+      if (existingData.recordset.length > 0) {
+        url = existingData.recordset[0].EmployeeImage;
+      }
+    }
       let data = await pool
         .request()
 
         
         .input("Gender", sql.VarChar, req.body.Gender)
         .input("Title", sql.VarChar, req.body.Title)
+        .input("EmployeeImage", sql.VarChar, url)
         .input("BirthDate", sql.VarChar, req.body.BirthDate)
         .input("Age", sql.SmallInt, req.body.Age)
         .input("Lastname", sql.VarChar, req.body.Lastname)
@@ -2083,6 +2104,7 @@ SET
 
 [Gender] =@Gender
 ,[Title] =@Title
+,[EmployeeImage] =@EmployeeImage
 ,[BirthDate] =@BirthDate
 ,[Age] =@Age
 ,[Lastname] =@Lastname

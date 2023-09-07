@@ -95,7 +95,7 @@ router.post("/AssetCategory_post", FATSDB.AssetCategory_post);
 router.post("/AssetSubCategory_post", FATSDB.AssetSubCategory_post);
 router.post("/AssetCondition_post", FATSDB.AssetCondition_post);
 router.post("/WarrantyPeriod_post", FATSDB.WarrantyPeriod_post);
-router.post("/EmployeeMaster_post", FATSDB.EmployeeMaster_post)
+router.post("/EmployeeMaster_post", cpUpload, FATSDB.EmployeeMaster_post)
 router.post("/assetworkrequest_post", FATSDB.assetworkrequest_post)
 router.post("/Designation_post",FATSDB.Designation_post)
 router.post("/EmployeeStatus_post", FATSDB.EmployeeStatus_post)
@@ -310,7 +310,7 @@ router.put(
   "/WarrantyPeriod_Put/:WarrantyPeriodCode",
   FATSDB.WarrantyPeriod_Put
 );
-router.put("/EmployeeMaster_Put/:EmployeeID", FATSDB.EmployeeMaster_Put)
+router.put("/EmployeeMaster_Put/:EmployeeID", cpUpload, FATSDB.EmployeeMaster_Put)
 router.put("/AssetsMaster_Put_status/:AssetItemDescription", FATSDB.AssetsMaster_Put_status)
 router.put("/workRequestCount_Put/:No", FATSDB.workRequestCount_Put)
 router.put("/EmployeeIDCount_Put/:No", FATSDB.EmployeeIDCount_Put)
