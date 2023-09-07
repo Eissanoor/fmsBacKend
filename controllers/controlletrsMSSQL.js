@@ -3191,7 +3191,7 @@ WHERE RequestNumber='${RequestNumber}'`
       res.status(500).json({ error: `${error}` });
     }
   },
-  async WarrantyPeriod_GET_LIST(req, res, next) {
+  async WarrantyPeriod_GET_LISTS(req, res, next) {
     try {
       let pool = await sql.connect(config);
       let data = await pool.request().query(`select * from prmWarrantyPeriod`);
