@@ -5569,7 +5569,7 @@ WHERE EmployeeID='${EmployeeID}'`);
         .request()
 
         .query(
-          `select AssetItemDescription from tblAssetsMaster '`
+          `select AssetItemDescription from tblAssetsMaster`
         );
       res.status(200).json(data);
     } catch (error) {
