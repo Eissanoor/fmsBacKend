@@ -2567,6 +2567,24 @@ WHERE NationalityCode='${NationalityCode}'`
     try {
       let pool = await sql.connect(config);
       const AssetItemDescription = req.params.AssetItemDescription;
+
+       const file = req.files["AssetImage"];
+
+    let url = ""; // Initialize the URL variable
+
+    if (file && file.length > 0) {
+      url = `http://gs1ksa.org:3021/api/profile/${file[0].filename}`;
+      }
+       if (typeof req.body.AssetItemDescription === "string" || !url) {
+      // No new EmployeeImage provided or it's an empty string, keep the old one
+      const existingData = await pool
+        .request()
+        .query(`SELECT [AssetImage] FROM [dbo].[tblAssetsMaster] WHERE AssetItemDescription='${AssetItemDescription}'`);
+
+      if (existingData.recordset.length > 0) {
+        url = existingData.recordset[0].AssetImage;
+      }
+    }
       let data = await pool
         .request()
 
@@ -2578,7 +2596,7 @@ WHERE NationalityCode='${NationalityCode}'`
         .input("Manufacturer", sql.VarChar, req.body.Manufacturer)
         .input("Model", sql.VarChar, req.body.Model)
         .input("Brand", sql.VarChar, req.body.Brand)
-
+ .input("AssetImage", sql.VarChar, url)
         .input("PurchaseDate", sql.VarChar, req.body.PurchaseDate)
         .input("PurchaseAmount", sql.Numeric, req.body.PurchaseAmount)
         .input("Warranty", sql.Int, req.body.Warranty)
@@ -2611,7 +2629,7 @@ SET
 ,[Manufacturer] =@Manufacturer
 ,[Model] =@Model
 ,[Brand] =@Brand
-
+,[AssetImage] =@AssetImage
 ,[PurchaseDate] =@PurchaseDate
 ,[PurchaseAmount] =@PurchaseAmount
 ,[Warranty] =@Warranty

@@ -296,7 +296,7 @@ router.put("/Gender_Put/:GenderCode", FATSDB.Gender_Put);
 router.put("/Title_Put/:TitleCode", FATSDB.Title_Put);
 router.put("/MaritalStatus_Put/:MaritalCode", FATSDB.MaritalStatus_Put);
 router.put("/Nationality_Put/:NationalityCode", FATSDB.Nationality_Put);
-router.put("/AssetsMaster_Put/:AssetItemDescription", FATSDB.AssetsMaster_Put);
+router.put("/AssetsMaster_Put/:AssetItemDescription", cpUpload, FATSDB.AssetsMaster_Put);
 router.put("/AssetType_Put/:AssetTypeCode", FATSDB.AssetType_Put);
 router.put("/AssetCategory_Put/:AssetCategoryCode", FATSDB.AssetCategory_Put);
 router.put(
