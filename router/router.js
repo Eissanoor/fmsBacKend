@@ -427,6 +427,6 @@ router.delete("/VendorMaster_DELETE_BYID/:VendorID", FATSDB.VendorMaster_DELETE_
 router.delete("/AssetItemGroup_DELETE_BYID/:AssetItemGroupCode", FATSDB.AssetItemGroup_DELETE_BYID)
 router.delete("/PreventiveMaintenance_DELETE_BYID/:RequestNumber", FATSDB.PreventiveMaintenance_DELETE_BYID)
 router.delete("/CleaningWorks_DELETE_BYID/:RequestNumber", FATSDB.CleaningWorks_DELETE_BYID)
-router.delete("/AssetTransactions_DELETE_BYID:AssetItemTagID",FATSDB.AssetTransactions_DELETE_BYID)
+router.delete("/AssetTransactions_DELETE_BYID/:AssetItemTagID",FATSDB.AssetTransactions_DELETE_BYID)
 //----------------------------------------------------------------------------////
 export default router;
