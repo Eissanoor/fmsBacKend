@@ -30,6 +30,7 @@ router.use("/profile", express.static("uploads"));
 const cpUpload = upload.fields([
   { name: "EmployeeImage" },
   { name: "selfieIDImage" },
+  { name: "AssetImage" },
 ]);
 //----------------POST_API---------------------------------------------------------
 router.post("/AddworkRequestPOST", FATSDB.AddworkRequestPOST);
@@ -89,7 +90,7 @@ router.post("/Gender_post", FATSDB.Gender_post);
 router.post("/Title_post", FATSDB.Title_post);
 router.post("/MaritalStatus_post", FATSDB.MaritalStatus_post);
 router.post("/Nationality_post", FATSDB.Nationality_post);
-router.post("/AssetsMaster_post", FATSDB.AssetsMaster_post);
+router.post("/AssetsMaster_post", cpUpload, FATSDB.AssetsMaster_post);
 router.post("/AssetType_post", FATSDB.AssetType_post);
 router.post("/AssetCategory_post", FATSDB.AssetCategory_post);
 router.post("/AssetSubCategory_post", FATSDB.AssetSubCategory_post);

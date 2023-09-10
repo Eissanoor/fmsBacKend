@@ -1085,8 +1085,22 @@ const DaysCode= req.body.DaysCode
   },
   async AssetsMaster_post(req, res, next) {
     try {
+       const file = req.files["AssetImage"];
+
+    const url = file ? `http://gs1ksa.org:3021/api/profile/${file[0].filename}` : null;
       let pool = await sql.connect(config);
- const AssetItemDescription = req.body.AssetItemDescription
+      const AssetItemDescription = req.body.AssetItemDescription
+      if (!req.body.AssetItemDescription) {
+      return res.status(400).json({ error: "Asset Item Description is required!" });
+      }
+        const checkQuery = `SELECT * FROM tblAssetsMaster WHERE AssetItemDescription=@AssetItemDescription`;
+    const checkResult = await pool.request()
+      .input("AssetItemDescription", sql.VarChar, AssetItemDescription)
+      .query(checkQuery);
+
+    if (checkResult.recordset.length > 0) {
+      return res.status(400).json({ error: "Asset Item Description already exists!" });
+    }
       let data = await pool
         .request()
         .input(
@@ -1101,7 +1115,7 @@ const DaysCode= req.body.DaysCode
         .input("Manufacturer", sql.VarChar, req.body.Manufacturer)
         .input("Model", sql.VarChar, req.body.Model)
         .input("Brand", sql.VarChar, req.body.Brand)
-
+.input("AssetImage", sql.VarChar, url)
         .input("PurchaseDate", sql.VarChar, req.body.PurchaseDate)
         .input("PurchaseAmount", sql.Numeric, req.body.PurchaseAmount)
         .input("Warranty", sql.Int, req.body.Warranty)
@@ -1132,7 +1146,7 @@ const DaysCode= req.body.DaysCode
                        ,[Manufacturer]
                        ,[Model]
                        ,[Brand]
-
+,[AssetImage]
                        ,[PurchaseDate]
                        ,[PurchaseAmount]
                        ,[Warranty]
@@ -1163,7 +1177,7 @@ const DaysCode= req.body.DaysCode
                            ,@Manufacturer
                             ,@Model
                              ,@Brand
-
+,@AssetImage
                              ,@PurchaseDate
                         ,@PurchaseAmount
                          ,@Warranty
