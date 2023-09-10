@@ -2059,6 +2059,94 @@ if (VendorID=="") {
       res.status(500).json({ error: `${error}` });
     } 
   },
+   async AssetTransactions_post(req, res, next)
+  {
+    const AssetItemTagID = req.body.AssetItemTagID
+    
+    try {
+      
+      if (AssetItemTagID === "") {
+        res.status(405).json({ error: "AssetItemTagID is required" });
+      } else {
+        let pool = await sql.connect(config);
+
+        // Check if the RequestNumber already exists
+        const existingRecord = await pool
+          .request()
+          .query(
+            `SELECT TOP 1 * FROM tblAssetTransactions WHERE AssetItemTagID = '${AssetItemTagID}'`
+          );
+
+        if (existingRecord.recordset.length > 0) {
+          // A record with the same RequestNumber already exists
+          res.status(409).json({ error: "AssetItemTagID already exists" });
+        } else {
+          let pool = await sql.connect(config);
+
+          let data = await pool
+            .request()
+            .input("AssetItemTagID", sql.VarChar, req.body.AssetItemTagID)
+       
+            .input("AssetCondition", sql.VarChar, req.body.AssetCondition)
+            .input("AssetItemDescription", sql.VarChar, req.body.AssetItemDescription)
+            .input("SerialNumber", sql.VarChar, req.body.SerialNumber)
+            .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
+            .input("CaptureDateTime", sql.VarChar, req.body.CaptureDateTime)
+            .input("ScannedDateTime", sql.VarChar, req.body.ScannedDateTime)
+            .input("BuildingCode", sql.VarChar, req.body.BuildingCode)
+            .input("DepartmentCode", sql.VarChar, req.body.DepartmentCode)
+            .input("LocationCode", sql.VarChar, req.body.LocationCode)
+           
+
+            .query(
+              ` 
+            INSERT INTO [dbo].[tblAssetTransactions]
+                       ([AssetItemTagID]
+                      
+                         ,[AssetCondition]
+                        ,[AssetItemDescription]
+                         ,[SerialNumber]
+                         ,[EmployeeID]
+                        ,[CaptureDateTime]
+                         ,[ScannedDateTime]
+                        ,[BuildingCode]
+                         ,[DepartmentCode]
+                         ,[LocationCode]
+                                              
+      
+                        )
+                 VALUES
+                       (@AssetItemTagID
+                       
+                       ,@AssetCondition
+                       ,@AssetItemDescription
+                       ,@SerialNumber
+                       ,@EmployeeID
+                       ,@CaptureDateTime
+                       ,@ScannedDateTime
+                       ,@BuildingCode
+                       ,@DepartmentCode
+                       ,@LocationCode
+                      
+                       
+                    
+                                           
+                       )`
+            );
+          let data1 = await pool
+            .request()
+
+            .query(
+              `select * from tblAssetTransactions where AssetItemTagID='${AssetItemTagID}'`
+            );
+          res.status(201).json(data1);
+        }
+      }
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    } 
+  },
   //
   //-----------------------------------------------------------------------------------
 
@@ -3193,6 +3281,50 @@ SET
 ,[SchedulingPriority] =@SchedulingPriority
 ,[Intruction_Remarks] =@Intruction_Remarks
 WHERE RequestNumber='${RequestNumber}'`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async AssetTransactions_Put(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const AssetItemTagID = req.params.AssetItemTagID;
+      let data = await pool
+        .request()
+
+        
+   
+       
+        .input("AssetCondition", sql.VarChar, req.body.AssetCondition)
+            .input("AssetItemDescription", sql.VarChar, req.body.AssetItemDescription)
+            .input("SerialNumber", sql.VarChar, req.body.SerialNumber)
+            .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
+            .input("CaptureDateTime", sql.VarChar, req.body.CaptureDateTime)
+            .input("ScannedDateTime", sql.VarChar, req.body.ScannedDateTime)
+            .input("BuildingCode", sql.VarChar, req.body.BuildingCode)
+            .input("DepartmentCode", sql.VarChar, req.body.DepartmentCode)
+            .input("LocationCode", sql.VarChar, req.body.LocationCode)
+        
+        .query(
+          ` 
+          UPDATE [dbo].[tblAssetTransactions]
+SET
+
+
+[AssetCondition] =@AssetCondition
+,[AssetItemDescription] =@AssetItemDescription
+,[SerialNumber] =@SerialNumber
+,[EmployeeID] =@EmployeeID
+,[CaptureDateTime] =@CaptureDateTime
+,[DepartmentCode] =@DepartmentCode
+,[BuildingCode] =@BuildingCode
+,[LocationCode] =@LocationCode
+,[ScannedDateTime] =@ScannedDateTime
+
+WHERE AssetItemTagID='${AssetItemTagID}'`
         );
       res.status(201).json(data);
     } catch (error) {
@@ -4565,6 +4697,32 @@ WHERE RequestNumber='${RequestNumber}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async AssetTransactions_GET_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const AssetItemTagID = req.params.AssetItemTagID;
+      let data = await pool
+        .request()
+
+        .query(
+          `select * from tblAssetTransactions where AssetItemTagID='${AssetItemTagID}'`
+        );
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async AssetTransactions_GET_LIST(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      let data = await pool.request().query(`select * from tblAssetTransactions`);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-----------------------------------------------------------------------------------
 
   //---------------------------DELETE--------------------------------------------------------
@@ -5143,6 +5301,23 @@ WHERE RequestNumber = '${RequestNumber}'`
 
         .query(
           `delete from tblCleaningWorks where RequestNumber='${RequestNumber}'`
+        );
+      console.log(data);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+   async AssetTransactions_DELETE_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const AssetItemTagID = req.params.AssetItemTagID;
+      let data = await pool
+        .request()
+
+        .query(
+          `delete from tblAssetTransactions where AssetItemTagID='${AssetItemTagID}'`
         );
       console.log(data);
       res.status(200).json(data);
