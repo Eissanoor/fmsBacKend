@@ -273,7 +273,8 @@ router.get("/SchedPriority_GET_LIST", FATSDB.SchedPriority_GET_LIST)
 router.get("/CleaningGroup_GET_LIST", FATSDB.CleaningGroup_GET_LIST)
 router.get("/CleaningGroup_GET_BYID/:CleaningGroupCode", FATSDB.CleaningGroup_GET_BYID)
 router.get("/AssetTransactions_GET_BYID/:AssetItemTagID", FATSDB.AssetTransactions_GET_BYID)
-router.get("/AssetTransactions_GET_LIST",FATSDB.AssetTransactions_GET_LIST)
+router.get("/AssetTransactions_GET_LIST", FATSDB.AssetTransactions_GET_LIST)
+router.get("/Filter_AssetsMaster",FATSDB.Filter_AssetsMaster)
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);
