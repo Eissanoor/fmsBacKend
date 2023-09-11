@@ -2195,7 +2195,8 @@ if (VendorID=="") {
     }
   },
    async UserCredentials_post(req, res, next)
-  {
+   {
+     let pool = await sql.connect(config);
     const EmployeeID = req.body.EmployeeID
     
     try {
@@ -2212,7 +2213,7 @@ if (!EmployeeID) {
       return res.status(409).json({ error: "EmployeeID already exists" });
     }
 else {
-       let pool = await sql.connect(config);
+       
 
       let data = await pool
         .request()
