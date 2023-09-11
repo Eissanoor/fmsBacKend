@@ -2199,9 +2199,19 @@ if (VendorID=="") {
     const EmployeeID = req.body.EmployeeID
     
     try {
-if (EmployeeID=="") {
-      res.status(404).json({error:"EmployeeID is required"});
-    } else {
+if (!EmployeeID) {
+      return res.status(400).json({ error: "EmployeeID is required!" });
+    }
+
+    const existingRecord = await pool
+      .request()
+      .input('EmployeeID', sql.VarChar, EmployeeID)
+      .query('SELECT TOP 1 * FROM tblUserCredentials WHERE EmployeeID = @EmployeeID');
+
+    if (existingRecord.recordset.length > 0) {
+      return res.status(409).json({ error: "EmployeeID already exists" });
+    }
+else {
        let pool = await sql.connect(config);
 
       let data = await pool
