@@ -107,7 +107,8 @@ router.post("/AssetItemGroup_post", FATSDB.AssetItemGroup_post)
 router.post("/PreventiveMaintenance_post", FATSDB.PreventiveMaintenance_post)
 router.post("/CleaningWorks_post", FATSDB.CleaningWorks_post)
 router.post("/AssetTransactions_post", FATSDB.AssetTransactions_post)
-router.post("/UserAuthority_post",FATSDB.UserAuthority_post)
+router.post("/UserAuthority_post", FATSDB.UserAuthority_post)
+router.post("/UserCredentials_post",FATSDB.UserCredentials_post)
 //--------------------------------------------------------------------------
 
 //-------------------------------GET_API---------------------------------------------
@@ -277,7 +278,9 @@ router.get("/AssetTransactions_GET_BYID/:AssetItemTagID", FATSDB.AssetTransactio
 router.get("/AssetTransactions_GET_LIST", FATSDB.AssetTransactions_GET_LIST)
 router.get("/Filter_AssetsMaster", FATSDB.Filter_AssetsMaster)
 router.get("/UserAuthority_GET_LIST",FATSDB.UserAuthority_GET_LIST)
-router.get("/UserAuthority_GET_BYID/:UserAuthorityCode",FATSDB.UserAuthority_GET_BYID)
+router.get("/UserAuthority_GET_BYID/:UserAuthorityCode", FATSDB.UserAuthority_GET_BYID)
+router.get("/UserCredentials_GET_BYID/:EmployeeID", FATSDB.UserCredentials_GET_BYID)
+router.get("/UserCredentials_GET_LIST",FATSDB.UserCredentials_GET_LIST)
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);
@@ -333,7 +336,8 @@ router.put("/VendorIDCount_Put/:No", FATSDB.VendorIDCount_Put)
 router.put("/PreventiveMaintenance_Put/:RequestNumber", FATSDB.PreventiveMaintenance_Put)
 router.put("/CleaningWorks_Put/:RequestNumber", FATSDB.CleaningWorks_Put)
 router.put("/AssetTransactions_Put/:AssetItemTagID", FATSDB.AssetTransactions_Put)
-router.put("/UserAuthority_Put/:UserAuthorityCode",FATSDB.UserAuthority_Put)
+router.put("/UserAuthority_Put/:UserAuthorityCode", FATSDB.UserAuthority_Put)
+router.put("/UserCredentials_Put/:EmployeeID",FATSDB.UserCredentials_Put)
 //--------------------------------------------------------------------------------
 //-----------------------------------DELETE_API-----------------------------------------
 router.delete(
@@ -432,6 +436,7 @@ router.delete("/AssetItemGroup_DELETE_BYID/:AssetItemGroupCode", FATSDB.AssetIte
 router.delete("/PreventiveMaintenance_DELETE_BYID/:RequestNumber", FATSDB.PreventiveMaintenance_DELETE_BYID)
 router.delete("/CleaningWorks_DELETE_BYID/:RequestNumber", FATSDB.CleaningWorks_DELETE_BYID)
 router.delete("/AssetTransactions_DELETE_BYID/:AssetItemTagID", FATSDB.AssetTransactions_DELETE_BYID)
-router.delete("/UserAuthority_DELETE_BYID/:UserAuthorityCode",FATSDB.UserAuthority_DELETE_BYID)
+router.delete("/UserAuthority_DELETE_BYID/:UserAuthorityCode", FATSDB.UserAuthority_DELETE_BYID)
+router.delete("/UserCredentials_DELETE_BYID/:EmployeeID",FATSDB.UserCredentials_DELETE_BYID)
 //----------------------------------------------------------------------------////
 export default router;

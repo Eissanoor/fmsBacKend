@@ -2151,18 +2151,18 @@ if (VendorID=="") {
     try {
       let pool = await sql.connect(config);
       const UserAuthorityCode = req.body.UserAuthorityCode;
-      if (UserAuthorityCode == "") {
-        res.status(201).json({error:"UserAuthorityCode is required!"});
-      } const existingRecord = await pool
-          .request()
-          .query(
-            `SELECT TOP 1 * FROM prmUserAuthority WHERE UserAuthorityCode = '${UserAuthorityCode}'`
-          );
+      if (!UserAuthorityCode) {
+      return res.status(400).json({ error: "UserAuthorityCode is required!" });
+    }
 
-        if (existingRecord.recordset.length > 0) {
-          // A record with the same RequestNumber already exists
-          res.status(409).json({ error: "UserAuthorityCode already exists" });
-        }
+    const existingRecord = await pool
+      .request()
+      .input('UserAuthorityCode', sql.VarChar, UserAuthorityCode)
+      .query('SELECT TOP 1 * FROM prmUserAuthority WHERE UserAuthorityCode = @UserAuthorityCode');
+
+    if (existingRecord.recordset.length > 0) {
+      return res.status(409).json({ error: "UserAuthorityCode already exists" });
+    }
       let data = await pool
         .request()
         .input("UserAuthoritySeq", sql.SmallInt, req.body.UserAuthoritySeq)
@@ -2194,7 +2194,72 @@ if (VendorID=="") {
       res.status(500).json({ error: `${error}` });
     }
   },
-   
+   async UserCredentials_post(req, res, next)
+  {
+    const EmployeeID = req.body.EmployeeID
+    
+    try {
+if (EmployeeID=="") {
+      res.status(404).json({error:"EmployeeID is required"});
+    } else {
+       let pool = await sql.connect(config);
+
+      let data = await pool
+        .request()
+        .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
+       
+        .input("UserAuthorityCode", sql.VarChar, req.body.UserAuthorityCode)
+        .input("UserID", sql.VarChar, req.body.UserID)
+        .input("UserPassword", sql.VarChar, req.body.UserPassword)
+        .input("WindowsID", sql.VarChar, req.body.WindowsID)
+        .input("WindowsPassword", sql.VarChar, req.body.WindowsPassword)
+        .input("CreatedByAdminID", sql.VarChar, req.body.CreatedByAdminID)
+        .input("CreationDateTime", sql.VarChar, req.body.ContactLandlineNumber)
+       
+       
+
+
+        .query(
+          ` 
+            INSERT INTO [dbo].[tblUserCredentials]
+                       ([EmployeeID]
+                      
+                         ,[UserAuthorityCode]
+                        ,[UserID]
+                         ,[UserPassword]
+                         ,[WindowsID]
+                        ,[WindowsPassword]
+                         ,[CreatedByAdminID]
+                        ,[CreationDateTime]
+
+                        )
+                 VALUES
+                       (@EmployeeID
+                       
+                       ,@UserAuthorityCode
+                       ,@UserID
+                       ,@UserPassword
+                       ,@WindowsID
+                       ,@WindowsPassword
+                       ,@CreatedByAdminID
+                       ,@CreationDateTime
+                     
+                       )`
+        );
+       let data1 = await pool
+        .request()
+
+        .query(
+          `select * from tblUserCredentials where EmployeeID='${EmployeeID}'`
+        );
+      res.status(201).json(data1);
+    }
+     
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //
   //-----------------------------------------------------------------------------------
 
@@ -3397,6 +3462,45 @@ SET
 [UserAuthoritySeq] =@UserAuthoritySeq
 ,[UserAuthorityDesc] =@UserAuthorityDesc
 WHERE UserAuthorityCode='${UserAuthorityCode}'`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async UserCredentials_Put(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const EmployeeID = req.params.EmployeeID;
+      let data = await pool
+        .request()
+
+ 
+        .input("UserAuthorityCode", sql.VarChar, req.body.UserAuthorityCode)
+        .input("UserID", sql.VarChar, req.body.UserID)
+        .input("UserPassword", sql.VarChar, req.body.UserPassword)
+        .input("WindowsID", sql.VarChar, req.body.WindowsID)
+        .input("WindowsPassword", sql.VarChar, req.body.WindowsPassword)
+        .input("CreatedByAdminID", sql.VarChar, req.body.CreatedByAdminID)
+        .input("CreationDateTime", sql.VarChar, req.body.ContactLandlineNumber)
+        
+        .query(
+          ` 
+          UPDATE [dbo].[tblUserCredentials]
+SET
+
+
+[UserAuthorityCode] =@UserAuthorityCode
+,[UserID] =@UserID
+,[UserPassword] =@UserPassword
+,[WindowsID] =@WindowsID
+,[WindowsPassword] =@WindowsPassword
+,[CreatedByAdminID] =@CreatedByAdminID
+,[CreationDateTime] =@CreationDateTime
+
+
+WHERE EmployeeID='${EmployeeID}'`
         );
       res.status(201).json(data);
     } catch (error) {
@@ -4821,6 +4925,32 @@ WHERE UserAuthorityCode='${UserAuthorityCode}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async UserCredentials_GET_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const EmployeeID = req.params.EmployeeID;
+      let data = await pool
+        .request()
+
+        .query(
+          `select * from tblUserCredentials where EmployeeID='${EmployeeID}'`
+        );
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async UserCredentials_GET_LIST(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      let data = await pool.request().query(`select * from tblUserCredentials`);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-----------------------------------------------------------------------------------
 
   //---------------------------DELETE--------------------------------------------------------
@@ -5433,6 +5563,23 @@ WHERE RequestNumber = '${RequestNumber}'`
 
         .query(
           `delete from prmUserAuthority where UserAuthorityCode='${UserAuthorityCode}'`
+        );
+      console.log(data);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+   async UserCredentials_DELETE_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const EmployeeID = req.params.EmployeeID;
+      let data = await pool
+        .request()
+
+        .query(
+          `delete from tblUserCredentials where EmployeeID='${EmployeeID}'`
         );
       console.log(data);
       res.status(200).json(data);
