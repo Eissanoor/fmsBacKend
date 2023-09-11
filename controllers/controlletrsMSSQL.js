@@ -2296,7 +2296,7 @@ else {
     const existingRecord2 = await pool
       .request()
       .input('UserAuthorityCode', sql.VarChar, UserAuthorityCode)
-      .query('SELECT TOP 1 * FROM tblUserSystemAccess WHERE UserAuthorityCode = @EmployUserAuthorityCodeeeID');
+      .query('SELECT TOP 1 * FROM tblUserSystemAccess WHERE UserAuthorityCode = @UserAuthorityCode');
 
     if (existingRecord2.recordset.length > 0) {
       return res.status(409).json({ error: "UserAuthorityCode already exists" });
@@ -2308,7 +2308,7 @@ else {
         .input("UserAuthorityAccessYN", sql.VarChar, req.body.UserAuthorityAccessYN)
         
         .input("AddedByAdminID", sql.VarChar, req.body.AddedByAdminID)
-          .input("AddedDateTime", sql.VarChar, req.body.AddedDateTime)
+        .input("AddedDateTime", sql.VarChar, req.body.AddedDateTime)
         .query(
           ` 
             INSERT INTO [dbo].[tblUserSystemAccess]
