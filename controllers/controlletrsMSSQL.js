@@ -2150,7 +2150,19 @@ if (VendorID=="") {
    async UserAuthority_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-     const UserAuthorityCode = req.body.UserAuthorityCode;
+      const UserAuthorityCode = req.body.UserAuthorityCode;
+      if (UserAuthorityCode == "") {
+        res.status(201).json({error:"UserAuthorityCode is required!"});
+      } const existingRecord = await pool
+          .request()
+          .query(
+            `SELECT TOP 1 * FROM prmUserAuthority WHERE UserAuthorityCode = '${UserAuthorityCode}'`
+          );
+
+        if (existingRecord.recordset.length > 0) {
+          // A record with the same RequestNumber already exists
+          res.status(409).json({ error: "UserAuthorityCode already exists" });
+        }
       let data = await pool
         .request()
         .input("UserAuthoritySeq", sql.SmallInt, req.body.UserAuthoritySeq)
@@ -2182,6 +2194,7 @@ if (VendorID=="") {
       res.status(500).json({ error: `${error}` });
     }
   },
+   
   //
   //-----------------------------------------------------------------------------------
 
