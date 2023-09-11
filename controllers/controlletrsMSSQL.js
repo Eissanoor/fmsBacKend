@@ -2271,6 +2271,75 @@ else {
       res.status(500).json({ error: `${error}` });
     }
   },
+   async UserSystemAccess_post(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const EmployeeID = req.body.EmployeeID;
+      const UserAuthorityCode = req.body.UserAuthorityCode;
+      if (!EmployeeID) {
+      return res.status(400).json({ error: "EmployeeID is required!" });
+    }
+
+    const existingRecord = await pool
+      .request()
+      .input('EmployeeID', sql.VarChar, EmployeeID)
+      .query('SELECT TOP 1 * FROM tblUserSystemAccess WHERE EmployeeID = @EmployeeID');
+
+    if (existingRecord.recordset.length > 0) {
+      return res.status(409).json({ error: "EmployeeID already exists" });
+      }
+      
+       if (!UserAuthorityCode) {
+      return res.status(400).json({ error: "UserAuthorityCode is required!" });
+    }
+
+    const existingRecord2 = await pool
+      .request()
+      .input('UserAuthorityCode', sql.VarChar, UserAuthorityCode)
+      .query('SELECT TOP 1 * FROM tblUserSystemAccess WHERE UserAuthorityCode = @EmployUserAuthorityCodeeeID');
+
+    if (existingRecord2.recordset.length > 0) {
+      return res.status(409).json({ error: "UserAuthorityCode already exists" });
+    }
+      let data = await pool
+        .request()
+        .input("EmployeeID", sql.VarChar, req.body.UserAuthoEmployeeIDritySeq)
+        .input("UserAuthorityCode", sql.VarChar, req.body.UserAuthorityCode)
+        .input("UserAuthorityAccessYN", sql.VarChar, req.body.UserAuthorityAccessYN)
+        
+        .input("AddedByAdminID", sql.VarChar, req.body.AddedByAdminID)
+          .input("AddedDateTime", sql.VarChar, req.body.AddedDateTime)
+        .query(
+          ` 
+            INSERT INTO [dbo].[tblUserSystemAccess]
+                       ([EmployeeID]
+                       ,[UserAuthorityCode]
+                        ,[UserAuthorityAccessYN]
+
+                        ,[AddedByAdminID]
+                        ,[AddedDateTime]
+                        )
+                 VALUES
+                       (@EmployeeID
+                       ,@UserAuthorityCode
+                      ,@UserAuthorityAccessYN
+
+                      ,@AddedByAdminID
+                      ,@AddedDateTime
+                       )`
+        );
+      let data1 = await pool
+        .request()
+
+        .query(
+          `select * from tblUserSystemAccess where EmployeeID='${EmployeeID}'`
+        );
+      res.status(201).json(data1);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //
   //-----------------------------------------------------------------------------------
 

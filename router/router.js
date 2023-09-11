@@ -108,7 +108,8 @@ router.post("/PreventiveMaintenance_post", FATSDB.PreventiveMaintenance_post)
 router.post("/CleaningWorks_post", FATSDB.CleaningWorks_post)
 router.post("/AssetTransactions_post", FATSDB.AssetTransactions_post)
 router.post("/UserAuthority_post", FATSDB.UserAuthority_post)
-router.post("/UserCredentials_post",FATSDB.UserCredentials_post)
+router.post("/UserCredentials_post", FATSDB.UserCredentials_post)
+router.post("/UserSystemAccess_post",FATSDB.UserSystemAccess_post)
 //--------------------------------------------------------------------------
 
 //-------------------------------GET_API---------------------------------------------
