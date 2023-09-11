@@ -2147,6 +2147,41 @@ if (VendorID=="") {
       res.status(500).json({ error: `${error}` });
     } 
   },
+   async UserAuthority_post(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+     const UserAuthorityCode = req.body.UserAuthorityCode;
+      let data = await pool
+        .request()
+        .input("UserAuthoritySeq", sql.SmallInt, req.body.UserAuthoritySeq)
+        .input("UserAuthorityCode", sql.VarChar, req.body.UserAuthorityCode)
+.input("UserAuthorityDesc", sql.VarChar, req.body.UserAuthorityDesc)
+        .query(
+          ` 
+            INSERT INTO [dbo].[prmUserAuthority]
+                       ([UserAuthoritySeq]
+                       ,[UserAuthorityCode]
+                        ,[UserAuthorityDesc]
+                        )
+                 VALUES
+                       (@UserAuthoritySeq
+                       ,@UserAuthorityCode
+                      ,@UserAuthorityDesc
+
+                       )`
+        );
+      let data1 = await pool
+        .request()
+
+        .query(
+          `select * from prmUserAuthority where UserAuthorityCode='${UserAuthorityCode}'`
+        );
+      res.status(201).json(data1);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //
   //-----------------------------------------------------------------------------------
 
@@ -3325,6 +3360,30 @@ SET
 ,[ScannedDateTime] =@ScannedDateTime
 
 WHERE AssetItemTagID='${AssetItemTagID}'`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async UserAuthority_Put(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const UserAuthorityCode = req.params.UserAuthorityCode;
+      let data = await pool
+        .request()
+
+        .input("UserAuthoritySeq", sql.SmallInt, req.body.UserAuthoritySeq)
+.input("UserAuthorityDesc", sql.VarChar, req.body.UserAuthorityDesc)
+        .query(
+          ` 
+          UPDATE [dbo].[prmUserAuthority]
+SET
+
+[UserAuthoritySeq] =@UserAuthoritySeq
+,[UserAuthorityDesc] =@UserAuthorityDesc
+WHERE UserAuthorityCode='${UserAuthorityCode}'`
         );
       res.status(201).json(data);
     } catch (error) {
@@ -4723,6 +4782,32 @@ WHERE AssetItemTagID='${AssetItemTagID}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async UserAuthority_GET_LIST(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      let data = await pool.request().query(`select * from prmUserAuthority`);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async UserAuthority_GET_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const UserAuthorityCode = req.params.UserAuthorityCode;
+      let data = await pool
+        .request()
+
+        .query(
+          `select * from prmUserAuthority where UserAuthorityCode='${UserAuthorityCode}'`
+        );
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-----------------------------------------------------------------------------------
 
   //---------------------------DELETE--------------------------------------------------------
@@ -5318,6 +5403,23 @@ WHERE RequestNumber = '${RequestNumber}'`
 
         .query(
           `delete from tblAssetTransactions where AssetItemTagID='${AssetItemTagID}'`
+        );
+      console.log(data);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+   async UserAuthority_DELETE_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const UserAuthorityCode = req.params.UserAuthorityCode;
+      let data = await pool
+        .request()
+
+        .query(
+          `delete from prmUserAuthority where UserAuthorityCode='${UserAuthorityCode}'`
         );
       console.log(data);
       res.status(200).json(data);
