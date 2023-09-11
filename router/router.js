@@ -283,7 +283,8 @@ router.get("/UserAuthority_GET_BYID/:UserAuthorityCode", FATSDB.UserAuthority_GE
 router.get("/UserCredentials_GET_BYID/:EmployeeID", FATSDB.UserCredentials_GET_BYID)
 router.get("/UserCredentials_GET_LIST", FATSDB.UserCredentials_GET_LIST)
 router.get("/UserSystemAccess_GET_LIST", FATSDB.UserSystemAccess_GET_LIST)
-router.get("/UserSystemAccess_GET_BYID/:EmployeeID",FATSDB.UserSystemAccess_GET_BYID)
+router.get("/UserSystemAccess_GET_BYID/:EmployeeID", FATSDB.UserSystemAccess_GET_BYID)
+router.get("/UserAuthority_GET_DropdownList",FATSDB.UserAuthority_GET_DropdownList)
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);
