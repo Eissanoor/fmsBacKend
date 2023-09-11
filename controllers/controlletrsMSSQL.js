@@ -3588,6 +3588,30 @@ WHERE EmployeeID='${EmployeeID}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async UserSystemAccess_Put(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const EmployeeID = req.params.EmployeeID;
+      let data = await pool
+        .request()
+
+        .input("UserAuthorityAccessYN", sql.VarChar, req.body.UserAuthorityAccessYN)
+.input("AddedByAdminID", sql.VarChar, req.body.AddedByAdminID)
+        .query(
+          ` 
+          UPDATE [dbo].[tblUserSystemAccess]
+SET
+
+[UserAuthorityAccessYN] =@UserAuthorityAccessYN
+,[AddedByAdminID] =@AddedByAdminID
+WHERE EmployeeID='${EmployeeID}'`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-------------------------------------------------------------------------------------
 
   //---------------------------GET--------------------------------------------------------
@@ -5031,6 +5055,32 @@ WHERE EmployeeID='${EmployeeID}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async UserSystemAccess_GET_LIST(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      let data = await pool.request().query(`select * from tblUserSystemAccess`);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async UserSystemAccess_GET_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const EmployeeID = req.params.EmployeeID;
+      let data = await pool
+        .request()
+
+        .query(
+          `select * from tblUserSystemAccess where EmployeeID='${EmployeeID}'`
+        );
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-----------------------------------------------------------------------------------
 
   //---------------------------DELETE--------------------------------------------------------
@@ -5660,6 +5710,23 @@ WHERE RequestNumber = '${RequestNumber}'`
 
         .query(
           `delete from tblUserCredentials where EmployeeID='${EmployeeID}'`
+        );
+      console.log(data);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+   async UserSystemAccess_DELETE_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const EmployeeID = req.params.EmployeeID;
+      let data = await pool
+        .request()
+
+        .query(
+          `delete from tblUserSystemAccess where EmployeeID='${EmployeeID}'`
         );
       console.log(data);
       res.status(200).json(data);

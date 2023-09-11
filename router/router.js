@@ -281,7 +281,9 @@ router.get("/Filter_AssetsMaster", FATSDB.Filter_AssetsMaster)
 router.get("/UserAuthority_GET_LIST",FATSDB.UserAuthority_GET_LIST)
 router.get("/UserAuthority_GET_BYID/:UserAuthorityCode", FATSDB.UserAuthority_GET_BYID)
 router.get("/UserCredentials_GET_BYID/:EmployeeID", FATSDB.UserCredentials_GET_BYID)
-router.get("/UserCredentials_GET_LIST",FATSDB.UserCredentials_GET_LIST)
+router.get("/UserCredentials_GET_LIST", FATSDB.UserCredentials_GET_LIST)
+router.get("/UserSystemAccess_GET_LIST", FATSDB.UserSystemAccess_GET_LIST)
+router.get("/UserSystemAccess_GET_BYID/:EmployeeID",FATSDB.UserSystemAccess_GET_BYID)
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);
@@ -338,7 +340,8 @@ router.put("/PreventiveMaintenance_Put/:RequestNumber", FATSDB.PreventiveMainten
 router.put("/CleaningWorks_Put/:RequestNumber", FATSDB.CleaningWorks_Put)
 router.put("/AssetTransactions_Put/:AssetItemTagID", FATSDB.AssetTransactions_Put)
 router.put("/UserAuthority_Put/:UserAuthorityCode", FATSDB.UserAuthority_Put)
-router.put("/UserCredentials_Put/:EmployeeID",FATSDB.UserCredentials_Put)
+router.put("/UserCredentials_Put/:EmployeeID", FATSDB.UserCredentials_Put)
+router.put("/UserSystemAccess_Put/:EmployeeID",FATSDB.UserSystemAccess_Put)
 //--------------------------------------------------------------------------------
 //-----------------------------------DELETE_API-----------------------------------------
 router.delete(
@@ -438,6 +441,7 @@ router.delete("/PreventiveMaintenance_DELETE_BYID/:RequestNumber", FATSDB.Preven
 router.delete("/CleaningWorks_DELETE_BYID/:RequestNumber", FATSDB.CleaningWorks_DELETE_BYID)
 router.delete("/AssetTransactions_DELETE_BYID/:AssetItemTagID", FATSDB.AssetTransactions_DELETE_BYID)
 router.delete("/UserAuthority_DELETE_BYID/:UserAuthorityCode", FATSDB.UserAuthority_DELETE_BYID)
-router.delete("/UserCredentials_DELETE_BYID/:EmployeeID",FATSDB.UserCredentials_DELETE_BYID)
+router.delete("/UserCredentials_DELETE_BYID/:EmployeeID", FATSDB.UserCredentials_DELETE_BYID)
+router.delete("/UserSystemAccess_DELETE_BYID/:EmployeeID",FATSDB.UserSystemAccess_DELETE_BYID)
 //----------------------------------------------------------------------------////
 export default router;
