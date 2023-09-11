@@ -2303,7 +2303,7 @@ else {
     }
       let data = await pool
         .request()
-        .input("EmployeeID", sql.VarChar, req.body.UserAuthoEmployeeIDritySeq)
+        .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
         .input("UserAuthorityCode", sql.VarChar, req.body.UserAuthorityCode)
         .input("UserAuthorityAccessYN", sql.VarChar, req.body.UserAuthorityAccessYN)
         
