@@ -2340,6 +2340,83 @@ else {
       res.status(500).json({ error: `${error}` });
     }
   },
+   async PurchaseRequest_post(req, res, next)
+   {
+     let pool = await sql.connect(config);
+    const PurchaseRequestNumber = req.body.PurchaseRequestNumber
+    
+    try {
+if (!PurchaseRequestNumber) {
+      return res.status(400).json({ error: "PurchaseRequestNumber is required!" });
+    }
+
+    const existingRecord = await pool
+      .request()
+      .input('PurchaseRequestNumber', sql.VarChar, PurchaseRequestNumber)
+      .query('SELECT TOP 1 * FROM tblPurchaseRequest WHERE PurchaseRequestNumber = @PurchaseRequestNumber');
+
+    if (existingRecord.recordset.length > 0) {
+      return res.status(409).json({ error: "PurchaseRequestNumber already exists" });
+    }
+else {
+       
+
+      let data = await pool
+        .request()
+        .input("PurchaseRequestNumber", sql.VarChar, req.body.PurchaseRequestNumber)
+       
+        .input("RequestDate", sql.VarChar, req.body.RequestDate)
+        .input("RequiredDate", sql.VarChar, req.body.RequiredDate)
+        .input("RequestByEmployeeID", sql.VarChar, req.body.RequestByEmployeeID)
+        .input("Purpose", sql.VarChar, req.body.Purpose)
+        .input("VATInclude", sql.VarChar, req.body.VATInclude)
+        .input("VendorID", sql.VarChar, req.body.VendorID)
+        .input("VerifiedByEmpl", sql.VarChar, req.body.VerifiedByEmpl)
+       
+       
+
+
+        .query(
+          ` 
+            INSERT INTO [dbo].[tblPurchaseRequest]
+                       ([PurchaseRequestNumber]
+                      
+                         ,[RequestDate]
+                        ,[RequiredDate]
+                         ,[RequestByEmployeeID]
+                         ,[Purpose]
+                        ,[VATInclude]
+                         ,[VendorID]
+                        ,[VerifiedByEmpl]
+
+                        )
+                 VALUES
+                       (@PurchaseRequestNumber
+                       
+                       ,@RequestDate
+                       ,@RequiredDate
+                       ,@RequestByEmployeeID
+                       ,@Purpose
+                       ,@VATInclude
+                       ,@VendorID
+                       ,@VerifiedByEmpl
+                     
+                       )`
+        );
+       let data1 = await pool
+        .request()
+
+        .query(
+          `select * from tblPurchaseRequest where PurchaseRequestNumber='${PurchaseRequestNumber}'`
+        );
+      res.status(201).json(data1);
+    }
+     
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //
   //-----------------------------------------------------------------------------------
 
@@ -3605,6 +3682,45 @@ SET
 [UserAuthorityAccessYN] =@UserAuthorityAccessYN
 ,[AddedByAdminID] =@AddedByAdminID
 WHERE EmployeeID='${EmployeeID}'`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async PurchaseRequest_Put(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const PurchaseRequestNumber = req.params.PurchaseRequestNumber;
+      let data = await pool
+        .request()
+
+ 
+        .input("RequestDate", sql.VarChar, req.body.RequestDate)
+        .input("RequiredDate", sql.VarChar, req.body.RequiredDate)
+        .input("RequestByEmployeeID", sql.VarChar, req.body.RequestByEmployeeID)
+        .input("Purpose", sql.VarChar, req.body.Purpose)
+        .input("VATInclude", sql.VarChar, req.body.VATInclude)
+        .input("VendorID", sql.VarChar, req.body.VendorID)
+        .input("VerifiedByEmpl", sql.VarChar, req.body.VerifiedByEmpl)
+        
+        .query(
+          ` 
+          UPDATE [dbo].[tblPurchaseRequest]
+SET
+
+
+[RequestDate] =@RequestDate
+,[RequiredDate] =@RequiredDate
+,[RequestByEmployeeID] =@RequestByEmployeeID
+,[Purpose] =@Purpose
+,[VATInclude] =@VATInclude
+,[VendorID] =@VendorID
+,[VerifiedByEmpl] =@VerifiedByEmpl
+
+
+WHERE PurchaseRequestNumber='${PurchaseRequestNumber}'`
         );
       res.status(201).json(data);
     } catch (error) {
@@ -5091,6 +5207,32 @@ WHERE EmployeeID='${EmployeeID}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async PurchaseRequest_GET_List(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      let data = await pool.request().query(`select * from tblPurchaseRequest`);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async PurchaseRequest_GET_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const PurchaseRequestNumber = req.params.PurchaseRequestNumber;
+      let data = await pool
+        .request()
+
+        .query(
+          `select * from tblPurchaseRequest where PurchaseRequestNumber='${PurchaseRequestNumber}'`
+        );
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-----------------------------------------------------------------------------------
 
   //---------------------------DELETE--------------------------------------------------------
@@ -5737,6 +5879,23 @@ WHERE RequestNumber = '${RequestNumber}'`
 
         .query(
           `delete from tblUserSystemAccess where EmployeeID='${EmployeeID}'`
+        );
+      console.log(data);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+   async PurchaseRequest_DELETE_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const PurchaseRequestNumber = req.params.PurchaseRequestNumber;
+      let data = await pool
+        .request()
+
+        .query(
+          `delete from tblPurchaseRequest where PurchaseRequestNumber='${PurchaseRequestNumber}'`
         );
       console.log(data);
       res.status(200).json(data);
