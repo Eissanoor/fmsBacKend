@@ -2417,6 +2417,94 @@ else {
       res.status(500).json({ error: `${error}` });
     }
   },
+   async PurchaseOrder_post(req, res, next)
+   {
+     let pool = await sql.connect(config);
+    const PurchaseOrderNumber = req.body.PurchaseOrderNumber
+    
+    try {
+if (!PurchaseOrderNumber) {
+      return res.status(400).json({ error: "PurchaseOrderNumber is required!" });
+    }
+
+    const existingRecord = await pool
+      .request()
+      .input('PurchaseOrderNumber', sql.VarChar, PurchaseOrderNumber)
+      .query('SELECT TOP 1 * FROM tblPurchaseOrder WHERE PurchaseOrderNumber = @PurchaseOrderNumber');
+
+    if (existingRecord.recordset.length > 0) {
+      return res.status(409).json({ error: "PurchaseOrderNumber already exists" });
+    }
+else {
+       
+
+      let data = await pool
+        .request()
+        .input("PurchaseOrderNumber", sql.VarChar, req.body.PurchaseOrderNumber)
+       
+        .input("PurchaseRequestNumber", sql.VarChar, req.body.PurchaseRequestNumber)
+        .input("PODate", sql.VarChar, req.body.PODate)
+        .input("DeliveryDate", sql.VarChar, req.body.DeliveryDate)
+        .input("ProcessedByEmployeeID", sql.VarChar, req.body.ProcessedByEmployeeID)
+        .input("VATInclude", sql.VarChar, req.body.VATInclude)
+        .input("ApprovedByEmpl", sql.VarChar, req.body.ApprovedByEmpl)
+        .input("ApprovalDate", sql.VarChar, req.body.ApprovalDate)
+       
+       .input("VendorID", sql.VarChar, req.body.VendorID)
+        .input("VendorConfirm", sql.VarChar, req.body.VendorConfirm)
+        .input("ConfirmationDate", sql.VarChar, req.body.ConfirmationDate)
+        .input("Comments", sql.VarChar, req.body.Comments)
+
+
+        .query(
+          ` 
+            INSERT INTO [dbo].[tblPurchaseOrder]
+                       ([PurchaseOrderNumber]
+                      
+                         ,[PurchaseRequestNumber]
+                        ,[PODate]
+                         ,[DeliveryDate]
+                         ,[ProcessedByEmployeeID]
+                        ,[VATInclude]
+                         ,[ApprovedByEmpl]
+                        ,[ApprovalDate]
+
+                        ,[VendorID]
+                        ,[VendorConfirm]
+                         ,[ConfirmationDate]
+                        ,[Comments]
+                        )
+                 VALUES
+                       (@PurchaseOrderNumber
+                       
+                       ,@PurchaseRequestNumber
+                       ,@PODate
+                       ,@DeliveryDate
+                       ,@ProcessedByEmployeeID
+                       ,@VATInclude
+                       ,@ApprovedByEmpl
+                       ,@ApprovalDate
+                     
+                       ,@VendorID
+                       ,@VendorConfirm
+                       ,@ConfirmationDate
+                       ,@Comments
+                       )`
+        );
+       let data1 = await pool
+        .request()
+
+        .query(
+          `select * from tblPurchaseOrder where PurchaseOrderNumber='${PurchaseOrderNumber}'`
+        );
+      res.status(201).json(data1);
+    }
+     
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //
   //-----------------------------------------------------------------------------------
 
@@ -3744,6 +3832,53 @@ SET
 
 [PurchaseOrderNumber] =@PurchaseOrderNumber
 WHERE No='${No}'`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async PurchaseOrder_Put(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const PurchaseOrderNumber = req.params.PurchaseOrderNumber;
+      let data = await pool
+        .request()
+
+ 
+         .input("PurchaseRequestNumber", sql.VarChar, req.body.PurchaseRequestNumber)
+        .input("PODate", sql.VarChar, req.body.PODate)
+        .input("DeliveryDate", sql.VarChar, req.body.DeliveryDate)
+        .input("ProcessedByEmployeeID", sql.VarChar, req.body.ProcessedByEmployeeID)
+        .input("VATInclude", sql.VarChar, req.body.VATInclude)
+        .input("ApprovedByEmpl", sql.VarChar, req.body.ApprovedByEmpl)
+        .input("ApprovalDate", sql.VarChar, req.body.ApprovalDate)
+       
+       .input("VendorID", sql.VarChar, req.body.VendorID)
+        .input("VendorConfirm", sql.VarChar, req.body.VendorConfirm)
+        .input("ConfirmationDate", sql.VarChar, req.body.ConfirmationDate)
+        .input("Comments", sql.VarChar, req.body.Comments)
+        
+        .query(
+          ` 
+          UPDATE [dbo].[tblPurchaseOrder]
+SET
+
+
+[PurchaseRequestNumber] =@PurchaseRequestNumber
+,[PODate] =@PODate
+,[DeliveryDate] =@DeliveryDate
+,[ProcessedByEmployeeID] =@ProcessedByEmployeeID
+,[VATInclude] =@VATInclude
+,[ApprovedByEmpl] =@ApprovedByEmpl
+,[ApprovalDate] =@ApprovalDate
+
+,[VendorID] =@VendorID
+,[VendorConfirm] =@VendorConfirm
+,[ConfirmationDate] =@ConfirmationDate
+,[Comments] =@Comments
+WHERE PurchaseOrderNumber='${PurchaseOrderNumber}'`
         );
       res.status(201).json(data);
     } catch (error) {
@@ -5256,6 +5391,32 @@ WHERE No='${No}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async PurchaseOrder_GET_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const PurchaseOrderNumber = req.params.PurchaseOrderNumber;
+      let data = await pool
+        .request()
+
+        .query(
+          `select * from tblPurchaseOrder where PurchaseOrderNumber='${PurchaseOrderNumber}'`
+        );
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async PurchaseOrder_GET_List(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      let data = await pool.request().query(`select * from tblPurchaseOrder`);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-----------------------------------------------------------------------------------
 
   //---------------------------DELETE--------------------------------------------------------
@@ -5919,6 +6080,23 @@ WHERE RequestNumber = '${RequestNumber}'`
 
         .query(
           `delete from tblPurchaseRequest where PurchaseRequestNumber='${PurchaseRequestNumber}'`
+        );
+      console.log(data);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+   async PurchaseOrder_DELETE_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const PurchaseOrderNumber = req.params.PurchaseOrderNumber;
+      let data = await pool
+        .request()
+
+        .query(
+          `delete from tblPurchaseOrder where PurchaseOrderNumber='${PurchaseOrderNumber}'`
         );
       console.log(data);
       res.status(200).json(data);
