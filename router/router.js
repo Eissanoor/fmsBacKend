@@ -346,7 +346,8 @@ router.put("/AssetTransactions_Put/:AssetItemTagID", FATSDB.AssetTransactions_Pu
 router.put("/UserAuthority_Put/:UserAuthorityCode", FATSDB.UserAuthority_Put)
 router.put("/UserCredentials_Put/:EmployeeID", FATSDB.UserCredentials_Put)
 router.put("/UserSystemAccess_Put/:EmployeeID", FATSDB.UserSystemAccess_Put)
-router.put("/PurchaseRequest_Put/:PurchaseRequestNumber",FATSDB.PurchaseRequest_Put)
+router.put("/PurchaseRequest_Put/:PurchaseRequestNumber", FATSDB.PurchaseRequest_Put)
+router.put("/PurchaseOrderNumber_Put/:No",FATSDB.PurchaseOrderNumber_Put)
 //--------------------------------------------------------------------------------
 //-----------------------------------DELETE_API-----------------------------------------
 router.delete(
