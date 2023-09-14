@@ -2533,7 +2533,7 @@ else {
         .input("InvoiceNumber", sql.VarChar, req.body.InvoiceNumber)
         .input("InvoiceDate", sql.VarChar, req.body.InvoiceDate)
         .input("ActualDeliveryDate", sql.VarChar, req.body.ActualDeliveryDate)
-        .input("RecievedByEmployeeID", sql.VarChar, req.body.ProcessedByEmployeeID)
+        .input("RecievedByEmployeeID", sql.VarChar, req.body.RecievedByEmployeeID)
         
         
        
