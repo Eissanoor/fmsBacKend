@@ -111,7 +111,8 @@ router.post("/UserAuthority_post", FATSDB.UserAuthority_post)
 router.post("/UserCredentials_post", FATSDB.UserCredentials_post)
 router.post("/UserSystemAccess_post", FATSDB.UserSystemAccess_post)
 router.post("/PurchaseRequest_post", FATSDB.PurchaseRequest_post)
-router.post("/PurchaseOrder_post",FATSDB.PurchaseOrder_post)
+router.post("/PurchaseOrder_post", FATSDB.PurchaseOrder_post)
+router.post("/GoodsReceipt_post",FATSDB.GoodsReceipt_post)
 //--------------------------------------------------------------------------
 
 //-------------------------------GET_API---------------------------------------------
@@ -290,7 +291,9 @@ router.get("/UserAuthority_GET_DropdownList", FATSDB.UserAuthority_GET_DropdownL
 router.get("/PurchaseRequest_GET_List", FATSDB.PurchaseRequest_GET_List)
 router.get("/PurchaseRequest_GET_BYID/:PurchaseRequestNumber", FATSDB.PurchaseRequest_GET_BYID)
 router.get("/PurchaseOrder_GET_BYID/:PurchaseOrderNumber", FATSDB.PurchaseOrder_GET_BYID)
-router.get("/PurchaseOrder_GET_List",FATSDB.PurchaseOrder_GET_List)
+router.get("/PurchaseOrder_GET_List", FATSDB.PurchaseOrder_GET_List)
+router.get("/GoodsReceipt_GET_List", FATSDB.GoodsReceipt_GET_List)
+router.get("/GoodsReceipt_GET_BYID/:PurchaseOrderNumber",FATSDB.GoodsReceipt_GET_BYID)
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);
@@ -351,7 +354,8 @@ router.put("/UserCredentials_Put/:EmployeeID", FATSDB.UserCredentials_Put)
 router.put("/UserSystemAccess_Put/:EmployeeID", FATSDB.UserSystemAccess_Put)
 router.put("/PurchaseRequest_Put/:PurchaseRequestNumber", FATSDB.PurchaseRequest_Put)
 router.put("/PurchaseOrderNumber_Put/:No", FATSDB.PurchaseOrderNumber_Put)
-router.put("/PurchaseOrder_Put/:PurchaseOrderNumber",FATSDB.PurchaseOrder_Put)
+router.put("/PurchaseOrder_Put/:PurchaseOrderNumber", FATSDB.PurchaseOrder_Put)
+router.put("/GoodsReceipt_Put/:PurchaseOrderNumber",FATSDB.GoodsReceipt_Put)
 //--------------------------------------------------------------------------------
 //-----------------------------------DELETE_API-----------------------------------------
 router.delete(
@@ -454,6 +458,7 @@ router.delete("/UserAuthority_DELETE_BYID/:UserAuthorityCode", FATSDB.UserAuthor
 router.delete("/UserCredentials_DELETE_BYID/:EmployeeID", FATSDB.UserCredentials_DELETE_BYID)
 router.delete("/UserSystemAccess_DELETE_BYID/:EmployeeID", FATSDB.UserSystemAccess_DELETE_BYID)
 router.delete("/PurchaseRequest_DELETE_BYID/:PurchaseRequestNumber", FATSDB.PurchaseRequest_DELETE_BYID)
-router.delete("/PurchaseOrder_DELETE_BYID/:PurchaseOrderNumber",FATSDB.PurchaseOrder_DELETE_BYID)
+router.delete("/PurchaseOrder_DELETE_BYID/:PurchaseOrderNumber", FATSDB.PurchaseOrder_DELETE_BYID)
+router.delete("/GoodsReceipt_DELETE_BYID/:PurchaseOrderNumber",FATSDB.GoodsReceipt_DELETE_BYID)
 //----------------------------------------------------------------------------//////
 export default router;
