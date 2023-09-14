@@ -5430,8 +5430,12 @@ WHERE PurchaseOrderNumber='${PurchaseOrderNumber}'`
 
         .query(
           `select AssetItemTagID from tblAssetTransactions where AssetItemDescription='${AssetItemDescription}'`
-        );
-      res.status(200).json(data);
+      );
+       if (data.rowsAffected[0] === 0) {
+      res.status(200).json(""); // Respond with an empty string
+    } else {
+      res.status(200).json(data); // Respond with data
+    }
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
