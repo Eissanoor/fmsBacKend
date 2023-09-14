@@ -4008,6 +4008,29 @@ WHERE No='${No}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async PurchaseRequestNumber_Put(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const No = req.params.No;
+      let data = await pool
+        .request()
+
+        .input("PurchaseRequestNumber", sql.Numeric, req.body.PurchaseRequestNumber)
+
+        .query(
+          ` 
+          UPDATE [dbo].[workRequestCount]
+SET
+
+[PurchaseRequestNumber] =@PurchaseRequestNumber
+WHERE No='${No}'`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   async PurchaseOrder_Put(req, res, next) {
     try {
       let pool = await sql.connect(config);

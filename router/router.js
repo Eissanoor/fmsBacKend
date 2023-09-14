@@ -359,7 +359,8 @@ router.put("/PurchaseRequest_Put/:PurchaseRequestNumber", FATSDB.PurchaseRequest
 router.put("/PurchaseOrderNumber_Put/:No", FATSDB.PurchaseOrderNumber_Put)
 router.put("/PurchaseOrder_Put/:PurchaseOrderNumber", FATSDB.PurchaseOrder_Put)
 router.put("/GoodsReceipt_Put/:PurchaseOrderNumber", FATSDB.GoodsReceipt_Put)
-router.put("/GoodsReturn_Put/:PurchaseOrderNumber",FATSDB.GoodsReturn_Put)
+router.put("/GoodsReturn_Put/:PurchaseOrderNumber", FATSDB.GoodsReturn_Put)
+router.put("/PurchaseRequestNumber_Put/:No".FATSDB.PurchaseRequestNumber_Put)
 //--------------------------------------------------------------------------------
 //-----------------------------------DELETE_API-----------------------------------------
 router.delete(
