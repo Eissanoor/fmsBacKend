@@ -2590,6 +2590,90 @@ else {
       res.status(500).json({ error: `${error}` });
     }
   },
+  async GoodsReturn_post(req, res, next)
+   {
+     let pool = await sql.connect(config);
+    const PurchaseOrderNumber = req.body.PurchaseOrderNumber
+    
+    try {
+if (!PurchaseOrderNumber) {
+      return res.status(400).json({ error: "PurchaseOrderNumber is required!" });
+    }
+
+    const existingRecord = await pool
+      .request()
+      .input('PurchaseOrderNumber', sql.VarChar, PurchaseOrderNumber)
+      .query('SELECT TOP 1 * FROM tblGoodsReturn WHERE PurchaseOrderNumber = @PurchaseOrderNumber');
+
+    if (existingRecord.recordset.length > 0) {
+      return res.status(409).json({ error: "PurchaseOrderNumber already exists" });
+    }
+else {
+       
+
+      let data = await pool
+        .request()
+        .input("PurchaseOrderNumber", sql.VarChar, req.body.PurchaseOrderNumber)
+       
+        .input("InvoiceNumber", sql.VarChar, req.body.InvoiceNumber)
+        .input("ReturnDate", sql.VarChar, req.body.ReturnDate)
+        
+        .input("RecievedByEmployeeID", sql.VarChar, req.body.RecievedByEmployeeID)
+        
+        
+       
+       .input("VendorID", sql.VarChar, req.body.VendorID)
+        .input("ReasonOrComments", sql.VarChar, req.body.ReasonOrComments)
+       
+       
+
+
+        .query(
+          ` 
+            INSERT INTO [dbo].[tblGoodsReturn]
+                       ([PurchaseOrderNumber]
+                      
+                         ,[InvoiceNumber]
+                        ,[ReturnDate]
+                        
+                         ,[RecievedByEmployeeID]
+                       
+                        
+
+                        ,[VendorID]
+                        ,[ReasonOrComments]
+                       
+                        )
+                 VALUES
+                       (@PurchaseOrderNumber
+                       
+                       ,@InvoiceNumber
+                       ,@ReturnDate
+                       
+                       ,@RecievedByEmployeeID
+                      
+                       
+                     
+                       ,@VendorID
+                       ,@ReasonOrComments
+                       
+                      
+                       )`
+        );
+       let data1 = await pool
+        .request()
+
+        .query(
+          `select * from tblGoodsReturn where PurchaseOrderNumber='${PurchaseOrderNumber}'`
+        );
+      res.status(201).json(data1);
+    }
+     
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //
   //-----------------------------------------------------------------------------------
 
@@ -4003,6 +4087,48 @@ SET
 ,[VendorID] =@VendorID
 ,[FeedbackOrComments] =@FeedbackOrComments
 ,[DiscountAmount] =@DiscountAmount
+
+WHERE PurchaseOrderNumber='${PurchaseOrderNumber}'`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async GoodsReturn_Put(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const PurchaseOrderNumber = req.params.PurchaseOrderNumber;
+      let data = await pool
+        .request()
+
+ 
+        .input("InvoiceNumber", sql.VarChar, req.body.InvoiceNumber)
+        .input("ReturnDate", sql.VarChar, req.body.ReturnDate)
+        
+        .input("RecievedByEmployeeID", sql.VarChar, req.body.RecievedByEmployeeID)
+        
+        
+       
+       .input("VendorID", sql.VarChar, req.body.VendorID)
+        .input("ReasonOrComments", sql.VarChar, req.body.ReasonOrComments)
+        
+        .query(
+          ` 
+          UPDATE [dbo].[tblGoodsReturn]
+SET
+
+
+[InvoiceNumber] =@InvoiceNumber
+,[ReturnDate] =@ReturnDate
+
+,[RecievedByEmployeeID] =@RecievedByEmployeeID
+
+
+,[VendorID] =@VendorID
+,[ReasonOrComments] =@ReasonOrComments
+
 
 WHERE PurchaseOrderNumber='${PurchaseOrderNumber}'`
         );
@@ -5568,6 +5694,32 @@ WHERE PurchaseOrderNumber='${PurchaseOrderNumber}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async GoodsReturn_GET_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const PurchaseOrderNumber = req.params.PurchaseOrderNumber;
+      let data = await pool
+        .request()
+
+        .query(
+          `select * from tblGoodsReturn where PurchaseOrderNumber='${PurchaseOrderNumber}'`
+        );
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async GoodsReturn_GET_List(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      let data = await pool.request().query(`select * from tblGoodsReturn`);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-----------------------------------------------------------------------------------
 
   //---------------------------DELETE--------------------------------------------------------
@@ -6265,6 +6417,23 @@ WHERE RequestNumber = '${RequestNumber}'`
 
         .query(
           `delete from tblGoodsReceipt where PurchaseOrderNumber='${PurchaseOrderNumber}'`
+        );
+      console.log(data);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+   async GoodsReturn_DELETE_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const PurchaseOrderNumber = req.params.PurchaseOrderNumber;
+      let data = await pool
+        .request()
+
+        .query(
+          `delete from tblGoodsReturn where PurchaseOrderNumber='${PurchaseOrderNumber}'`
         );
       console.log(data);
       res.status(200).json(data);
