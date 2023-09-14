@@ -5425,13 +5425,15 @@ WHERE PurchaseOrderNumber='${PurchaseOrderNumber}'`
     try {
       let pool = await sql.connect(config);
       const AssetItemDescription = req.params.AssetItemDescription;
-      let data = await pool
-        .request()
+     let data = await pool
+      .request()
+      .query(
+        `SELECT ISNULL(AssetItemTagID, '') AS AssetItemTagID FROM tblAssetTransactions WHERE AssetItemDescription='${AssetItemDescription}'`
+      );
 
-        .query(
-          `select AssetItemTagID from tblAssetTransactions where AssetItemDescription='${AssetItemDescription}'`
-        );
-      res.status(200).json(data);
+    // Check if the data is undefined and replace it with an empty string
+      const response = data && data.recordset ? data.recordset[0]?.AssetItemTagID || '' : '';
+      res.status(200).json(response);
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
