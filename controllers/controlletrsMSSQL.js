@@ -1539,6 +1539,41 @@ if (EmployeeID=="") {
     res.status(500).json({ error: `${error}` });
   }
   },
+  async assetItemRequest_ADD_post(req, res, next) {
+  try {
+    let pool = await sql.connect(config);
+    const PurchaseRequestNumber = req.body.PurchaseRequestNumber;
+    const AssetItemDescriptions = req.body.AssetItemDescriptions; // Assuming this is an array
+
+    for (const AssetItemDescription of AssetItemDescriptions) {
+     
+      
+        await pool
+          .request()
+          .input("PurchaseRequestNumber", sql.VarChar, PurchaseRequestNumber)
+          .input("AssetItemDescription", sql.VarChar, AssetItemDescription)
+          .query(
+            `INSERT INTO [dbo].[tblPurchaseRequestDetail]
+                       ([PurchaseRequestNumber]
+                       ,[AssetItemDescription]
+                        )
+                 VALUES
+                       (@PurchaseRequestNumber
+                       ,@AssetItemDescription)`
+          );
+      
+    }
+    let result = await pool
+      .request()
+      .query(
+        `SELECT * FROM assetworkrequest WHERE PurchaseRequestNumber='${PurchaseRequestNumber}'`
+      );
+    res.status(201).json(result);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: `${error}` });
+  }
+  },
   async Designation_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
