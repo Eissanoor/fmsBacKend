@@ -1566,7 +1566,7 @@ if (EmployeeID=="") {
     let result = await pool
       .request()
       .query(
-        `SELECT * FROM assetworkrequest WHERE PurchaseRequestNumber='${PurchaseRequestNumber}'`
+        `SELECT * FROM tblPurchaseRequestDetail WHERE PurchaseRequestNumber='${PurchaseRequestNumber}'`
       );
     res.status(201).json(result);
   } catch (error) {
