@@ -299,7 +299,9 @@ router.get("/GoodsReceipt_GET_BYID/:PurchaseOrderNumber", FATSDB.GoodsReceipt_GE
 router.get("/GoodsReturn_GET_BYID/:PurchaseOrderNumber", FATSDB.GoodsReturn_GET_BYID)
 router.get("/GoodsReturn_GET_List", FATSDB.GoodsReturn_GET_List)
 router.get("/Filter_PurchaseRequestNumber", FATSDB.Filter_PurchaseRequestNumber)
-router.get("/Filter_PurchaseOrderNumber",FATSDB.Filter_PurchaseOrderNumber)
+router.get("/Filter_PurchaseOrderNumber", FATSDB.Filter_PurchaseOrderNumber)
+router.get("/PurchaseRequestDetail_GET_BY_PurchaseRequestNumber/:PurchaseRequestNumber",
+  FATSDB.PurchaseRequestDetail_GET_BY_PurchaseRequestNumber)
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);
