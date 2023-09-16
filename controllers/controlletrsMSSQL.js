@@ -5882,6 +5882,22 @@ WHERE PurchaseOrderNumber='${PurchaseOrderNumber}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async GET_BY_PurchaseOrderNumber_GoodsReceiptDetail(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const PurchaseOrderNumber = req.params.PurchaseOrderNumber;
+      let data = await pool
+        .request()
+
+        .query(
+          `select * from tblGoodsReceiptDetail where PurchaseOrderNumber='${PurchaseOrderNumber}'`
+        );
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-----------------------------------------------------------------------------------
 
   //---------------------------DELETE--------------------------------------------------------
