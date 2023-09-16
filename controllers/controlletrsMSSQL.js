@@ -6756,6 +6756,23 @@ WHERE RequestNumber = '${RequestNumber}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+   async PurchaseOrderNumber_GOODSRecipt_DELETE_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const PurchaseOrderNumber = req.params.PurchaseOrderNumber;
+      let data = await pool
+        .request()
+
+        .query(
+          `delete from tblGoodsReceiptDetail where PurchaseOrderNumber='${PurchaseOrderNumber}'`
+        );
+      console.log(data);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //------------------------------------------------------------------------------------------
   async getworkRequest(req, res, next) {
     try {

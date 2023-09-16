@@ -485,6 +485,8 @@ router.delete("/PurchaseOrderAsset_DELETE_BYID/:seq", FATSDB.PurchaseOrderAsset_
 router.delete("/PurchaseGOODSAsset_DELETE_BYID/:seq", FATSDB.PurchaseGOODSAsset_DELETE_BYID)
 router.delete("/GOODSReturnAsset_DELETE_BYID/:seq", FATSDB.GOODSReturnAsset_DELETE_BYID)
 router.delete("/PurchaseOrderNumber_GOODSReturnAsset_DELETE_BYID/:PurchaseOrderNumber",
-FATSDB.PurchaseOrderNumber_GOODSReturnAsset_DELETE_BYID)
+  FATSDB.PurchaseOrderNumber_GOODSReturnAsset_DELETE_BYID)
+router.delete("/PurchaseOrderNumber_GOODSRecipt_DELETE_BYID/:PurchaseOrderNumber",
+  FATSDB.PurchaseOrderNumber_GOODSRecipt_DELETE_BYID)
 //----------------------------------------------------------------------------//////
 export default router;
