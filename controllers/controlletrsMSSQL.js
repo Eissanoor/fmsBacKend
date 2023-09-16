@@ -6654,6 +6654,23 @@ WHERE RequestNumber = '${RequestNumber}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+   async PurchaseGOODSAsset_DELETE_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const seq = req.params.seq;
+      let data = await pool
+        .request()
+
+        .query(
+          `delete from tblGoodsReceiptDetail where seq='${seq}'`
+        );
+      console.log(data);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //------------------------------------------------------------------------------------------
   async getworkRequest(req, res, next) {
     try {
