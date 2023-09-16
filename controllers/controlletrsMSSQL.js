@@ -1574,6 +1574,41 @@ if (EmployeeID=="") {
     res.status(500).json({ error: `${error}` });
   }
   },
+  async assetItemOrder_ADD_post(req, res, next) {
+  try {
+    let pool = await sql.connect(config);
+    const PurchaseOrderNumber = req.body.PurchaseOrderNumber;
+    const AssetItemDescriptions = req.body.AssetItemDescriptions; // Assuming this is an array
+
+    for (const AssetItemDescription of AssetItemDescriptions) {
+     
+      
+        await pool
+          .request()
+          .input("PurchaseOrderNumber", sql.VarChar, PurchaseOrderNumber)
+          .input("AssetItemDescription", sql.VarChar, AssetItemDescription)
+          .query(
+            `INSERT INTO [dbo].[tblPurchaseOrderDetail]
+                       ([PurchaseOrderNumber]
+                       ,[AssetItemDescription]
+                        )
+                 VALUES
+                       (@PurchaseOrderNumber
+                       ,@AssetItemDescription)`
+          );
+      
+    }
+    let result = await pool
+      .request()
+      .query(
+        `SELECT * FROM tblPurchaseOrderDetail WHERE PurchaseOrderNumber='${PurchaseOrderNumber}'`
+      );
+    res.status(201).json(result);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: `${error}` });
+  }
+  },
   async Designation_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
@@ -5789,6 +5824,22 @@ WHERE PurchaseOrderNumber='${PurchaseOrderNumber}'`
 
         .query(
           `select * from tblPurchaseRequestDetail where PurchaseRequestNumber='${PurchaseRequestNumber}'`
+        );
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async PurchaseRequestDetail_GET_BY_PurchaseOrderNumber(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const PurchaseOrderNumber = req.params.PurchaseOrderNumber;
+      let data = await pool
+        .request()
+
+        .query(
+          `select * from tblPurchaseOrderDetail where PurchaseOrderNumber='${PurchaseOrderNumber}'`
         );
       res.status(200).json(data);
     } catch (error) {

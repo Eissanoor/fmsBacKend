@@ -114,7 +114,8 @@ router.post("/PurchaseRequest_post", FATSDB.PurchaseRequest_post)
 router.post("/PurchaseOrder_post", FATSDB.PurchaseOrder_post)
 router.post("/GoodsReceipt_post", FATSDB.GoodsReceipt_post)
 router.post("/GoodsReturn_post", FATSDB.GoodsReturn_post)
-router.post("/assetItemRequest_ADD_post",FATSDB.assetItemRequest_ADD_post)
+router.post("/assetItemRequest_ADD_post", FATSDB.assetItemRequest_ADD_post)
+router.post("/assetItemOrder_ADD_post",FATSDB.assetItemOrder_ADD_post)
 //--------------------------------------------------------------------------
 
 //-------------------------------GET_API---------------------------------------------
@@ -302,6 +303,8 @@ router.get("/Filter_PurchaseRequestNumber", FATSDB.Filter_PurchaseRequestNumber)
 router.get("/Filter_PurchaseOrderNumber", FATSDB.Filter_PurchaseOrderNumber)
 router.get("/PurchaseRequestDetail_GET_BY_PurchaseRequestNumber/:PurchaseRequestNumber",
   FATSDB.PurchaseRequestDetail_GET_BY_PurchaseRequestNumber)
+router.get("/PurchaseRequestDetail_GET_BY_PurchaseOrderNumber/:PurchaseOrderNumber",
+FATSDB.PurchaseRequestDetail_GET_BY_PurchaseOrderNumber)
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);
