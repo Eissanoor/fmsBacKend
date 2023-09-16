@@ -473,6 +473,8 @@ router.delete("/UserSystemAccess_DELETE_BYID/:EmployeeID", FATSDB.UserSystemAcce
 router.delete("/PurchaseRequest_DELETE_BYID/:PurchaseRequestNumber", FATSDB.PurchaseRequest_DELETE_BYID)
 router.delete("/PurchaseOrder_DELETE_BYID/:PurchaseOrderNumber", FATSDB.PurchaseOrder_DELETE_BYID)
 router.delete("/GoodsReceipt_DELETE_BYID/:PurchaseOrderNumber", FATSDB.GoodsReceipt_DELETE_BYID)
-router.delete("/GoodsReturn_DELETE_BYID/:PurchaseOrderNumber",FATSDB.GoodsReturn_DELETE_BYID)
+router.delete("/GoodsReturn_DELETE_BYID/:PurchaseOrderNumber", FATSDB.GoodsReturn_DELETE_BYID)
+router.delete("/PurchaseRequestAsset_DELETE_BYID/:seq", FATSDB.PurchaseRequestAsset_DELETE_BYID)
+router.delete("//PurchaseOrderAsset_DELETE_BYID:seq",FATSDB.PurchaseOrderAsset_DELETE_BYID)
 //----------------------------------------------------------------------------//////
 export default router;
