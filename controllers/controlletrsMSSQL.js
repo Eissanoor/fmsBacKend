@@ -5933,6 +5933,22 @@ WHERE PurchaseOrderNumber='${PurchaseOrderNumber}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async GET_BY_PurchaseOrderNumber_GoodsReturn(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const PurchaseOrderNumber = req.params.PurchaseOrderNumber;
+      let data = await pool
+        .request()
+
+        .query(
+          `select * from tblGoodsReturnDetail where PurchaseOrderNumber='${PurchaseOrderNumber}'`
+        );
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-----------------------------------------------------------------------------------
 
   //---------------------------DELETE--------------------------------------------------------
@@ -6698,6 +6714,23 @@ WHERE RequestNumber = '${RequestNumber}'`
 
         .query(
           `delete from tblGoodsReceiptDetail where seq='${seq}'`
+        );
+      console.log(data);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+   async GOODSReturnAsset_DELETE_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const seq = req.params.seq;
+      let data = await pool
+        .request()
+
+        .query(
+          `delete from tblGoodsReturnDetail where seq='${seq}'`
         );
       console.log(data);
       res.status(200).json(data);

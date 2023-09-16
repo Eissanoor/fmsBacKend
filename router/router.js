@@ -308,7 +308,9 @@ router.get("/PurchaseRequestDetail_GET_BY_PurchaseRequestNumber/:PurchaseRequest
 router.get("/PurchaseRequestDetail_GET_BY_PurchaseOrderNumber/:PurchaseOrderNumber",
   FATSDB.PurchaseRequestDetail_GET_BY_PurchaseOrderNumber)
 router.get("/GET_BY_PurchaseOrderNumber_GoodsReceiptDetail/:PurchaseOrderNumber",
-FATSDB.GET_BY_PurchaseOrderNumber_GoodsReceiptDetail)
+  FATSDB.GET_BY_PurchaseOrderNumber_GoodsReceiptDetail)
+router.get("/GET_BY_PurchaseOrderNumber_GoodsReturn/:PurchaseOrderNumber",
+  FATSDB.GET_BY_PurchaseOrderNumber_GoodsReturn)
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);
@@ -480,6 +482,7 @@ router.delete("/GoodsReceipt_DELETE_BYID/:PurchaseOrderNumber", FATSDB.GoodsRece
 router.delete("/GoodsReturn_DELETE_BYID/:PurchaseOrderNumber", FATSDB.GoodsReturn_DELETE_BYID)
 router.delete("/PurchaseRequestAsset_DELETE_BYID/:seq", FATSDB.PurchaseRequestAsset_DELETE_BYID)
 router.delete("/PurchaseOrderAsset_DELETE_BYID/:seq", FATSDB.PurchaseOrderAsset_DELETE_BYID)
-router.delete("/PurchaseGOODSAsset_DELETE_BYID/:seq",FATSDB.PurchaseGOODSAsset_DELETE_BYID)
+router.delete("/PurchaseGOODSAsset_DELETE_BYID/:seq", FATSDB.PurchaseGOODSAsset_DELETE_BYID)
+router.delete("/GOODSReturnAsset_DELETE_BYID/:seq",FATSDB.GOODSReturnAsset_DELETE_BYID)
 //----------------------------------------------------------------------------//////
 export default router;
