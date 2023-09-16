@@ -115,7 +115,8 @@ router.post("/PurchaseOrder_post", FATSDB.PurchaseOrder_post)
 router.post("/GoodsReceipt_post", FATSDB.GoodsReceipt_post)
 router.post("/GoodsReturn_post", FATSDB.GoodsReturn_post)
 router.post("/assetItemRequest_ADD_post", FATSDB.assetItemRequest_ADD_post)
-router.post("/assetItemOrder_ADD_post",FATSDB.assetItemOrder_ADD_post)
+router.post("/assetItemOrder_ADD_post", FATSDB.assetItemOrder_ADD_post)
+router.post("/assetItemGOODS_ADD_post",FATSDB.assetItemGOODS_ADD_post)
 //--------------------------------------------------------------------------
 
 //-------------------------------GET_API---------------------------------------------
