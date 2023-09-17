@@ -2777,7 +2777,8 @@ else {
        .input("VendorID", sql.VarChar, req.body.VendorID)
         .input("ReasonOrComments", sql.VarChar, req.body.ReasonOrComments)
        
-       
+       .input("VAT", sql.Numeric, req.body.VAT)
+       .input("TOTAL_AMOUNT", sql.Numeric, req.body.TOTAL_AMOUNT)
 
 
         .query(
@@ -2794,7 +2795,8 @@ else {
 
                         ,[VendorID]
                         ,[ReasonOrComments]
-                       
+                       ,[VAT]
+                        ,[TOTAL_AMOUNT]
                         )
                  VALUES
                        (@PurchaseOrderNumber
@@ -2809,7 +2811,8 @@ else {
                        ,@VendorID
                        ,@ReasonOrComments
                        
-                      
+                      ,@VAT
+                       ,@TOTAL_AMOUNT
                        )`
         );
        let data1 = await pool
@@ -4295,7 +4298,8 @@ WHERE PurchaseOrderNumber='${PurchaseOrderNumber}'`
        
        .input("VendorID", sql.VarChar, req.body.VendorID)
         .input("ReasonOrComments", sql.VarChar, req.body.ReasonOrComments)
-        
+        .input("VAT", sql.Numeric, req.body.VAT)
+       .input("TOTAL_AMOUNT", sql.Numeric, req.body.TOTAL_AMOUNT)
         .query(
           ` 
           UPDATE [dbo].[tblGoodsReturn]
@@ -4310,7 +4314,8 @@ SET
 
 ,[VendorID] =@VendorID
 ,[ReasonOrComments] =@ReasonOrComments
-
+,[VAT] =@VAT
+,[TOTAL_AMOUNT] =@TOTAL_AMOUNT
 
 WHERE PurchaseOrderNumber='${PurchaseOrderNumber}'`
         );
