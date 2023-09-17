@@ -4202,7 +4202,8 @@ WHERE No='${No}'`
         .input("VendorConfirm", sql.VarChar, req.body.VendorConfirm)
         .input("ConfirmationDate", sql.VarChar, req.body.ConfirmationDate)
         .input("Comments", sql.VarChar, req.body.Comments)
-        
+        .input("VAT", sql.Numeric, req.body.VAT)
+       .input("TOTAL_AMOUNT", sql.Numeric, req.body.TOTAL_AMOUNT)
         .query(
           ` 
           UPDATE [dbo].[tblPurchaseOrder]
@@ -4221,6 +4222,8 @@ SET
 ,[VendorConfirm] =@VendorConfirm
 ,[ConfirmationDate] =@ConfirmationDate
 ,[Comments] =@Comments
+,[VAT] =@VAT
+,[TOTAL_AMOUNT] =@TOTAL_AMOUNT
 WHERE PurchaseOrderNumber='${PurchaseOrderNumber}'`
         );
       res.status(201).json(data);
