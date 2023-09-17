@@ -2690,7 +2690,8 @@ else {
         .input("FeedbackOrComments", sql.VarChar, req.body.FeedbackOrComments)
         .input("DiscountAmount", sql.VarChar, req.body.DiscountAmount)
        
-
+.input("VAT", sql.Numeric, req.body.VAT)
+       .input("TOTAL_AMOUNT", sql.Numeric, req.body.TOTAL_AMOUNT)
 
         .query(
           ` 
@@ -2707,7 +2708,8 @@ else {
                         ,[VendorID]
                         ,[FeedbackOrComments]
                          ,[DiscountAmount]
-                      
+                       ,[VAT]
+                         ,[TOTAL_AMOUNT]
                         )
                  VALUES
                        (@PurchaseOrderNumber
@@ -2722,7 +2724,8 @@ else {
                        ,@VendorID
                        ,@FeedbackOrComments
                        ,@DiscountAmount
-                      
+                      ,@VAT
+                       ,@TOTAL_AMOUNT
                        )`
         );
        let data1 = await pool
@@ -4248,7 +4251,8 @@ WHERE PurchaseOrderNumber='${PurchaseOrderNumber}'`
        .input("VendorID", sql.VarChar, req.body.VendorID)
         .input("FeedbackOrComments", sql.VarChar, req.body.FeedbackOrComments)
         .input("DiscountAmount", sql.VarChar, req.body.DiscountAmount)
-        
+        .input("VAT", sql.Numeric, req.body.VAT)
+       .input("TOTAL_AMOUNT", sql.Numeric, req.body.TOTAL_AMOUNT)
         .query(
           ` 
           UPDATE [dbo].[tblGoodsReceipt]
@@ -4264,7 +4268,8 @@ SET
 ,[VendorID] =@VendorID
 ,[FeedbackOrComments] =@FeedbackOrComments
 ,[DiscountAmount] =@DiscountAmount
-
+,[VAT] =@VAT
+,[TOTAL_AMOUNT] =@TOTAL_AMOUNT
 WHERE PurchaseOrderNumber='${PurchaseOrderNumber}'`
         );
       res.status(201).json(data);
