@@ -4105,7 +4105,8 @@ WHERE EmployeeID='${EmployeeID}'`
         .input("VATInclude", sql.VarChar, req.body.VATInclude)
         .input("VendorID", sql.VarChar, req.body.VendorID)
         .input("VerifiedByEmpl", sql.VarChar, req.body.VerifiedByEmpl)
-        
+        .input("VAT", sql.Numeric, req.body.VAT)
+       .input("TOTAL_AMOUNT", sql.Numeric, req.body.TOTAL_AMOUNT)
         .query(
           ` 
           UPDATE [dbo].[tblPurchaseRequest]
@@ -4119,7 +4120,8 @@ SET
 ,[VATInclude] =@VATInclude
 ,[VendorID] =@VendorID
 ,[VerifiedByEmpl] =@VerifiedByEmpl
-
+,[VAT] =@VAT
+,[TOTAL_AMOUNT] =@TOTAL_AMOUNT
 
 WHERE PurchaseRequestNumber='${PurchaseRequestNumber}'`
         );
