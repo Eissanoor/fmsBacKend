@@ -2598,7 +2598,8 @@ else {
         .input("VendorConfirm", sql.VarChar, req.body.VendorConfirm)
         .input("ConfirmationDate", sql.VarChar, req.body.ConfirmationDate)
         .input("Comments", sql.VarChar, req.body.Comments)
-
+.input("VAT", sql.Numeric, req.body.VAT)
+       .input("TOTAL_AMOUNT", sql.Numeric, req.body.TOTAL_AMOUNT)
 
         .query(
           ` 
@@ -2617,6 +2618,8 @@ else {
                         ,[VendorConfirm]
                          ,[ConfirmationDate]
                         ,[Comments]
+                        ,[VAT]
+                        ,[TOTAL_AMOUNT]
                         )
                  VALUES
                        (@PurchaseOrderNumber
@@ -2633,6 +2636,8 @@ else {
                        ,@VendorConfirm
                        ,@ConfirmationDate
                        ,@Comments
+                       ,@VAT
+                       ,@TOTAL_AMOUNT
                        )`
         );
        let data1 = await pool
