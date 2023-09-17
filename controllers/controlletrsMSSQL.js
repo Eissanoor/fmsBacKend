@@ -2512,8 +2512,8 @@ else {
         .input("VATInclude", sql.VarChar, req.body.VATInclude)
         .input("VendorID", sql.VarChar, req.body.VendorID)
         .input("VerifiedByEmpl", sql.VarChar, req.body.VerifiedByEmpl)
-       
-       
+       .input("VAT", sql.Numeric, req.body.VAT)
+       .input("TOTAL_AMOUNT", sql.Numeric, req.body.TOTAL_AMOUNT)
 
 
         .query(
@@ -2529,6 +2529,8 @@ else {
                          ,[VendorID]
                         ,[VerifiedByEmpl]
 
+                        ,[VAT]
+                        ,[TOTAL_AMOUNT]
                         )
                  VALUES
                        (@PurchaseRequestNumber
@@ -2541,6 +2543,8 @@ else {
                        ,@VendorID
                        ,@VerifiedByEmpl
                      
+                       ,@VAT
+                       ,@TOTAL_AMOUNT
                        )`
         );
        let data1 = await pool
