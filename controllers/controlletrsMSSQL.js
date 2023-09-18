@@ -6414,6 +6414,13 @@ WHERE PurchaseOrderNumber='${PurchaseOrderNumber}'`
           `DELETE FROM tblWorkRequest
 WHERE RequestNumber = '${RequestNumber}'`
       );
+      let data1 = await pool
+        .request()
+
+        .query(
+          `DELETE FROM assetworkrequest
+WHERE RequestNumber = '${RequestNumber}'`
+      );
       
       
       console.log(data);
