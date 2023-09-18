@@ -6666,6 +6666,12 @@ WHERE RequestNumber = '${RequestNumber}'`
 
         .query(
           `delete from tblPurchaseOrder where PurchaseOrderNumber='${PurchaseOrderNumber}'`
+      );
+      let data1 = await pool
+        .request()
+
+        .query(
+          `delete from tblPurchaseOrderDetail where PurchaseOrderNumber='${PurchaseOrderNumber}'`
         );
       console.log(data);
       res.status(200).json(data);
