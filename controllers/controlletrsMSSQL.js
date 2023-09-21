@@ -5973,7 +5973,7 @@ WHERE PurchaseOrderNumber='${PurchaseOrderNumber}'`
       res.status(500).json({ error: `${error}` });
     }
   },
-  async AssetType_GET_BYID(req, res, next) {
+  async AssetType_GET_BYAssetType(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const AssetType = req.params.AssetType;

@@ -311,7 +311,7 @@ router.get("/GET_BY_PurchaseOrderNumber_GoodsReceiptDetail/:PurchaseOrderNumber"
   FATSDB.GET_BY_PurchaseOrderNumber_GoodsReceiptDetail)
 router.get("/GET_BY_PurchaseOrderNumber_GoodsReturn/:PurchaseOrderNumber",
   FATSDB.GET_BY_PurchaseOrderNumber_GoodsReturn)
-  router.get("/AssetType_GET_BYID/:AssetType",FATSDB.AssetType_GET_BYID)
+  router.get("/AssetType_GET_BYAssetType/:AssetType",FATSDB.AssetType_GET_BYAssetType)
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);
