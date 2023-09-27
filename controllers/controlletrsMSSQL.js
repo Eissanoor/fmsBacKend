@@ -6005,6 +6005,25 @@ WHERE PurchaseOrderNumber='${PurchaseOrderNumber}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+
+  async location_managment_All(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+   
+      let data = await pool
+        .request()
+
+        .query(
+          `SELECT tblWorkOrders.*, tblWorkRequest.*
+FROM tblWorkOrders
+INNER JOIN tblWorkRequest ON tblWorkOrders.WorkRequestNumber = tblWorkRequest.RequestNumber`
+        );
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-----------------------------------------------------------------------------------
 
   //---------------------------DELETE--------------------------------------------------------

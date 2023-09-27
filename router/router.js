@@ -312,7 +312,8 @@ router.get("/GET_BY_PurchaseOrderNumber_GoodsReceiptDetail/:PurchaseOrderNumber"
 router.get("/GET_BY_PurchaseOrderNumber_GoodsReturn/:PurchaseOrderNumber",
   FATSDB.GET_BY_PurchaseOrderNumber_GoodsReturn)
 router.get("/AssetType_GET_BYAssetType/:AssetType", FATSDB.AssetType_GET_BYAssetType)
-router.get("/Asset_WarrantyEndDate",FATSDB.Asset_WarrantyEndDate)
+router.get("/Asset_WarrantyEndDate", FATSDB.Asset_WarrantyEndDate)
+router.get("/location_managment_All",FATSDB.location_managment_All)
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);
