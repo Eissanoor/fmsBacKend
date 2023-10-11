@@ -4373,7 +4373,7 @@ WHERE PurchaseOrderNumber='${PurchaseOrderNumber}'`
   async Floor_Put(req, res, next) {
     try {
       let pool = await sql.connect(config);
-      const FloorCode = req.body.FloorCode;
+      const FloorCode = req.params.FloorCode;
        const existingRecord = await pool
             .request()
             .input("FloorCode", sql.VarChar, FloorCode)
