@@ -316,7 +316,7 @@ router.get("/GET_BY_PurchaseOrderNumber_GoodsReturn/:PurchaseOrderNumber",
 router.get("/AssetType_GET_BYAssetType/:AssetType", FATSDB.AssetType_GET_BYAssetType)
 router.get("/Asset_WarrantyEndDate", FATSDB.Asset_WarrantyEndDate)
 router.get("/location_managment_All", FATSDB.location_managment_All)
-router.get("/Floor_GET_BYID", FATSDB.Floor_GET_BYID)
+router.get("/Floor_GET_BYID/:FloorCode", FATSDB.Floor_GET_BYID)
 router.get("/Floor_GET_List",FATSDB.Floor_GET_List)
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------

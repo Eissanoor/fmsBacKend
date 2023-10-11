@@ -6106,7 +6106,7 @@ INNER JOIN tblWorkRequest ON tblWorkOrders.WorkRequestNumber = tblWorkRequest.Re
    async Floor_GET_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
-      const FloorCode = req.body.FloorCode;
+      const FloorCode = req.params.FloorCode;
        const existingRecord = await pool
             .request()
             .input("FloorCode", sql.VarChar, FloorCode)
