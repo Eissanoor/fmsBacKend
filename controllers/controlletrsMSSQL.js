@@ -2829,6 +2829,51 @@ else {
       res.status(500).json({ error: `${error}` });
     }
   },
+  async Floor_post(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const FloorCode = req.body.FloorCode
+      const existingRecord = await pool
+            .request()
+            .input("FloorCode", sql.VarChar, FloorCode)
+            .query(
+                `SELECT * FROM prmFloor WHERE FloorCode = '${FloorCode}'`
+            );
+
+        if (existingRecord.recordset.length > 0) {
+            // A record with the same FloorCode already exists
+            return res.status(400).json({status:400, message:"already exists", error: ' FloorCode already exists' });
+        }
+      let data = await pool
+        .request()
+        .input("FloorCode", sql.VarChar, req.body.FloorCode)
+        .input("FloorDesc", sql.VarChar, req.body.FloorDesc)
+
+        .query(
+          ` 
+            INSERT INTO [dbo].[prmFloor]
+                       ([FloorCode]
+                       ,[FloorDesc]
+
+                        )
+                 VALUES
+                       (@FloorCode
+                       ,@FloorDesc
+                                    
+                       )`
+        );
+      let data1 = await pool
+        .request()
+
+        .query(
+          `select * from prmFloor where FloorCode='${FloorCode}'`
+        );
+      res.status(201).json({ status:201, successfully:"data created successfully",  data:data1.recordsets[0]});
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //
   //-----------------------------------------------------------------------------------
 
@@ -4320,6 +4365,40 @@ SET
 WHERE PurchaseOrderNumber='${PurchaseOrderNumber}'`
         );
       res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async Floor_Put(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const FloorCode = req.body.FloorCode;
+       const existingRecord = await pool
+            .request()
+            .input("FloorCode", sql.VarChar, FloorCode)
+            .query(
+                `SELECT * FROM prmFloor WHERE FloorCode = '${FloorCode}'`
+            );
+
+        if (existingRecord.recordset.length === 0) {
+            // No record with the specified FloorCode found in the database
+            return res.status(404).json({ status:404, message:"FloorCode found", error: 'FloorCode not found' });
+        }
+      let data = await pool
+        .request()
+
+        .input("FloorDesc", sql.VarChar, req.body.FloorDesc)
+
+        .query(
+          ` 
+          UPDATE [dbo].[prmFloor]
+SET
+
+[FloorDesc] =@FloorDesc
+WHERE FloorCode='${FloorCode}'`
+        );
+      res.status(200).json({status:200, successfully:"data update successfully",  data:data.rowsAffected[0]});
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
@@ -6024,6 +6103,43 @@ INNER JOIN tblWorkRequest ON tblWorkOrders.WorkRequestNumber = tblWorkRequest.Re
       res.status(500).json({ error: `${error}` });
     }
   },
+   async Floor_GET_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const FloorCode = req.body.FloorCode;
+       const existingRecord = await pool
+            .request()
+            .input("FloorCode", sql.VarChar, FloorCode)
+            .query(
+                `SELECT * FROM prmFloor WHERE FloorCode = '${FloorCode}'`
+            );
+
+        if (existingRecord.recordset.length === 0) {
+            // No record with the specified FloorCode found in the database
+            return res.status(404).json({ status:404, message:"FloorCode found", error: 'FloorCode not found' });
+        }
+      let data = await pool
+        .request()
+
+        .query(
+          `select * from prmFloor where FloorCode='${FloorCode}'`
+        );
+      res.status(200).json({ status:200,  data:data.recordsets[0]});
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+   async Floor_GET_List(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      let data = await pool.request().query(`select * from prmFloor`);
+      res.status(200).json({ status:200, data:data.recordsets[0]});
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-----------------------------------------------------------------------------------
 
   //---------------------------DELETE--------------------------------------------------------
@@ -6862,6 +6978,23 @@ WHERE RequestNumber = '${RequestNumber}'`
         );
       console.log(data);
       res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+   async Floor_DELETE_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const FloorCode = req.params.FloorCode;
+      let data = await pool
+        .request()
+
+        .query(
+          `delete from prmFloor where FloorCode='${FloorCode}'`
+        );
+      console.log(data);
+      res.status(200).json({ status:200, successfully:"Data delete successfully", data:data.rowsAffected[0]});
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
