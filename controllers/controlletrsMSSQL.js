@@ -2915,11 +2915,11 @@ else {
                  VALUES
                        (@BuildingCode
                        ,@BuildingDesc
-                       ,@Capacity
+                       ,@Latitude
                        ,@Longtitude
                        
-                        ,@BuildingImage
-                       ,@Latitude
+                       ,@BuildingImage
+                       ,@Capacity
                        ,@LocationCode 
                        )`
         );
