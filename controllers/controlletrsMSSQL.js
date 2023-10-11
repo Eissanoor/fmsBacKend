@@ -2854,12 +2854,10 @@ else {
             INSERT INTO [dbo].[prmFloor]
                        ([FloorCode]
                        ,[FloorDesc]
-
                         )
                  VALUES
                        (@FloorCode
-                       ,@FloorDesc
-                                    
+                       ,@FloorDesc                   
                        )`
         );
       let data1 = await pool
@@ -2867,6 +2865,69 @@ else {
 
         .query(
           `select * from prmFloor where FloorCode='${FloorCode}'`
+        );
+      res.status(201).json({ status:201, successfully:"data created successfully",  data:data1.recordsets[0]});
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async Building_newpage_post(req, res, next) {
+    try {
+      const file = req.files["BuildingImage"];
+
+    const url = file ? `http://gs1ksa.org:3021/api/profile/${file[0].filename}` : null;
+      let pool = await sql.connect(config);
+      const BuildingCode = req.body.BuildingCode
+      const existingRecord = await pool
+            .request()
+            .input("BuildingCode", sql.VarChar, BuildingCode)
+            .query(
+                `SELECT * FROM prmBuilding WHERE BuildingCode = '${BuildingCode}'`
+            );
+
+        if (existingRecord.recordset.length > 0) {
+            // A record with the same BuildingCode already exists
+            return res.status(400).json({status:400, message:"already exists", error: ' BuildingCode already exists' });
+        }
+      let data = await pool
+        .request()
+        .input("BuildingCode", sql.VarChar, req.body.BuildingCode)
+        .input("BuildingDesc", sql.VarChar, req.body.BuildingDesc)
+        .input("Latitude", sql.VarChar, req.body.Latitude)
+        .input("Longtitude", sql.VarChar, req.body.Longtitude)
+
+        .input("BuildingImage", sql.VarChar, url)
+        .input("Capacity", sql.Numeric, req.body.Capacity)
+        .input("LocationCode", sql.VarChar, req.body.LocationCode)
+        .query(
+          ` 
+            INSERT INTO [dbo].[prmBuilding]
+                       ([BuildingCode]
+                       ,[BuildingDesc]
+                       ,[Latitude]
+                       ,[Longtitude]
+
+                       ,[BuildingImage]
+                       ,[Capacity]
+                       ,[LocationCode]
+                        )
+                 VALUES
+                       (@BuildingCode
+                       ,@BuildingDesc
+                       ,@Capacity
+                       ,@Longtitude
+                       
+                        ,@BuildingImage
+                       ,@Latitude
+                       ,@LocationCode 
+                       )`
+        );
+      let data1 = await pool
+        .request()
+
+        .query(
+          `select * from prmBuilding where BuildingCode='${BuildingCode}'`
         );
       res.status(201).json({ status:201, successfully:"data created successfully",  data:data1.recordsets[0]});
     } catch (error) {
@@ -4404,6 +4465,60 @@ WHERE FloorCode='${FloorCode}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+ async Building_newpage_Put(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const BuildingCode = req.params.BuildingCode;
+
+       const file = req.files["BuildingImage"];
+
+    let url = ""; // Initialize the URL variable
+
+    if (file && file.length > 0) {
+      url = `http://gs1ksa.org:3021/api/profile/${file[0].filename}`;
+      }
+       if (typeof req.body.BuildingCode === "string" || !url) {
+      // No new EmployeeImage provided or it's an empty string, keep the old one
+      const existingData = await pool
+        .request()
+        .query(`SELECT [BuildingImage] FROM [dbo].[prmBuilding] WHERE BuildingCode='${BuildingCode}'`);
+
+      if (existingData.recordset.length > 0) {
+        url = existingData.recordset[0].BuildingImage;
+      }
+    }
+      let data = await pool
+        .request()
+
+         
+        .input("BuildingDesc", sql.VarChar, req.body.BuildingDesc)
+        .input("Latitude", sql.VarChar, req.body.Latitude)
+        .input("Longtitude", sql.VarChar, req.body.Longtitude)
+
+        .input("BuildingImage", sql.VarChar, url)
+        .input("Capacity", sql.Numeric, req.body.Capacity)
+        .input("LocationCode", sql.VarChar, req.body.LocationCode)
+        .query(
+          ` 
+          UPDATE [dbo].[prmBuilding]
+SET
+
+[BuildingDesc] =@BuildingDesc
+,[Latitude] =@Latitude
+,[Longtitude] =@Longtitude
+,[BuildingImage] =@BuildingImage
+,[Capacity] =@Capacity
+,[LocationCode] =@LocationCode
+
+WHERE BuildingCode='${BuildingCode}'`
+        );
+      res.status(200).json({status:200, message:"data Update successfully", data:data.rowsAffected[0]});
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+
   //-------------------------------------------------------------------------------------
 
   //---------------------------GET--------------------------------------------------------
@@ -6140,6 +6255,43 @@ INNER JOIN tblWorkRequest ON tblWorkOrders.WorkRequestNumber = tblWorkRequest.Re
       res.status(500).json({ error: `${error}` });
     }
   },
+   async Building_newpage_GET_List(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      let data = await pool.request().query(`select * from prmBuilding`);
+      res.status(200).json({ status:200, data:data.recordsets[0]});
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+   async Building_newpage_GET_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const BuildingCode = req.params.BuildingCode;
+       const existingRecord = await pool
+            .request()
+            .input("BuildingCode", sql.VarChar, BuildingCode)
+            .query(
+                `SELECT * FROM prmBuilding WHERE BuildingCode = '${BuildingCode}'`
+            );
+
+        if (existingRecord.recordset.length === 0) {
+            // No record with the specified BuildingCode found in the database
+            return res.status(404).json({ status:404, message:"BuildingCode found", error: 'BuildingCode not found' });
+        }
+      let data = await pool
+        .request()
+
+        .query(
+          `select * from prmBuilding where BuildingCode='${BuildingCode}'`
+        );
+      res.status(200).json({ status:200,  data:data.recordsets[0]});
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-----------------------------------------------------------------------------------
 
   //---------------------------DELETE--------------------------------------------------------
@@ -6992,6 +7144,23 @@ WHERE RequestNumber = '${RequestNumber}'`
 
         .query(
           `delete from prmFloor where FloorCode='${FloorCode}'`
+        );
+      console.log(data);
+      res.status(200).json({ status:200, successfully:"Data delete successfully", data:data.rowsAffected[0]});
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+   async Building_newpage_DELETE_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const BuildingCode = req.params.BuildingCode;
+      let data = await pool
+        .request()
+
+        .query(
+          `delete from prmBuilding where BuildingCode='${BuildingCode}'`
         );
       console.log(data);
       res.status(200).json({ status:200, successfully:"Data delete successfully", data:data.rowsAffected[0]});

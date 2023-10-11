@@ -31,6 +31,7 @@ const cpUpload = upload.fields([
   { name: "EmployeeImage" },
   { name: "selfieIDImage" },
   { name: "AssetImage" },
+  { name: "BuildingImage" }
 ]);
 //----------------POST_API---------------------------------------------------------
 router.post("/AddworkRequestPOST", FATSDB.AddworkRequestPOST);
@@ -119,7 +120,7 @@ router.post("/assetItemOrder_ADD_post", FATSDB.assetItemOrder_ADD_post)
 router.post("/assetItemGOODS_ADD_post", FATSDB.assetItemGOODS_ADD_post)
 router.post("/assetItemGOODSReturn_ADD_post", FATSDB.assetItemGOODSReturn_ADD_post)
 router.post("/Floor_post", FATSDB.Floor_post)
-
+router.post("/Building_newpage_post", cpUpload, FATSDB.Building_newpage_post)
 //--------------------------------------------------------------------------
 
 //-------------------------------GET_API---------------------------------------------
@@ -317,7 +318,9 @@ router.get("/AssetType_GET_BYAssetType/:AssetType", FATSDB.AssetType_GET_BYAsset
 router.get("/Asset_WarrantyEndDate", FATSDB.Asset_WarrantyEndDate)
 router.get("/location_managment_All", FATSDB.location_managment_All)
 router.get("/Floor_GET_BYID/:FloorCode", FATSDB.Floor_GET_BYID)
-router.get("/Floor_GET_List",FATSDB.Floor_GET_List)
+router.get("/Floor_GET_List", FATSDB.Floor_GET_List)
+router.get("/Building_newpage_GET_List", FATSDB.Building_newpage_GET_List)
+router.get("/Building_newpage_GET_BYID/:BuildingCode",FATSDB.Building_newpage_GET_BYID)
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);
@@ -382,7 +385,8 @@ router.put("/PurchaseOrder_Put/:PurchaseOrderNumber", FATSDB.PurchaseOrder_Put)
 router.put("/GoodsReceipt_Put/:PurchaseOrderNumber", FATSDB.GoodsReceipt_Put)
 router.put("/GoodsReturn_Put/:PurchaseOrderNumber", FATSDB.GoodsReturn_Put)
 router.put("/PurchaseRequestNumber_Put/:No", FATSDB.PurchaseRequestNumber_Put)
-router.put("/Floor_Put/:FloorCode",FATSDB.Floor_Put)
+router.put("/Floor_Put/:FloorCode", FATSDB.Floor_Put)
+router.put("/Building_newpage_Put/:BuildingCode" , cpUpload, FATSDB.Building_newpage_Put)
 //--------------------------------------------------------------------------------
 //-----------------------------------DELETE_API-----------------------------------------
 router.delete(
@@ -496,6 +500,7 @@ router.delete("/PurchaseOrderNumber_GOODSReturnAsset_DELETE_BYID/:PurchaseOrderN
   FATSDB.PurchaseOrderNumber_GOODSReturnAsset_DELETE_BYID)
 router.delete("/PurchaseOrderNumber_GOODSRecipt_DELETE_BYID/:PurchaseOrderNumber",
   FATSDB.PurchaseOrderNumber_GOODSRecipt_DELETE_BYID)
-  router.delete("/Floor_DELETE_BYID/:FloorCode",FATSDB.Floor_DELETE_BYID)
+router.delete("/Floor_DELETE_BYID/:FloorCode", FATSDB.Floor_DELETE_BYID)
+  router.delete("/Building_newpage_DELETE_BYID/:BuildingCode",FATSDB.Building_newpage_DELETE_BYID)
 //----------------------------------------------------------------------------//////
 export default router;
