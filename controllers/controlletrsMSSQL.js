@@ -2989,6 +2989,75 @@ else {
       res.status(500).json({ error: `${error}` });
     }
   },
+  async Rooms_newpage_post(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const RoomCode = req.body.RoomCode
+       if (!RoomCode) {
+            return res.status(400).json({ status: 400, message: 'RoomCode is required', error: 'RoomCode is required' });
+        }
+      const existingRecord = await pool
+            .request()
+            .input("RoomCode", sql.VarChar, RoomCode)
+            .query(
+                `SELECT * FROM prmRooms WHERE RoomCode = '${RoomCode}'`
+            );
+
+        if (existingRecord.recordset.length > 0) {
+            // A record with the same RoomCode already exists
+            return res.status(400).json({status:400, message:"already exists", error: ' RoomCode already exists' });
+        }
+      let data = await pool
+        .request()
+        .input("RoomCode", sql.VarChar, req.body.RoomCode)
+        .input("RoomDesc", sql.VarChar, req.body.RoomDesc)
+        .input("Area", sql.VarChar, req.body.Area)
+        .input("FloorCode", sql.VarChar, req.body.FloorCode)
+
+        .input("BuildingCode", sql.VarChar, req.body.BuildingCode)
+        .input("LocationCode", sql.Numeric, req.body.LocationCode)
+        .input("Capacity", sql.VarChar, req.body.Capacity)
+        .input("Occupants", sql.Numeric, req.body.Occupants)
+        .input("VacancyFlag", sql.VarChar, req.body.VacancyFlag)
+        .query(
+          ` 
+            INSERT INTO [dbo].[prmRooms]
+                       ([RoomCode]
+                       ,[RoomDesc]
+                       ,[Area]
+                       ,[FloorCode]
+
+                       ,[BuildingCode]
+                       ,[LocationCode]
+                       ,[Capacity]
+                       ,[Occupants]
+                       ,[VacancyFlag]
+                        )
+                 VALUES
+                       (@RoomCode
+                       ,@RoomDesc
+                       ,@Area
+                       ,@FloorCode
+                       
+                       ,@BuildingCode
+                       ,@LocationCode
+                       ,@Capacity
+                       ,@Occupants
+                       ,@VacancyFlag 
+                       )`
+        );
+      let data1 = await pool
+        .request()
+
+        .query(
+          `select * from prmBuilding where RoomCode='${RoomCode}'`
+        );
+      res.status(201).json({ status:201, successfully:"data created successfully",  data:data1.recordsets[0]});
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //
   //-----------------------------------------------------------------------------------
 
@@ -4587,6 +4656,46 @@ WHERE BuildingCode='${BuildingCode}'`
 SET
 
 [RoomDesc] =@RoomDesc
+WHERE RoomCode='${RoomCode}'`
+        );
+      res.status(200).json({status:200, message:"data Update successfully", data:data.rowsAffected[0]});
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+ async Rooms_newpage_Put(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const RoomCode = req.params.RoomCode;
+
+     
+      let data = await pool
+        .request()
+
+         
+        .input("RoomDesc", sql.VarChar, req.body.RoomDesc)
+        .input("Area", sql.VarChar, req.body.Area)
+        .input("FloorCode", sql.VarChar, req.body.FloorCode)
+
+        .input("BuildingCode", sql.VarChar, req.body.BuildingCode)
+        .input("LocationCode", sql.Numeric, req.body.LocationCode)
+        .input("Capacity", sql.VarChar, req.body.Capacity)
+        .input("Occupants", sql.Numeric, req.body.Occupants)
+        .input("VacancyFlag", sql.VarChar, req.body.VacancyFlag)
+        .query(
+          ` 
+          UPDATE [dbo].[prmRooms]
+SET
+
+[RoomDesc] =@RoomDesc
+,[Area] =@Area
+,[FloorCode] =@FloorCode
+,[BuildingCode] =@BuildingCode
+,[LocationCode] =@LocationCode
+,[Capacity] =@Capacity
+,[Occupants] =@Occupants
+,[VacancyFlag] =@VacancyFlag
 WHERE RoomCode='${RoomCode}'`
         );
       res.status(200).json({status:200, message:"data Update successfully", data:data.rowsAffected[0]});
@@ -6405,6 +6514,43 @@ INNER JOIN tblWorkRequest ON tblWorkOrders.WorkRequestNumber = tblWorkRequest.Re
       res.status(500).json({ error: `${error}` });
     }
   },
+   async Rooms_newpage_GET_List(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      let data = await pool.request().query(`select * from prmRooms`);
+      res.status(200).json({ status:200, data:data.recordsets[0]});
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+   async Rooms_newpage_GET_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const RoomCode = req.params.RoomCode;
+       const existingRecord = await pool
+            .request()
+            .input("RoomCode", sql.VarChar, RoomCode)
+            .query(
+                `SELECT * FROM prmRooms WHERE RoomCode = '${RoomCode}'`
+            );
+
+        if (existingRecord.recordset.length === 0) {
+            // No record with the specified RoomCode found in the database
+            return res.status(404).json({ status:404, message:"RoomCode found", error: 'RoomCode not found' });
+        }
+      let data = await pool
+        .request()
+
+        .query(
+          `select * from prmRooms where RoomCode='${RoomCode}'`
+        );
+      res.status(200).json({ status:200,  data:data.recordsets[0]});
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-----------------------------------------------------------------------------------
 
   //---------------------------DELETE--------------------------------------------------------
@@ -7283,6 +7429,23 @@ WHERE RequestNumber = '${RequestNumber}'`
     }
   },
    async Rooms_DELETE_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const RoomCode = req.params.RoomCode;
+      let data = await pool
+        .request()
+
+        .query(
+          `delete from prmRooms where RoomCode='${RoomCode}'`
+        );
+      console.log(data);
+      res.status(200).json({ status:200, successfully:"Data delete successfully", data:data.rowsAffected[0]});
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+   async Rooms_newpage_DELETE_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const RoomCode = req.params.RoomCode;
