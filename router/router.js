@@ -121,6 +121,7 @@ router.post("/assetItemGOODS_ADD_post", FATSDB.assetItemGOODS_ADD_post)
 router.post("/assetItemGOODSReturn_ADD_post", FATSDB.assetItemGOODSReturn_ADD_post)
 router.post("/Floor_post", FATSDB.Floor_post)
 router.post("/Building_newpage_post", cpUpload, FATSDB.Building_newpage_post)
+router.post("/Rooms_post",FATSDB.Rooms_post)
 //--------------------------------------------------------------------------
 
 //-------------------------------GET_API---------------------------------------------
@@ -320,7 +321,9 @@ router.get("/location_managment_All", FATSDB.location_managment_All)
 router.get("/Floor_GET_BYID/:FloorCode", FATSDB.Floor_GET_BYID)
 router.get("/Floor_GET_List", FATSDB.Floor_GET_List)
 router.get("/Building_newpage_GET_List", FATSDB.Building_newpage_GET_List)
-router.get("/Building_newpage_GET_BYID/:BuildingCode",FATSDB.Building_newpage_GET_BYID)
+router.get("/Building_newpage_GET_BYID/:BuildingCode", FATSDB.Building_newpage_GET_BYID)
+router.get("/Rooms_Put/:RoomCode", FATSDB.Rooms_GET_BYID)
+router.get("/Rooms_GET_List",FATSDB.Rooms_GET_List)
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);
@@ -386,7 +389,8 @@ router.put("/GoodsReceipt_Put/:PurchaseOrderNumber", FATSDB.GoodsReceipt_Put)
 router.put("/GoodsReturn_Put/:PurchaseOrderNumber", FATSDB.GoodsReturn_Put)
 router.put("/PurchaseRequestNumber_Put/:No", FATSDB.PurchaseRequestNumber_Put)
 router.put("/Floor_Put/:FloorCode", FATSDB.Floor_Put)
-router.put("/Building_newpage_Put/:BuildingCode" , cpUpload, FATSDB.Building_newpage_Put)
+router.put("/Building_newpage_Put/:BuildingCode", cpUpload, FATSDB.Building_newpage_Put)
+router.put("/Rooms_Put/:RoomCode",FATSDB.Rooms_Put)
 //--------------------------------------------------------------------------------
 //-----------------------------------DELETE_API-----------------------------------------
 router.delete(
@@ -501,6 +505,7 @@ router.delete("/PurchaseOrderNumber_GOODSReturnAsset_DELETE_BYID/:PurchaseOrderN
 router.delete("/PurchaseOrderNumber_GOODSRecipt_DELETE_BYID/:PurchaseOrderNumber",
   FATSDB.PurchaseOrderNumber_GOODSRecipt_DELETE_BYID)
 router.delete("/Floor_DELETE_BYID/:FloorCode", FATSDB.Floor_DELETE_BYID)
-  router.delete("/Building_newpage_DELETE_BYID/:BuildingCode",FATSDB.Building_newpage_DELETE_BYID)
+router.delete("/Building_newpage_DELETE_BYID/:BuildingCode", FATSDB.Building_newpage_DELETE_BYID)
+  router.delete("/Rooms_DELETE_BYID/:RoomCode",FATSDB.Rooms_DELETE_BYID)
 //----------------------------------------------------------------------------//////
 export default router;
