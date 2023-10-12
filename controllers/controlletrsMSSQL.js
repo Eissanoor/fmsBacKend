@@ -3045,7 +3045,8 @@ else {
                        ,@Occupants
                        ,@VacancyFlag 
                        )`
-        );
+      );
+      console.log("---------------------------------------------------");
       let data1 = await pool
         .request()
 
