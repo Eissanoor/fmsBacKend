@@ -3015,9 +3015,9 @@ else {
         .input("FloorCode", sql.VarChar, req.body.FloorCode)
 
         .input("BuildingCode", sql.VarChar, req.body.BuildingCode)
-        .input("LocationCode", sql.Numeric, req.body.LocationCode)
+        .input("LocationCode", sql.VarChar, req.body.LocationCode)
         .input("Capacity", sql.VarChar, req.body.Capacity)
-        .input("Occupants", sql.Numeric, req.body.Occupants)
+        .input("Occupants", sql.VarChar, req.body.Occupants)
         .input("VacancyFlag", sql.VarChar, req.body.VacancyFlag)
         .query(
           ` 
@@ -4679,9 +4679,9 @@ WHERE RoomCode='${RoomCode}'`
         .input("FloorCode", sql.VarChar, req.body.FloorCode)
 
         .input("BuildingCode", sql.VarChar, req.body.BuildingCode)
-        .input("LocationCode", sql.Numeric, req.body.LocationCode)
+        .input("LocationCode", sql.VarChar, req.body.LocationCode)
         .input("Capacity", sql.VarChar, req.body.Capacity)
-        .input("Occupants", sql.Numeric, req.body.Occupants)
+        .input("Occupants", sql.VarChar, req.body.Occupants)
         .input("VacancyFlag", sql.VarChar, req.body.VacancyFlag)
         .query(
           ` 
