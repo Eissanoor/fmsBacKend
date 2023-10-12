@@ -3050,7 +3050,7 @@ else {
         .request()
 
         .query(
-          `select * from prmBuilding where RoomCode='${RoomCode}'`
+          `select * from prmRooms where RoomCode='${RoomCode}'`
         );
       res.status(201).json({ status:201, successfully:"data created successfully",  data:data1.recordsets[0]});
     } catch (error) {
