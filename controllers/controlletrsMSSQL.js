@@ -2944,6 +2944,17 @@ else {
       const RoomCode = req.body.RoomCode
        if (!RoomCode) {
             return res.status(400).json({ status: 400, message: 'RoomCode is required', error: 'RoomCode is required' });
+      }
+      const existingRecord = await pool
+            .request()
+            .input("RoomCode", sql.VarChar, RoomCode)
+            .query(
+                `SELECT * FROM prmRooms WHERE RoomCode = '${RoomCode}'`
+            );
+
+        if (existingRecord.recordset.length > 0) {
+            // A record with the same RoomCode already exists
+            return res.status(400).json({ status: 400, message: 'RoomCode already exists', error: 'RoomCode already exists' });
         }
       let data = await pool
         .request()
