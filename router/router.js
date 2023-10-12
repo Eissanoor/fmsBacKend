@@ -512,5 +512,5 @@ router.delete("/Floor_DELETE_BYID/:FloorCode", FATSDB.Floor_DELETE_BYID)
 router.delete("/Building_newpage_DELETE_BYID/:BuildingCode", FATSDB.Building_newpage_DELETE_BYID)
 router.delete("/Rooms_DELETE_BYID/:RoomCode", FATSDB.Rooms_DELETE_BYID)
   router.delete("/Rooms_newpage_DELETE_BYID/:RoomCode", FATSDB.Rooms_newpage_DELETE_BYID)
-//----------------------------------------------------------------------------//////
+//-----------------------------------------------------------------------------//////
 export default router;
