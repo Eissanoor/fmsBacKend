@@ -322,7 +322,7 @@ router.get("/Floor_GET_BYID/:FloorCode", FATSDB.Floor_GET_BYID)
 router.get("/Floor_GET_List", FATSDB.Floor_GET_List)
 router.get("/Building_newpage_GET_List", FATSDB.Building_newpage_GET_List)
 router.get("/Building_newpage_GET_BYID/:BuildingCode", FATSDB.Building_newpage_GET_BYID)
-router.get("/Rooms_Put/:RoomCode", FATSDB.Rooms_GET_BYID)
+router.get("/Rooms_GET_BYID/:RoomCode", FATSDB.Rooms_GET_BYID)
 router.get("/Rooms_GET_List",FATSDB.Rooms_GET_List)
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
