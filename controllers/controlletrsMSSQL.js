@@ -3046,12 +3046,63 @@ else {
                        ,@VacancyFlag 
                        )`
       );
-      console.log("---------------------------------------------------");
+      
       let data1 = await pool
         .request()
 
         .query(
           `select * from prmRooms where RoomCode='${RoomCode}'`
+        );
+      res.status(201).json({ status:201, successfully:"data created successfully",  data:data1.recordsets[0]});
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async EmployeeRooms_post(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const EmployeeID = req.body.EmployeeID
+       if (!EmployeeID) {
+            return res.status(400).json({ status: 400, message: 'EmployeeID is required', error: 'EmployeeID is required' });
+      }
+      const existingRecord = await pool
+            .request()
+            .input("EmployeeID", sql.VarChar, EmployeeID)
+            .query(
+                `SELECT * FROM tblEmployeeRooms WHERE EmployeeID = '${EmployeeID}'`
+            );
+
+        if (existingRecord.recordset.length > 0) {
+            // A record with the same EmployeeID already exists
+            return res.status(400).json({ status: 400, message: 'EmployeeID already exists', error: 'EmployeeID already exists' });
+        }
+      let data = await pool
+        .request()
+        .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
+        .input("RoomCode", sql.VarChar, req.body.RoomCode)
+.input("DateAssigned", sql.VarChar, req.body.DateAssigned)
+        .query(
+          ` 
+            INSERT INTO [dbo].[tblEmployeeRooms]
+                       ([EmployeeID]
+                       ,[RoomCode]
+                     ,[DateAssigned]
+                       
+                      
+                        )
+                 VALUES
+                       (@EmployeeID
+                       ,@RoomCode
+                    ,@DateAssigned
+                                           
+                       )`
+        );
+      let data1 = await pool
+        .request()
+
+        .query(
+          `select * from tblEmployeeRooms where EmployeeID='${EmployeeID}'`
         );
       res.status(201).json({ status:201, successfully:"data created successfully",  data:data1.recordsets[0]});
     } catch (error) {
@@ -4698,6 +4749,28 @@ SET
 ,[Occupants] =@Occupants
 ,[VacancyFlag] =@VacancyFlag
 WHERE RoomCode='${RoomCode}'`
+        );
+      res.status(200).json({status:200, message:"data Update successfully", data:data.rowsAffected[0]});
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+ async EmployeeRooms_Put(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const EmployeeID = req.params.EmployeeID;
+      let data = await pool
+        .request()
+
+        .input("RoomCode", sql.VarChar, req.body.RoomCode)
+        .query(
+          ` 
+          UPDATE [dbo].[tblEmployeeRooms]
+SET
+
+[RoomCode] =@RoomCode
+WHERE EmployeeID='${EmployeeID}'`
         );
       res.status(200).json({status:200, message:"data Update successfully", data:data.rowsAffected[0]});
     } catch (error) {
@@ -6552,6 +6625,43 @@ INNER JOIN tblWorkRequest ON tblWorkOrders.WorkRequestNumber = tblWorkRequest.Re
       res.status(500).json({ error: `${error}` });
     }
   },
+   async EmployeeRooms_GET_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const EmployeeID = req.params.EmployeeID;
+       const existingRecord = await pool
+            .request()
+            .input("EmployeeID", sql.VarChar, EmployeeID)
+            .query(
+                `SELECT * FROM tblEmployeeRooms WHERE EmployeeID = '${EmployeeID}'`
+            );
+
+        if (existingRecord.recordset.length === 0) {
+            // No record with the specified EmployeeID found in the database
+            return res.status(404).json({ status:404, message:"EmployeeID found", error: 'EmployeeID not found' });
+        }
+      let data = await pool
+        .request()
+
+        .query(
+          `select * from tblEmployeeRooms where EmployeeID='${EmployeeID}'`
+        );
+      res.status(200).json({ status:200,  data:data.recordsets[0]});
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+   async EmployeeRooms_GET_List(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      let data = await pool.request().query(`select * from tblEmployeeRooms`);
+      res.status(200).json({ status:200, data:data.recordsets[0]});
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-----------------------------------------------------------------------------------
 
   //---------------------------DELETE--------------------------------------------------------
@@ -7455,6 +7565,23 @@ WHERE RequestNumber = '${RequestNumber}'`
 
         .query(
           `delete from prmRooms where RoomCode='${RoomCode}'`
+        );
+      console.log(data);
+      res.status(200).json({ status:200, successfully:"Data delete successfully", data:data.rowsAffected[0]});
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+   async EmployeeRooms_DELETE_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const EmployeeID = req.params.EmployeeID;
+      let data = await pool
+        .request()
+
+        .query(
+          `delete from tblEmployeeRooms where EmployeeID='${EmployeeID}'`
         );
       console.log(data);
       res.status(200).json({ status:200, successfully:"Data delete successfully", data:data.rowsAffected[0]});
