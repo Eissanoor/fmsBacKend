@@ -328,7 +328,7 @@ router.get("/Rooms_GET_BYID/:RoomCode", FATSDB.Rooms_GET_BYID)
 router.get("/Rooms_GET_List", FATSDB.Rooms_GET_List)
 router.get("/Rooms_newpage_GET_List", FATSDB.Rooms_newpage_GET_List)
 router.get("/Rooms_newpage_GET_BYID/:RoomCode", FATSDB.Rooms_newpage_GET_BYID)
-router.get("/EmployeeID/:EmployeeID", FATSDB.EmployeeRooms_GET_BYID)
+router.get("/EmployeeRooms_GET_BYID/:EmployeeID", FATSDB.EmployeeRooms_GET_BYID)
 router.get("/EmployeeRooms_GET_List",FATSDB.EmployeeRooms_GET_List)
 //------------------------------------------------------------------------------
 //-----------------------------------PUT_API-------------------------------------
