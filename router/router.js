@@ -329,8 +329,9 @@ router.get("/Rooms_GET_List", FATSDB.Rooms_GET_List)
 router.get("/Rooms_newpage_GET_List", FATSDB.Rooms_newpage_GET_List)
 router.get("/Rooms_newpage_GET_BYID/:RoomCode", FATSDB.Rooms_newpage_GET_BYID)
 router.get("/EmployeeRooms_GET_BYID/:EmployeeID", FATSDB.EmployeeRooms_GET_BYID)
-router.get("/EmployeeRooms_GET_List",FATSDB.EmployeeRooms_GET_List)
-//------------------------------------------------------------------------------
+router.get("/EmployeeRooms_GET_List", FATSDB.EmployeeRooms_GET_List)
+router.get("/Filter_Rooms",FATSDB.Filter_Rooms)
+//------------------------------------------------------------------------------//
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);
 router.put("/WorkType_Put/:WorkTypeCode", FATSDB.WorkType_Put);
