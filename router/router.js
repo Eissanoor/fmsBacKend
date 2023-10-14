@@ -399,7 +399,8 @@ router.put("/Floor_Put/:FloorCode", FATSDB.Floor_Put)
 router.put("/Building_newpage_Put/:BuildingCode", cpUpload, FATSDB.Building_newpage_Put)
 router.put("/Rooms_Put/:RoomCode", FATSDB.Rooms_Put)
 router.put("/Rooms_newpage_Put/:RoomCode", FATSDB.Rooms_newpage_Put)
-router.put("/EmployeeRooms_Put/:EmployeeID",FATSDB.EmployeeRooms_Put)
+router.put("/EmployeeRooms_Put/:EmployeeID", FATSDB.EmployeeRooms_Put)
+router.put("/TransferRequestNumber_Put/:No",FATSDB.TransferRequestNumber_Put)
 //--------------------------------------------------------------------------------
 //-----------------------------------DELETE_API-----------------------------------------
 router.delete(

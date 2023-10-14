@@ -3945,6 +3945,29 @@ WHERE No='${No}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+   async TransferRequestNumber_Put(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const No = req.params.No;
+      let data = await pool
+        .request()
+
+        .input("TransferRequestNumber", sql.Numeric, req.body.TransferRequestNumber)
+
+        .query(
+          ` 
+          UPDATE [dbo].[workRequestCount]
+SET
+
+[TransferRequestNumber] =@TransferRequestNumber
+WHERE No='${No}'`
+        );
+      res.status(201).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   async Designation_Put(req, res, next) {
     try {
       let pool = await sql.connect(config);
