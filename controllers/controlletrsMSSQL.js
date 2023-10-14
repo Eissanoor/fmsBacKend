@@ -7912,6 +7912,27 @@ WHERE EmployeeID='${EmployeeID}'`);
       res.status(500).json({ error: `${error}` });
     }
   },
+  async Filter_Approval_Employees(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+     
+      let data = await pool
+        .request()
+
+        .query(
+          `
+        SELECT EM.EmployeeID, CONCAT(EM.Firstname, ' ', EM.Middlename, ' ', EM.Lastname) AS Fullname
+        FROM tblEmployeeMaster AS EM
+        INNER JOIN tblEmployeeRooms AS ER ON EM.EmployeeID = ER.EmployeeID
+      `
+      );
+      
+      res.status(200).json({ status:200, data:data.recordsets[0]});
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   async getAllLISTworkRequestSecondWork(req, res, next) {
     try {
       let pool = await sql.connect(config);

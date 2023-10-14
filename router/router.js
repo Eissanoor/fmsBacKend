@@ -330,7 +330,8 @@ router.get("/Rooms_newpage_GET_List", FATSDB.Rooms_newpage_GET_List)
 router.get("/Rooms_newpage_GET_BYID/:RoomCode", FATSDB.Rooms_newpage_GET_BYID)
 router.get("/EmployeeRooms_GET_BYID/:EmployeeID", FATSDB.EmployeeRooms_GET_BYID)
 router.get("/EmployeeRooms_GET_List", FATSDB.EmployeeRooms_GET_List)
-router.get("/Filter_Rooms",FATSDB.Filter_Rooms)
+router.get("/Filter_Rooms", FATSDB.Filter_Rooms)
+router.get("/Filter_Approval_Employees",FATSDB.Filter_Approval_Employees)
 //------------------------------------------------------------------------------//
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);
