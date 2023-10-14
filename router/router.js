@@ -123,7 +123,9 @@ router.post("/Floor_post", FATSDB.Floor_post)
 router.post("/Building_newpage_post", cpUpload, FATSDB.Building_newpage_post)
 router.post("/Rooms_post", FATSDB.Rooms_post)
 router.post("/Rooms_newpage_post", FATSDB.Rooms_newpage_post)
-router.post("/EmployeeRooms_post",FATSDB.EmployeeRooms_post)
+router.post("/EmployeeRooms_post", FATSDB.EmployeeRooms_post)
+router.post("/EmployeeRoomTransfers_post", FATSDB.EmployeeRoomTransfers_post)
+
 //--------------------------------------------------------------------------
 
 //-------------------------------GET_API---------------------------------------------
@@ -331,7 +333,9 @@ router.get("/Rooms_newpage_GET_BYID/:RoomCode", FATSDB.Rooms_newpage_GET_BYID)
 router.get("/EmployeeRooms_GET_BYID/:EmployeeID", FATSDB.EmployeeRooms_GET_BYID)
 router.get("/EmployeeRooms_GET_List", FATSDB.EmployeeRooms_GET_List)
 router.get("/Filter_Rooms", FATSDB.Filter_Rooms)
-router.get("/Filter_Approval_Employees",FATSDB.Filter_Approval_Employees)
+router.get("/Filter_Approval_Employees", FATSDB.Filter_Approval_Employees)
+router.get("/EmployeeRoomTransfers_GET_BYID/:TransferRequestNumber", FATSDB.EmployeeRoomTransfers_GET_BYID)
+router.get("/EmployeeRoomTransfers_GET_List",FATSDB.EmployeeRoomTransfers_GET_List)
 //------------------------------------------------------------------------------//
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);
@@ -401,7 +405,8 @@ router.put("/Building_newpage_Put/:BuildingCode", cpUpload, FATSDB.Building_newp
 router.put("/Rooms_Put/:RoomCode", FATSDB.Rooms_Put)
 router.put("/Rooms_newpage_Put/:RoomCode", FATSDB.Rooms_newpage_Put)
 router.put("/EmployeeRooms_Put/:EmployeeID", FATSDB.EmployeeRooms_Put)
-router.put("/TransferRequestNumber_Put/:No",FATSDB.TransferRequestNumber_Put)
+router.put("/TransferRequestNumber_Put/:No", FATSDB.TransferRequestNumber_Put)
+router.put("/EmployeeRoomTransfers_Put/:TransferRequestNumber",FATSDB.EmployeeRoomTransfers_Put)
 //--------------------------------------------------------------------------------
 //-----------------------------------DELETE_API-----------------------------------------
 router.delete(
@@ -519,6 +524,7 @@ router.delete("/Floor_DELETE_BYID/:FloorCode", FATSDB.Floor_DELETE_BYID)
 router.delete("/Building_newpage_DELETE_BYID/:BuildingCode", FATSDB.Building_newpage_DELETE_BYID)
 router.delete("/Rooms_DELETE_BYID/:RoomCode", FATSDB.Rooms_DELETE_BYID)
 router.delete("/Rooms_newpage_DELETE_BYID/:RoomCode", FATSDB.Rooms_newpage_DELETE_BYID)
-router.delete("/EmployeeRooms_DELETE_BYID/:EmployeeID",FATSDB.EmployeeRooms_DELETE_BYID)
+router.delete("/EmployeeRooms_DELETE_BYID/:EmployeeID", FATSDB.EmployeeRooms_DELETE_BYID)
+router.delete("/EmployeeRoomTransfers_DELETE_BYID/:TransferRequestNumber",FATSDB.EmployeeRoomTransfers_DELETE_BYID)
 //-----------------------------------------------------------------------------//////
 export default router;

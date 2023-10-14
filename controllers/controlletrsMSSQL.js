@@ -3110,6 +3110,99 @@ else {
       res.status(500).json({ error: `${error}` });
     }
   },
+  async EmployeeRoomTransfers_post(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const TransferRequestNumber = req.body.TransferRequestNumber
+       if (!TransferRequestNumber) {
+            return res.status(400).json({ status: 400, message: 'TransferRequestNumber is required', error: 'TransferRequestNumber is required' });
+      }
+      const existingRecord = await pool
+            .request()
+            .input("TransferRequestNumber", sql.VarChar, TransferRequestNumber)
+            .query(
+                `SELECT * FROM tblEmployeeRoomTransfers WHERE TransferRequestNumber = '${TransferRequestNumber}'`
+            );
+
+        if (existingRecord.recordset.length > 0) {
+            // A record with the same TransferRequestNumber already exists
+            return res.status(400).json({ status: 400, message: 'TransferRequestNumber already exists', error: 'TransferRequestNumber already exists' });
+        }
+      let data = await pool
+        .request()
+        .input("TransferRequestNumber", sql.VarChar, req.body.TransferRequestNumber)
+        .input("TransferRequestDate", sql.VarChar, req.body.TransferRequestDate)
+        .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
+        .input("FROM_RoomCode", sql.VarChar, req.body.FROM_RoomCode)
+        .input("TO_RoomCode", sql.VarChar, req.body.TO_RoomCode)
+
+        .input("EmployeeID_Approval_1", sql.VarChar, req.body.EmployeeID_Approval_1)
+        .input("DateApproved_Approval_1", sql.VarChar, req.body.DateApproved_Approval_1)
+        .input("ApprovedFlag_Approval_1", sql.VarChar, req.body.ApprovedFlag_Approval_1)
+
+
+        .input("EmployeeID_Approval_2", sql.VarChar, req.body.EmployeeID_Approval_2)
+        .input("DateApproved_Approval_2", sql.VarChar, req.body.DateApproved_Approval_2)
+        .input("ApprovedFlag_Approval_2", sql.VarChar, req.body.ApprovedFlag_Approval_2)
+
+        .input("EmployeeID_Approval_3", sql.VarChar, req.body.EmployeeID_Approval_3)
+        .input("DateApproved_Approval_3", sql.VarChar, req.body.DateApproved_Approval_3)
+        .input("ApprovedFlag_Approval_3", sql.VarChar, req.body.ApprovedFlag_Approval_3)
+        .query(
+          ` 
+            INSERT INTO [dbo].[tblEmployeeRoomTransfers]
+                       ([TransferRequestNumber]
+                       ,[TransferRequestDate]
+                       ,[EmployeeID]
+                      ,[FROM_RoomCode]
+                       ,[TO_RoomCode]
+
+                       ,[EmployeeID_Approval_1]
+                       ,[DateApproved_Approval_1]
+                       ,[ApprovedFlag_Approval_1]
+
+
+                       ,[EmployeeID_Approval_2]
+                        ,[DateApproved_Approval_2]
+                       ,[ApprovedFlag_Approval_2]
+
+                       ,[EmployeeID_Approval_3]
+                       ,[DateApproved_Approval_3]
+                       ,[ApprovedFlag_Approval_3]
+                        )
+                 VALUES
+                       (@TransferRequestNumber
+                       ,@TransferRequestDate
+                       ,@EmployeeID
+                       ,@FROM_RoomCode
+                       ,@TO_RoomCode
+
+                       ,@EmployeeID_Approval_1
+                       ,@DateApproved_Approval_1
+                       ,@ApprovedFlag_Approval_1
+
+
+                       ,@EmployeeID_Approval_2
+                       ,@DateApproved_Approval_2
+                       ,@ApprovedFlag_Approval_2
+
+                       ,@EmployeeID_Approval_3
+                       ,@DateApproved_Approval_3
+                       ,@ApprovedFlag_Approval_3                 
+                       )`
+        );
+      let data1 = await pool
+        .request()
+
+        .query(
+          `select * from tblEmployeeRoomTransfers where TransferRequestNumber='${TransferRequestNumber}'`
+        );
+      res.status(201).json({ status:201, successfully:"data created successfully",  data:data1.recordsets[0]});
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //
   //-----------------------------------------------------------------------------------
 
@@ -4801,6 +4894,60 @@ WHERE EmployeeID='${EmployeeID}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+ async EmployeeRoomTransfers_Put(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const TransferRequestNumber = req.params.TransferRequestNumber;
+      let data = await pool
+        .request()
+
+        .input("TransferRequestDate", sql.VarChar, req.body.TransferRequestDate)
+        .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
+        .input("FROM_RoomCode", sql.VarChar, req.body.FROM_RoomCode)
+        .input("TO_RoomCode", sql.VarChar, req.body.TO_RoomCode)
+
+        .input("EmployeeID_Approval_1", sql.VarChar, req.body.EmployeeID_Approval_1)
+        .input("DateApproved_Approval_1", sql.VarChar, req.body.DateApproved_Approval_1)
+        .input("ApprovedFlag_Approval_1", sql.VarChar, req.body.ApprovedFlag_Approval_1)
+
+
+        .input("EmployeeID_Approval_2", sql.VarChar, req.body.EmployeeID_Approval_2)
+        .input("DateApproved_Approval_2", sql.VarChar, req.body.DateApproved_Approval_2)
+        .input("ApprovedFlag_Approval_2", sql.VarChar, req.body.ApprovedFlag_Approval_2)
+
+        .input("EmployeeID_Approval_3", sql.VarChar, req.body.EmployeeID_Approval_3)
+        .input("DateApproved_Approval_3", sql.VarChar, req.body.DateApproved_Approval_3)
+        .input("ApprovedFlag_Approval_3", sql.VarChar, req.body.ApprovedFlag_Approval_3)
+        .query(
+          ` 
+          UPDATE [dbo].[tblEmployeeRoomTransfers]
+SET
+
+[TransferRequestDate] =@TransferRequestDate
+,[EmployeeID] =@EmployeeID
+,[FROM_RoomCode] =@FROM_RoomCode
+,[TO_RoomCode] =@TO_RoomCode
+
+,[EmployeeID_Approval_1] =@EmployeeID_Approval_1
+,[DateApproved_Approval_1] =@DateApproved_Approval_1
+,[ApprovedFlag_Approval_1] =@ApprovedFlag_Approval_1
+
+,[EmployeeID_Approval_2] =@EmployeeID_Approval_2
+,[DateApproved_Approval_2] =@DateApproved_Approval_2
+,[ApprovedFlag_Approval_2] =@ApprovedFlag_Approval_2
+
+,[EmployeeID_Approval_3] =@EmployeeID_Approval_3
+,[DateApproved_Approval_3] =@DateApproved_Approval_3
+,[ApprovedFlag_Approval_3] =@ApprovedFlag_Approval_3
+
+WHERE TransferRequestNumber='${TransferRequestNumber}'`
+        );
+      res.status(200).json({status:200, message:"data Update successfully", data:data.rowsAffected[0]});
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-------------------------------------------------------------------------------------
 
   //---------------------------GET--------------------------------------------------------
@@ -6481,7 +6628,6 @@ WHERE EmployeeID='${EmployeeID}'`
       res.status(500).json({ error: `${error}` });
     }
   },
-
   async location_managment_All(req, res, next) {
     try {
       let pool = await sql.connect(config);
@@ -6679,6 +6825,43 @@ INNER JOIN tblWorkRequest ON tblWorkOrders.WorkRequestNumber = tblWorkRequest.Re
     try {
       let pool = await sql.connect(config);
       let data = await pool.request().query(`select * from tblEmployeeRooms`);
+      res.status(200).json({ status:200, data:data.recordsets[0]});
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+   async EmployeeRoomTransfers_GET_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const TransferRequestNumber = req.params.TransferRequestNumber;
+       const existingRecord = await pool
+            .request()
+            .input("TransferRequestNumber", sql.VarChar, TransferRequestNumber)
+            .query(
+                `SELECT * FROM tblEmployeeRoomTransfers WHERE TransferRequestNumber = '${TransferRequestNumber}'`
+            );
+
+        if (existingRecord.recordset.length === 0) {
+            // No record with the specified TransferRequestNumber found in the database
+            return res.status(404).json({ status:404, message:"TransferRequestNumber found", error: 'TransferRequestNumber not found' });
+        }
+      let data = await pool
+        .request()
+
+        .query(
+          `select * from tblEmployeeRoomTransfers where TransferRequestNumber='${TransferRequestNumber}'`
+        );
+      res.status(200).json({ status:200,  data:data.recordsets[0]});
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+   async EmployeeRoomTransfers_GET_List(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      let data = await pool.request().query(`select * from tblEmployeeRoomTransfers`);
       res.status(200).json({ status:200, data:data.recordsets[0]});
     } catch (error) {
       console.log(error);
@@ -7605,6 +7788,23 @@ WHERE RequestNumber = '${RequestNumber}'`
 
         .query(
           `delete from tblEmployeeRooms where EmployeeID='${EmployeeID}'`
+        );
+      console.log(data);
+      res.status(200).json({ status:200, successfully:"Data delete successfully", data:data.rowsAffected[0]});
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+   async EmployeeRoomTransfers_DELETE_BYID(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const TransferRequestNumber = req.params.TransferRequestNumber;
+      let data = await pool
+        .request()
+
+        .query(
+          `delete from tblEmployeeRoomTransfers where TransferRequestNumber='${TransferRequestNumber}'`
         );
       console.log(data);
       res.status(200).json({ status:200, successfully:"Data delete successfully", data:data.rowsAffected[0]});
