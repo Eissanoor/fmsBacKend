@@ -6868,6 +6868,17 @@ INNER JOIN tblWorkRequest ON tblWorkOrders.WorkRequestNumber = tblWorkRequest.Re
       res.status(500).json({ error: `${error}` });
     }
   },
+   async Total_Capacity(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      let data = await pool.request().query(`SELECT SUM(Capacity) AS total_Capacity
+FROM prmRooms;`);
+      res.status(200).json({ status:200, data:data.recordsets[0]});
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   //-----------------------------------------------------------------------------------
 
   //---------------------------DELETE--------------------------------------------------------
