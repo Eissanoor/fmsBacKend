@@ -31,7 +31,7 @@ const cpUpload = upload.fields([
   { name: "EmployeeImage" },
   { name: "selfieIDImage" },
   { name: "AssetImage" },
-  { name: "BuildingImage" }
+  { name: "BuildingImage" },
 ]);
 //----------------POST_API---------------------------------------------------------
 router.post("/AddworkRequestPOST", FATSDB.AddworkRequestPOST);
@@ -97,34 +97,37 @@ router.post("/AssetCategory_post", FATSDB.AssetCategory_post);
 router.post("/AssetSubCategory_post", FATSDB.AssetSubCategory_post);
 router.post("/AssetCondition_post", FATSDB.AssetCondition_post);
 router.post("/WarrantyPeriod_post", FATSDB.WarrantyPeriod_post);
-router.post("/EmployeeMaster_post", cpUpload, FATSDB.EmployeeMaster_post)
-router.post("/assetworkrequest_post", FATSDB.assetworkrequest_post)
-router.post("/Designation_post",FATSDB.Designation_post)
-router.post("/EmployeeStatus_post", FATSDB.EmployeeStatus_post)
-router.post("/WorkOrders_post", FATSDB.WorkOrders_post)
-router.post("/SystemModules_post", FATSDB.SystemModules_post)
-router.post("/VendorMaster_post", FATSDB.VendorMaster_post)
-router.post("/AssetItemGroup_post", FATSDB.AssetItemGroup_post)
-router.post("/PreventiveMaintenance_post", FATSDB.PreventiveMaintenance_post)
-router.post("/CleaningWorks_post", FATSDB.CleaningWorks_post)
-router.post("/AssetTransactions_post", FATSDB.AssetTransactions_post)
-router.post("/UserAuthority_post", FATSDB.UserAuthority_post)
-router.post("/UserCredentials_post", FATSDB.UserCredentials_post)
-router.post("/UserSystemAccess_post", FATSDB.UserSystemAccess_post)
-router.post("/PurchaseRequest_post", FATSDB.PurchaseRequest_post)
-router.post("/PurchaseOrder_post", FATSDB.PurchaseOrder_post)
-router.post("/GoodsReceipt_post", FATSDB.GoodsReceipt_post)
-router.post("/GoodsReturn_post", FATSDB.GoodsReturn_post)
-router.post("/assetItemRequest_ADD_post", FATSDB.assetItemRequest_ADD_post)
-router.post("/assetItemOrder_ADD_post", FATSDB.assetItemOrder_ADD_post)
-router.post("/assetItemGOODS_ADD_post", FATSDB.assetItemGOODS_ADD_post)
-router.post("/assetItemGOODSReturn_ADD_post", FATSDB.assetItemGOODSReturn_ADD_post)
-router.post("/Floor_post", FATSDB.Floor_post)
-router.post("/Building_newpage_post", cpUpload, FATSDB.Building_newpage_post)
-router.post("/Rooms_post", FATSDB.Rooms_post)
-router.post("/Rooms_newpage_post", FATSDB.Rooms_newpage_post)
-router.post("/EmployeeRooms_post", FATSDB.EmployeeRooms_post)
-router.post("/EmployeeRoomTransfers_post", FATSDB.EmployeeRoomTransfers_post)
+router.post("/EmployeeMaster_post", cpUpload, FATSDB.EmployeeMaster_post);
+router.post("/assetworkrequest_post", FATSDB.assetworkrequest_post);
+router.post("/Designation_post", FATSDB.Designation_post);
+router.post("/EmployeeStatus_post", FATSDB.EmployeeStatus_post);
+router.post("/WorkOrders_post", FATSDB.WorkOrders_post);
+router.post("/SystemModules_post", FATSDB.SystemModules_post);
+router.post("/VendorMaster_post", FATSDB.VendorMaster_post);
+router.post("/AssetItemGroup_post", FATSDB.AssetItemGroup_post);
+router.post("/PreventiveMaintenance_post", FATSDB.PreventiveMaintenance_post);
+router.post("/CleaningWorks_post", FATSDB.CleaningWorks_post);
+router.post("/AssetTransactions_post", FATSDB.AssetTransactions_post);
+router.post("/UserAuthority_post", FATSDB.UserAuthority_post);
+router.post("/UserCredentials_post", FATSDB.UserCredentials_post);
+router.post("/UserSystemAccess_post", FATSDB.UserSystemAccess_post);
+router.post("/PurchaseRequest_post", FATSDB.PurchaseRequest_post);
+router.post("/PurchaseOrder_post", FATSDB.PurchaseOrder_post);
+router.post("/GoodsReceipt_post", FATSDB.GoodsReceipt_post);
+router.post("/GoodsReturn_post", FATSDB.GoodsReturn_post);
+router.post("/assetItemRequest_ADD_post", FATSDB.assetItemRequest_ADD_post);
+router.post("/assetItemOrder_ADD_post", FATSDB.assetItemOrder_ADD_post);
+router.post("/assetItemGOODS_ADD_post", FATSDB.assetItemGOODS_ADD_post);
+router.post(
+  "/assetItemGOODSReturn_ADD_post",
+  FATSDB.assetItemGOODSReturn_ADD_post
+);
+router.post("/Floor_post", FATSDB.Floor_post);
+router.post("/Building_newpage_post", cpUpload, FATSDB.Building_newpage_post);
+router.post("/Rooms_post", FATSDB.Rooms_post);
+router.post("/Rooms_newpage_post", FATSDB.Rooms_newpage_post);
+router.post("/EmployeeRooms_post", FATSDB.EmployeeRooms_post);
+router.post("/EmployeeRoomTransfers_post", FATSDB.EmployeeRoomTransfers_post);
 
 //--------------------------------------------------------------------------
 
@@ -251,93 +254,198 @@ router.get(
   FATSDB.WarrantyPeriod_GET_BYID
 );
 router.get("/WarrantyPeriod_GET_LISTS", FATSDB.WarrantyPeriod_GET_LISTS);
-router.get("/EmployeeMaster_GET_BYID/:EmployeeID", FATSDB.EmployeeMaster_GET_BYID);
-router.get("/EmployeeMaster_GET_LIST", FATSDB.EmployeeMaster_GET_LIST)
-router.get("/assetworkrequest_GET_BYID/:RequestNumber", FATSDB.assetworkrequest_GET_BYID)
-router.get("/tblAssetsMaster_GET_BYID/:AssetItemDescription", FATSDB.tblAssetsMaster_GET_BYID)
-router.get("/workRequestCount_GET_BYID/:No", FATSDB.workRequestCount_GET_BYID)
-router.get("/EmployeeID_GET_LIST", FATSDB.EmployeeID_GET_LIST)
-router.get("/Nationality_GET_LIST_Nationality", FATSDB.Nationality_GET_LIST_Nationality)
-router.get("/Nationality_GET_LIST_NationalityDES/:NationalityCode", FATSDB.Nationality_GET_LIST_NationalityDES)
-router.get("/Designation_GET_LIST", FATSDB.Designation_GET_LIST)
-router.get("/Designation_GET_BYID/:DesignationCode",FATSDB.Designation_GET_BYID)
-router.post("/getworkRequest_by_EPID", FATSDB.getworkRequest_by_EPID)
-router.get("/Filter_WR",FATSDB.Filter_WR)
-router.get("/Designation_GET_LIST", FATSDB.Designation_GET_LIST)
-router.get("/Designation_GET_BYID/:DesignationCode", FATSDB.Designation_GET_BYID)
-router.get("/EmployeeStatus_GET_BYID/:EmployeeStatusCode", FATSDB.EmployeeStatus_GET_BYID)
-router.get("/EmployeeStatus_GET_LIST", FATSDB.EmployeeStatus_GET_LIST)
-router.get("/WorkCatagres_GET_CODE_LIST", FATSDB.WorkCatagres_GET_CODE_LIST)
-router.get("/Failure_GET_CODELIST", FATSDB.Failure_GET_CODELIST)
-router.get("/Solution_GET_CODE_LIST", FATSDB.Solution_GET_CODE_LIST)
-router.get("/WorkOrders_GET_LIST", FATSDB.WorkOrders_GET_LIST)
-router.get("/WorkOrders_GET_BYID/:WorkOrderNumber", FATSDB.WorkOrders_GET_BYID)
-router.get("/SystemModules_GET_BYID/:SystemModuleCode", FATSDB.SystemModules_GET_BYID)
-router.get("/SystemModules_GET_LIST", FATSDB.SystemModules_GET_LIST)
-router.get("/VendorMaster_GET_BYID/:VendorID", FATSDB.VendorMaster_GET_BYID)
-router.get("/VendorMaster_GET_LIST", FATSDB.VendorMaster_GET_LIST)
-router.get("/AssetItemGroup_GET_LIST", FATSDB.AssetItemGroup_GET_LIST)
-router.get("/AssetItemGroup_GET_BYID/:AssetItemGroupCode", FATSDB.AssetItemGroup_GET_BYID)
-router.get("/MaterialUnits_GET_BYID/:MaterialUnitCode", FATSDB.MaterialUnits_GET_BYID)
-router.get("/MaterialUnits_GET_LIST", FATSDB.MaterialUnits_GET_LIST)
-router.get("/WarrantyPeriod_GET_LIST", FATSDB.WarrantyPeriod_GET_LIST)
-router.get("/WarrantyPeriod_GET_BYID/:WarrantyPeriodCode", FATSDB.WarrantyPeriod_GET_BYID)
-router.get("/Filter_VendorMaster", FATSDB.Filter_VendorMaster)
-router.get("/AssetTransactions_GET_ItemDescription/:AssetItemDescription", FATSDB.AssetTransactions_GET_ItemDescription)
-router.get("/PreventiveMaintenance_GET_BYID/:RequestNumber", FATSDB.PreventiveMaintenance_GET_BYID)
-router.get("/PreventiveMaintenance_GET_LIST", FATSDB.PreventiveMaintenance_GET_LIST)
-router.get("/CleaningWorks_GET_LIST", FATSDB.CleaningWorks_GET_LIST)
-router.get("/CleaningWorks_GET_BYID/:RequestNumber", FATSDB.CleaningWorks_GET_BYID)
-router.get("/SchedPriority_GET_LIST", FATSDB.SchedPriority_GET_LIST)
-router.get("/CleaningGroup_GET_LIST", FATSDB.CleaningGroup_GET_LIST)
-router.get("/CleaningGroup_GET_BYID/:CleaningGroupCode", FATSDB.CleaningGroup_GET_BYID)
-router.get("/AssetTransactions_GET_BYID/:AssetItemTagID", FATSDB.AssetTransactions_GET_BYID)
-router.get("/AssetTransactions_GET_LIST", FATSDB.AssetTransactions_GET_LIST)
-router.get("/Filter_AssetsMaster", FATSDB.Filter_AssetsMaster)
-router.get("/UserAuthority_GET_LIST",FATSDB.UserAuthority_GET_LIST)
-router.get("/UserAuthority_GET_BYID/:UserAuthorityCode", FATSDB.UserAuthority_GET_BYID)
-router.get("/UserCredentials_GET_BYID/:EmployeeID", FATSDB.UserCredentials_GET_BYID)
-router.get("/UserCredentials_GET_LIST", FATSDB.UserCredentials_GET_LIST)
-router.get("/UserSystemAccess_GET_LIST", FATSDB.UserSystemAccess_GET_LIST)
-router.get("/UserSystemAccess_GET_BYID/:EmployeeID", FATSDB.UserSystemAccess_GET_BYID)
-router.get("/UserAuthority_GET_DropdownList", FATSDB.UserAuthority_GET_DropdownList)
-router.get("/PurchaseRequest_GET_List", FATSDB.PurchaseRequest_GET_List)
-router.get("/PurchaseRequest_GET_BYID/:PurchaseRequestNumber", FATSDB.PurchaseRequest_GET_BYID)
-router.get("/PurchaseOrder_GET_BYID/:PurchaseOrderNumber", FATSDB.PurchaseOrder_GET_BYID)
-router.get("/PurchaseOrder_GET_List", FATSDB.PurchaseOrder_GET_List)
-router.get("/GoodsReceipt_GET_List", FATSDB.GoodsReceipt_GET_List)
-router.get("/GoodsReceipt_GET_BYID/:PurchaseOrderNumber", FATSDB.GoodsReceipt_GET_BYID)
-router.get("/GoodsReturn_GET_BYID/:PurchaseOrderNumber", FATSDB.GoodsReturn_GET_BYID)
-router.get("/GoodsReturn_GET_List", FATSDB.GoodsReturn_GET_List)
-router.get("/Filter_PurchaseRequestNumber", FATSDB.Filter_PurchaseRequestNumber)
-router.get("/Filter_PurchaseOrderNumber", FATSDB.Filter_PurchaseOrderNumber)
-router.get("/PurchaseRequestDetail_GET_BY_PurchaseRequestNumber/:PurchaseRequestNumber",
-  FATSDB.PurchaseRequestDetail_GET_BY_PurchaseRequestNumber)
-router.get("/PurchaseRequestDetail_GET_BY_PurchaseOrderNumber/:PurchaseOrderNumber",
-  FATSDB.PurchaseRequestDetail_GET_BY_PurchaseOrderNumber)
-router.get("/GET_BY_PurchaseOrderNumber_GoodsReceiptDetail/:PurchaseOrderNumber",
-  FATSDB.GET_BY_PurchaseOrderNumber_GoodsReceiptDetail)
-router.get("/GET_BY_PurchaseOrderNumber_GoodsReturn/:PurchaseOrderNumber",
-  FATSDB.GET_BY_PurchaseOrderNumber_GoodsReturn)
-router.get("/AssetType_GET_BYAssetType/:AssetType", FATSDB.AssetType_GET_BYAssetType)
-router.get("/Asset_WarrantyEndDate", FATSDB.Asset_WarrantyEndDate)
-router.get("/location_managment_All", FATSDB.location_managment_All)
-router.get("/Floor_GET_BYID/:FloorCode", FATSDB.Floor_GET_BYID)
-router.get("/Floor_GET_List", FATSDB.Floor_GET_List)
-router.get("/Building_newpage_GET_List", FATSDB.Building_newpage_GET_List)
-router.get("/Building_newpage_GET_BYID/:BuildingCode", FATSDB.Building_newpage_GET_BYID)
-router.get("/Rooms_GET_BYID/:RoomCode", FATSDB.Rooms_GET_BYID)
-router.get("/Rooms_GET_List", FATSDB.Rooms_GET_List)
-router.get("/Rooms_newpage_GET_List", FATSDB.Rooms_newpage_GET_List)
-router.get("/Rooms_newpage_GET_BYID/:RoomCode", FATSDB.Rooms_newpage_GET_BYID)
-router.get("/EmployeeRooms_GET_BYID/:EmployeeID", FATSDB.EmployeeRooms_GET_BYID)
-router.get("/EmployeeRooms_GET_List", FATSDB.EmployeeRooms_GET_List)
-router.get("/Filter_Rooms", FATSDB.Filter_Rooms)
-router.get("/Filter_Approval_Employees", FATSDB.Filter_Approval_Employees)
-router.get("/EmployeeRoomTransfers_GET_BYID/:TransferRequestNumber", FATSDB.EmployeeRoomTransfers_GET_BYID)
-router.get("/EmployeeRoomTransfers_GET_List", FATSDB.EmployeeRoomTransfers_GET_List)
-router.get("/Total_Capacity", FATSDB.Total_Capacity)
-router.get("/Total_Occupants",FATSDB.Total_Occupants)
+router.get(
+  "/EmployeeMaster_GET_BYID/:EmployeeID",
+  FATSDB.EmployeeMaster_GET_BYID
+);
+router.get("/EmployeeMaster_GET_LIST", FATSDB.EmployeeMaster_GET_LIST);
+router.get(
+  "/assetworkrequest_GET_BYID/:RequestNumber",
+  FATSDB.assetworkrequest_GET_BYID
+);
+router.get(
+  "/tblAssetsMaster_GET_BYID/:AssetItemDescription",
+  FATSDB.tblAssetsMaster_GET_BYID
+);
+router.get("/workRequestCount_GET_BYID/:No", FATSDB.workRequestCount_GET_BYID);
+router.get("/EmployeeID_GET_LIST", FATSDB.EmployeeID_GET_LIST);
+router.get(
+  "/Nationality_GET_LIST_Nationality",
+  FATSDB.Nationality_GET_LIST_Nationality
+);
+router.get(
+  "/Nationality_GET_LIST_NationalityDES/:NationalityCode",
+  FATSDB.Nationality_GET_LIST_NationalityDES
+);
+router.get("/Designation_GET_LIST", FATSDB.Designation_GET_LIST);
+router.get(
+  "/Designation_GET_BYID/:DesignationCode",
+  FATSDB.Designation_GET_BYID
+);
+router.post("/getworkRequest_by_EPID", FATSDB.getworkRequest_by_EPID);
+router.get("/Filter_WR", FATSDB.Filter_WR);
+router.get("/Designation_GET_LIST", FATSDB.Designation_GET_LIST);
+router.get(
+  "/Designation_GET_BYID/:DesignationCode",
+  FATSDB.Designation_GET_BYID
+);
+router.get(
+  "/EmployeeStatus_GET_BYID/:EmployeeStatusCode",
+  FATSDB.EmployeeStatus_GET_BYID
+);
+router.get("/EmployeeStatus_GET_LIST", FATSDB.EmployeeStatus_GET_LIST);
+router.get("/WorkCatagres_GET_CODE_LIST", FATSDB.WorkCatagres_GET_CODE_LIST);
+router.get("/Failure_GET_CODELIST", FATSDB.Failure_GET_CODELIST);
+router.get("/Solution_GET_CODE_LIST", FATSDB.Solution_GET_CODE_LIST);
+router.get("/WorkOrders_GET_LIST", FATSDB.WorkOrders_GET_LIST);
+router.get("/WorkOrders_GET_BYID/:WorkOrderNumber", FATSDB.WorkOrders_GET_BYID);
+router.get(
+  "/SystemModules_GET_BYID/:SystemModuleCode",
+  FATSDB.SystemModules_GET_BYID
+);
+router.get("/SystemModules_GET_LIST", FATSDB.SystemModules_GET_LIST);
+router.get("/VendorMaster_GET_BYID/:VendorID", FATSDB.VendorMaster_GET_BYID);
+router.get("/VendorMaster_GET_LIST", FATSDB.VendorMaster_GET_LIST);
+router.get("/AssetItemGroup_GET_LIST", FATSDB.AssetItemGroup_GET_LIST);
+router.get(
+  "/AssetItemGroup_GET_BYID/:AssetItemGroupCode",
+  FATSDB.AssetItemGroup_GET_BYID
+);
+router.get(
+  "/MaterialUnits_GET_BYID/:MaterialUnitCode",
+  FATSDB.MaterialUnits_GET_BYID
+);
+router.get("/MaterialUnits_GET_LIST", FATSDB.MaterialUnits_GET_LIST);
+router.get("/WarrantyPeriod_GET_LIST", FATSDB.WarrantyPeriod_GET_LIST);
+router.get(
+  "/WarrantyPeriod_GET_BYID/:WarrantyPeriodCode",
+  FATSDB.WarrantyPeriod_GET_BYID
+);
+router.get("/Filter_VendorMaster", FATSDB.Filter_VendorMaster);
+router.get(
+  "/AssetTransactions_GET_ItemDescription/:AssetItemDescription",
+  FATSDB.AssetTransactions_GET_ItemDescription
+);
+router.get(
+  "/PreventiveMaintenance_GET_BYID/:RequestNumber",
+  FATSDB.PreventiveMaintenance_GET_BYID
+);
+router.get(
+  "/PreventiveMaintenance_GET_LIST",
+  FATSDB.PreventiveMaintenance_GET_LIST
+);
+router.get("/CleaningWorks_GET_LIST", FATSDB.CleaningWorks_GET_LIST);
+router.get(
+  "/CleaningWorks_GET_BYID/:RequestNumber",
+  FATSDB.CleaningWorks_GET_BYID
+);
+router.get("/SchedPriority_GET_LIST", FATSDB.SchedPriority_GET_LIST);
+router.get("/CleaningGroup_GET_LIST", FATSDB.CleaningGroup_GET_LIST);
+router.get(
+  "/CleaningGroup_GET_BYID/:CleaningGroupCode",
+  FATSDB.CleaningGroup_GET_BYID
+);
+router.get(
+  "/AssetTransactions_GET_BYID/:AssetItemTagID",
+  FATSDB.AssetTransactions_GET_BYID
+);
+router.get("/AssetTransactions_GET_LIST", FATSDB.AssetTransactions_GET_LIST);
+router.get("/Filter_AssetsMaster", FATSDB.Filter_AssetsMaster);
+router.get("/UserAuthority_GET_LIST", FATSDB.UserAuthority_GET_LIST);
+router.get(
+  "/UserAuthority_GET_BYID/:UserAuthorityCode",
+  FATSDB.UserAuthority_GET_BYID
+);
+router.get(
+  "/UserCredentials_GET_BYID/:EmployeeID",
+  FATSDB.UserCredentials_GET_BYID
+);
+router.get("/UserCredentials_GET_LIST", FATSDB.UserCredentials_GET_LIST);
+router.get("/UserSystemAccess_GET_LIST", FATSDB.UserSystemAccess_GET_LIST);
+router.get(
+  "/UserSystemAccess_GET_BYID/:EmployeeID",
+  FATSDB.UserSystemAccess_GET_BYID
+);
+router.get(
+  "/UserAuthority_GET_DropdownList",
+  FATSDB.UserAuthority_GET_DropdownList
+);
+router.get("/PurchaseRequest_GET_List", FATSDB.PurchaseRequest_GET_List);
+router.get(
+  "/PurchaseRequest_GET_BYID/:PurchaseRequestNumber",
+  FATSDB.PurchaseRequest_GET_BYID
+);
+router.get(
+  "/PurchaseOrder_GET_BYID/:PurchaseOrderNumber",
+  FATSDB.PurchaseOrder_GET_BYID
+);
+router.get("/PurchaseOrder_GET_List", FATSDB.PurchaseOrder_GET_List);
+router.get("/GoodsReceipt_GET_List", FATSDB.GoodsReceipt_GET_List);
+router.get(
+  "/GoodsReceipt_GET_BYID/:PurchaseOrderNumber",
+  FATSDB.GoodsReceipt_GET_BYID
+);
+router.get(
+  "/GoodsReturn_GET_BYID/:PurchaseOrderNumber",
+  FATSDB.GoodsReturn_GET_BYID
+);
+router.get("/GoodsReturn_GET_List", FATSDB.GoodsReturn_GET_List);
+router.get(
+  "/Filter_PurchaseRequestNumber",
+  FATSDB.Filter_PurchaseRequestNumber
+);
+router.get("/Filter_PurchaseOrderNumber", FATSDB.Filter_PurchaseOrderNumber);
+router.get(
+  "/PurchaseRequestDetail_GET_BY_PurchaseRequestNumber/:PurchaseRequestNumber",
+  FATSDB.PurchaseRequestDetail_GET_BY_PurchaseRequestNumber
+);
+router.get(
+  "/PurchaseRequestDetail_GET_BY_PurchaseOrderNumber/:PurchaseOrderNumber",
+  FATSDB.PurchaseRequestDetail_GET_BY_PurchaseOrderNumber
+);
+router.get(
+  "/GET_BY_PurchaseOrderNumber_GoodsReceiptDetail/:PurchaseOrderNumber",
+  FATSDB.GET_BY_PurchaseOrderNumber_GoodsReceiptDetail
+);
+router.get(
+  "/GET_BY_PurchaseOrderNumber_GoodsReturn/:PurchaseOrderNumber",
+  FATSDB.GET_BY_PurchaseOrderNumber_GoodsReturn
+);
+router.get(
+  "/AssetType_GET_BYAssetType/:AssetType",
+  FATSDB.AssetType_GET_BYAssetType
+);
+router.get("/Asset_WarrantyEndDate", FATSDB.Asset_WarrantyEndDate);
+router.get("/location_managment_All", FATSDB.location_managment_All);
+router.get("/Floor_GET_BYID/:FloorCode", FATSDB.Floor_GET_BYID);
+router.get("/Floor_GET_List", FATSDB.Floor_GET_List);
+router.get("/Building_newpage_GET_List", FATSDB.Building_newpage_GET_List);
+router.get(
+  "/Building_newpage_GET_BYID/:BuildingCode",
+  FATSDB.Building_newpage_GET_BYID
+);
+router.get("/Rooms_GET_BYID/:RoomCode", FATSDB.Rooms_GET_BYID);
+router.get("/Rooms_GET_List", FATSDB.Rooms_GET_List);
+router.get("/Rooms_newpage_GET_List", FATSDB.Rooms_newpage_GET_List);
+router.get("/Rooms_newpage_GET_BYID/:RoomCode", FATSDB.Rooms_newpage_GET_BYID);
+router.get(
+  "/EmployeeRooms_GET_BYID/:EmployeeID",
+  FATSDB.EmployeeRooms_GET_BYID
+);
+router.get("/EmployeeRooms_GET_List", FATSDB.EmployeeRooms_GET_List);
+router.get("/Filter_Rooms", FATSDB.Filter_Rooms);
+router.get("/Filter_Approval_Employees", FATSDB.Filter_Approval_Employees);
+router.get(
+  "/EmployeeRoomTransfers_GET_BYID/:TransferRequestNumber",
+  FATSDB.EmployeeRoomTransfers_GET_BYID
+);
+router.get(
+  "/EmployeeRoomTransfers_GET_List",
+  FATSDB.EmployeeRoomTransfers_GET_List
+);
+router.get("/Total_Capacity", FATSDB.Total_Capacity);
+router.get("/Total_Occupants", FATSDB.Total_Occupants);
+router.get("/workRequest_WTD", FATSDB.workRequest_WTD);
 //------------------------------------------------------------------------------//
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);
@@ -363,7 +471,11 @@ router.put("/Gender_Put/:GenderCode", FATSDB.Gender_Put);
 router.put("/Title_Put/:TitleCode", FATSDB.Title_Put);
 router.put("/MaritalStatus_Put/:MaritalCode", FATSDB.MaritalStatus_Put);
 router.put("/Nationality_Put/:NationalityCode", FATSDB.Nationality_Put);
-router.put("/AssetsMaster_Put/:AssetItemDescription", cpUpload, FATSDB.AssetsMaster_Put);
+router.put(
+  "/AssetsMaster_Put/:AssetItemDescription",
+  cpUpload,
+  FATSDB.AssetsMaster_Put
+);
 router.put("/AssetType_Put/:AssetTypeCode", FATSDB.AssetType_Put);
 router.put("/AssetCategory_Put/:AssetCategoryCode", FATSDB.AssetCategory_Put);
 router.put(
@@ -378,37 +490,66 @@ router.put(
   "/WarrantyPeriod_Put/:WarrantyPeriodCode",
   FATSDB.WarrantyPeriod_Put
 );
-router.put("/EmployeeMaster_Put/:EmployeeID", cpUpload, FATSDB.EmployeeMaster_Put)
-router.put("/AssetsMaster_Put_status/:AssetItemDescription", FATSDB.AssetsMaster_Put_status)
-router.put("/workRequestCount_Put/:No", FATSDB.workRequestCount_Put)
-router.put("/EmployeeIDCount_Put/:No", FATSDB.EmployeeIDCount_Put)
-router.put("/Designation_Put/:DesignationCode", FATSDB.Designation_Put)
-router.put("/EmployeeStatus_Put/:EmployeeStatusCode", FATSDB.EmployeeStatus_Put)
-router.put("/WorkOrderNumberCount_Put/:No", FATSDB.WorkOrderNumberCount_Put)
-router.put("/WorkOrders_Put/:WorkOrderNumber", FATSDB.WorkOrders_Put)
-router.put("/SystemModules_Put/:SystemModuleCode", FATSDB.SystemModules_Put)
-router.put("/VendorMaster_Put/:VendorID", FATSDB.VendorMaster_Put)
-router.put("/AssetItemGroup_Put/:AssetItemGroupCode", FATSDB.AssetItemGroup_Put)
-router.put("/VendorIDCount_Put/:No", FATSDB.VendorIDCount_Put)
-router.put("/PreventiveMaintenance_Put/:RequestNumber", FATSDB.PreventiveMaintenance_Put)
-router.put("/CleaningWorks_Put/:RequestNumber", FATSDB.CleaningWorks_Put)
-router.put("/AssetTransactions_Put/:AssetItemTagID", FATSDB.AssetTransactions_Put)
-router.put("/UserAuthority_Put/:UserAuthorityCode", FATSDB.UserAuthority_Put)
-router.put("/UserCredentials_Put/:EmployeeID", FATSDB.UserCredentials_Put)
-router.put("/UserSystemAccess_Put/:EmployeeID", FATSDB.UserSystemAccess_Put)
-router.put("/PurchaseRequest_Put/:PurchaseRequestNumber", FATSDB.PurchaseRequest_Put)
-router.put("/PurchaseOrderNumber_Put/:No", FATSDB.PurchaseOrderNumber_Put)
-router.put("/PurchaseOrder_Put/:PurchaseOrderNumber", FATSDB.PurchaseOrder_Put)
-router.put("/GoodsReceipt_Put/:PurchaseOrderNumber", FATSDB.GoodsReceipt_Put)
-router.put("/GoodsReturn_Put/:PurchaseOrderNumber", FATSDB.GoodsReturn_Put)
-router.put("/PurchaseRequestNumber_Put/:No", FATSDB.PurchaseRequestNumber_Put)
-router.put("/Floor_Put/:FloorCode", FATSDB.Floor_Put)
-router.put("/Building_newpage_Put/:BuildingCode", cpUpload, FATSDB.Building_newpage_Put)
-router.put("/Rooms_Put/:RoomCode", FATSDB.Rooms_Put)
-router.put("/Rooms_newpage_Put/:RoomCode", FATSDB.Rooms_newpage_Put)
-router.put("/EmployeeRooms_Put/:EmployeeID", FATSDB.EmployeeRooms_Put)
-router.put("/TransferRequestNumber_Put/:No", FATSDB.TransferRequestNumber_Put)
-router.put("/EmployeeRoomTransfers_Put/:TransferRequestNumber",FATSDB.EmployeeRoomTransfers_Put)
+router.put(
+  "/EmployeeMaster_Put/:EmployeeID",
+  cpUpload,
+  FATSDB.EmployeeMaster_Put
+);
+router.put(
+  "/AssetsMaster_Put_status/:AssetItemDescription",
+  FATSDB.AssetsMaster_Put_status
+);
+router.put("/workRequestCount_Put/:No", FATSDB.workRequestCount_Put);
+router.put("/EmployeeIDCount_Put/:No", FATSDB.EmployeeIDCount_Put);
+router.put("/Designation_Put/:DesignationCode", FATSDB.Designation_Put);
+router.put(
+  "/EmployeeStatus_Put/:EmployeeStatusCode",
+  FATSDB.EmployeeStatus_Put
+);
+router.put("/WorkOrderNumberCount_Put/:No", FATSDB.WorkOrderNumberCount_Put);
+router.put("/WorkOrders_Put/:WorkOrderNumber", FATSDB.WorkOrders_Put);
+router.put("/SystemModules_Put/:SystemModuleCode", FATSDB.SystemModules_Put);
+router.put("/VendorMaster_Put/:VendorID", FATSDB.VendorMaster_Put);
+router.put(
+  "/AssetItemGroup_Put/:AssetItemGroupCode",
+  FATSDB.AssetItemGroup_Put
+);
+router.put("/VendorIDCount_Put/:No", FATSDB.VendorIDCount_Put);
+router.put(
+  "/PreventiveMaintenance_Put/:RequestNumber",
+  FATSDB.PreventiveMaintenance_Put
+);
+router.put("/CleaningWorks_Put/:RequestNumber", FATSDB.CleaningWorks_Put);
+router.put(
+  "/AssetTransactions_Put/:AssetItemTagID",
+  FATSDB.AssetTransactions_Put
+);
+router.put("/UserAuthority_Put/:UserAuthorityCode", FATSDB.UserAuthority_Put);
+router.put("/UserCredentials_Put/:EmployeeID", FATSDB.UserCredentials_Put);
+router.put("/UserSystemAccess_Put/:EmployeeID", FATSDB.UserSystemAccess_Put);
+router.put(
+  "/PurchaseRequest_Put/:PurchaseRequestNumber",
+  FATSDB.PurchaseRequest_Put
+);
+router.put("/PurchaseOrderNumber_Put/:No", FATSDB.PurchaseOrderNumber_Put);
+router.put("/PurchaseOrder_Put/:PurchaseOrderNumber", FATSDB.PurchaseOrder_Put);
+router.put("/GoodsReceipt_Put/:PurchaseOrderNumber", FATSDB.GoodsReceipt_Put);
+router.put("/GoodsReturn_Put/:PurchaseOrderNumber", FATSDB.GoodsReturn_Put);
+router.put("/PurchaseRequestNumber_Put/:No", FATSDB.PurchaseRequestNumber_Put);
+router.put("/Floor_Put/:FloorCode", FATSDB.Floor_Put);
+router.put(
+  "/Building_newpage_Put/:BuildingCode",
+  cpUpload,
+  FATSDB.Building_newpage_Put
+);
+router.put("/Rooms_Put/:RoomCode", FATSDB.Rooms_Put);
+router.put("/Rooms_newpage_Put/:RoomCode", FATSDB.Rooms_newpage_Put);
+router.put("/EmployeeRooms_Put/:EmployeeID", FATSDB.EmployeeRooms_Put);
+router.put("/TransferRequestNumber_Put/:No", FATSDB.TransferRequestNumber_Put);
+router.put(
+  "/EmployeeRoomTransfers_Put/:TransferRequestNumber",
+  FATSDB.EmployeeRoomTransfers_Put
+);
 //--------------------------------------------------------------------------------
 //-----------------------------------DELETE_API-----------------------------------------
 router.delete(
@@ -495,43 +636,143 @@ router.delete(
   "/WarrantyPeriod_DELETE_BYID/:WarrantyPeriodCode",
   FATSDB.WarrantyPeriod_DELETE_BYID
 );
-router.delete("/EmployeeMaster_DELETE_BYID/:EmployeeID", FATSDB.EmployeeMaster_DELETE_BYID)
-router.delete("/assetworkrequest_DELETE_BYID/:seq", FATSDB.assetworkrequest_DELETE_BYID)
-router.delete("/all_work_request_DELETE_BYID/:RequestNumber", FATSDB.all_work_request_DELETE_BYID)
-router.delete("/Designation_DELETE_BYID/:DesignationCode", FATSDB.Designation_DELETE_BYID)
-router.delete("/EmployeeStatus_DELETE_BYID/:EmployeeStatusCode", FATSDB.EmployeeStatus_DELETE_BYID)
-router.delete("/WorkOrders_DELETE_BYID/:WorkOrderNumber", FATSDB.WorkOrders_DELETE_BYID)
-router.delete("/SystemModules_DELETE_BYID/:SystemModuleCode", FATSDB.SystemModules_DELETE_BYID)
-router.delete("/VendorMaster_DELETE_BYID/:VendorID", FATSDB.VendorMaster_DELETE_BYID)
-router.delete("/AssetItemGroup_DELETE_BYID/:AssetItemGroupCode", FATSDB.AssetItemGroup_DELETE_BYID)
-router.delete("/PreventiveMaintenance_DELETE_BYID/:RequestNumber", FATSDB.PreventiveMaintenance_DELETE_BYID)
-router.delete("/CleaningWorks_DELETE_BYID/:RequestNumber", FATSDB.CleaningWorks_DELETE_BYID)
-router.delete("/AssetTransactions_DELETE_BYID/:AssetItemTagID", FATSDB.AssetTransactions_DELETE_BYID)
-router.delete("/UserAuthority_DELETE_BYID/:UserAuthorityCode", FATSDB.UserAuthority_DELETE_BYID)
-router.delete("/UserCredentials_DELETE_BYID/:EmployeeID", FATSDB.UserCredentials_DELETE_BYID)
-router.delete("/UserSystemAccess_DELETE_BYID/:EmployeeID", FATSDB.UserSystemAccess_DELETE_BYID)
-router.delete("/PurchaseRequest_DELETE_BYID/:PurchaseRequestNumber", FATSDB.PurchaseRequest_DELETE_BYID)
-router.delete("/PurchaseOrder_DELETE_BYID/:PurchaseOrderNumber", FATSDB.PurchaseOrder_DELETE_BYID)
-router.delete("/GoodsReceipt_DELETE_BYID/:PurchaseOrderNumber", FATSDB.GoodsReceipt_DELETE_BYID)
-router.delete("/GoodsReturn_DELETE_BYID/:PurchaseOrderNumber", FATSDB.GoodsReturn_DELETE_BYID)
-router.delete("/PurchaseRequestAsset_DELETE_BYID/:seq", FATSDB.PurchaseRequestAsset_DELETE_BYID)
-router.delete("/PurchaseOrderAsset_DELETE_BYID/:seq", FATSDB.PurchaseOrderAsset_DELETE_BYID)
-router.delete("/PurchaseGOODSAsset_DELETE_BYID/:seq", FATSDB.PurchaseGOODSAsset_DELETE_BYID)
-router.delete("/GOODSReturnAsset_DELETE_BYID/:seq", FATSDB.GOODSReturnAsset_DELETE_BYID)
-router.delete("/PurchaseOrderNumber_GOODSReturnAsset_DELETE_BYID/:PurchaseOrderNumber",
-  FATSDB.PurchaseOrderNumber_GOODSReturnAsset_DELETE_BYID)
-router.delete("/PurchaseOrderNumber_GOODSRecipt_DELETE_BYID/:PurchaseOrderNumber",
-  FATSDB.PurchaseOrderNumber_GOODSRecipt_DELETE_BYID)
-router.delete("/Floor_DELETE_BYID/:FloorCode", FATSDB.Floor_DELETE_BYID)
-router.delete("/Building_newpage_DELETE_BYID/:BuildingCode", FATSDB.Building_newpage_DELETE_BYID)
-router.delete("/Rooms_DELETE_BYID/:RoomCode", FATSDB.Rooms_DELETE_BYID)
-router.delete("/Rooms_newpage_DELETE_BYID/:RoomCode", FATSDB.Rooms_newpage_DELETE_BYID)
-router.delete("/EmployeeRooms_DELETE_BYID/:EmployeeID", FATSDB.EmployeeRooms_DELETE_BYID)
-router.delete("/EmployeeRoomTransfers_DELETE_BYID/:TransferRequestNumber", FATSDB.EmployeeRoomTransfers_DELETE_BYID)
-router.delete("/WorkRequest_count_DELETE_BYID/:RequestNumber", FATSDB.WorkRequest_count_DELETE_BYID)
-router.delete("/PurchaseRequest_count_DELETE_BYID/:PurchaseRequestNumber", FATSDB.PurchaseRequest_count_DELETE_BYID)
-router.delete("/PurchaseOrder_count_DELETE_BYID/:PurchaseOrderNumber", FATSDB.PurchaseOrder_count_DELETE_BYID)
-router.delete("/GoodsReturn_count_DELETE_BYID/:PurchaseOrderNumber", FATSDB.GoodsReturn_count_DELETE_BYID)
-router.delete("/GoodsReceipt_count_DELETE_BYID/:PurchaseOrderNumber",FATSDB.GoodsReceipt_count_DELETE_BYID)
+router.delete(
+  "/EmployeeMaster_DELETE_BYID/:EmployeeID",
+  FATSDB.EmployeeMaster_DELETE_BYID
+);
+router.delete(
+  "/assetworkrequest_DELETE_BYID/:seq",
+  FATSDB.assetworkrequest_DELETE_BYID
+);
+router.delete(
+  "/all_work_request_DELETE_BYID/:RequestNumber",
+  FATSDB.all_work_request_DELETE_BYID
+);
+router.delete(
+  "/Designation_DELETE_BYID/:DesignationCode",
+  FATSDB.Designation_DELETE_BYID
+);
+router.delete(
+  "/EmployeeStatus_DELETE_BYID/:EmployeeStatusCode",
+  FATSDB.EmployeeStatus_DELETE_BYID
+);
+router.delete(
+  "/WorkOrders_DELETE_BYID/:WorkOrderNumber",
+  FATSDB.WorkOrders_DELETE_BYID
+);
+router.delete(
+  "/SystemModules_DELETE_BYID/:SystemModuleCode",
+  FATSDB.SystemModules_DELETE_BYID
+);
+router.delete(
+  "/VendorMaster_DELETE_BYID/:VendorID",
+  FATSDB.VendorMaster_DELETE_BYID
+);
+router.delete(
+  "/AssetItemGroup_DELETE_BYID/:AssetItemGroupCode",
+  FATSDB.AssetItemGroup_DELETE_BYID
+);
+router.delete(
+  "/PreventiveMaintenance_DELETE_BYID/:RequestNumber",
+  FATSDB.PreventiveMaintenance_DELETE_BYID
+);
+router.delete(
+  "/CleaningWorks_DELETE_BYID/:RequestNumber",
+  FATSDB.CleaningWorks_DELETE_BYID
+);
+router.delete(
+  "/AssetTransactions_DELETE_BYID/:AssetItemTagID",
+  FATSDB.AssetTransactions_DELETE_BYID
+);
+router.delete(
+  "/UserAuthority_DELETE_BYID/:UserAuthorityCode",
+  FATSDB.UserAuthority_DELETE_BYID
+);
+router.delete(
+  "/UserCredentials_DELETE_BYID/:EmployeeID",
+  FATSDB.UserCredentials_DELETE_BYID
+);
+router.delete(
+  "/UserSystemAccess_DELETE_BYID/:EmployeeID",
+  FATSDB.UserSystemAccess_DELETE_BYID
+);
+router.delete(
+  "/PurchaseRequest_DELETE_BYID/:PurchaseRequestNumber",
+  FATSDB.PurchaseRequest_DELETE_BYID
+);
+router.delete(
+  "/PurchaseOrder_DELETE_BYID/:PurchaseOrderNumber",
+  FATSDB.PurchaseOrder_DELETE_BYID
+);
+router.delete(
+  "/GoodsReceipt_DELETE_BYID/:PurchaseOrderNumber",
+  FATSDB.GoodsReceipt_DELETE_BYID
+);
+router.delete(
+  "/GoodsReturn_DELETE_BYID/:PurchaseOrderNumber",
+  FATSDB.GoodsReturn_DELETE_BYID
+);
+router.delete(
+  "/PurchaseRequestAsset_DELETE_BYID/:seq",
+  FATSDB.PurchaseRequestAsset_DELETE_BYID
+);
+router.delete(
+  "/PurchaseOrderAsset_DELETE_BYID/:seq",
+  FATSDB.PurchaseOrderAsset_DELETE_BYID
+);
+router.delete(
+  "/PurchaseGOODSAsset_DELETE_BYID/:seq",
+  FATSDB.PurchaseGOODSAsset_DELETE_BYID
+);
+router.delete(
+  "/GOODSReturnAsset_DELETE_BYID/:seq",
+  FATSDB.GOODSReturnAsset_DELETE_BYID
+);
+router.delete(
+  "/PurchaseOrderNumber_GOODSReturnAsset_DELETE_BYID/:PurchaseOrderNumber",
+  FATSDB.PurchaseOrderNumber_GOODSReturnAsset_DELETE_BYID
+);
+router.delete(
+  "/PurchaseOrderNumber_GOODSRecipt_DELETE_BYID/:PurchaseOrderNumber",
+  FATSDB.PurchaseOrderNumber_GOODSRecipt_DELETE_BYID
+);
+router.delete("/Floor_DELETE_BYID/:FloorCode", FATSDB.Floor_DELETE_BYID);
+router.delete(
+  "/Building_newpage_DELETE_BYID/:BuildingCode",
+  FATSDB.Building_newpage_DELETE_BYID
+);
+router.delete("/Rooms_DELETE_BYID/:RoomCode", FATSDB.Rooms_DELETE_BYID);
+router.delete(
+  "/Rooms_newpage_DELETE_BYID/:RoomCode",
+  FATSDB.Rooms_newpage_DELETE_BYID
+);
+router.delete(
+  "/EmployeeRooms_DELETE_BYID/:EmployeeID",
+  FATSDB.EmployeeRooms_DELETE_BYID
+);
+router.delete(
+  "/EmployeeRoomTransfers_DELETE_BYID/:TransferRequestNumber",
+  FATSDB.EmployeeRoomTransfers_DELETE_BYID
+);
+router.delete(
+  "/WorkRequest_count_DELETE_BYID/:RequestNumber",
+  FATSDB.WorkRequest_count_DELETE_BYID
+);
+router.delete(
+  "/PurchaseRequest_count_DELETE_BYID/:PurchaseRequestNumber",
+  FATSDB.PurchaseRequest_count_DELETE_BYID
+);
+router.delete(
+  "/PurchaseOrder_count_DELETE_BYID/:PurchaseOrderNumber",
+  FATSDB.PurchaseOrder_count_DELETE_BYID
+);
+router.delete(
+  "/GoodsReturn_count_DELETE_BYID/:PurchaseOrderNumber",
+  FATSDB.GoodsReturn_count_DELETE_BYID
+);
+router.delete(
+  "/GoodsReceipt_count_DELETE_BYID/:PurchaseOrderNumber",
+  FATSDB.GoodsReceipt_count_DELETE_BYID
+);
 //-----------------------------------------------------------------------------//////
 export default router;

@@ -5820,6 +5820,40 @@ WHERE TransferRequestNumber='${TransferRequestNumber}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async workRequest_WTD(req, res, next) {
+    try {
+        let pool = await sql.connect(config);
+
+        // Calculate the start and end dates of the current week in a format SQL Server can understand.
+        const currentDate = new Date();
+        const startOfWeek = new Date(currentDate);
+        startOfWeek.setHours(0, 0, 0, 0);
+        startOfWeek.setDate(currentDate.getDate() - currentDate.getDay());
+        const endOfWeek = new Date(currentDate);
+        endOfWeek.setHours(23, 59, 59, 999);
+        endOfWeek.setDate(currentDate.getDate() + (6 - currentDate.getDay()));
+
+        const formattedStartOfWeek = startOfWeek.toISOString();
+        const formattedEndOfWeek = endOfWeek.toISOString();
+
+        // Execute a SQL query to count records for the current week where 'RequestStatus' is 'Open' or 'RequestDateTime' is empty.
+        const query = `
+            SELECT
+                COUNT(*) AS Count
+            FROM tblWorkRequest
+            WHERE RequestStatus = 'Open'
+            AND (RequestDateTime >= '${formattedStartOfWeek}' AND RequestDateTime <= '${formattedEndOfWeek}')
+        `;
+
+        let data = await pool.request().query(query);
+
+        res.status(200).json(data.recordset);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: `${error}` });
+    }
+},
+
   async Employeenumber_GET_LIST(req, res, next) {
     try {
       let pool = await sql.connect(config);
