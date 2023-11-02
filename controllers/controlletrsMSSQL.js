@@ -39,7 +39,6 @@ const FATSDB = {
         .input("DepartmentCode", sql.VarChar, req.body.DepartmentCode)
         .input("BuildingCode", sql.VarChar, req.body.BuildingCode)
         .input("LocationCode", sql.VarChar, req.body.LocationCode)
-       
 
         .query(
           ` 
@@ -380,7 +379,7 @@ const FATSDB = {
   async WorkType_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-const WorkTypeCode= req.body.WorkTypeCode
+      const WorkTypeCode = req.body.WorkTypeCode;
       let data = await pool
         .request()
         .input("WorkTypeCode", sql.VarChar, req.body.WorkTypeCode)
@@ -398,7 +397,7 @@ const WorkTypeCode= req.body.WorkTypeCode
                        ,@WorkTypeDesc
                                            
                        )`
-      );
+        );
       let data1 = await pool
         .request()
 
@@ -414,7 +413,7 @@ const WorkTypeCode= req.body.WorkTypeCode
   async WorkTrade_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-               const    WorkTypeCode    =    req.body.WorkTypeCode
+      const WorkTypeCode = req.body.WorkTypeCode;
       let data = await pool
         .request()
         .input("WorkTypeCode", sql.VarChar, req.body.WorkTypeCode)
@@ -435,7 +434,7 @@ const WorkTypeCode= req.body.WorkTypeCode
                        ,@WorkTradeDesc
                                            
                        )`
-      );
+        );
       let data1 = await pool
         .request()
 
@@ -451,7 +450,7 @@ const WorkTypeCode= req.body.WorkTypeCode
   async WorkStatus_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-      const WorkStatusCode=  req.body.WorkStatusCode
+      const WorkStatusCode = req.body.WorkStatusCode;
       let data = await pool
         .request()
         .input("WorkStatusCode", sql.VarChar, req.body.WorkStatusCode)
@@ -472,7 +471,7 @@ const WorkTypeCode= req.body.WorkTypeCode
                                            
                        )`
         );
-       let data1 = await pool
+      let data1 = await pool
         .request()
 
         .query(
@@ -487,7 +486,7 @@ const WorkTypeCode= req.body.WorkTypeCode
   async Workpriority_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-  const WorkPriorityCode= req.body.WorkPriorityCode
+      const WorkPriorityCode = req.body.WorkPriorityCode;
       let data = await pool
         .request()
         .input("WorkPriorityCode", sql.VarChar, req.body.WorkPriorityCode)
@@ -510,7 +509,7 @@ const WorkTypeCode= req.body.WorkTypeCode
                                            
                        )`
         );
-       let data1 = await pool
+      let data1 = await pool
         .request()
 
         .query(
@@ -525,7 +524,7 @@ const WorkTypeCode= req.body.WorkTypeCode
   async WorkCatagres_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
- const   WorkCategoryCode=req.body.WorkCategoryCode
+      const WorkCategoryCode = req.body.WorkCategoryCode;
       let data = await pool
         .request()
         .input("WorkCategoryCode", sql.VarChar, req.body.WorkCategoryCode)
@@ -547,7 +546,7 @@ const WorkTypeCode= req.body.WorkTypeCode
                                            
                        )`
         );
-       let data1 = await pool
+      let data1 = await pool
         .request()
 
         .query(
@@ -562,7 +561,7 @@ const WorkTypeCode= req.body.WorkTypeCode
   async Department_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
- const DepartmentCode=req.body.DepartmentCode
+      const DepartmentCode = req.body.DepartmentCode;
       let data = await pool
         .request()
         .input("DepartmentCode", sql.VarChar, req.body.DepartmentCode)
@@ -599,7 +598,7 @@ const WorkTypeCode= req.body.WorkTypeCode
   async Building_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-     const BuildingCode=req.body.BuildingCode
+      const BuildingCode = req.body.BuildingCode;
       let data = await pool
         .request()
         .input("BuildingCode", sql.VarChar, req.body.BuildingCode)
@@ -636,7 +635,7 @@ const WorkTypeCode= req.body.WorkTypeCode
   async Location_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-const LocationCode = req.body.LocationCode
+      const LocationCode = req.body.LocationCode;
       let data = await pool
         .request()
         .input("LocationCode", sql.VarChar, req.body.LocationCode)
@@ -658,7 +657,7 @@ const LocationCode = req.body.LocationCode
                                            
                        )`
         );
-     let data1 = await pool
+      let data1 = await pool
         .request()
 
         .query(
@@ -673,7 +672,7 @@ const LocationCode = req.body.LocationCode
   async ProblemCategory_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-     const ProblemCategoryCode = req.body.ProblemCategoryCode
+      const ProblemCategoryCode = req.body.ProblemCategoryCode;
       let data = await pool
         .request()
         .input("ProblemCategoryCode", sql.VarChar, req.body.ProblemCategoryCode)
@@ -710,7 +709,7 @@ const LocationCode = req.body.LocationCode
   async RequestStatus_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-    const  RequestStatusCode = req.body.RequestStatusCode
+      const RequestStatusCode = req.body.RequestStatusCode;
       let data = await pool
         .request()
         .input("RequestStatusCode", sql.VarChar, req.body.RequestStatusCode)
@@ -747,7 +746,7 @@ const LocationCode = req.body.LocationCode
   async Failure_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-     const FailureStatusCode = req.body.FailureStatusCode
+      const FailureStatusCode = req.body.FailureStatusCode;
       let data = await pool
         .request()
         .input("FailureStatusCode", sql.VarChar, req.body.FailureStatusCode)
@@ -784,7 +783,7 @@ const LocationCode = req.body.LocationCode
   async Solution_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-     const SolutiontatusCode = req.body.SolutiontatusCode
+      const SolutiontatusCode = req.body.SolutiontatusCode;
       let data = await pool
         .request()
         .input("SolutiontatusCode", sql.VarChar, req.body.SolutiontatusCode)
@@ -821,7 +820,7 @@ const LocationCode = req.body.LocationCode
   async Days_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-const DaysCode= req.body.DaysCode
+      const DaysCode = req.body.DaysCode;
       let data = await pool
         .request()
         .input("DaysCode", sql.VarChar, req.body.DaysCode)
@@ -849,9 +848,7 @@ const DaysCode= req.body.DaysCode
       let data1 = await pool
         .request()
 
-        .query(
-          `select * from prmDays where DaysCode='${DaysCode}'`
-        );
+        .query(`select * from prmDays where DaysCode='${DaysCode}'`);
       res.status(201).json(data1);
     } catch (error) {
       console.log(error);
@@ -861,8 +858,8 @@ const DaysCode= req.body.DaysCode
   async Frequency_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
- const FreqCode = req.body.FreqCode
-      let data =  await pool
+      const FreqCode = req.body.FreqCode;
+      let data = await pool
         .request()
         .input("FreqCode", sql.VarChar, req.body.FreqCode)
         .input("FreqDesc", sql.VarChar, req.body.FreqDesc)
@@ -885,14 +882,12 @@ const DaysCode= req.body.DaysCode
                     
                                            
                        )`
-      );
-      
+        );
+
       let data1 = await pool
         .request()
 
-        .query(
-          `select * from prmFrequency where FreqCode='${FreqCode}'`
-        );
+        .query(`select * from prmFrequency where FreqCode='${FreqCode}'`);
       res.status(201).json(data1);
     } catch (error) {
       console.log(error);
@@ -902,7 +897,7 @@ const DaysCode= req.body.DaysCode
   async WorkRequestItems_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
- const RequestNumber= req.body.RequestNumber
+      const RequestNumber = req.body.RequestNumber;
       let data = await pool
         .request()
         .input("RequestNumber", sql.VarChar, req.body.RequestNumber)
@@ -929,7 +924,7 @@ const DaysCode= req.body.DaysCode
                                            
                        )`
         );
-       let data1 = await pool
+      let data1 = await pool
         .request()
 
         .query(
@@ -944,7 +939,7 @@ const DaysCode= req.body.DaysCode
   async Gender_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-    const  GenderCode = req.body.GenderCode
+      const GenderCode = req.body.GenderCode;
       let data = await pool
         .request()
         .input("GenderCode", sql.VarChar, req.body.GenderCode)
@@ -966,12 +961,10 @@ const DaysCode= req.body.DaysCode
                                            
                        )`
         );
-       let data1 = await pool
+      let data1 = await pool
         .request()
 
-        .query(
-          `select * from prmGender where GenderCode='${GenderCode}'`
-        );
+        .query(`select * from prmGender where GenderCode='${GenderCode}'`);
       res.status(201).json(data1);
     } catch (error) {
       console.log(error);
@@ -981,7 +974,7 @@ const DaysCode= req.body.DaysCode
   async Title_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
- const TitleCode = req.body.TitleCode
+      const TitleCode = req.body.TitleCode;
       let data = await pool
         .request()
         .input("TitleCode", sql.VarChar, req.body.TitleCode)
@@ -1001,12 +994,10 @@ const DaysCode= req.body.DaysCode
                                            
                        )`
         );
-     let data1 = await pool
+      let data1 = await pool
         .request()
 
-        .query(
-          `select * from prmTitle where TitleCode='${TitleCode}'`
-        );
+        .query(`select * from prmTitle where TitleCode='${TitleCode}'`);
       res.status(201).json(data1);
     } catch (error) {
       console.log(error);
@@ -1016,7 +1007,7 @@ const DaysCode= req.body.DaysCode
   async MaritalStatus_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
- const MaritalCode = req.body.MaritalCode
+      const MaritalCode = req.body.MaritalCode;
       let data = await pool
         .request()
         .input("MaritalCode", sql.VarChar, req.body.MaritalCode)
@@ -1036,7 +1027,7 @@ const DaysCode= req.body.DaysCode
                                            
                        )`
         );
-       let data1 = await pool
+      let data1 = await pool
         .request()
 
         .query(
@@ -1051,7 +1042,7 @@ const DaysCode= req.body.DaysCode
   async Nationality_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
- const NationalityCode = req.body.NationalityCode
+      const NationalityCode = req.body.NationalityCode;
       let data = await pool
         .request()
         .input("NationalityCode", sql.VarChar, req.body.NationalityCode)
@@ -1085,22 +1076,29 @@ const DaysCode= req.body.DaysCode
   },
   async AssetsMaster_post(req, res, next) {
     try {
-       const file = req.files["AssetImage"];
+      const file = req.files["AssetImage"];
 
-    const url = file ? `http://gs1ksa.org:3021/api/profile/${file[0].filename}` : null;
+      const url = file
+        ? `http://gs1ksa.org:3021/api/profile/${file[0].filename}`
+        : null;
       let pool = await sql.connect(config);
-      const AssetItemDescription = req.body.AssetItemDescription
+      const AssetItemDescription = req.body.AssetItemDescription;
       if (!req.body.AssetItemDescription) {
-      return res.status(400).json({ error: "Asset Item Description is required!" });
+        return res
+          .status(400)
+          .json({ error: "Asset Item Description is required!" });
       }
-        const checkQuery = `SELECT * FROM tblAssetsMaster WHERE AssetItemDescription=@AssetItemDescription`;
-    const checkResult = await pool.request()
-      .input("AssetItemDescription", sql.VarChar, AssetItemDescription)
-      .query(checkQuery);
+      const checkQuery = `SELECT * FROM tblAssetsMaster WHERE AssetItemDescription=@AssetItemDescription`;
+      const checkResult = await pool
+        .request()
+        .input("AssetItemDescription", sql.VarChar, AssetItemDescription)
+        .query(checkQuery);
 
-    if (checkResult.recordset.length > 0) {
-      return res.status(400).json({ error: "Asset Item Description already exists!" });
-    }
+      if (checkResult.recordset.length > 0) {
+        return res
+          .status(400)
+          .json({ error: "Asset Item Description already exists!" });
+      }
       let data = await pool
         .request()
         .input(
@@ -1115,7 +1113,7 @@ const DaysCode= req.body.DaysCode
         .input("Manufacturer", sql.VarChar, req.body.Manufacturer)
         .input("Model", sql.VarChar, req.body.Model)
         .input("Brand", sql.VarChar, req.body.Brand)
-.input("AssetImage", sql.VarChar, url)
+        .input("AssetImage", sql.VarChar, url)
         .input("PurchaseDate", sql.VarChar, req.body.PurchaseDate)
         .input("PurchaseAmount", sql.Numeric, req.body.PurchaseAmount)
         .input("Warranty", sql.Int, req.body.Warranty)
@@ -1134,7 +1132,11 @@ const DaysCode= req.body.DaysCode
 
         .input("LastPOQty", sql.Numeric, req.body.LastPOQty)
         .input("LastVendorID", sql.VarChar, req.body.LastVendorID)
-        .input("Details_Remarks_Notes", sql.VarChar, req.body.Details_Remarks_Notes)
+        .input(
+          "Details_Remarks_Notes",
+          sql.VarChar,
+          req.body.Details_Remarks_Notes
+        )
         .query(
           ` 
             INSERT INTO [dbo].[tblAssetsMaster]
@@ -1215,7 +1217,7 @@ const DaysCode= req.body.DaysCode
   async AssetType_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
- const AssetTypeCode = req.body.AssetTypeCode
+      const AssetTypeCode = req.body.AssetTypeCode;
       let data = await pool
         .request()
         .input("AssetTypeCode", sql.VarChar, req.body.AssetTypeCode)
@@ -1250,7 +1252,7 @@ const DaysCode= req.body.DaysCode
   async AssetCategory_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
- const  AssetCategoryCode = req.body.AssetCategoryCode
+      const AssetCategoryCode = req.body.AssetCategoryCode;
       let data = await pool
         .request()
         .input("AssetCategoryCode", sql.VarChar, req.body.AssetCategoryCode)
@@ -1286,7 +1288,7 @@ const DaysCode= req.body.DaysCode
   async AssetSubCategory_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
- const AssetSubCategoryCode = req.body.AssetSubCategoryCode
+      const AssetSubCategoryCode = req.body.AssetSubCategoryCode;
       let data = await pool
         .request()
         .input(
@@ -1329,7 +1331,7 @@ const DaysCode= req.body.DaysCode
   async AssetCondition_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-const  AssetConditionCode = req.body.AssetConditionCode
+      const AssetConditionCode = req.body.AssetConditionCode;
       let data = await pool
         .request()
         .input("AssetConditionCode", sql.VarChar, req.body.AssetConditionCode)
@@ -1364,7 +1366,7 @@ const  AssetConditionCode = req.body.AssetConditionCode
   async WarrantyPeriod_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-     const WarrantyPeriodCode = req.body.WarrantyPeriodCode;
+      const WarrantyPeriodCode = req.body.WarrantyPeriodCode;
       let data = await pool
         .request()
         .input("WarrantyPeriodCode", sql.VarChar, req.body.WarrantyPeriodCode)
@@ -1396,48 +1398,46 @@ const  AssetConditionCode = req.body.AssetConditionCode
       res.status(500).json({ error: `${error}` });
     }
   },
-  async EmployeeMaster_post(req, res, next)
-  {
-    const EmployeeID = req.body.EmployeeID
-     const file = req.files["EmployeeImage"];
+  async EmployeeMaster_post(req, res, next) {
+    const EmployeeID = req.body.EmployeeID;
+    const file = req.files["EmployeeImage"];
 
-    const url = file ? `http://gs1ksa.org:3021/api/profile/${file[0].filename}` : null;
-    
+    const url = file
+      ? `http://gs1ksa.org:3021/api/profile/${file[0].filename}`
+      : null;
+
     try {
-      
-if (EmployeeID=="") {
-      res.status(404).json({error:"EmployeeID is required"});
-    } else {
-       let pool = await sql.connect(config);
+      if (EmployeeID == "") {
+        res.status(404).json({ error: "EmployeeID is required" });
+      } else {
+        let pool = await sql.connect(config);
 
-      let data = await pool
-        .request()
-        .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
-       .input("EmployeeImage", sql.VarChar, url)
-        .input("Gender", sql.VarChar, req.body.Gender)
-        .input("Title", sql.VarChar, req.body.Title)
-        .input("BirthDate", sql.VarChar, req.body.BirthDate)
-        .input("Age", sql.SmallInt, req.body.Age)
-        .input("Lastname", sql.VarChar, req.body.Lastname)
-        .input("Firstname", sql.VarChar, req.body.Firstname)
-        .input("Middlename", sql.VarChar, req.body.Middlename)
-        .input("NationalityCode", sql.VarChar, req.body.NationalityCode)
-        .input("MaritalStatus", sql.VarChar, req.body.MaritalStatus)
-        .input("NationalID", sql.VarChar, req.body.NationalID)
-        .input("PassportNumber", sql.VarChar, req.body.PassportNumber)
-        .input("MobileNumber", sql.VarChar, req.body.MobileNumber)
-        .input("LandlineNumber", sql.VarChar, req.body.LandlineNumber)
-        .input("DesignationCode", sql.VarChar, req.body.DesignationCode)
-        .input("Email", sql.VarChar, req.body.Email)
-        .input("DepartmentCode", sql.VarChar, req.body.DepartmentCode)
-        .input("BuildingCode", sql.VarChar, req.body.BuildingCode)
-        .input("LocationCode", sql.VarChar, req.body.LocationCode)
-        .input("JoiningDate", sql.Date, req.body.JoiningDate)
-        
+        let data = await pool
+          .request()
+          .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
+          .input("EmployeeImage", sql.VarChar, url)
+          .input("Gender", sql.VarChar, req.body.Gender)
+          .input("Title", sql.VarChar, req.body.Title)
+          .input("BirthDate", sql.VarChar, req.body.BirthDate)
+          .input("Age", sql.SmallInt, req.body.Age)
+          .input("Lastname", sql.VarChar, req.body.Lastname)
+          .input("Firstname", sql.VarChar, req.body.Firstname)
+          .input("Middlename", sql.VarChar, req.body.Middlename)
+          .input("NationalityCode", sql.VarChar, req.body.NationalityCode)
+          .input("MaritalStatus", sql.VarChar, req.body.MaritalStatus)
+          .input("NationalID", sql.VarChar, req.body.NationalID)
+          .input("PassportNumber", sql.VarChar, req.body.PassportNumber)
+          .input("MobileNumber", sql.VarChar, req.body.MobileNumber)
+          .input("LandlineNumber", sql.VarChar, req.body.LandlineNumber)
+          .input("DesignationCode", sql.VarChar, req.body.DesignationCode)
+          .input("Email", sql.VarChar, req.body.Email)
+          .input("DepartmentCode", sql.VarChar, req.body.DepartmentCode)
+          .input("BuildingCode", sql.VarChar, req.body.BuildingCode)
+          .input("LocationCode", sql.VarChar, req.body.LocationCode)
+          .input("JoiningDate", sql.Date, req.body.JoiningDate)
 
-
-        .query(
-          ` 
+          .query(
+            ` 
             INSERT INTO [dbo].[tblEmployeeMaster]
                        ([EmployeeID]
                       ,[EmployeeImage]
@@ -1489,30 +1489,27 @@ if (EmployeeID=="") {
                     
                                            
                        )`
-        );
-       let data1 = await pool
-        .request()
+          );
+        let data1 = await pool
+          .request()
 
-        .query(
-          `select * from tblEmployeeMaster where EmployeeID='${EmployeeID}'`
-        );
-      res.status(201).json(data1);
-    }
-     
+          .query(
+            `select * from tblEmployeeMaster where EmployeeID='${EmployeeID}'`
+          );
+        res.status(201).json(data1);
+      }
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
     }
   },
   async assetworkrequest_post(req, res, next) {
-  try {
-    let pool = await sql.connect(config);
-    const RequestNumber = req.body.RequestNumber;
-    const AssetItemDescriptions = req.body.AssetItemDescriptions; // Assuming this is an array
+    try {
+      let pool = await sql.connect(config);
+      const RequestNumber = req.body.RequestNumber;
+      const AssetItemDescriptions = req.body.AssetItemDescriptions; // Assuming this is an array
 
-    for (const AssetItemDescription of AssetItemDescriptions) {
-     
-      
+      for (const AssetItemDescription of AssetItemDescriptions) {
         await pool
           .request()
           .input("RequestNumber", sql.VarChar, RequestNumber)
@@ -1526,28 +1523,25 @@ if (EmployeeID=="") {
                        (@RequestNumber
                        ,@AssetItemDescription)`
           );
-      
+      }
+      let result = await pool
+        .request()
+        .query(
+          `SELECT * FROM assetworkrequest WHERE RequestNumber='${RequestNumber}'`
+        );
+      res.status(201).json(result);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
     }
-    let result = await pool
-      .request()
-      .query(
-        `SELECT * FROM assetworkrequest WHERE RequestNumber='${RequestNumber}'`
-      );
-    res.status(201).json(result);
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: `${error}` });
-  }
   },
   async assetItemRequest_ADD_post(req, res, next) {
-  try {
-    let pool = await sql.connect(config);
-    const PurchaseRequestNumber = req.body.PurchaseRequestNumber;
-    const AssetItemDescriptions = req.body.AssetItemDescriptions; // Assuming this is an array
+    try {
+      let pool = await sql.connect(config);
+      const PurchaseRequestNumber = req.body.PurchaseRequestNumber;
+      const AssetItemDescriptions = req.body.AssetItemDescriptions; // Assuming this is an array
 
-    for (const AssetItemDescription of AssetItemDescriptions) {
-     
-      
+      for (const AssetItemDescription of AssetItemDescriptions) {
         await pool
           .request()
           .input("PurchaseRequestNumber", sql.VarChar, PurchaseRequestNumber)
@@ -1561,28 +1555,25 @@ if (EmployeeID=="") {
                        (@PurchaseRequestNumber
                        ,@AssetItemDescription)`
           );
-      
+      }
+      let result = await pool
+        .request()
+        .query(
+          `SELECT * FROM tblPurchaseRequestDetail WHERE PurchaseRequestNumber='${PurchaseRequestNumber}'`
+        );
+      res.status(201).json(result);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
     }
-    let result = await pool
-      .request()
-      .query(
-        `SELECT * FROM tblPurchaseRequestDetail WHERE PurchaseRequestNumber='${PurchaseRequestNumber}'`
-      );
-    res.status(201).json(result);
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: `${error}` });
-  }
   },
   async assetItemOrder_ADD_post(req, res, next) {
-  try {
-    let pool = await sql.connect(config);
-    const PurchaseOrderNumber = req.body.PurchaseOrderNumber;
-    const AssetItemDescriptions = req.body.AssetItemDescriptions; // Assuming this is an array
+    try {
+      let pool = await sql.connect(config);
+      const PurchaseOrderNumber = req.body.PurchaseOrderNumber;
+      const AssetItemDescriptions = req.body.AssetItemDescriptions; // Assuming this is an array
 
-    for (const AssetItemDescription of AssetItemDescriptions) {
-     
-      
+      for (const AssetItemDescription of AssetItemDescriptions) {
         await pool
           .request()
           .input("PurchaseOrderNumber", sql.VarChar, PurchaseOrderNumber)
@@ -1596,28 +1587,25 @@ if (EmployeeID=="") {
                        (@PurchaseOrderNumber
                        ,@AssetItemDescription)`
           );
-      
+      }
+      let result = await pool
+        .request()
+        .query(
+          `SELECT * FROM tblPurchaseOrderDetail WHERE PurchaseOrderNumber='${PurchaseOrderNumber}'`
+        );
+      res.status(201).json(result);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
     }
-    let result = await pool
-      .request()
-      .query(
-        `SELECT * FROM tblPurchaseOrderDetail WHERE PurchaseOrderNumber='${PurchaseOrderNumber}'`
-      );
-    res.status(201).json(result);
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: `${error}` });
-  }
   },
   async assetItemGOODS_ADD_post(req, res, next) {
-  try {
-    let pool = await sql.connect(config);
-    const PurchaseOrderNumber = req.body.PurchaseOrderNumber;
-    const AssetItemDescriptions = req.body.AssetItemDescriptions; // Assuming this is an array
+    try {
+      let pool = await sql.connect(config);
+      const PurchaseOrderNumber = req.body.PurchaseOrderNumber;
+      const AssetItemDescriptions = req.body.AssetItemDescriptions; // Assuming this is an array
 
-    for (const AssetItemDescription of AssetItemDescriptions) {
-     
-      
+      for (const AssetItemDescription of AssetItemDescriptions) {
         await pool
           .request()
           .input("PurchaseOrderNumber", sql.VarChar, PurchaseOrderNumber)
@@ -1631,28 +1619,25 @@ if (EmployeeID=="") {
                        (@PurchaseOrderNumber
                        ,@AssetItemDescription)`
           );
-      
+      }
+      let result = await pool
+        .request()
+        .query(
+          `SELECT * FROM tblGoodsReceiptDetail WHERE PurchaseOrderNumber='${PurchaseOrderNumber}'`
+        );
+      res.status(201).json(result);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
     }
-    let result = await pool
-      .request()
-      .query(
-        `SELECT * FROM tblGoodsReceiptDetail WHERE PurchaseOrderNumber='${PurchaseOrderNumber}'`
-      );
-    res.status(201).json(result);
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: `${error}` });
-  }
   },
   async assetItemGOODSReturn_ADD_post(req, res, next) {
-  try {
-    let pool = await sql.connect(config);
-    const PurchaseOrderNumber = req.body.PurchaseOrderNumber;
-    const AssetItemDescriptions = req.body.AssetItemDescriptions; // Assuming this is an array
+    try {
+      let pool = await sql.connect(config);
+      const PurchaseOrderNumber = req.body.PurchaseOrderNumber;
+      const AssetItemDescriptions = req.body.AssetItemDescriptions; // Assuming this is an array
 
-    for (const AssetItemDescription of AssetItemDescriptions) {
-     
-      
+      for (const AssetItemDescription of AssetItemDescriptions) {
         await pool
           .request()
           .input("PurchaseOrderNumber", sql.VarChar, PurchaseOrderNumber)
@@ -1666,23 +1651,22 @@ if (EmployeeID=="") {
                        (@PurchaseOrderNumber
                        ,@AssetItemDescription)`
           );
-      
+      }
+      let result = await pool
+        .request()
+        .query(
+          `SELECT * FROM tblGoodsReturnDetail WHERE PurchaseOrderNumber='${PurchaseOrderNumber}'`
+        );
+      res.status(201).json(result);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
     }
-    let result = await pool
-      .request()
-      .query(
-        `SELECT * FROM tblGoodsReturnDetail WHERE PurchaseOrderNumber='${PurchaseOrderNumber}'`
-      );
-    res.status(201).json(result);
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: `${error}` });
-  }
   },
   async Designation_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-     const DesignationCode = req.body.DesignationCode;
+      const DesignationCode = req.body.DesignationCode;
       let data = await pool
         .request()
         .input("DesignationCode", sql.VarChar, req.body.DesignationCode)
@@ -1717,7 +1701,7 @@ if (EmployeeID=="") {
   async EmployeeStatus_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-     const EmployeeStatusCode = req.body.EmployeeStatusCode;
+      const EmployeeStatusCode = req.body.EmployeeStatusCode;
       let data = await pool
         .request()
         .input("EmployeeStatusCode", sql.VarChar, req.body.EmployeeStatusCode)
@@ -1749,41 +1733,64 @@ if (EmployeeID=="") {
       res.status(500).json({ error: `${error}` });
     }
   },
-  async WorkOrders_post(req, res, next)
-  {
-    const WorkRequestNumber = req.body.WorkRequestNumber
- const WorkOrderNumber=  req.body.WorkOrderNumber
+  async WorkOrders_post(req, res, next) {
+    const WorkRequestNumber = req.body.WorkRequestNumber;
+    const WorkOrderNumber = req.body.WorkOrderNumber;
     try {
-if (WorkRequestNumber=="") {
-      res.status(404).json({error:"WorkRequestNumber is required"});
-    } else {
-       let pool = await sql.connect(config);
+      if (WorkRequestNumber == "") {
+        res.status(404).json({ error: "WorkRequestNumber is required" });
+      } else {
+        let pool = await sql.connect(config);
 
-      let data = await pool
-        .request()
-        .input("WorkOrderNumber", sql.VarChar, req.body.WorkOrderNumber)
-       
-        .input("WorkRequestNumber", sql.VarChar, req.body.WorkRequestNumber)
-        .input("WorkStatus", sql.VarChar, req.body.WorkStatus)
-        .input("WorkPriority", sql.VarChar, req.body.WorkPriority)
-        .input("WorkCategoryCode", sql.VarChar, req.body.WorkCategoryCode)
-        .input("WorkDescription", sql.VarChar, req.body.WorkDescription)
-        .input("FailureCode", sql.VarChar, req.body.FailureCode)
-        .input("SolutionCode", sql.VarChar, req.body.SolutionCode)
-        .input("AssignedtoEmployeeID", sql.VarChar, req.body.AssignedtoEmployeeID)
-        .input("AppointmentDateTime", sql.VarChar, req.body.AppointmentDateTime)
-        .input("ScheduledDateTime", sql.VarChar, req.body.ScheduledDateTime)
-        .input("StartWorkOrderDateTime", sql.VarChar, req.body.StartWorkOrderDateTime)
-        .input("EndWorkOrderDateTime", sql.VarChar, req.body.EndWorkOrderDateTime)
-        .input("TotalDays", sql.Numeric, req.body.TotalDays)
-        .input("TotalHours", sql.Numeric, req.body.TotalHours)
-        .input("TotalMinutes", sql.Numeric, req.body.TotalMinutes)
-        .input("TotalCostofWork", sql.Numeric, req.body.TotalCostofWork)
-        .input("CompletedByEmployeeID", sql.VarChar, req.body.CompletedByEmployeeID)
-        .input("CompletionDateTime", sql.DateTime, req.body.CompletionDateTime)
+        let data = await pool
+          .request()
+          .input("WorkOrderNumber", sql.VarChar, req.body.WorkOrderNumber)
 
-        .query(
-          ` 
+          .input("WorkRequestNumber", sql.VarChar, req.body.WorkRequestNumber)
+          .input("WorkStatus", sql.VarChar, req.body.WorkStatus)
+          .input("WorkPriority", sql.VarChar, req.body.WorkPriority)
+          .input("WorkCategoryCode", sql.VarChar, req.body.WorkCategoryCode)
+          .input("WorkDescription", sql.VarChar, req.body.WorkDescription)
+          .input("FailureCode", sql.VarChar, req.body.FailureCode)
+          .input("SolutionCode", sql.VarChar, req.body.SolutionCode)
+          .input(
+            "AssignedtoEmployeeID",
+            sql.VarChar,
+            req.body.AssignedtoEmployeeID
+          )
+          .input(
+            "AppointmentDateTime",
+            sql.VarChar,
+            req.body.AppointmentDateTime
+          )
+          .input("ScheduledDateTime", sql.VarChar, req.body.ScheduledDateTime)
+          .input(
+            "StartWorkOrderDateTime",
+            sql.VarChar,
+            req.body.StartWorkOrderDateTime
+          )
+          .input(
+            "EndWorkOrderDateTime",
+            sql.VarChar,
+            req.body.EndWorkOrderDateTime
+          )
+          .input("TotalDays", sql.Numeric, req.body.TotalDays)
+          .input("TotalHours", sql.Numeric, req.body.TotalHours)
+          .input("TotalMinutes", sql.Numeric, req.body.TotalMinutes)
+          .input("TotalCostofWork", sql.Numeric, req.body.TotalCostofWork)
+          .input(
+            "CompletedByEmployeeID",
+            sql.VarChar,
+            req.body.CompletedByEmployeeID
+          )
+          .input(
+            "CompletionDateTime",
+            sql.DateTime,
+            req.body.CompletionDateTime
+          )
+
+          .query(
+            ` 
             INSERT INTO [dbo].[tblWorkOrders]
                        ([WorkOrderNumber]
                       
@@ -1830,16 +1837,15 @@ if (WorkRequestNumber=="") {
                        ,@CompletionDateTime
                                    
                        )`
-        );
-       let data1 = await pool
-        .request()
+          );
+        let data1 = await pool
+          .request()
 
-        .query(
-          `select * from tblWorkOrders where WorkOrderNumber='${WorkOrderNumber}'`
-        );
-      res.status(201).json(data1);
-    }
-     
+          .query(
+            `select * from tblWorkOrders where WorkOrderNumber='${WorkOrderNumber}'`
+          );
+        res.status(201).json(data1);
+      }
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
@@ -1848,12 +1854,12 @@ if (WorkRequestNumber=="") {
   async SystemModules_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-     const SystemModuleSeq = req.body.SystemModuleSeq;
+      const SystemModuleSeq = req.body.SystemModuleSeq;
       let data = await pool
         .request()
         .input("SystemModuleSeq", sql.SmallInt, req.body.SystemModuleSeq)
         .input("SystemModuleCode", sql.VarChar, req.body.SystemModuleCode)
-.input("SystemModuleDesc", sql.VarChar, req.body.SystemModuleDesc)
+        .input("SystemModuleDesc", sql.VarChar, req.body.SystemModuleDesc)
         .query(
           ` 
             INSERT INTO [dbo].[prmSystemModules]
@@ -1880,34 +1886,39 @@ if (WorkRequestNumber=="") {
       res.status(500).json({ error: `${error}` });
     }
   },
-  async VendorMaster_post(req, res, next)
-  {
-    const VendorID = req.body.VendorID
-    
+  async VendorMaster_post(req, res, next) {
+    const VendorID = req.body.VendorID;
+
     try {
-if (VendorID=="") {
-      res.status(404).json({error:"VendorID is required"});
-    } else {
-       let pool = await sql.connect(config);
+      if (VendorID == "") {
+        res.status(404).json({ error: "VendorID is required" });
+      } else {
+        let pool = await sql.connect(config);
 
-      let data = await pool
-        .request()
-        .input("VendorID", sql.VarChar, req.body.VendorID)
-       
-        .input("VendorName", sql.VarChar, req.body.VendorName)
-        .input("VendorAddress", sql.VarChar, req.body.VendorAddress)
-        .input("ContactLastname", sql.VarChar, req.body.ContactLastname)
-        .input("ContactFirstname", sql.VarChar, req.body.ContactFirstname)
-        .input("ContactMiddlename", sql.VarChar, req.body.ContactMiddlename)
-        .input("ContactMobileNumber", sql.VarChar, req.body.ContactMobileNumber)
-        .input("ContactLandlineNumber", sql.VarChar, req.body.ContactLandlineNumber)
-        .input("ContactEmail", sql.VarChar, req.body.ContactEmail)
-        .input("VendorInformation", sql.VarChar, req.body.VendorInformation)
-       
+        let data = await pool
+          .request()
+          .input("VendorID", sql.VarChar, req.body.VendorID)
 
+          .input("VendorName", sql.VarChar, req.body.VendorName)
+          .input("VendorAddress", sql.VarChar, req.body.VendorAddress)
+          .input("ContactLastname", sql.VarChar, req.body.ContactLastname)
+          .input("ContactFirstname", sql.VarChar, req.body.ContactFirstname)
+          .input("ContactMiddlename", sql.VarChar, req.body.ContactMiddlename)
+          .input(
+            "ContactMobileNumber",
+            sql.VarChar,
+            req.body.ContactMobileNumber
+          )
+          .input(
+            "ContactLandlineNumber",
+            sql.VarChar,
+            req.body.ContactLandlineNumber
+          )
+          .input("ContactEmail", sql.VarChar, req.body.ContactEmail)
+          .input("VendorInformation", sql.VarChar, req.body.VendorInformation)
 
-        .query(
-          ` 
+          .query(
+            ` 
             INSERT INTO [dbo].[tblVendorMaster]
                        ([VendorID]
                       
@@ -1941,29 +1952,30 @@ if (VendorID=="") {
                     
                                            
                        )`
-        );
-       let data1 = await pool
-        .request()
+          );
+        let data1 = await pool
+          .request()
 
-        .query(
-          `select * from tblVendorMaster where VendorID='${VendorID}'`
-        );
-      res.status(201).json(data1);
-    }
-     
+          .query(`select * from tblVendorMaster where VendorID='${VendorID}'`);
+        res.status(201).json(data1);
+      }
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
     }
   },
-   async AssetItemGroup_post(req, res, next) {
+  async AssetItemGroup_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-     const AssetItemGroupCode = req.body.AssetItemGroupCode;
+      const AssetItemGroupCode = req.body.AssetItemGroupCode;
       let data = await pool
         .request()
         .input("AssetItemGroupCode", sql.VarChar, req.body.AssetItemGroupCode)
-        .input("AssetItemGroupCodeDesc", sql.VarChar, req.body.AssetItemGroupCodeDesc)
+        .input(
+          "AssetItemGroupCodeDesc",
+          sql.VarChar,
+          req.body.AssetItemGroupCodeDesc
+        )
 
         .query(
           ` 
@@ -1991,12 +2003,10 @@ if (VendorID=="") {
       res.status(500).json({ error: `${error}` });
     }
   },
-   async PreventiveMaintenance_post(req, res, next)
-  {
-    const RequestNumber = req.body.RequestNumber
-    
+  async PreventiveMaintenance_post(req, res, next) {
+    const RequestNumber = req.body.RequestNumber;
+
     try {
-      
       if (RequestNumber === "") {
         res.status(405).json({ error: "RequestNumber is required" });
       } else {
@@ -2018,7 +2028,7 @@ if (VendorID=="") {
           let data = await pool
             .request()
             .input("RequestNumber", sql.VarChar, req.body.RequestNumber)
-       
+
             .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
             .input("RequestDateTime", sql.VarChar, req.body.RequestDateTime)
             .input("WorkType", sql.VarChar, req.body.WorkType)
@@ -2027,13 +2037,28 @@ if (VendorID=="") {
             .input("DepartmentCode", sql.VarChar, req.body.DepartmentCode)
             .input("BuildingCode", sql.VarChar, req.body.BuildingCode)
             .input("LocationCode", sql.VarChar, req.body.LocationCode)
-            .input("MaintenanceDescription", sql.VarChar, req.body.MaintenanceDescription)
+            .input(
+              "MaintenanceDescription",
+              sql.VarChar,
+              req.body.MaintenanceDescription
+            )
             .input("Frequency", sql.VarChar, req.body.Frequency)
-            .input("ScheduleStartDateTime", sql.VarChar, req.body.ScheduleStartDateTime)
-            .input("ScheduleEndDateTime", sql.VarChar, req.body.ScheduleEndDateTime)
+            .input(
+              "ScheduleStartDateTime",
+              sql.VarChar,
+              req.body.ScheduleStartDateTime
+            )
+            .input(
+              "ScheduleEndDateTime",
+              sql.VarChar,
+              req.body.ScheduleEndDateTime
+            )
             .input("ScheduledDay", sql.VarChar, req.body.ScheduledDay)
-            .input("SchedulingPriority", sql.VarChar, req.body.SchedulingPriority)
-       
+            .input(
+              "SchedulingPriority",
+              sql.VarChar,
+              req.body.SchedulingPriority
+            )
 
             .query(
               ` 
@@ -2095,12 +2120,10 @@ if (VendorID=="") {
       res.status(500).json({ error: `${error}` });
     }
   },
-   async CleaningWorks_post(req, res, next)
-  {
-    const RequestNumber = req.body.RequestNumber
-    
+  async CleaningWorks_post(req, res, next) {
+    const RequestNumber = req.body.RequestNumber;
+
     try {
-      
       if (RequestNumber === "") {
         res.status(405).json({ error: "RequestNumber is required" });
       } else {
@@ -2122,7 +2145,7 @@ if (VendorID=="") {
           let data = await pool
             .request()
             .input("RequestNumber", sql.VarChar, req.body.RequestNumber)
-       
+
             .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
             .input("RequestDateTime", sql.VarChar, req.body.RequestDateTime)
             .input("WorkType", sql.VarChar, req.body.WorkType)
@@ -2132,11 +2155,27 @@ if (VendorID=="") {
             .input("BuildingCode", sql.VarChar, req.body.BuildingCode)
             .input("LocationCode", sql.VarChar, req.body.LocationCode)
             .input("CleaningGroup", sql.VarChar, req.body.CleaningGroup)
-            .input("Intruction_Remarks", sql.VarChar, req.body.Intruction_Remarks)
-            .input("ScheduleStartDateTime", sql.VarChar, req.body.ScheduleStartDateTime)
-            .input("ScheduleEndDateTime", sql.VarChar, req.body.ScheduleEndDateTime)
+            .input(
+              "Intruction_Remarks",
+              sql.VarChar,
+              req.body.Intruction_Remarks
+            )
+            .input(
+              "ScheduleStartDateTime",
+              sql.VarChar,
+              req.body.ScheduleStartDateTime
+            )
+            .input(
+              "ScheduleEndDateTime",
+              sql.VarChar,
+              req.body.ScheduleEndDateTime
+            )
             .input("ScheduledDay", sql.VarChar, req.body.ScheduledDay)
-            .input("SchedulingPriority", sql.VarChar, req.body.SchedulingPriority)
+            .input(
+              "SchedulingPriority",
+              sql.VarChar,
+              req.body.SchedulingPriority
+            )
             .input("Frequency", sql.VarChar, req.body.Frequency)
 
             .query(
@@ -2197,14 +2236,12 @@ if (VendorID=="") {
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
-    } 
+    }
   },
-   async AssetTransactions_post(req, res, next)
-  {
-    const AssetItemTagID = req.body.AssetItemTagID
-    
+  async AssetTransactions_post(req, res, next) {
+    const AssetItemTagID = req.body.AssetItemTagID;
+
     try {
-      
       if (AssetItemTagID === "") {
         res.status(405).json({ error: "AssetItemTagID is required" });
       } else {
@@ -2226,9 +2263,13 @@ if (VendorID=="") {
           let data = await pool
             .request()
             .input("AssetItemTagID", sql.VarChar, req.body.AssetItemTagID)
-       
+
             .input("AssetCondition", sql.VarChar, req.body.AssetCondition)
-            .input("AssetItemDescription", sql.VarChar, req.body.AssetItemDescription)
+            .input(
+              "AssetItemDescription",
+              sql.VarChar,
+              req.body.AssetItemDescription
+            )
             .input("SerialNumber", sql.VarChar, req.body.SerialNumber)
             .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
             .input("CaptureDateTime", sql.VarChar, req.body.CaptureDateTime)
@@ -2236,7 +2277,6 @@ if (VendorID=="") {
             .input("BuildingCode", sql.VarChar, req.body.BuildingCode)
             .input("DepartmentCode", sql.VarChar, req.body.DepartmentCode)
             .input("LocationCode", sql.VarChar, req.body.LocationCode)
-           
 
             .query(
               ` 
@@ -2285,29 +2325,35 @@ if (VendorID=="") {
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
-    } 
+    }
   },
-   async UserAuthority_post(req, res, next) {
+  async UserAuthority_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const UserAuthorityCode = req.body.UserAuthorityCode;
       if (!UserAuthorityCode) {
-      return res.status(400).json({ error: "UserAuthorityCode is required!" });
-    }
+        return res
+          .status(400)
+          .json({ error: "UserAuthorityCode is required!" });
+      }
 
-    const existingRecord = await pool
-      .request()
-      .input('UserAuthorityCode', sql.VarChar, UserAuthorityCode)
-      .query('SELECT TOP 1 * FROM prmUserAuthority WHERE UserAuthorityCode = @UserAuthorityCode');
+      const existingRecord = await pool
+        .request()
+        .input("UserAuthorityCode", sql.VarChar, UserAuthorityCode)
+        .query(
+          "SELECT TOP 1 * FROM prmUserAuthority WHERE UserAuthorityCode = @UserAuthorityCode"
+        );
 
-    if (existingRecord.recordset.length > 0) {
-      return res.status(409).json({ error: "UserAuthorityCode already exists" });
-    }
+      if (existingRecord.recordset.length > 0) {
+        return res
+          .status(409)
+          .json({ error: "UserAuthorityCode already exists" });
+      }
       let data = await pool
         .request()
         .input("UserAuthoritySeq", sql.SmallInt, req.body.UserAuthoritySeq)
         .input("UserAuthorityCode", sql.VarChar, req.body.UserAuthorityCode)
-.input("UserAuthorityDesc", sql.VarChar, req.body.UserAuthorityDesc)
+        .input("UserAuthorityDesc", sql.VarChar, req.body.UserAuthorityDesc)
         .query(
           ` 
             INSERT INTO [dbo].[prmUserAuthority]
@@ -2334,44 +2380,43 @@ if (VendorID=="") {
       res.status(500).json({ error: `${error}` });
     }
   },
-   async UserCredentials_post(req, res, next)
-   {
-     let pool = await sql.connect(config);
-    const EmployeeID = req.body.EmployeeID
-    
+  async UserCredentials_post(req, res, next) {
+    let pool = await sql.connect(config);
+    const EmployeeID = req.body.EmployeeID;
+
     try {
-if (!EmployeeID) {
-      return res.status(400).json({ error: "EmployeeID is required!" });
-    }
+      if (!EmployeeID) {
+        return res.status(400).json({ error: "EmployeeID is required!" });
+      }
 
-    const existingRecord = await pool
-      .request()
-      .input('EmployeeID', sql.VarChar, EmployeeID)
-      .query('SELECT TOP 1 * FROM tblUserCredentials WHERE EmployeeID = @EmployeeID');
-
-    if (existingRecord.recordset.length > 0) {
-      return res.status(409).json({ error: "EmployeeID already exists" });
-    }
-else {
-       
-
-      let data = await pool
+      const existingRecord = await pool
         .request()
-        .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
-       
-        .input("UserAuthorityCode", sql.VarChar, req.body.UserAuthorityCode)
-        .input("UserID", sql.VarChar, req.body.UserID)
-        .input("UserPassword", sql.VarChar, req.body.UserPassword)
-        .input("WindowsID", sql.VarChar, req.body.WindowsID)
-        .input("WindowsPassword", sql.VarChar, req.body.WindowsPassword)
-        .input("CreatedByAdminID", sql.VarChar, req.body.CreatedByAdminID)
-        .input("CreationDateTime", sql.VarChar, req.body.ContactLandlineNumber)
-       
-       
-
-
+        .input("EmployeeID", sql.VarChar, EmployeeID)
         .query(
-          ` 
+          "SELECT TOP 1 * FROM tblUserCredentials WHERE EmployeeID = @EmployeeID"
+        );
+
+      if (existingRecord.recordset.length > 0) {
+        return res.status(409).json({ error: "EmployeeID already exists" });
+      } else {
+        let data = await pool
+          .request()
+          .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
+
+          .input("UserAuthorityCode", sql.VarChar, req.body.UserAuthorityCode)
+          .input("UserID", sql.VarChar, req.body.UserID)
+          .input("UserPassword", sql.VarChar, req.body.UserPassword)
+          .input("WindowsID", sql.VarChar, req.body.WindowsID)
+          .input("WindowsPassword", sql.VarChar, req.body.WindowsPassword)
+          .input("CreatedByAdminID", sql.VarChar, req.body.CreatedByAdminID)
+          .input(
+            "CreationDateTime",
+            sql.VarChar,
+            req.body.ContactLandlineNumber
+          )
+
+          .query(
+            ` 
             INSERT INTO [dbo].[tblUserCredentials]
                        ([EmployeeID]
                       
@@ -2396,57 +2441,68 @@ else {
                        ,@CreationDateTime
                      
                        )`
-        );
-       let data1 = await pool
-        .request()
+          );
+        let data1 = await pool
+          .request()
 
-        .query(
-          `select * from tblUserCredentials where EmployeeID='${EmployeeID}'`
-        );
-      res.status(201).json(data1);
-    }
-     
+          .query(
+            `select * from tblUserCredentials where EmployeeID='${EmployeeID}'`
+          );
+        res.status(201).json(data1);
+      }
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
     }
   },
-   async UserSystemAccess_post(req, res, next) {
+  async UserSystemAccess_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const EmployeeID = req.body.EmployeeID;
       const UserAuthorityCode = req.body.UserAuthorityCode;
       if (!EmployeeID) {
-      return res.status(400).json({ error: "EmployeeID is required!" });
-    }
-
-    const existingRecord = await pool
-      .request()
-      .input('EmployeeID', sql.VarChar, EmployeeID)
-      .query('SELECT TOP 1 * FROM tblUserSystemAccess WHERE EmployeeID = @EmployeeID');
-
-    if (existingRecord.recordset.length > 0) {
-      return res.status(409).json({ error: "EmployeeID already exists" });
+        return res.status(400).json({ error: "EmployeeID is required!" });
       }
-      
-       if (!UserAuthorityCode) {
-      return res.status(400).json({ error: "UserAuthorityCode is required!" });
-    }
 
-    const existingRecord2 = await pool
-      .request()
-      .input('UserAuthorityCode', sql.VarChar, UserAuthorityCode)
-      .query('SELECT TOP 1 * FROM tblUserSystemAccess WHERE UserAuthorityCode = @UserAuthorityCode');
+      const existingRecord = await pool
+        .request()
+        .input("EmployeeID", sql.VarChar, EmployeeID)
+        .query(
+          "SELECT TOP 1 * FROM tblUserSystemAccess WHERE EmployeeID = @EmployeeID"
+        );
 
-    if (existingRecord2.recordset.length > 0) {
-      return res.status(409).json({ error: "UserAuthorityCode already exists" });
-    }
+      if (existingRecord.recordset.length > 0) {
+        return res.status(409).json({ error: "EmployeeID already exists" });
+      }
+
+      if (!UserAuthorityCode) {
+        return res
+          .status(400)
+          .json({ error: "UserAuthorityCode is required!" });
+      }
+
+      const existingRecord2 = await pool
+        .request()
+        .input("UserAuthorityCode", sql.VarChar, UserAuthorityCode)
+        .query(
+          "SELECT TOP 1 * FROM tblUserSystemAccess WHERE UserAuthorityCode = @UserAuthorityCode"
+        );
+
+      if (existingRecord2.recordset.length > 0) {
+        return res
+          .status(409)
+          .json({ error: "UserAuthorityCode already exists" });
+      }
       let data = await pool
         .request()
         .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
         .input("UserAuthorityCode", sql.VarChar, req.body.UserAuthorityCode)
-        .input("UserAuthorityAccessYN", sql.VarChar, req.body.UserAuthorityAccessYN)
-        
+        .input(
+          "UserAuthorityAccessYN",
+          sql.VarChar,
+          req.body.UserAuthorityAccessYN
+        )
+
         .input("AddedByAdminID", sql.VarChar, req.body.AddedByAdminID)
         .input("AddedDateTime", sql.VarChar, req.body.AddedDateTime)
         .query(
@@ -2480,44 +2536,53 @@ else {
       res.status(500).json({ error: `${error}` });
     }
   },
-   async PurchaseRequest_post(req, res, next)
-   {
-     let pool = await sql.connect(config);
-    const PurchaseRequestNumber = req.body.PurchaseRequestNumber
-    
+  async PurchaseRequest_post(req, res, next) {
+    let pool = await sql.connect(config);
+    const PurchaseRequestNumber = req.body.PurchaseRequestNumber;
+
     try {
-if (!PurchaseRequestNumber) {
-      return res.status(400).json({ error: "PurchaseRequestNumber is required!" });
-    }
+      if (!PurchaseRequestNumber) {
+        return res
+          .status(400)
+          .json({ error: "PurchaseRequestNumber is required!" });
+      }
 
-    const existingRecord = await pool
-      .request()
-      .input('PurchaseRequestNumber', sql.VarChar, PurchaseRequestNumber)
-      .query('SELECT TOP 1 * FROM tblPurchaseRequest WHERE PurchaseRequestNumber = @PurchaseRequestNumber');
-
-    if (existingRecord.recordset.length > 0) {
-      return res.status(409).json({ error: "PurchaseRequestNumber already exists" });
-    }
-else {
-       
-
-      let data = await pool
+      const existingRecord = await pool
         .request()
-        .input("PurchaseRequestNumber", sql.VarChar, req.body.PurchaseRequestNumber)
-       
-        .input("RequestDate", sql.VarChar, req.body.RequestDate)
-        .input("RequiredDate", sql.VarChar, req.body.RequiredDate)
-        .input("RequestByEmployeeID", sql.VarChar, req.body.RequestByEmployeeID)
-        .input("Purpose", sql.VarChar, req.body.Purpose)
-        .input("VATInclude", sql.VarChar, req.body.VATInclude)
-        .input("VendorID", sql.VarChar, req.body.VendorID)
-        .input("VerifiedByEmpl", sql.VarChar, req.body.VerifiedByEmpl)
-       .input("VAT", sql.Numeric, req.body.VAT)
-       .input("TOTAL_AMOUNT", sql.Numeric, req.body.TOTAL_AMOUNT)
-
-
+        .input("PurchaseRequestNumber", sql.VarChar, PurchaseRequestNumber)
         .query(
-          ` 
+          "SELECT TOP 1 * FROM tblPurchaseRequest WHERE PurchaseRequestNumber = @PurchaseRequestNumber"
+        );
+
+      if (existingRecord.recordset.length > 0) {
+        return res
+          .status(409)
+          .json({ error: "PurchaseRequestNumber already exists" });
+      } else {
+        let data = await pool
+          .request()
+          .input(
+            "PurchaseRequestNumber",
+            sql.VarChar,
+            req.body.PurchaseRequestNumber
+          )
+
+          .input("RequestDate", sql.VarChar, req.body.RequestDate)
+          .input("RequiredDate", sql.VarChar, req.body.RequiredDate)
+          .input(
+            "RequestByEmployeeID",
+            sql.VarChar,
+            req.body.RequestByEmployeeID
+          )
+          .input("Purpose", sql.VarChar, req.body.Purpose)
+          .input("VATInclude", sql.VarChar, req.body.VATInclude)
+          .input("VendorID", sql.VarChar, req.body.VendorID)
+          .input("VerifiedByEmpl", sql.VarChar, req.body.VerifiedByEmpl)
+          .input("VAT", sql.Numeric, req.body.VAT)
+          .input("TOTAL_AMOUNT", sql.Numeric, req.body.TOTAL_AMOUNT)
+
+          .query(
+            ` 
             INSERT INTO [dbo].[tblPurchaseRequest]
                        ([PurchaseRequestNumber]
                       
@@ -2546,63 +2611,76 @@ else {
                        ,@VAT
                        ,@TOTAL_AMOUNT
                        )`
-        );
-       let data1 = await pool
-        .request()
+          );
+        let data1 = await pool
+          .request()
 
-        .query(
-          `select * from tblPurchaseRequest where PurchaseRequestNumber='${PurchaseRequestNumber}'`
-        );
-      res.status(201).json(data1);
-    }
-     
+          .query(
+            `select * from tblPurchaseRequest where PurchaseRequestNumber='${PurchaseRequestNumber}'`
+          );
+        res.status(201).json(data1);
+      }
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
     }
   },
-   async PurchaseOrder_post(req, res, next)
-   {
-     let pool = await sql.connect(config);
-    const PurchaseOrderNumber = req.body.PurchaseOrderNumber
-    
+  async PurchaseOrder_post(req, res, next) {
+    let pool = await sql.connect(config);
+    const PurchaseOrderNumber = req.body.PurchaseOrderNumber;
+
     try {
-if (!PurchaseOrderNumber) {
-      return res.status(400).json({ error: "PurchaseOrderNumber is required!" });
-    }
+      if (!PurchaseOrderNumber) {
+        return res
+          .status(400)
+          .json({ error: "PurchaseOrderNumber is required!" });
+      }
 
-    const existingRecord = await pool
-      .request()
-      .input('PurchaseOrderNumber', sql.VarChar, PurchaseOrderNumber)
-      .query('SELECT TOP 1 * FROM tblPurchaseOrder WHERE PurchaseOrderNumber = @PurchaseOrderNumber');
-
-    if (existingRecord.recordset.length > 0) {
-      return res.status(409).json({ error: "PurchaseOrderNumber already exists" });
-    }
-else {
-       
-
-      let data = await pool
+      const existingRecord = await pool
         .request()
-        .input("PurchaseOrderNumber", sql.VarChar, req.body.PurchaseOrderNumber)
-       
-        .input("PurchaseRequestNumber", sql.VarChar, req.body.PurchaseRequestNumber)
-        .input("PODate", sql.VarChar, req.body.PODate)
-        .input("DeliveryDate", sql.VarChar, req.body.DeliveryDate)
-        .input("ProcessedByEmployeeID", sql.VarChar, req.body.ProcessedByEmployeeID)
-        .input("VATInclude", sql.VarChar, req.body.VATInclude)
-        .input("ApprovedByEmpl", sql.VarChar, req.body.ApprovedByEmpl)
-        .input("ApprovalDate", sql.VarChar, req.body.ApprovalDate)
-       
-       .input("VendorID", sql.VarChar, req.body.VendorID)
-        .input("VendorConfirm", sql.VarChar, req.body.VendorConfirm)
-        .input("ConfirmationDate", sql.VarChar, req.body.ConfirmationDate)
-        .input("Comments", sql.VarChar, req.body.Comments)
-.input("VAT", sql.Numeric, req.body.VAT)
-       .input("TOTAL_AMOUNT", sql.Numeric, req.body.TOTAL_AMOUNT)
-
+        .input("PurchaseOrderNumber", sql.VarChar, PurchaseOrderNumber)
         .query(
-          ` 
+          "SELECT TOP 1 * FROM tblPurchaseOrder WHERE PurchaseOrderNumber = @PurchaseOrderNumber"
+        );
+
+      if (existingRecord.recordset.length > 0) {
+        return res
+          .status(409)
+          .json({ error: "PurchaseOrderNumber already exists" });
+      } else {
+        let data = await pool
+          .request()
+          .input(
+            "PurchaseOrderNumber",
+            sql.VarChar,
+            req.body.PurchaseOrderNumber
+          )
+
+          .input(
+            "PurchaseRequestNumber",
+            sql.VarChar,
+            req.body.PurchaseRequestNumber
+          )
+          .input("PODate", sql.VarChar, req.body.PODate)
+          .input("DeliveryDate", sql.VarChar, req.body.DeliveryDate)
+          .input(
+            "ProcessedByEmployeeID",
+            sql.VarChar,
+            req.body.ProcessedByEmployeeID
+          )
+          .input("VATInclude", sql.VarChar, req.body.VATInclude)
+          .input("ApprovedByEmpl", sql.VarChar, req.body.ApprovedByEmpl)
+          .input("ApprovalDate", sql.VarChar, req.body.ApprovalDate)
+
+          .input("VendorID", sql.VarChar, req.body.VendorID)
+          .input("VendorConfirm", sql.VarChar, req.body.VendorConfirm)
+          .input("ConfirmationDate", sql.VarChar, req.body.ConfirmationDate)
+          .input("Comments", sql.VarChar, req.body.Comments)
+          .input("VAT", sql.Numeric, req.body.VAT)
+          .input("TOTAL_AMOUNT", sql.Numeric, req.body.TOTAL_AMOUNT)
+
+          .query(
+            ` 
             INSERT INTO [dbo].[tblPurchaseOrder]
                        ([PurchaseOrderNumber]
                       
@@ -2639,62 +2717,69 @@ else {
                        ,@VAT
                        ,@TOTAL_AMOUNT
                        )`
-        );
-       let data1 = await pool
-        .request()
+          );
+        let data1 = await pool
+          .request()
 
-        .query(
-          `select * from tblPurchaseOrder where PurchaseOrderNumber='${PurchaseOrderNumber}'`
-        );
-      res.status(201).json(data1);
-    }
-     
+          .query(
+            `select * from tblPurchaseOrder where PurchaseOrderNumber='${PurchaseOrderNumber}'`
+          );
+        res.status(201).json(data1);
+      }
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
     }
   },
-  async GoodsReceipt_post(req, res, next)
-   {
-     let pool = await sql.connect(config);
-    const PurchaseOrderNumber = req.body.PurchaseOrderNumber
-    
+  async GoodsReceipt_post(req, res, next) {
+    let pool = await sql.connect(config);
+    const PurchaseOrderNumber = req.body.PurchaseOrderNumber;
+
     try {
-if (!PurchaseOrderNumber) {
-      return res.status(400).json({ error: "PurchaseOrderNumber is required!" });
-    }
+      if (!PurchaseOrderNumber) {
+        return res
+          .status(400)
+          .json({ error: "PurchaseOrderNumber is required!" });
+      }
 
-    const existingRecord = await pool
-      .request()
-      .input('PurchaseOrderNumber', sql.VarChar, PurchaseOrderNumber)
-      .query('SELECT TOP 1 * FROM tblGoodsReceipt WHERE PurchaseOrderNumber = @PurchaseOrderNumber');
-
-    if (existingRecord.recordset.length > 0) {
-      return res.status(409).json({ error: "PurchaseOrderNumber already exists" });
-    }
-else {
-       
-
-      let data = await pool
+      const existingRecord = await pool
         .request()
-        .input("PurchaseOrderNumber", sql.VarChar, req.body.PurchaseOrderNumber)
-       
-        .input("InvoiceNumber", sql.VarChar, req.body.InvoiceNumber)
-        .input("InvoiceDate", sql.VarChar, req.body.InvoiceDate)
-        .input("ActualDeliveryDate", sql.VarChar, req.body.ActualDeliveryDate)
-        .input("RecievedByEmployeeID", sql.VarChar, req.body.RecievedByEmployeeID)
-        
-        
-       
-       .input("VendorID", sql.VarChar, req.body.VendorID)
-        .input("FeedbackOrComments", sql.VarChar, req.body.FeedbackOrComments)
-        .input("DiscountAmount", sql.VarChar, req.body.DiscountAmount)
-       
-.input("VAT", sql.Numeric, req.body.VAT)
-       .input("TOTAL_AMOUNT", sql.Numeric, req.body.TOTAL_AMOUNT)
-
+        .input("PurchaseOrderNumber", sql.VarChar, PurchaseOrderNumber)
         .query(
-          ` 
+          "SELECT TOP 1 * FROM tblGoodsReceipt WHERE PurchaseOrderNumber = @PurchaseOrderNumber"
+        );
+
+      if (existingRecord.recordset.length > 0) {
+        return res
+          .status(409)
+          .json({ error: "PurchaseOrderNumber already exists" });
+      } else {
+        let data = await pool
+          .request()
+          .input(
+            "PurchaseOrderNumber",
+            sql.VarChar,
+            req.body.PurchaseOrderNumber
+          )
+
+          .input("InvoiceNumber", sql.VarChar, req.body.InvoiceNumber)
+          .input("InvoiceDate", sql.VarChar, req.body.InvoiceDate)
+          .input("ActualDeliveryDate", sql.VarChar, req.body.ActualDeliveryDate)
+          .input(
+            "RecievedByEmployeeID",
+            sql.VarChar,
+            req.body.RecievedByEmployeeID
+          )
+
+          .input("VendorID", sql.VarChar, req.body.VendorID)
+          .input("FeedbackOrComments", sql.VarChar, req.body.FeedbackOrComments)
+          .input("DiscountAmount", sql.VarChar, req.body.DiscountAmount)
+
+          .input("VAT", sql.Numeric, req.body.VAT)
+          .input("TOTAL_AMOUNT", sql.Numeric, req.body.TOTAL_AMOUNT)
+
+          .query(
+            ` 
             INSERT INTO [dbo].[tblGoodsReceipt]
                        ([PurchaseOrderNumber]
                       
@@ -2727,62 +2812,68 @@ else {
                       ,@VAT
                        ,@TOTAL_AMOUNT
                        )`
-        );
-       let data1 = await pool
-        .request()
+          );
+        let data1 = await pool
+          .request()
 
-        .query(
-          `select * from tblGoodsReceipt where PurchaseOrderNumber='${PurchaseOrderNumber}'`
-        );
-      res.status(201).json(data1);
-    }
-     
+          .query(
+            `select * from tblGoodsReceipt where PurchaseOrderNumber='${PurchaseOrderNumber}'`
+          );
+        res.status(201).json(data1);
+      }
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
     }
   },
-  async GoodsReturn_post(req, res, next)
-   {
-     let pool = await sql.connect(config);
-    const PurchaseOrderNumber = req.body.PurchaseOrderNumber
-    
+  async GoodsReturn_post(req, res, next) {
+    let pool = await sql.connect(config);
+    const PurchaseOrderNumber = req.body.PurchaseOrderNumber;
+
     try {
-if (!PurchaseOrderNumber) {
-      return res.status(400).json({ error: "PurchaseOrderNumber is required!" });
-    }
+      if (!PurchaseOrderNumber) {
+        return res
+          .status(400)
+          .json({ error: "PurchaseOrderNumber is required!" });
+      }
 
-    const existingRecord = await pool
-      .request()
-      .input('PurchaseOrderNumber', sql.VarChar, PurchaseOrderNumber)
-      .query('SELECT TOP 1 * FROM tblGoodsReturn WHERE PurchaseOrderNumber = @PurchaseOrderNumber');
-
-    if (existingRecord.recordset.length > 0) {
-      return res.status(409).json({ error: "PurchaseOrderNumber already exists" });
-    }
-else {
-       
-
-      let data = await pool
+      const existingRecord = await pool
         .request()
-        .input("PurchaseOrderNumber", sql.VarChar, req.body.PurchaseOrderNumber)
-       
-        .input("InvoiceNumber", sql.VarChar, req.body.InvoiceNumber)
-        .input("ReturnDate", sql.VarChar, req.body.ReturnDate)
-        
-        .input("RecievedByEmployeeID", sql.VarChar, req.body.RecievedByEmployeeID)
-        
-        
-       
-       .input("VendorID", sql.VarChar, req.body.VendorID)
-        .input("ReasonOrComments", sql.VarChar, req.body.ReasonOrComments)
-       
-       .input("VAT", sql.Numeric, req.body.VAT)
-       .input("TOTAL_AMOUNT", sql.Numeric, req.body.TOTAL_AMOUNT)
-
-
+        .input("PurchaseOrderNumber", sql.VarChar, PurchaseOrderNumber)
         .query(
-          ` 
+          "SELECT TOP 1 * FROM tblGoodsReturn WHERE PurchaseOrderNumber = @PurchaseOrderNumber"
+        );
+
+      if (existingRecord.recordset.length > 0) {
+        return res
+          .status(409)
+          .json({ error: "PurchaseOrderNumber already exists" });
+      } else {
+        let data = await pool
+          .request()
+          .input(
+            "PurchaseOrderNumber",
+            sql.VarChar,
+            req.body.PurchaseOrderNumber
+          )
+
+          .input("InvoiceNumber", sql.VarChar, req.body.InvoiceNumber)
+          .input("ReturnDate", sql.VarChar, req.body.ReturnDate)
+
+          .input(
+            "RecievedByEmployeeID",
+            sql.VarChar,
+            req.body.RecievedByEmployeeID
+          )
+
+          .input("VendorID", sql.VarChar, req.body.VendorID)
+          .input("ReasonOrComments", sql.VarChar, req.body.ReasonOrComments)
+
+          .input("VAT", sql.Numeric, req.body.VAT)
+          .input("TOTAL_AMOUNT", sql.Numeric, req.body.TOTAL_AMOUNT)
+
+          .query(
+            ` 
             INSERT INTO [dbo].[tblGoodsReturn]
                        ([PurchaseOrderNumber]
                       
@@ -2814,16 +2905,15 @@ else {
                       ,@VAT
                        ,@TOTAL_AMOUNT
                        )`
-        );
-       let data1 = await pool
-        .request()
+          );
+        let data1 = await pool
+          .request()
 
-        .query(
-          `select * from tblGoodsReturn where PurchaseOrderNumber='${PurchaseOrderNumber}'`
-        );
-      res.status(201).json(data1);
-    }
-     
+          .query(
+            `select * from tblGoodsReturn where PurchaseOrderNumber='${PurchaseOrderNumber}'`
+          );
+        res.status(201).json(data1);
+      }
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
@@ -2832,18 +2922,20 @@ else {
   async Floor_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-      const FloorCode = req.body.FloorCode
+      const FloorCode = req.body.FloorCode;
       const existingRecord = await pool
-            .request()
-            .input("FloorCode", sql.VarChar, FloorCode)
-            .query(
-                `SELECT * FROM prmFloor WHERE FloorCode = '${FloorCode}'`
-            );
+        .request()
+        .input("FloorCode", sql.VarChar, FloorCode)
+        .query(`SELECT * FROM prmFloor WHERE FloorCode = '${FloorCode}'`);
 
-        if (existingRecord.recordset.length > 0) {
-            // A record with the same FloorCode already exists
-            return res.status(400).json({status:400, message:"already exists", error: ' FloorCode already exists' });
-        }
+      if (existingRecord.recordset.length > 0) {
+        // A record with the same FloorCode already exists
+        return res.status(400).json({
+          status: 400,
+          message: "already exists",
+          error: " FloorCode already exists",
+        });
+      }
       let data = await pool
         .request()
         .input("FloorCode", sql.VarChar, req.body.FloorCode)
@@ -2863,10 +2955,12 @@ else {
       let data1 = await pool
         .request()
 
-        .query(
-          `select * from prmFloor where FloorCode='${FloorCode}'`
-        );
-      res.status(201).json({ status:201, successfully:"data created successfully",  data:data1.recordsets[0]});
+        .query(`select * from prmFloor where FloorCode='${FloorCode}'`);
+      res.status(201).json({
+        status: 201,
+        successfully: "data created successfully",
+        data: data1.recordsets[0],
+      });
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
@@ -2876,23 +2970,33 @@ else {
     try {
       const file = req.files["BuildingImage"];
 
-    const url = file ? `http://gs1ksa.org:3021/api/profile/${file[0].filename}` : null;
+      const url = file
+        ? `http://gs1ksa.org:3021/api/profile/${file[0].filename}`
+        : null;
       let pool = await sql.connect(config);
-      const BuildingCode = req.body.BuildingCode
-       if (!BuildingCode) {
-            return res.status(400).json({ status: 400, message: 'BuildingCode is required', error: 'BuildingCode is required' });
-        }
+      const BuildingCode = req.body.BuildingCode;
+      if (!BuildingCode) {
+        return res.status(400).json({
+          status: 400,
+          message: "BuildingCode is required",
+          error: "BuildingCode is required",
+        });
+      }
       const existingRecord = await pool
-            .request()
-            .input("BuildingCode", sql.VarChar, BuildingCode)
-            .query(
-                `SELECT * FROM prmBuilding WHERE BuildingCode = '${BuildingCode}'`
-            );
+        .request()
+        .input("BuildingCode", sql.VarChar, BuildingCode)
+        .query(
+          `SELECT * FROM prmBuilding WHERE BuildingCode = '${BuildingCode}'`
+        );
 
-        if (existingRecord.recordset.length > 0) {
-            // A record with the same BuildingCode already exists
-            return res.status(400).json({status:400, message:"already exists", error: ' BuildingCode already exists' });
-        }
+      if (existingRecord.recordset.length > 0) {
+        // A record with the same BuildingCode already exists
+        return res.status(400).json({
+          status: 400,
+          message: "already exists",
+          error: " BuildingCode already exists",
+        });
+      }
       let data = await pool
         .request()
         .input("BuildingCode", sql.VarChar, req.body.BuildingCode)
@@ -2932,7 +3036,11 @@ else {
         .query(
           `select * from prmBuilding where BuildingCode='${BuildingCode}'`
         );
-      res.status(201).json({ status:201, successfully:"data created successfully",  data:data1.recordsets[0]});
+      res.status(201).json({
+        status: 201,
+        successfully: "data created successfully",
+        data: data1.recordsets[0],
+      });
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
@@ -2941,21 +3049,27 @@ else {
   async Rooms_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-      const RoomCode = req.body.RoomCode
-       if (!RoomCode) {
-            return res.status(400).json({ status: 400, message: 'RoomCode is required', error: 'RoomCode is required' });
+      const RoomCode = req.body.RoomCode;
+      if (!RoomCode) {
+        return res.status(400).json({
+          status: 400,
+          message: "RoomCode is required",
+          error: "RoomCode is required",
+        });
       }
       const existingRecord = await pool
-            .request()
-            .input("RoomCode", sql.VarChar, RoomCode)
-            .query(
-                `SELECT * FROM prmRooms WHERE RoomCode = '${RoomCode}'`
-            );
+        .request()
+        .input("RoomCode", sql.VarChar, RoomCode)
+        .query(`SELECT * FROM prmRooms WHERE RoomCode = '${RoomCode}'`);
 
-        if (existingRecord.recordset.length > 0) {
-            // A record with the same RoomCode already exists
-            return res.status(400).json({ status: 400, message: 'RoomCode already exists', error: 'RoomCode already exists' });
-        }
+      if (existingRecord.recordset.length > 0) {
+        // A record with the same RoomCode already exists
+        return res.status(400).json({
+          status: 400,
+          message: "RoomCode already exists",
+          error: "RoomCode already exists",
+        });
+      }
       let data = await pool
         .request()
         .input("RoomCode", sql.VarChar, req.body.RoomCode)
@@ -2980,10 +3094,12 @@ else {
       let data1 = await pool
         .request()
 
-        .query(
-          `select * from prmRooms where RoomCode='${RoomCode}'`
-        );
-      res.status(201).json({ status:201, successfully:"data created successfully",  data:data1.recordsets[0]});
+        .query(`select * from prmRooms where RoomCode='${RoomCode}'`);
+      res.status(201).json({
+        status: 201,
+        successfully: "data created successfully",
+        data: data1.recordsets[0],
+      });
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
@@ -2992,21 +3108,27 @@ else {
   async Rooms_newpage_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-      const RoomCode = req.body.RoomCode
-       if (!RoomCode) {
-            return res.status(400).json({ status: 400, message: 'RoomCode is required', error: 'RoomCode is required' });
-        }
+      const RoomCode = req.body.RoomCode;
+      if (!RoomCode) {
+        return res.status(400).json({
+          status: 400,
+          message: "RoomCode is required",
+          error: "RoomCode is required",
+        });
+      }
       const existingRecord = await pool
-            .request()
-            .input("RoomCode", sql.VarChar, RoomCode)
-            .query(
-                `SELECT * FROM prmRooms WHERE RoomCode = '${RoomCode}'`
-            );
+        .request()
+        .input("RoomCode", sql.VarChar, RoomCode)
+        .query(`SELECT * FROM prmRooms WHERE RoomCode = '${RoomCode}'`);
 
-        if (existingRecord.recordset.length > 0) {
-            // A record with the same RoomCode already exists
-            return res.status(400).json({status:400, message:"already exists", error: ' RoomCode already exists' });
-        }
+      if (existingRecord.recordset.length > 0) {
+        // A record with the same RoomCode already exists
+        return res.status(400).json({
+          status: 400,
+          message: "already exists",
+          error: " RoomCode already exists",
+        });
+      }
       let data = await pool
         .request()
         .input("RoomCode", sql.VarChar, req.body.RoomCode)
@@ -3045,15 +3167,17 @@ else {
                        ,@Occupants
                        ,@VacancyFlag 
                        )`
-      );
-      
+        );
+
       let data1 = await pool
         .request()
 
-        .query(
-          `select * from prmRooms where RoomCode='${RoomCode}'`
-        );
-      res.status(201).json({ status:201, successfully:"data created successfully",  data:data1.recordsets[0]});
+        .query(`select * from prmRooms where RoomCode='${RoomCode}'`);
+      res.status(201).json({
+        status: 201,
+        successfully: "data created successfully",
+        data: data1.recordsets[0],
+      });
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
@@ -3062,26 +3186,34 @@ else {
   async EmployeeRooms_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-      const EmployeeID = req.body.EmployeeID
-       if (!EmployeeID) {
-            return res.status(400).json({ status: 400, message: 'EmployeeID is required', error: 'EmployeeID is required' });
+      const EmployeeID = req.body.EmployeeID;
+      if (!EmployeeID) {
+        return res.status(400).json({
+          status: 400,
+          message: "EmployeeID is required",
+          error: "EmployeeID is required",
+        });
       }
       const existingRecord = await pool
-            .request()
-            .input("EmployeeID", sql.VarChar, EmployeeID)
-            .query(
-                `SELECT * FROM tblEmployeeRooms WHERE EmployeeID = '${EmployeeID}'`
-            );
+        .request()
+        .input("EmployeeID", sql.VarChar, EmployeeID)
+        .query(
+          `SELECT * FROM tblEmployeeRooms WHERE EmployeeID = '${EmployeeID}'`
+        );
 
-        if (existingRecord.recordset.length > 0) {
-            // A record with the same EmployeeID already exists
-            return res.status(400).json({ status: 400, message: 'EmployeeID already exists', error: 'EmployeeID already exists' });
-        }
+      if (existingRecord.recordset.length > 0) {
+        // A record with the same EmployeeID already exists
+        return res.status(400).json({
+          status: 400,
+          message: "EmployeeID already exists",
+          error: "EmployeeID already exists",
+        });
+      }
       let data = await pool
         .request()
         .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
         .input("RoomCode", sql.VarChar, req.body.RoomCode)
-.input("DateAssigned", sql.VarChar, req.body.DateAssigned)
+        .input("DateAssigned", sql.VarChar, req.body.DateAssigned)
         .query(
           ` 
             INSERT INTO [dbo].[tblEmployeeRooms]
@@ -3104,7 +3236,11 @@ else {
         .query(
           `select * from tblEmployeeRooms where EmployeeID='${EmployeeID}'`
         );
-      res.status(201).json({ status:201, successfully:"data created successfully",  data:data1.recordsets[0]});
+      res.status(201).json({
+        status: 201,
+        successfully: "data created successfully",
+        data: data1.recordsets[0],
+      });
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
@@ -3113,41 +3249,88 @@ else {
   async EmployeeRoomTransfers_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
-      const TransferRequestNumber = req.body.TransferRequestNumber
-       if (!TransferRequestNumber) {
-            return res.status(400).json({ status: 400, message: 'TransferRequestNumber is required', error: 'TransferRequestNumber is required' });
+      const TransferRequestNumber = req.body.TransferRequestNumber;
+      if (!TransferRequestNumber) {
+        return res.status(400).json({
+          status: 400,
+          message: "TransferRequestNumber is required",
+          error: "TransferRequestNumber is required",
+        });
       }
       const existingRecord = await pool
-            .request()
-            .input("TransferRequestNumber", sql.VarChar, TransferRequestNumber)
-            .query(
-                `SELECT * FROM tblEmployeeRoomTransfers WHERE TransferRequestNumber = '${TransferRequestNumber}'`
-            );
+        .request()
+        .input("TransferRequestNumber", sql.VarChar, TransferRequestNumber)
+        .query(
+          `SELECT * FROM tblEmployeeRoomTransfers WHERE TransferRequestNumber = '${TransferRequestNumber}'`
+        );
 
-        if (existingRecord.recordset.length > 0) {
-            // A record with the same TransferRequestNumber already exists
-            return res.status(400).json({ status: 400, message: 'TransferRequestNumber already exists', error: 'TransferRequestNumber already exists' });
-        }
+      if (existingRecord.recordset.length > 0) {
+        // A record with the same TransferRequestNumber already exists
+        return res.status(400).json({
+          status: 400,
+          message: "TransferRequestNumber already exists",
+          error: "TransferRequestNumber already exists",
+        });
+      }
       let data = await pool
         .request()
-        .input("TransferRequestNumber", sql.VarChar, req.body.TransferRequestNumber)
+        .input(
+          "TransferRequestNumber",
+          sql.VarChar,
+          req.body.TransferRequestNumber
+        )
         .input("TransferRequestDate", sql.VarChar, req.body.TransferRequestDate)
         .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
         .input("FROM_RoomCode", sql.VarChar, req.body.FROM_RoomCode)
         .input("TO_RoomCode", sql.VarChar, req.body.TO_RoomCode)
 
-        .input("EmployeeID_Approval_1", sql.VarChar, req.body.EmployeeID_Approval_1)
-        .input("DateApproved_Approval_1", sql.VarChar, req.body.DateApproved_Approval_1)
-        .input("ApprovedFlag_Approval_1", sql.VarChar, req.body.ApprovedFlag_Approval_1)
+        .input(
+          "EmployeeID_Approval_1",
+          sql.VarChar,
+          req.body.EmployeeID_Approval_1
+        )
+        .input(
+          "DateApproved_Approval_1",
+          sql.VarChar,
+          req.body.DateApproved_Approval_1
+        )
+        .input(
+          "ApprovedFlag_Approval_1",
+          sql.VarChar,
+          req.body.ApprovedFlag_Approval_1
+        )
 
+        .input(
+          "EmployeeID_Approval_2",
+          sql.VarChar,
+          req.body.EmployeeID_Approval_2
+        )
+        .input(
+          "DateApproved_Approval_2",
+          sql.VarChar,
+          req.body.DateApproved_Approval_2
+        )
+        .input(
+          "ApprovedFlag_Approval_2",
+          sql.VarChar,
+          req.body.ApprovedFlag_Approval_2
+        )
 
-        .input("EmployeeID_Approval_2", sql.VarChar, req.body.EmployeeID_Approval_2)
-        .input("DateApproved_Approval_2", sql.VarChar, req.body.DateApproved_Approval_2)
-        .input("ApprovedFlag_Approval_2", sql.VarChar, req.body.ApprovedFlag_Approval_2)
-
-        .input("EmployeeID_Approval_3", sql.VarChar, req.body.EmployeeID_Approval_3)
-        .input("DateApproved_Approval_3", sql.VarChar, req.body.DateApproved_Approval_3)
-        .input("ApprovedFlag_Approval_3", sql.VarChar, req.body.ApprovedFlag_Approval_3)
+        .input(
+          "EmployeeID_Approval_3",
+          sql.VarChar,
+          req.body.EmployeeID_Approval_3
+        )
+        .input(
+          "DateApproved_Approval_3",
+          sql.VarChar,
+          req.body.DateApproved_Approval_3
+        )
+        .input(
+          "ApprovedFlag_Approval_3",
+          sql.VarChar,
+          req.body.ApprovedFlag_Approval_3
+        )
         .query(
           ` 
             INSERT INTO [dbo].[tblEmployeeRoomTransfers]
@@ -3197,7 +3380,49 @@ else {
         .query(
           `select * from tblEmployeeRoomTransfers where TransferRequestNumber='${TransferRequestNumber}'`
         );
-      res.status(201).json({ status:201, successfully:"data created successfully",  data:data1.recordsets[0]});
+      res.status(201).json({
+        status: 201,
+        successfully: "data created successfully",
+        data: data1.recordsets[0],
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
+  async Wordorder_post_week(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const WorkRequestNumber = req.body.WorkRequestNumber;
+      let WorkOrderNumbers = req.body.WorkOrderNumbers;
+
+      // Ensure WorkOrderNumbers is an array, even if it's a single value
+      if (!Array.isArray(WorkOrderNumbers)) {
+        WorkOrderNumbers = [WorkOrderNumbers];
+      }
+
+      for (const WorkOrderNumber of WorkOrderNumbers) {
+        await pool
+          .request()
+          .input("WorkRequestNumber", sql.VarChar, WorkRequestNumber)
+          .input("WorkOrderNumber", sql.VarChar, WorkOrderNumber)
+          .query(
+            `INSERT INTO [dbo].[tblWorkOrders]
+                    ([WorkRequestNumber]
+                    ,[WorkOrderNumber])
+                    VALUES
+                    (@WorkRequestNumber, @WorkOrderNumber)`
+          );
+      }
+
+      const result = await pool
+        .request()
+        .input("WorkRequestNumber", sql.VarChar, WorkRequestNumber)
+        .query(
+          `SELECT * FROM tblWorkOrders WHERE WorkRequestNumber = @WorkRequestNumber`
+        );
+
+      res.status(201).json(result.recordset);
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
@@ -3214,25 +3439,26 @@ else {
       const EmployeeID = req.params.EmployeeID;
       const file = req.files["EmployeeImage"];
 
-    let url = ""; // Initialize the URL variable
+      let url = ""; // Initialize the URL variable
 
-    if (file && file.length > 0) {
-      url = `http://gs1ksa.org:3021/api/profile/${file[0].filename}`;
+      if (file && file.length > 0) {
+        url = `http://gs1ksa.org:3021/api/profile/${file[0].filename}`;
       }
-       if (typeof req.body.EmployeeImage === "string" || !url) {
-      // No new EmployeeImage provided or it's an empty string, keep the old one
-      const existingData = await pool
-        .request()
-        .query(`SELECT [EmployeeImage] FROM [dbo].[tblEmployeeMaster] WHERE EmployeeID='${EmployeeID}'`);
+      if (typeof req.body.EmployeeImage === "string" || !url) {
+        // No new EmployeeImage provided or it's an empty string, keep the old one
+        const existingData = await pool
+          .request()
+          .query(
+            `SELECT [EmployeeImage] FROM [dbo].[tblEmployeeMaster] WHERE EmployeeID='${EmployeeID}'`
+          );
 
-      if (existingData.recordset.length > 0) {
-        url = existingData.recordset[0].EmployeeImage;
+        if (existingData.recordset.length > 0) {
+          url = existingData.recordset[0].EmployeeImage;
+        }
       }
-    }
       let data = await pool
         .request()
 
-        
         .input("Gender", sql.VarChar, req.body.Gender)
         .input("Title", sql.VarChar, req.body.Title)
         .input("EmployeeImage", sql.VarChar, url)
@@ -3253,7 +3479,7 @@ else {
         .input("BuildingCode", sql.VarChar, req.body.BuildingCode)
         .input("LocationCode", sql.VarChar, req.body.LocationCode)
         .input("JoiningDate", sql.Date, req.body.JoiningDate)
-        
+
         .query(
           ` 
           UPDATE [dbo].[tblEmployeeMaster]
@@ -3712,27 +3938,28 @@ WHERE NationalityCode='${NationalityCode}'`
       let pool = await sql.connect(config);
       const AssetItemDescription = req.params.AssetItemDescription;
 
-       const file = req.files["AssetImage"];
+      const file = req.files["AssetImage"];
 
-    let url = ""; // Initialize the URL variable
+      let url = ""; // Initialize the URL variable
 
-    if (file && file.length > 0) {
-      url = `http://gs1ksa.org:3021/api/profile/${file[0].filename}`;
+      if (file && file.length > 0) {
+        url = `http://gs1ksa.org:3021/api/profile/${file[0].filename}`;
       }
-       if (typeof req.body.AssetItemDescription === "string" || !url) {
-      // No new EmployeeImage provided or it's an empty string, keep the old one
-      const existingData = await pool
-        .request()
-        .query(`SELECT [AssetImage] FROM [dbo].[tblAssetsMaster] WHERE AssetItemDescription='${AssetItemDescription}'`);
+      if (typeof req.body.AssetItemDescription === "string" || !url) {
+        // No new EmployeeImage provided or it's an empty string, keep the old one
+        const existingData = await pool
+          .request()
+          .query(
+            `SELECT [AssetImage] FROM [dbo].[tblAssetsMaster] WHERE AssetItemDescription='${AssetItemDescription}'`
+          );
 
-      if (existingData.recordset.length > 0) {
-        url = existingData.recordset[0].AssetImage;
+        if (existingData.recordset.length > 0) {
+          url = existingData.recordset[0].AssetImage;
+        }
       }
-    }
       let data = await pool
         .request()
 
-         
         .input("AssetItemGroup", sql.VarChar, req.body.AssetItemGroup)
         .input("AssetType", sql.VarChar, req.body.AssetType)
         .input("AssetCategory", sql.VarChar, req.body.AssetCategory)
@@ -3740,7 +3967,7 @@ WHERE NationalityCode='${NationalityCode}'`
         .input("Manufacturer", sql.VarChar, req.body.Manufacturer)
         .input("Model", sql.VarChar, req.body.Model)
         .input("Brand", sql.VarChar, req.body.Brand)
- .input("AssetImage", sql.VarChar, url)
+        .input("AssetImage", sql.VarChar, url)
         .input("PurchaseDate", sql.VarChar, req.body.PurchaseDate)
         .input("PurchaseAmount", sql.Numeric, req.body.PurchaseAmount)
         .input("Warranty", sql.Int, req.body.Warranty)
@@ -3759,7 +3986,11 @@ WHERE NationalityCode='${NationalityCode}'`
 
         .input("LastPOQty", sql.Numeric, req.body.LastPOQty)
         .input("LastVendorID", sql.VarChar, req.body.LastVendorID)
-        .input("Details_Remarks_Notes", sql.VarChar, req.body.Details_Remarks_Notes)
+        .input(
+          "Details_Remarks_Notes",
+          sql.VarChar,
+          req.body.Details_Remarks_Notes
+        )
 
         .query(
           ` 
@@ -3809,7 +4040,6 @@ WHERE AssetItemDescription='${AssetItemDescription}'`
       let data = await pool
         .request()
 
-        
         .input("status", sql.Numeric, 1)
 
         .query(
@@ -3992,7 +4222,7 @@ WHERE No='${No}'`
       res.status(500).json({ error: `${error}` });
     }
   },
-   async WorkOrderNumberCount_Put(req, res, next) {
+  async WorkOrderNumberCount_Put(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const No = req.params.No;
@@ -4015,7 +4245,7 @@ WHERE No='${No}'`
       res.status(500).json({ error: `${error}` });
     }
   },
-   async VendorIDCount_Put(req, res, next) {
+  async VendorIDCount_Put(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const No = req.params.No;
@@ -4038,14 +4268,18 @@ WHERE No='${No}'`
       res.status(500).json({ error: `${error}` });
     }
   },
-   async TransferRequestNumber_Put(req, res, next) {
+  async TransferRequestNumber_Put(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const No = req.params.No;
       let data = await pool
         .request()
 
-        .input("TransferRequestNumber", sql.Numeric, req.body.TransferRequestNumber)
+        .input(
+          "TransferRequestNumber",
+          sql.Numeric,
+          req.body.TransferRequestNumber
+        )
 
         .query(
           ` 
@@ -4114,9 +4348,6 @@ WHERE EmployeeStatusCode='${EmployeeStatusCode}'`
       let data = await pool
         .request()
 
-        
-       
-       
         .input("WorkRequestNumber", sql.VarChar, req.body.WorkRequestNumber)
         .input("WorkStatus", sql.VarChar, req.body.WorkStatus)
         .input("WorkPriority", sql.VarChar, req.body.WorkPriority)
@@ -4124,18 +4355,34 @@ WHERE EmployeeStatusCode='${EmployeeStatusCode}'`
         .input("WorkDescription", sql.VarChar, req.body.WorkDescription)
         .input("FailureCode", sql.VarChar, req.body.FailureCode)
         .input("SolutionCode", sql.VarChar, req.body.SolutionCode)
-        .input("AssignedtoEmployeeID", sql.VarChar, req.body.AssignedtoEmployeeID)
+        .input(
+          "AssignedtoEmployeeID",
+          sql.VarChar,
+          req.body.AssignedtoEmployeeID
+        )
         .input("AppointmentDateTime", sql.VarChar, req.body.AppointmentDateTime)
         .input("ScheduledDateTime", sql.VarChar, req.body.ScheduledDateTime)
-        .input("StartWorkOrderDateTime", sql.VarChar, req.body.StartWorkOrderDateTime)
-        .input("EndWorkOrderDateTime", sql.VarChar, req.body.EndWorkOrderDateTime)
+        .input(
+          "StartWorkOrderDateTime",
+          sql.VarChar,
+          req.body.StartWorkOrderDateTime
+        )
+        .input(
+          "EndWorkOrderDateTime",
+          sql.VarChar,
+          req.body.EndWorkOrderDateTime
+        )
         .input("TotalDays", sql.Numeric, req.body.TotalDays)
         .input("TotalHours", sql.Numeric, req.body.TotalHours)
         .input("TotalMinutes", sql.Numeric, req.body.TotalMinutes)
         .input("TotalCostofWork", sql.Numeric, req.body.TotalCostofWork)
-        .input("CompletedByEmployeeID", sql.VarChar, req.body.CompletedByEmployeeID)
+        .input(
+          "CompletedByEmployeeID",
+          sql.VarChar,
+          req.body.CompletedByEmployeeID
+        )
         .input("CompletionDateTime", sql.DateTime, req.body.CompletionDateTime)
-        
+
         .query(
           ` 
           UPDATE [dbo].[tblWorkOrders]
@@ -4177,7 +4424,7 @@ WHERE WorkOrderNumber='${WorkOrderNumber}'`
         .request()
 
         .input("SystemModuleSeq", sql.SmallInt, req.body.SystemModuleSeq)
-.input("SystemModuleDesc", sql.VarChar, req.body.SystemModuleDesc)
+        .input("SystemModuleDesc", sql.VarChar, req.body.SystemModuleDesc)
         .query(
           ` 
           UPDATE [dbo].[prmSystemModules]
@@ -4200,17 +4447,20 @@ WHERE SystemModuleCode='${SystemModuleCode}'`
       let data = await pool
         .request()
 
- 
         .input("VendorName", sql.VarChar, req.body.VendorName)
         .input("VendorAddress", sql.VarChar, req.body.VendorAddress)
         .input("ContactLastname", sql.VarChar, req.body.ContactLastname)
         .input("ContactFirstname", sql.VarChar, req.body.ContactFirstname)
         .input("ContactMiddlename", sql.VarChar, req.body.ContactMiddlename)
         .input("ContactMobileNumber", sql.VarChar, req.body.ContactMobileNumber)
-        .input("ContactLandlineNumber", sql.VarChar, req.body.ContactLandlineNumber)
+        .input(
+          "ContactLandlineNumber",
+          sql.VarChar,
+          req.body.ContactLandlineNumber
+        )
         .input("ContactEmail", sql.VarChar, req.body.ContactEmail)
         .input("VendorInformation", sql.VarChar, req.body.VendorInformation)
-        
+
         .query(
           ` 
           UPDATE [dbo].[tblVendorMaster]
@@ -4242,7 +4492,11 @@ WHERE VendorID='${VendorID}'`
       let data = await pool
         .request()
 
-        .input("AssetItemGroupCodeDesc", sql.VarChar, req.body.AssetItemGroupCodeDesc)
+        .input(
+          "AssetItemGroupCodeDesc",
+          sql.VarChar,
+          req.body.AssetItemGroupCodeDesc
+        )
 
         .query(
           ` 
@@ -4265,9 +4519,6 @@ WHERE AssetItemGroupCode='${AssetItemGroupCode}'`
       let data = await pool
         .request()
 
-        
-   
-       
         .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
         .input("RequestDateTime", sql.VarChar, req.body.RequestDateTime)
         .input("WorkType", sql.VarChar, req.body.WorkType)
@@ -4276,13 +4527,21 @@ WHERE AssetItemGroupCode='${AssetItemGroupCode}'`
         .input("DepartmentCode", sql.VarChar, req.body.DepartmentCode)
         .input("BuildingCode", sql.VarChar, req.body.BuildingCode)
         .input("LocationCode", sql.VarChar, req.body.LocationCode)
-        .input("MaintenanceDescription", sql.VarChar, req.body.MaintenanceDescription)
+        .input(
+          "MaintenanceDescription",
+          sql.VarChar,
+          req.body.MaintenanceDescription
+        )
         .input("Frequency", sql.VarChar, req.body.Frequency)
-        .input("ScheduleStartDateTime", sql.VarChar, req.body.ScheduleStartDateTime)
+        .input(
+          "ScheduleStartDateTime",
+          sql.VarChar,
+          req.body.ScheduleStartDateTime
+        )
         .input("ScheduleEndDateTime", sql.VarChar, req.body.ScheduleEndDateTime)
         .input("ScheduledDay", sql.VarChar, req.body.ScheduledDay)
         .input("SchedulingPriority", sql.VarChar, req.body.SchedulingPriority)
-        
+
         .query(
           ` 
           UPDATE [dbo].[tblPreventiveMaintenance]
@@ -4319,9 +4578,6 @@ WHERE RequestNumber='${RequestNumber}'`
       let data = await pool
         .request()
 
-        
-   
-       
         .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
         .input("RequestDateTime", sql.VarChar, req.body.RequestDateTime)
         .input("WorkType", sql.VarChar, req.body.WorkType)
@@ -4332,12 +4588,16 @@ WHERE RequestNumber='${RequestNumber}'`
         .input("LocationCode", sql.VarChar, req.body.LocationCode)
         .input("CleaningGroup", sql.VarChar, req.body.CleaningGroup)
         .input("Intruction_Remarks", sql.VarChar, req.body.Intruction_Remarks)
-        .input("ScheduleStartDateTime", sql.VarChar, req.body.ScheduleStartDateTime)
+        .input(
+          "ScheduleStartDateTime",
+          sql.VarChar,
+          req.body.ScheduleStartDateTime
+        )
         .input("ScheduleEndDateTime", sql.VarChar, req.body.ScheduleEndDateTime)
         .input("ScheduledDay", sql.VarChar, req.body.ScheduledDay)
         .input("SchedulingPriority", sql.VarChar, req.body.SchedulingPriority)
-       .input("Frequency", sql.VarChar, req.body.Frequency)
-        
+        .input("Frequency", sql.VarChar, req.body.Frequency)
+
         .query(
           ` 
           UPDATE [dbo].[tblCleaningWorks]
@@ -4374,19 +4634,20 @@ WHERE RequestNumber='${RequestNumber}'`
       let data = await pool
         .request()
 
-        
-   
-       
         .input("AssetCondition", sql.VarChar, req.body.AssetCondition)
-            .input("AssetItemDescription", sql.VarChar, req.body.AssetItemDescription)
-            .input("SerialNumber", sql.VarChar, req.body.SerialNumber)
-            .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
-            .input("CaptureDateTime", sql.VarChar, req.body.CaptureDateTime)
-            .input("ScannedDateTime", sql.VarChar, req.body.ScannedDateTime)
-            .input("BuildingCode", sql.VarChar, req.body.BuildingCode)
-            .input("DepartmentCode", sql.VarChar, req.body.DepartmentCode)
-            .input("LocationCode", sql.VarChar, req.body.LocationCode)
-        
+        .input(
+          "AssetItemDescription",
+          sql.VarChar,
+          req.body.AssetItemDescription
+        )
+        .input("SerialNumber", sql.VarChar, req.body.SerialNumber)
+        .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
+        .input("CaptureDateTime", sql.VarChar, req.body.CaptureDateTime)
+        .input("ScannedDateTime", sql.VarChar, req.body.ScannedDateTime)
+        .input("BuildingCode", sql.VarChar, req.body.BuildingCode)
+        .input("DepartmentCode", sql.VarChar, req.body.DepartmentCode)
+        .input("LocationCode", sql.VarChar, req.body.LocationCode)
+
         .query(
           ` 
           UPDATE [dbo].[tblAssetTransactions]
@@ -4419,7 +4680,7 @@ WHERE AssetItemTagID='${AssetItemTagID}'`
         .request()
 
         .input("UserAuthoritySeq", sql.SmallInt, req.body.UserAuthoritySeq)
-.input("UserAuthorityDesc", sql.VarChar, req.body.UserAuthorityDesc)
+        .input("UserAuthorityDesc", sql.VarChar, req.body.UserAuthorityDesc)
         .query(
           ` 
           UPDATE [dbo].[prmUserAuthority]
@@ -4442,7 +4703,6 @@ WHERE UserAuthorityCode='${UserAuthorityCode}'`
       let data = await pool
         .request()
 
- 
         .input("UserAuthorityCode", sql.VarChar, req.body.UserAuthorityCode)
         .input("UserID", sql.VarChar, req.body.UserID)
         .input("UserPassword", sql.VarChar, req.body.UserPassword)
@@ -4450,7 +4710,7 @@ WHERE UserAuthorityCode='${UserAuthorityCode}'`
         .input("WindowsPassword", sql.VarChar, req.body.WindowsPassword)
         .input("CreatedByAdminID", sql.VarChar, req.body.CreatedByAdminID)
         .input("CreationDateTime", sql.VarChar, req.body.ContactLandlineNumber)
-        
+
         .query(
           ` 
           UPDATE [dbo].[tblUserCredentials]
@@ -4481,8 +4741,12 @@ WHERE EmployeeID='${EmployeeID}'`
       let data = await pool
         .request()
 
-        .input("UserAuthorityAccessYN", sql.VarChar, req.body.UserAuthorityAccessYN)
-.input("AddedByAdminID", sql.VarChar, req.body.AddedByAdminID)
+        .input(
+          "UserAuthorityAccessYN",
+          sql.VarChar,
+          req.body.UserAuthorityAccessYN
+        )
+        .input("AddedByAdminID", sql.VarChar, req.body.AddedByAdminID)
         .query(
           ` 
           UPDATE [dbo].[tblUserSystemAccess]
@@ -4505,7 +4769,6 @@ WHERE EmployeeID='${EmployeeID}'`
       let data = await pool
         .request()
 
- 
         .input("RequestDate", sql.VarChar, req.body.RequestDate)
         .input("RequiredDate", sql.VarChar, req.body.RequiredDate)
         .input("RequestByEmployeeID", sql.VarChar, req.body.RequestByEmployeeID)
@@ -4514,7 +4777,7 @@ WHERE EmployeeID='${EmployeeID}'`
         .input("VendorID", sql.VarChar, req.body.VendorID)
         .input("VerifiedByEmpl", sql.VarChar, req.body.VerifiedByEmpl)
         .input("VAT", sql.Numeric, req.body.VAT)
-       .input("TOTAL_AMOUNT", sql.Numeric, req.body.TOTAL_AMOUNT)
+        .input("TOTAL_AMOUNT", sql.Numeric, req.body.TOTAL_AMOUNT)
         .query(
           ` 
           UPDATE [dbo].[tblPurchaseRequest]
@@ -4569,7 +4832,11 @@ WHERE No='${No}'`
       let data = await pool
         .request()
 
-        .input("PurchaseRequestNumber", sql.Numeric, req.body.PurchaseRequestNumber)
+        .input(
+          "PurchaseRequestNumber",
+          sql.Numeric,
+          req.body.PurchaseRequestNumber
+        )
 
         .query(
           ` 
@@ -4592,21 +4859,28 @@ WHERE No='${No}'`
       let data = await pool
         .request()
 
- 
-         .input("PurchaseRequestNumber", sql.VarChar, req.body.PurchaseRequestNumber)
+        .input(
+          "PurchaseRequestNumber",
+          sql.VarChar,
+          req.body.PurchaseRequestNumber
+        )
         .input("PODate", sql.VarChar, req.body.PODate)
         .input("DeliveryDate", sql.VarChar, req.body.DeliveryDate)
-        .input("ProcessedByEmployeeID", sql.VarChar, req.body.ProcessedByEmployeeID)
+        .input(
+          "ProcessedByEmployeeID",
+          sql.VarChar,
+          req.body.ProcessedByEmployeeID
+        )
         .input("VATInclude", sql.VarChar, req.body.VATInclude)
         .input("ApprovedByEmpl", sql.VarChar, req.body.ApprovedByEmpl)
         .input("ApprovalDate", sql.VarChar, req.body.ApprovalDate)
-       
-       .input("VendorID", sql.VarChar, req.body.VendorID)
+
+        .input("VendorID", sql.VarChar, req.body.VendorID)
         .input("VendorConfirm", sql.VarChar, req.body.VendorConfirm)
         .input("ConfirmationDate", sql.VarChar, req.body.ConfirmationDate)
         .input("Comments", sql.VarChar, req.body.Comments)
         .input("VAT", sql.Numeric, req.body.VAT)
-       .input("TOTAL_AMOUNT", sql.Numeric, req.body.TOTAL_AMOUNT)
+        .input("TOTAL_AMOUNT", sql.Numeric, req.body.TOTAL_AMOUNT)
         .query(
           ` 
           UPDATE [dbo].[tblPurchaseOrder]
@@ -4642,17 +4916,20 @@ WHERE PurchaseOrderNumber='${PurchaseOrderNumber}'`
       let data = await pool
         .request()
 
- 
         .input("InvoiceNumber", sql.VarChar, req.body.InvoiceNumber)
         .input("InvoiceDate", sql.VarChar, req.body.InvoiceDate)
         .input("ActualDeliveryDate", sql.VarChar, req.body.ActualDeliveryDate)
-        .input("RecievedByEmployeeID", sql.VarChar, req.body.RecievedByEmployeeID)
-  
-       .input("VendorID", sql.VarChar, req.body.VendorID)
+        .input(
+          "RecievedByEmployeeID",
+          sql.VarChar,
+          req.body.RecievedByEmployeeID
+        )
+
+        .input("VendorID", sql.VarChar, req.body.VendorID)
         .input("FeedbackOrComments", sql.VarChar, req.body.FeedbackOrComments)
         .input("DiscountAmount", sql.VarChar, req.body.DiscountAmount)
         .input("VAT", sql.Numeric, req.body.VAT)
-       .input("TOTAL_AMOUNT", sql.Numeric, req.body.TOTAL_AMOUNT)
+        .input("TOTAL_AMOUNT", sql.Numeric, req.body.TOTAL_AMOUNT)
         .query(
           ` 
           UPDATE [dbo].[tblGoodsReceipt]
@@ -4685,18 +4962,19 @@ WHERE PurchaseOrderNumber='${PurchaseOrderNumber}'`
       let data = await pool
         .request()
 
- 
         .input("InvoiceNumber", sql.VarChar, req.body.InvoiceNumber)
         .input("ReturnDate", sql.VarChar, req.body.ReturnDate)
-        
-        .input("RecievedByEmployeeID", sql.VarChar, req.body.RecievedByEmployeeID)
-        
-        
-       
-       .input("VendorID", sql.VarChar, req.body.VendorID)
+
+        .input(
+          "RecievedByEmployeeID",
+          sql.VarChar,
+          req.body.RecievedByEmployeeID
+        )
+
+        .input("VendorID", sql.VarChar, req.body.VendorID)
         .input("ReasonOrComments", sql.VarChar, req.body.ReasonOrComments)
         .input("VAT", sql.Numeric, req.body.VAT)
-       .input("TOTAL_AMOUNT", sql.Numeric, req.body.TOTAL_AMOUNT)
+        .input("TOTAL_AMOUNT", sql.Numeric, req.body.TOTAL_AMOUNT)
         .query(
           ` 
           UPDATE [dbo].[tblGoodsReturn]
@@ -4726,17 +5004,19 @@ WHERE PurchaseOrderNumber='${PurchaseOrderNumber}'`
     try {
       let pool = await sql.connect(config);
       const FloorCode = req.params.FloorCode;
-       const existingRecord = await pool
-            .request()
-            .input("FloorCode", sql.VarChar, FloorCode)
-            .query(
-                `SELECT * FROM prmFloor WHERE FloorCode = '${FloorCode}'`
-            );
+      const existingRecord = await pool
+        .request()
+        .input("FloorCode", sql.VarChar, FloorCode)
+        .query(`SELECT * FROM prmFloor WHERE FloorCode = '${FloorCode}'`);
 
-        if (existingRecord.recordset.length === 0) {
-            // No record with the specified FloorCode found in the database
-            return res.status(404).json({ status:404, message:"FloorCode found", error: 'FloorCode not found' });
-        }
+      if (existingRecord.recordset.length === 0) {
+        // No record with the specified FloorCode found in the database
+        return res.status(404).json({
+          status: 404,
+          message: "FloorCode found",
+          error: "FloorCode not found",
+        });
+      }
       let data = await pool
         .request()
 
@@ -4750,38 +5030,43 @@ SET
 [FloorDesc] =@FloorDesc
 WHERE FloorCode='${FloorCode}'`
         );
-      res.status(200).json({status:200, successfully:"data update successfully",  data:data.rowsAffected[0]});
+      res.status(200).json({
+        status: 200,
+        successfully: "data update successfully",
+        data: data.rowsAffected[0],
+      });
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
     }
   },
- async Building_newpage_Put(req, res, next) {
+  async Building_newpage_Put(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const BuildingCode = req.params.BuildingCode;
 
-       const file = req.files["BuildingImage"];
+      const file = req.files["BuildingImage"];
 
-    let url = ""; // Initialize the URL variable
+      let url = ""; // Initialize the URL variable
 
-    if (file && file.length > 0) {
-      url = `http://gs1ksa.org:3021/api/profile/${file[0].filename}`;
+      if (file && file.length > 0) {
+        url = `http://gs1ksa.org:3021/api/profile/${file[0].filename}`;
       }
-       if (typeof req.body.BuildingCode === "string" || !url) {
-      // No new EmployeeImage provided or it's an empty string, keep the old one
-      const existingData = await pool
-        .request()
-        .query(`SELECT [BuildingImage] FROM [dbo].[prmBuilding] WHERE BuildingCode='${BuildingCode}'`);
+      if (typeof req.body.BuildingCode === "string" || !url) {
+        // No new EmployeeImage provided or it's an empty string, keep the old one
+        const existingData = await pool
+          .request()
+          .query(
+            `SELECT [BuildingImage] FROM [dbo].[prmBuilding] WHERE BuildingCode='${BuildingCode}'`
+          );
 
-      if (existingData.recordset.length > 0) {
-        url = existingData.recordset[0].BuildingImage;
+        if (existingData.recordset.length > 0) {
+          url = existingData.recordset[0].BuildingImage;
+        }
       }
-    }
       let data = await pool
         .request()
 
-         
         .input("BuildingDesc", sql.VarChar, req.body.BuildingDesc)
         .input("Latitude", sql.VarChar, req.body.Latitude)
         .input("Longtitude", sql.VarChar, req.body.Longtitude)
@@ -4803,13 +5088,17 @@ SET
 
 WHERE BuildingCode='${BuildingCode}'`
         );
-      res.status(200).json({status:200, message:"data Update successfully", data:data.rowsAffected[0]});
+      res.status(200).json({
+        status: 200,
+        message: "data Update successfully",
+        data: data.rowsAffected[0],
+      });
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
     }
   },
- async Rooms_Put(req, res, next) {
+  async Rooms_Put(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const RoomCode = req.params.RoomCode;
@@ -4826,22 +5115,24 @@ SET
 [RoomDesc] =@RoomDesc
 WHERE RoomCode='${RoomCode}'`
         );
-      res.status(200).json({status:200, message:"data Update successfully", data:data.rowsAffected[0]});
+      res.status(200).json({
+        status: 200,
+        message: "data Update successfully",
+        data: data.rowsAffected[0],
+      });
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
     }
   },
- async Rooms_newpage_Put(req, res, next) {
+  async Rooms_newpage_Put(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const RoomCode = req.params.RoomCode;
 
-     
       let data = await pool
         .request()
 
-         
         .input("RoomDesc", sql.VarChar, req.body.RoomDesc)
         .input("Area", sql.VarChar, req.body.Area)
         .input("FloorCode", sql.VarChar, req.body.FloorCode)
@@ -4866,13 +5157,17 @@ SET
 ,[VacancyFlag] =@VacancyFlag
 WHERE RoomCode='${RoomCode}'`
         );
-      res.status(200).json({status:200, message:"data Update successfully", data:data.rowsAffected[0]});
+      res.status(200).json({
+        status: 200,
+        message: "data Update successfully",
+        data: data.rowsAffected[0],
+      });
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
     }
   },
- async EmployeeRooms_Put(req, res, next) {
+  async EmployeeRooms_Put(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const EmployeeID = req.params.EmployeeID;
@@ -4888,13 +5183,17 @@ SET
 [RoomCode] =@RoomCode
 WHERE EmployeeID='${EmployeeID}'`
         );
-      res.status(200).json({status:200, message:"data Update successfully", data:data.rowsAffected[0]});
+      res.status(200).json({
+        status: 200,
+        message: "data Update successfully",
+        data: data.rowsAffected[0],
+      });
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
     }
   },
- async EmployeeRoomTransfers_Put(req, res, next) {
+  async EmployeeRoomTransfers_Put(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const TransferRequestNumber = req.params.TransferRequestNumber;
@@ -4906,18 +5205,53 @@ WHERE EmployeeID='${EmployeeID}'`
         .input("FROM_RoomCode", sql.VarChar, req.body.FROM_RoomCode)
         .input("TO_RoomCode", sql.VarChar, req.body.TO_RoomCode)
 
-        .input("EmployeeID_Approval_1", sql.VarChar, req.body.EmployeeID_Approval_1)
-        .input("DateApproved_Approval_1", sql.VarChar, req.body.DateApproved_Approval_1)
-        .input("ApprovedFlag_Approval_1", sql.VarChar, req.body.ApprovedFlag_Approval_1)
+        .input(
+          "EmployeeID_Approval_1",
+          sql.VarChar,
+          req.body.EmployeeID_Approval_1
+        )
+        .input(
+          "DateApproved_Approval_1",
+          sql.VarChar,
+          req.body.DateApproved_Approval_1
+        )
+        .input(
+          "ApprovedFlag_Approval_1",
+          sql.VarChar,
+          req.body.ApprovedFlag_Approval_1
+        )
 
+        .input(
+          "EmployeeID_Approval_2",
+          sql.VarChar,
+          req.body.EmployeeID_Approval_2
+        )
+        .input(
+          "DateApproved_Approval_2",
+          sql.VarChar,
+          req.body.DateApproved_Approval_2
+        )
+        .input(
+          "ApprovedFlag_Approval_2",
+          sql.VarChar,
+          req.body.ApprovedFlag_Approval_2
+        )
 
-        .input("EmployeeID_Approval_2", sql.VarChar, req.body.EmployeeID_Approval_2)
-        .input("DateApproved_Approval_2", sql.VarChar, req.body.DateApproved_Approval_2)
-        .input("ApprovedFlag_Approval_2", sql.VarChar, req.body.ApprovedFlag_Approval_2)
-
-        .input("EmployeeID_Approval_3", sql.VarChar, req.body.EmployeeID_Approval_3)
-        .input("DateApproved_Approval_3", sql.VarChar, req.body.DateApproved_Approval_3)
-        .input("ApprovedFlag_Approval_3", sql.VarChar, req.body.ApprovedFlag_Approval_3)
+        .input(
+          "EmployeeID_Approval_3",
+          sql.VarChar,
+          req.body.EmployeeID_Approval_3
+        )
+        .input(
+          "DateApproved_Approval_3",
+          sql.VarChar,
+          req.body.DateApproved_Approval_3
+        )
+        .input(
+          "ApprovedFlag_Approval_3",
+          sql.VarChar,
+          req.body.ApprovedFlag_Approval_3
+        )
         .query(
           ` 
           UPDATE [dbo].[tblEmployeeRoomTransfers]
@@ -4942,7 +5276,11 @@ SET
 
 WHERE TransferRequestNumber='${TransferRequestNumber}'`
         );
-      res.status(200).json({status:200, message:"data Update successfully", data:data.rowsAffected[0]});
+      res.status(200).json({
+        status: 200,
+        message: "data Update successfully",
+        data: data.rowsAffected[0],
+      });
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
@@ -5164,7 +5502,9 @@ WHERE TransferRequestNumber='${TransferRequestNumber}'`
   async Nationality_GET_LIST_Nationality(req, res, next) {
     try {
       let pool = await sql.connect(config);
-      let data = await pool.request().query(`select NationalityCode from prmNationality`);
+      let data = await pool
+        .request()
+        .query(`select NationalityCode from prmNationality`);
       res.status(200).json(data);
     } catch (error) {
       console.log(error);
@@ -5304,7 +5644,9 @@ WHERE TransferRequestNumber='${TransferRequestNumber}'`
   async WorkCatagres_GET_CODE_LIST(req, res, next) {
     try {
       let pool = await sql.connect(config);
-      let data = await pool.request().query(`select WorkCategoryCode from prmWorkCategory`);
+      let data = await pool
+        .request()
+        .query(`select WorkCategoryCode from prmWorkCategory`);
       res.status(200).json(data);
     } catch (error) {
       console.log(error);
@@ -5467,10 +5809,12 @@ WHERE TransferRequestNumber='${TransferRequestNumber}'`
       res.status(500).json({ error: `${error}` });
     }
   },
-   async Failure_GET_CODELIST(req, res, next) {
+  async Failure_GET_CODELIST(req, res, next) {
     try {
       let pool = await sql.connect(config);
-      let data = await pool.request().query(`select FailureStatusCode from prmFailure`);
+      let data = await pool
+        .request()
+        .query(`select FailureStatusCode from prmFailure`);
       res.status(200).json(data);
     } catch (error) {
       console.log(error);
@@ -5506,7 +5850,9 @@ WHERE TransferRequestNumber='${TransferRequestNumber}'`
   async Solution_GET_CODE_LIST(req, res, next) {
     try {
       let pool = await sql.connect(config);
-      let data = await pool.request().query(`select SolutiontatusCode from prmSolution`);
+      let data = await pool
+        .request()
+        .query(`select SolutiontatusCode from prmSolution`);
       res.status(200).json(data);
     } catch (error) {
       console.log(error);
@@ -5822,22 +6168,22 @@ WHERE TransferRequestNumber='${TransferRequestNumber}'`
   },
   async workRequest_WTD(req, res, next) {
     try {
-        let pool = await sql.connect(config);
+      let pool = await sql.connect(config);
 
-        // Calculate the start and end dates of the current week in a format SQL Server can understand.
-        const currentDate = new Date();
-        const startOfWeek = new Date(currentDate);
-        startOfWeek.setHours(0, 0, 0, 0);
-        startOfWeek.setDate(currentDate.getDate() - currentDate.getDay());
-        const endOfWeek = new Date(currentDate);
-        endOfWeek.setHours(23, 59, 59, 999);
-        endOfWeek.setDate(currentDate.getDate() + (6 - currentDate.getDay()));
+      // Calculate the start and end dates of the current week in a format SQL Server can understand.
+      const currentDate = new Date();
+      const startOfWeek = new Date(currentDate);
+      startOfWeek.setHours(0, 0, 0, 0);
+      startOfWeek.setDate(currentDate.getDate() - currentDate.getDay());
+      const endOfWeek = new Date(currentDate);
+      endOfWeek.setHours(23, 59, 59, 999);
+      endOfWeek.setDate(currentDate.getDate() + (6 - currentDate.getDay()));
 
-        const formattedStartOfWeek = startOfWeek.toISOString();
-        const formattedEndOfWeek = endOfWeek.toISOString();
+      const formattedStartOfWeek = startOfWeek.toISOString();
+      const formattedEndOfWeek = endOfWeek.toISOString();
 
-        // Execute a SQL query to count records for the current week where 'RequestStatus' is 'Open' or 'RequestDateTime' is empty.
-        const query = `
+      // Execute a SQL query to count records for the current week where 'RequestStatus' is 'Open' or 'RequestDateTime' is empty.
+      const query = `
             SELECT
                 COUNT(*) AS Count
             FROM tblWorkRequest
@@ -5845,14 +6191,14 @@ WHERE TransferRequestNumber='${TransferRequestNumber}'`
             AND (RequestDateTime >= '${formattedStartOfWeek}' AND RequestDateTime <= '${formattedEndOfWeek}')
         `;
 
-        let data = await pool.request().query(query);
+      let data = await pool.request().query(query);
 
-        res.status(200).json(data.recordset);
+      res.status(200).json(data.recordset);
     } catch (error) {
-        console.log(error);
-        res.status(500).json({ error: `${error}` });
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
     }
-},
+  },
 
   async Employeenumber_GET_LIST(req, res, next) {
     try {
@@ -5934,7 +6280,7 @@ WHERE TransferRequestNumber='${TransferRequestNumber}'`
       res.status(500).json({ error: `${error}` });
     }
   },
-   async Designation_GET_LIST(req, res, next) {
+  async Designation_GET_LIST(req, res, next) {
     try {
       let pool = await sql.connect(config);
       let data = await pool.request().query(`select * from prmDesignation`);
@@ -5944,7 +6290,7 @@ WHERE TransferRequestNumber='${TransferRequestNumber}'`
       res.status(500).json({ error: `${error}` });
     }
   },
-   async Designation_GET_BYID(req, res, next) {
+  async Designation_GET_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const DesignationCode = req.params.DesignationCode;
@@ -6015,9 +6361,7 @@ WHERE TransferRequestNumber='${TransferRequestNumber}'`
       let data = await pool
         .request()
 
-        .query(
-          `select * from workRequestCount where No='${No}'`
-        );
+        .query(`select * from workRequestCount where No='${No}'`);
       res.status(200).json(data);
     } catch (error) {
       console.log(error);
@@ -6027,7 +6371,9 @@ WHERE TransferRequestNumber='${TransferRequestNumber}'`
   async EmployeeID_GET_LIST(req, res, next) {
     try {
       let pool = await sql.connect(config);
-      let data = await pool.request().query(`select EmployeeID , Firstname from tblEmployeeMaster`);
+      let data = await pool
+        .request()
+        .query(`select EmployeeID , Firstname from tblEmployeeMaster`);
       res.status(200).json(data);
     } catch (error) {
       console.log(error);
@@ -6128,7 +6474,7 @@ WHERE TransferRequestNumber='${TransferRequestNumber}'`
       res.status(500).json({ error: `${error}` });
     }
   },
-   async SystemModules_GET_LIST(req, res, next) {
+  async SystemModules_GET_LIST(req, res, next) {
     try {
       let pool = await sql.connect(config);
       let data = await pool.request().query(`select * from prmSystemModules`);
@@ -6138,23 +6484,21 @@ WHERE TransferRequestNumber='${TransferRequestNumber}'`
       res.status(500).json({ error: `${error}` });
     }
   },
-   async VendorMaster_GET_BYID(req, res, next) {
+  async VendorMaster_GET_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const VendorID = req.params.VendorID;
       let data = await pool
         .request()
 
-        .query(
-          `select * from tblVendorMaster where VendorID='${VendorID}'`
-        );
+        .query(`select * from tblVendorMaster where VendorID='${VendorID}'`);
       res.status(200).json(data);
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
     }
   },
-   async VendorMaster_GET_LIST(req, res, next) {
+  async VendorMaster_GET_LIST(req, res, next) {
     try {
       let pool = await sql.connect(config);
       let data = await pool.request().query(`select * from tblVendorMaster`);
@@ -6164,7 +6508,7 @@ WHERE TransferRequestNumber='${TransferRequestNumber}'`
       res.status(500).json({ error: `${error}` });
     }
   },
-   async AssetItemGroup_GET_LIST(req, res, next) {
+  async AssetItemGroup_GET_LIST(req, res, next) {
     try {
       let pool = await sql.connect(config);
       let data = await pool.request().query(`select * from prmAssetItemGroup`);
@@ -6174,7 +6518,7 @@ WHERE TransferRequestNumber='${TransferRequestNumber}'`
       res.status(500).json({ error: `${error}` });
     }
   },
-   async AssetItemGroup_GET_BYID(req, res, next) {
+  async AssetItemGroup_GET_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const AssetItemGroupCode = req.params.AssetItemGroupCode;
@@ -6190,7 +6534,7 @@ WHERE TransferRequestNumber='${TransferRequestNumber}'`
       res.status(500).json({ error: `${error}` });
     }
   },
-   async MaterialUnits_GET_BYID(req, res, next) {
+  async MaterialUnits_GET_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const MaterialUnitCode = req.params.MaterialUnitCode;
@@ -6206,27 +6550,31 @@ WHERE TransferRequestNumber='${TransferRequestNumber}'`
       res.status(500).json({ error: `${error}` });
     }
   },
-   async MaterialUnits_GET_LIST(req, res, next) {
+  async MaterialUnits_GET_LIST(req, res, next) {
     try {
       let pool = await sql.connect(config);
-      let data = await pool.request().query(`select MaterialUnitCode from prmMaterialUnits`);
+      let data = await pool
+        .request()
+        .query(`select MaterialUnitCode from prmMaterialUnits`);
       res.status(200).json(data);
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
     }
   },
-   async WarrantyPeriod_GET_LIST(req, res, next) {
+  async WarrantyPeriod_GET_LIST(req, res, next) {
     try {
       let pool = await sql.connect(config);
-      let data = await pool.request().query(`select WarrantyPeriodCode from prmWarrantyPeriod`);
+      let data = await pool
+        .request()
+        .query(`select WarrantyPeriodCode from prmWarrantyPeriod`);
       res.status(200).json(data);
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
     }
   },
-   async WarrantyPeriod_GET_BYID(req, res, next) {
+  async WarrantyPeriod_GET_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const WarrantyPeriodCode = req.params.WarrantyPeriodCode;
@@ -6242,7 +6590,7 @@ WHERE TransferRequestNumber='${TransferRequestNumber}'`
       res.status(500).json({ error: `${error}` });
     }
   },
-   async AssetTransactions_GET_ItemDescription(req, res, next) {
+  async AssetTransactions_GET_ItemDescription(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const AssetItemDescription = req.params.AssetItemDescription;
@@ -6251,16 +6599,15 @@ WHERE TransferRequestNumber='${TransferRequestNumber}'`
 
         .query(
           `select AssetItemTagID from tblAssetTransactions where AssetItemDescription='${AssetItemDescription}'`
-      );
-      
+        );
+
       res.status(200).json(data); // Respond with data
-    
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
     }
   },
-   async PreventiveMaintenance_GET_BYID(req, res, next) {
+  async PreventiveMaintenance_GET_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const RequestNumber = req.params.RequestNumber;
@@ -6276,17 +6623,19 @@ WHERE TransferRequestNumber='${TransferRequestNumber}'`
       res.status(500).json({ error: `${error}` });
     }
   },
-   async PreventiveMaintenance_GET_LIST(req, res, next) {
+  async PreventiveMaintenance_GET_LIST(req, res, next) {
     try {
       let pool = await sql.connect(config);
-      let data = await pool.request().query(`select * from tblPreventiveMaintenance`);
+      let data = await pool
+        .request()
+        .query(`select * from tblPreventiveMaintenance`);
       res.status(200).json(data);
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
     }
   },
-   async CleaningWorks_GET_LIST(req, res, next) {
+  async CleaningWorks_GET_LIST(req, res, next) {
     try {
       let pool = await sql.connect(config);
       let data = await pool.request().query(`select * from tblCleaningWorks`);
@@ -6315,7 +6664,9 @@ WHERE TransferRequestNumber='${TransferRequestNumber}'`
   async SchedPriority_GET_LIST(req, res, next) {
     try {
       let pool = await sql.connect(config);
-      let data = await pool.request().query(`select SchedPriorityCode from prmSchedPriority`);
+      let data = await pool
+        .request()
+        .query(`select SchedPriorityCode from prmSchedPriority`);
       res.status(200).json(data);
     } catch (error) {
       console.log(error);
@@ -6325,7 +6676,9 @@ WHERE TransferRequestNumber='${TransferRequestNumber}'`
   async CleaningGroup_GET_LIST(req, res, next) {
     try {
       let pool = await sql.connect(config);
-      let data = await pool.request().query(`select CleaningGroupCode from prmCleaningGroup`);
+      let data = await pool
+        .request()
+        .query(`select CleaningGroupCode from prmCleaningGroup`);
       res.status(200).json(data);
     } catch (error) {
       console.log(error);
@@ -6367,7 +6720,9 @@ WHERE TransferRequestNumber='${TransferRequestNumber}'`
   async AssetTransactions_GET_LIST(req, res, next) {
     try {
       let pool = await sql.connect(config);
-      let data = await pool.request().query(`select * from tblAssetTransactions`);
+      let data = await pool
+        .request()
+        .query(`select * from tblAssetTransactions`);
       res.status(200).json(data);
     } catch (error) {
       console.log(error);
@@ -6429,7 +6784,9 @@ WHERE TransferRequestNumber='${TransferRequestNumber}'`
   async UserSystemAccess_GET_LIST(req, res, next) {
     try {
       let pool = await sql.connect(config);
-      let data = await pool.request().query(`select * from tblUserSystemAccess`);
+      let data = await pool
+        .request()
+        .query(`select * from tblUserSystemAccess`);
       res.status(200).json(data);
     } catch (error) {
       console.log(error);
@@ -6455,7 +6812,9 @@ WHERE TransferRequestNumber='${TransferRequestNumber}'`
   async UserAuthority_GET_DropdownList(req, res, next) {
     try {
       let pool = await sql.connect(config);
-      let data = await pool.request().query(`select UserAuthorityCode from prmUserAuthority`);
+      let data = await pool
+        .request()
+        .query(`select UserAuthorityCode from prmUserAuthority`);
       res.status(200).json(data);
     } catch (error) {
       console.log(error);
@@ -6637,9 +6996,7 @@ WHERE TransferRequestNumber='${TransferRequestNumber}'`
       let data = await pool
         .request()
 
-        .query(
-          `select * from tblAssetsMaster where AssetType='${AssetType}'`
-        );
+        .query(`select * from tblAssetsMaster where AssetType='${AssetType}'`);
       res.status(200).json(data);
     } catch (error) {
       console.log(error);
@@ -6649,7 +7006,7 @@ WHERE TransferRequestNumber='${TransferRequestNumber}'`
   async Asset_WarrantyEndDate(req, res, next) {
     try {
       let pool = await sql.connect(config);
-   const currentDate = new Date();
+      const currentDate = new Date();
       let data = await pool
         .request()
 
@@ -6665,7 +7022,7 @@ WHERE TransferRequestNumber='${TransferRequestNumber}'`
   async location_managment_All(req, res, next) {
     try {
       let pool = await sql.connect(config);
-   
+
       let data = await pool
         .request()
 
@@ -6680,245 +7037,261 @@ INNER JOIN tblWorkRequest ON tblWorkOrders.WorkRequestNumber = tblWorkRequest.Re
       res.status(500).json({ error: `${error}` });
     }
   },
-   async Floor_GET_BYID(req, res, next) {
+  async Floor_GET_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const FloorCode = req.params.FloorCode;
-       const existingRecord = await pool
-            .request()
-            .input("FloorCode", sql.VarChar, FloorCode)
-            .query(
-                `SELECT * FROM prmFloor WHERE FloorCode = '${FloorCode}'`
-            );
+      const existingRecord = await pool
+        .request()
+        .input("FloorCode", sql.VarChar, FloorCode)
+        .query(`SELECT * FROM prmFloor WHERE FloorCode = '${FloorCode}'`);
 
-        if (existingRecord.recordset.length === 0) {
-            // No record with the specified FloorCode found in the database
-            return res.status(404).json({ status:404, message:"FloorCode found", error: 'FloorCode not found' });
-        }
+      if (existingRecord.recordset.length === 0) {
+        // No record with the specified FloorCode found in the database
+        return res.status(404).json({
+          status: 404,
+          message: "FloorCode found",
+          error: "FloorCode not found",
+        });
+      }
       let data = await pool
         .request()
 
-        .query(
-          `select * from prmFloor where FloorCode='${FloorCode}'`
-        );
-      res.status(200).json({ status:200,  data:data.recordsets[0]});
+        .query(`select * from prmFloor where FloorCode='${FloorCode}'`);
+      res.status(200).json({ status: 200, data: data.recordsets[0] });
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
     }
   },
-   async Floor_GET_List(req, res, next) {
+  async Floor_GET_List(req, res, next) {
     try {
       let pool = await sql.connect(config);
       let data = await pool.request().query(`select * from prmFloor`);
-      res.status(200).json({ status:200, data:data.recordsets[0]});
+      res.status(200).json({ status: 200, data: data.recordsets[0] });
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
     }
   },
-   async Building_newpage_GET_List(req, res, next) {
+  async Building_newpage_GET_List(req, res, next) {
     try {
       let pool = await sql.connect(config);
       let data = await pool.request().query(`select * from prmBuilding`);
-      res.status(200).json({ status:200, data:data.recordsets[0]});
+      res.status(200).json({ status: 200, data: data.recordsets[0] });
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
     }
   },
-   async Building_newpage_GET_BYID(req, res, next) {
+  async Building_newpage_GET_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const BuildingCode = req.params.BuildingCode;
-       const existingRecord = await pool
-            .request()
-            .input("BuildingCode", sql.VarChar, BuildingCode)
-            .query(
-                `SELECT * FROM prmBuilding WHERE BuildingCode = '${BuildingCode}'`
-            );
+      const existingRecord = await pool
+        .request()
+        .input("BuildingCode", sql.VarChar, BuildingCode)
+        .query(
+          `SELECT * FROM prmBuilding WHERE BuildingCode = '${BuildingCode}'`
+        );
 
-        if (existingRecord.recordset.length === 0) {
-            // No record with the specified BuildingCode found in the database
-            return res.status(404).json({ status:404, message:"BuildingCode found", error: 'BuildingCode not found' });
-        }
+      if (existingRecord.recordset.length === 0) {
+        // No record with the specified BuildingCode found in the database
+        return res.status(404).json({
+          status: 404,
+          message: "BuildingCode found",
+          error: "BuildingCode not found",
+        });
+      }
       let data = await pool
         .request()
 
         .query(
           `select * from prmBuilding where BuildingCode='${BuildingCode}'`
         );
-      res.status(200).json({ status:200,  data:data.recordsets[0]});
+      res.status(200).json({ status: 200, data: data.recordsets[0] });
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
     }
   },
-   async Rooms_GET_BYID(req, res, next) {
+  async Rooms_GET_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const RoomCode = req.params.RoomCode;
-       const existingRecord = await pool
-            .request()
-            .input("RoomCode", sql.VarChar, RoomCode)
-            .query(
-                `SELECT * FROM prmRooms WHERE RoomCode = '${RoomCode}'`
-            );
+      const existingRecord = await pool
+        .request()
+        .input("RoomCode", sql.VarChar, RoomCode)
+        .query(`SELECT * FROM prmRooms WHERE RoomCode = '${RoomCode}'`);
 
-        if (existingRecord.recordset.length === 0) {
-            // No record with the specified RoomCode found in the database
-            return res.status(404).json({ status:404, message:"RoomCode found", error: 'RoomCode not found' });
-        }
+      if (existingRecord.recordset.length === 0) {
+        // No record with the specified RoomCode found in the database
+        return res.status(404).json({
+          status: 404,
+          message: "RoomCode found",
+          error: "RoomCode not found",
+        });
+      }
       let data = await pool
         .request()
 
-        .query(
-          `select * from prmRooms where RoomCode='${RoomCode}'`
-        );
-      res.status(200).json({ status:200,  data:data.recordsets[0]});
+        .query(`select * from prmRooms where RoomCode='${RoomCode}'`);
+      res.status(200).json({ status: 200, data: data.recordsets[0] });
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
     }
   },
-   async Rooms_GET_List(req, res, next) {
+  async Rooms_GET_List(req, res, next) {
     try {
       let pool = await sql.connect(config);
       let data = await pool.request().query(`select * from prmRooms`);
-      res.status(200).json({ status:200, data:data.recordsets[0]});
+      res.status(200).json({ status: 200, data: data.recordsets[0] });
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
     }
   },
-   async Rooms_newpage_GET_List(req, res, next) {
+  async Rooms_newpage_GET_List(req, res, next) {
     try {
       let pool = await sql.connect(config);
       let data = await pool.request().query(`select * from prmRooms`);
-      res.status(200).json({ status:200, data:data.recordsets[0]});
+      res.status(200).json({ status: 200, data: data.recordsets[0] });
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
     }
   },
-   async Rooms_newpage_GET_BYID(req, res, next) {
+  async Rooms_newpage_GET_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const RoomCode = req.params.RoomCode;
-       const existingRecord = await pool
-            .request()
-            .input("RoomCode", sql.VarChar, RoomCode)
-            .query(
-                `SELECT * FROM prmRooms WHERE RoomCode = '${RoomCode}'`
-            );
+      const existingRecord = await pool
+        .request()
+        .input("RoomCode", sql.VarChar, RoomCode)
+        .query(`SELECT * FROM prmRooms WHERE RoomCode = '${RoomCode}'`);
 
-        if (existingRecord.recordset.length === 0) {
-            // No record with the specified RoomCode found in the database
-            return res.status(404).json({ status:404, message:"RoomCode found", error: 'RoomCode not found' });
-        }
+      if (existingRecord.recordset.length === 0) {
+        // No record with the specified RoomCode found in the database
+        return res.status(404).json({
+          status: 404,
+          message: "RoomCode found",
+          error: "RoomCode not found",
+        });
+      }
       let data = await pool
         .request()
 
-        .query(
-          `select * from prmRooms where RoomCode='${RoomCode}'`
-        );
-      res.status(200).json({ status:200,  data:data.recordsets[0]});
+        .query(`select * from prmRooms where RoomCode='${RoomCode}'`);
+      res.status(200).json({ status: 200, data: data.recordsets[0] });
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
     }
   },
-   async EmployeeRooms_GET_BYID(req, res, next) {
+  async EmployeeRooms_GET_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const EmployeeID = req.params.EmployeeID;
-       const existingRecord = await pool
-            .request()
-            .input("EmployeeID", sql.VarChar, EmployeeID)
-            .query(
-                `SELECT * FROM tblEmployeeRooms WHERE EmployeeID = '${EmployeeID}'`
-            );
+      const existingRecord = await pool
+        .request()
+        .input("EmployeeID", sql.VarChar, EmployeeID)
+        .query(
+          `SELECT * FROM tblEmployeeRooms WHERE EmployeeID = '${EmployeeID}'`
+        );
 
-        if (existingRecord.recordset.length === 0) {
-            // No record with the specified EmployeeID found in the database
-            return res.status(404).json({ status:404, message:"EmployeeID found", error: 'EmployeeID not found' });
-        }
+      if (existingRecord.recordset.length === 0) {
+        // No record with the specified EmployeeID found in the database
+        return res.status(404).json({
+          status: 404,
+          message: "EmployeeID found",
+          error: "EmployeeID not found",
+        });
+      }
       let data = await pool
         .request()
 
         .query(
           `select * from tblEmployeeRooms where EmployeeID='${EmployeeID}'`
         );
-      res.status(200).json({ status:200,  data:data.recordsets[0]});
+      res.status(200).json({ status: 200, data: data.recordsets[0] });
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
     }
   },
-   async EmployeeRooms_GET_List(req, res, next) {
+  async EmployeeRooms_GET_List(req, res, next) {
     try {
       let pool = await sql.connect(config);
       let data = await pool.request().query(`select * from tblEmployeeRooms`);
-      res.status(200).json({ status:200, data:data.recordsets[0]});
+      res.status(200).json({ status: 200, data: data.recordsets[0] });
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
     }
   },
-   async EmployeeRoomTransfers_GET_BYID(req, res, next) {
+  async EmployeeRoomTransfers_GET_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const TransferRequestNumber = req.params.TransferRequestNumber;
-       const existingRecord = await pool
-            .request()
-            .input("TransferRequestNumber", sql.VarChar, TransferRequestNumber)
-            .query(
-                `SELECT * FROM tblEmployeeRoomTransfers WHERE TransferRequestNumber = '${TransferRequestNumber}'`
-            );
+      const existingRecord = await pool
+        .request()
+        .input("TransferRequestNumber", sql.VarChar, TransferRequestNumber)
+        .query(
+          `SELECT * FROM tblEmployeeRoomTransfers WHERE TransferRequestNumber = '${TransferRequestNumber}'`
+        );
 
-        if (existingRecord.recordset.length === 0) {
-            // No record with the specified TransferRequestNumber found in the database
-            return res.status(404).json({ status:404, message:"TransferRequestNumber found", error: 'TransferRequestNumber not found' });
-        }
+      if (existingRecord.recordset.length === 0) {
+        // No record with the specified TransferRequestNumber found in the database
+        return res.status(404).json({
+          status: 404,
+          message: "TransferRequestNumber found",
+          error: "TransferRequestNumber not found",
+        });
+      }
       let data = await pool
         .request()
 
         .query(
           `select * from tblEmployeeRoomTransfers where TransferRequestNumber='${TransferRequestNumber}'`
         );
-      res.status(200).json({ status:200,  data:data.recordsets[0]});
+      res.status(200).json({ status: 200, data: data.recordsets[0] });
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
     }
   },
-   async EmployeeRoomTransfers_GET_List(req, res, next) {
+  async EmployeeRoomTransfers_GET_List(req, res, next) {
     try {
       let pool = await sql.connect(config);
-      let data = await pool.request().query(`select * from tblEmployeeRoomTransfers`);
-      res.status(200).json({ status:200, data:data.recordsets[0]});
+      let data = await pool
+        .request()
+        .query(`select * from tblEmployeeRoomTransfers`);
+      res.status(200).json({ status: 200, data: data.recordsets[0] });
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
     }
   },
-   async Total_Capacity(req, res, next) {
+  async Total_Capacity(req, res, next) {
     try {
       let pool = await sql.connect(config);
-      let data = await pool.request().query(`SELECT SUM(Capacity) AS total_Capacity
+      let data = await pool.request()
+        .query(`SELECT SUM(Capacity) AS total_Capacity
 FROM prmRooms;`);
-      res.status(200).json({ status:200, data:data.recordsets[0]});
+      res.status(200).json({ status: 200, data: data.recordsets[0] });
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
     }
   },
-   async Total_Occupants(req, res, next) {
+  async Total_Occupants(req, res, next) {
     try {
       let pool = await sql.connect(config);
-      let data = await pool.request().query(`SELECT SUM(Occupants) AS total_Occupants
+      let data = await pool.request()
+        .query(`SELECT SUM(Occupants) AS total_Occupants
 FROM prmRooms;`);
-      res.status(200).json({ status:200, data:data.recordsets[0]});
+      res.status(200).json({ status: 200, data: data.recordsets[0] });
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
@@ -7344,9 +7717,7 @@ FROM prmRooms;`);
       let data = await pool
         .request()
 
-        .query(
-          `delete from assetworkrequest where seq='${seq}'`
-        );
+        .query(`delete from assetworkrequest where seq='${seq}'`);
       console.log(data);
       res.status(200).json(data);
     } catch (error) {
@@ -7364,16 +7735,15 @@ FROM prmRooms;`);
         .query(
           `DELETE FROM tblWorkRequest
 WHERE RequestNumber = '${RequestNumber}'`
-      );
+        );
       let data1 = await pool
         .request()
 
         .query(
           `DELETE FROM assetworkrequest
 WHERE RequestNumber = '${RequestNumber}'`
-      );
-      
-      
+        );
+
       console.log(data);
       res.status(200).json("Work Request has been deleted");
     } catch (error) {
@@ -7456,9 +7826,7 @@ WHERE RequestNumber = '${RequestNumber}'`
       let data = await pool
         .request()
 
-        .query(
-          `delete from tblVendorMaster where VendorID='${VendorID}'`
-        );
+        .query(`delete from tblVendorMaster where VendorID='${VendorID}'`);
       console.log(data);
       res.status(200).json(data);
     } catch (error) {
@@ -7500,7 +7868,7 @@ WHERE RequestNumber = '${RequestNumber}'`
       res.status(500).json({ error: `${error}` });
     }
   },
-   async CleaningWorks_DELETE_BYID(req, res, next) {
+  async CleaningWorks_DELETE_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const RequestNumber = req.params.RequestNumber;
@@ -7517,7 +7885,7 @@ WHERE RequestNumber = '${RequestNumber}'`
       res.status(500).json({ error: `${error}` });
     }
   },
-   async AssetTransactions_DELETE_BYID(req, res, next) {
+  async AssetTransactions_DELETE_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const AssetItemTagID = req.params.AssetItemTagID;
@@ -7534,7 +7902,7 @@ WHERE RequestNumber = '${RequestNumber}'`
       res.status(500).json({ error: `${error}` });
     }
   },
-   async UserAuthority_DELETE_BYID(req, res, next) {
+  async UserAuthority_DELETE_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const UserAuthorityCode = req.params.UserAuthorityCode;
@@ -7551,7 +7919,7 @@ WHERE RequestNumber = '${RequestNumber}'`
       res.status(500).json({ error: `${error}` });
     }
   },
-   async UserCredentials_DELETE_BYID(req, res, next) {
+  async UserCredentials_DELETE_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const EmployeeID = req.params.EmployeeID;
@@ -7568,7 +7936,7 @@ WHERE RequestNumber = '${RequestNumber}'`
       res.status(500).json({ error: `${error}` });
     }
   },
-   async UserSystemAccess_DELETE_BYID(req, res, next) {
+  async UserSystemAccess_DELETE_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const EmployeeID = req.params.EmployeeID;
@@ -7585,7 +7953,7 @@ WHERE RequestNumber = '${RequestNumber}'`
       res.status(500).json({ error: `${error}` });
     }
   },
-   async PurchaseRequest_DELETE_BYID(req, res, next) {
+  async PurchaseRequest_DELETE_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const PurchaseRequestNumber = req.params.PurchaseRequestNumber;
@@ -7594,7 +7962,7 @@ WHERE RequestNumber = '${RequestNumber}'`
 
         .query(
           `delete from tblPurchaseRequest where PurchaseRequestNumber='${PurchaseRequestNumber}'`
-      );
+        );
       let data1 = await pool
         .request()
 
@@ -7608,7 +7976,7 @@ WHERE RequestNumber = '${RequestNumber}'`
       res.status(500).json({ error: `${error}` });
     }
   },
-   async PurchaseOrder_DELETE_BYID(req, res, next) {
+  async PurchaseOrder_DELETE_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const PurchaseOrderNumber = req.params.PurchaseOrderNumber;
@@ -7617,7 +7985,7 @@ WHERE RequestNumber = '${RequestNumber}'`
 
         .query(
           `delete from tblPurchaseOrder where PurchaseOrderNumber='${PurchaseOrderNumber}'`
-      );
+        );
       let data1 = await pool
         .request()
 
@@ -7631,7 +7999,7 @@ WHERE RequestNumber = '${RequestNumber}'`
       res.status(500).json({ error: `${error}` });
     }
   },
-   async GoodsReceipt_DELETE_BYID(req, res, next) {
+  async GoodsReceipt_DELETE_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const PurchaseOrderNumber = req.params.PurchaseOrderNumber;
@@ -7648,7 +8016,7 @@ WHERE RequestNumber = '${RequestNumber}'`
       res.status(500).json({ error: `${error}` });
     }
   },
-   async GoodsReturn_DELETE_BYID(req, res, next) {
+  async GoodsReturn_DELETE_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const PurchaseOrderNumber = req.params.PurchaseOrderNumber;
@@ -7665,16 +8033,14 @@ WHERE RequestNumber = '${RequestNumber}'`
       res.status(500).json({ error: `${error}` });
     }
   },
-   async PurchaseRequestAsset_DELETE_BYID(req, res, next) {
+  async PurchaseRequestAsset_DELETE_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const seq = req.params.seq;
       let data = await pool
         .request()
 
-        .query(
-          `delete from tblPurchaseRequestDetail where seq='${seq}'`
-        );
+        .query(`delete from tblPurchaseRequestDetail where seq='${seq}'`);
       console.log(data);
       res.status(200).json(data);
     } catch (error) {
@@ -7682,16 +8048,14 @@ WHERE RequestNumber = '${RequestNumber}'`
       res.status(500).json({ error: `${error}` });
     }
   },
-   async PurchaseOrderAsset_DELETE_BYID(req, res, next) {
+  async PurchaseOrderAsset_DELETE_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const seq = req.params.seq;
       let data = await pool
         .request()
 
-        .query(
-          `delete from tblPurchaseOrderDetail where seq='${seq}'`
-        );
+        .query(`delete from tblPurchaseOrderDetail where seq='${seq}'`);
       console.log(data);
       res.status(200).json(data);
     } catch (error) {
@@ -7699,16 +8063,14 @@ WHERE RequestNumber = '${RequestNumber}'`
       res.status(500).json({ error: `${error}` });
     }
   },
-   async PurchaseGOODSAsset_DELETE_BYID(req, res, next) {
+  async PurchaseGOODSAsset_DELETE_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const seq = req.params.seq;
       let data = await pool
         .request()
 
-        .query(
-          `delete from tblGoodsReceiptDetail where seq='${seq}'`
-        );
+        .query(`delete from tblGoodsReceiptDetail where seq='${seq}'`);
       console.log(data);
       res.status(200).json(data);
     } catch (error) {
@@ -7716,16 +8078,14 @@ WHERE RequestNumber = '${RequestNumber}'`
       res.status(500).json({ error: `${error}` });
     }
   },
-   async GOODSReturnAsset_DELETE_BYID(req, res, next) {
+  async GOODSReturnAsset_DELETE_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const seq = req.params.seq;
       let data = await pool
         .request()
 
-        .query(
-          `delete from tblGoodsReturnDetail where seq='${seq}'`
-        );
+        .query(`delete from tblGoodsReturnDetail where seq='${seq}'`);
       console.log(data);
       res.status(200).json(data);
     } catch (error) {
@@ -7733,7 +8093,7 @@ WHERE RequestNumber = '${RequestNumber}'`
       res.status(500).json({ error: `${error}` });
     }
   },
-   async PurchaseOrderNumber_GOODSReturnAsset_DELETE_BYID(req, res, next) {
+  async PurchaseOrderNumber_GOODSReturnAsset_DELETE_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const PurchaseOrderNumber = req.params.PurchaseOrderNumber;
@@ -7750,7 +8110,7 @@ WHERE RequestNumber = '${RequestNumber}'`
       res.status(500).json({ error: `${error}` });
     }
   },
-   async PurchaseOrderNumber_GOODSRecipt_DELETE_BYID(req, res, next) {
+  async PurchaseOrderNumber_GOODSRecipt_DELETE_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const PurchaseOrderNumber = req.params.PurchaseOrderNumber;
@@ -7767,92 +8127,102 @@ WHERE RequestNumber = '${RequestNumber}'`
       res.status(500).json({ error: `${error}` });
     }
   },
-   async Floor_DELETE_BYID(req, res, next) {
+  async Floor_DELETE_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const FloorCode = req.params.FloorCode;
       let data = await pool
         .request()
 
-        .query(
-          `delete from prmFloor where FloorCode='${FloorCode}'`
-        );
+        .query(`delete from prmFloor where FloorCode='${FloorCode}'`);
       console.log(data);
-      res.status(200).json({ status:200, successfully:"Data delete successfully", data:data.rowsAffected[0]});
+      res.status(200).json({
+        status: 200,
+        successfully: "Data delete successfully",
+        data: data.rowsAffected[0],
+      });
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
     }
   },
-   async Building_newpage_DELETE_BYID(req, res, next) {
+  async Building_newpage_DELETE_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const BuildingCode = req.params.BuildingCode;
       let data = await pool
         .request()
 
-        .query(
-          `delete from prmBuilding where BuildingCode='${BuildingCode}'`
-        );
+        .query(`delete from prmBuilding where BuildingCode='${BuildingCode}'`);
       console.log(data);
-      res.status(200).json({ status:200, successfully:"Data delete successfully", data:data.rowsAffected[0]});
+      res.status(200).json({
+        status: 200,
+        successfully: "Data delete successfully",
+        data: data.rowsAffected[0],
+      });
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
     }
   },
-   async Rooms_DELETE_BYID(req, res, next) {
+  async Rooms_DELETE_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const RoomCode = req.params.RoomCode;
       let data = await pool
         .request()
 
-        .query(
-          `delete from prmRooms where RoomCode='${RoomCode}'`
-        );
+        .query(`delete from prmRooms where RoomCode='${RoomCode}'`);
       console.log(data);
-      res.status(200).json({ status:200, successfully:"Data delete successfully", data:data.rowsAffected[0]});
+      res.status(200).json({
+        status: 200,
+        successfully: "Data delete successfully",
+        data: data.rowsAffected[0],
+      });
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
     }
   },
-   async Rooms_newpage_DELETE_BYID(req, res, next) {
+  async Rooms_newpage_DELETE_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const RoomCode = req.params.RoomCode;
       let data = await pool
         .request()
 
-        .query(
-          `delete from prmRooms where RoomCode='${RoomCode}'`
-        );
+        .query(`delete from prmRooms where RoomCode='${RoomCode}'`);
       console.log(data);
-      res.status(200).json({ status:200, successfully:"Data delete successfully", data:data.rowsAffected[0]});
+      res.status(200).json({
+        status: 200,
+        successfully: "Data delete successfully",
+        data: data.rowsAffected[0],
+      });
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
     }
   },
-   async EmployeeRooms_DELETE_BYID(req, res, next) {
+  async EmployeeRooms_DELETE_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const EmployeeID = req.params.EmployeeID;
       let data = await pool
         .request()
 
-        .query(
-          `delete from tblEmployeeRooms where EmployeeID='${EmployeeID}'`
-        );
+        .query(`delete from tblEmployeeRooms where EmployeeID='${EmployeeID}'`);
       console.log(data);
-      res.status(200).json({ status:200, successfully:"Data delete successfully", data:data.rowsAffected[0]});
+      res.status(200).json({
+        status: 200,
+        successfully: "Data delete successfully",
+        data: data.rowsAffected[0],
+      });
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
     }
   },
-   async EmployeeRoomTransfers_DELETE_BYID(req, res, next) {
+  async EmployeeRoomTransfers_DELETE_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const TransferRequestNumber = req.params.TransferRequestNumber;
@@ -7863,13 +8233,17 @@ WHERE RequestNumber = '${RequestNumber}'`
           `delete from tblEmployeeRoomTransfers where TransferRequestNumber='${TransferRequestNumber}'`
         );
       console.log(data);
-      res.status(200).json({ status:200, successfully:"Data delete successfully", data:data.rowsAffected[0]});
+      res.status(200).json({
+        status: 200,
+        successfully: "Data delete successfully",
+        data: data.rowsAffected[0],
+      });
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
     }
   },
-   async WorkRequest_count_DELETE_BYID(req, res, next) {
+  async WorkRequest_count_DELETE_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const RequestNumber = req.params.RequestNumber;
@@ -7880,13 +8254,17 @@ WHERE RequestNumber = '${RequestNumber}'`
           `delete from assetworkrequest where RequestNumber='${RequestNumber}'`
         );
       console.log(data);
-      res.status(200).json({ status:200, successfully:"Data delete successfully", data:data.rowsAffected[0]});
+      res.status(200).json({
+        status: 200,
+        successfully: "Data delete successfully",
+        data: data.rowsAffected[0],
+      });
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
     }
   },
-   async PurchaseRequest_count_DELETE_BYID(req, res, next) {
+  async PurchaseRequest_count_DELETE_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const PurchaseRequestNumber = req.params.PurchaseRequestNumber;
@@ -7897,13 +8275,17 @@ WHERE RequestNumber = '${RequestNumber}'`
           `delete from tblPurchaseRequestDetail where PurchaseRequestNumber='${PurchaseRequestNumber}'`
         );
       console.log(data);
-      res.status(200).json({ status:200, successfully:"Data delete successfully", data:data.rowsAffected[0]});
+      res.status(200).json({
+        status: 200,
+        successfully: "Data delete successfully",
+        data: data.rowsAffected[0],
+      });
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
     }
   },
-   async PurchaseOrder_count_DELETE_BYID(req, res, next) {
+  async PurchaseOrder_count_DELETE_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const PurchaseOrderNumber = req.params.PurchaseOrderNumber;
@@ -7914,13 +8296,17 @@ WHERE RequestNumber = '${RequestNumber}'`
           `delete from tblPurchaseOrderDetail where PurchaseOrderNumber='${PurchaseOrderNumber}'`
         );
       console.log(data);
-      res.status(200).json({ status:200, successfully:"Data delete successfully", data:data.rowsAffected[0]});
+      res.status(200).json({
+        status: 200,
+        successfully: "Data delete successfully",
+        data: data.rowsAffected[0],
+      });
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
     }
   },
-    async GoodsReturn_count_DELETE_BYID(req, res, next) {
+  async GoodsReturn_count_DELETE_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const PurchaseOrderNumber = req.params.PurchaseOrderNumber;
@@ -7931,13 +8317,17 @@ WHERE RequestNumber = '${RequestNumber}'`
           `delete from tblGoodsReturnDetail where PurchaseOrderNumber='${PurchaseOrderNumber}'`
         );
       console.log(data);
-      res.status(200).json({ status:200, successfully:"Data delete successfully", data:data.rowsAffected[0]});
+      res.status(200).json({
+        status: 200,
+        successfully: "Data delete successfully",
+        data: data.rowsAffected[0],
+      });
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
     }
   },
-    async GoodsReceipt_count_DELETE_BYID(req, res, next) {
+  async GoodsReceipt_count_DELETE_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const PurchaseOrderNumber = req.params.PurchaseOrderNumber;
@@ -7948,7 +8338,11 @@ WHERE RequestNumber = '${RequestNumber}'`
           `delete from tblGoodsReceiptDetail where PurchaseOrderNumber='${PurchaseOrderNumber}'`
         );
       console.log(data);
-      res.status(200).json({ status:200, successfully:"Data delete successfully", data:data.rowsAffected[0]});
+      res.status(200).json({
+        status: 200,
+        successfully: "Data delete successfully",
+        data: data.rowsAffected[0],
+      });
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
@@ -8160,13 +8554,11 @@ WHERE EmployeeID='${EmployeeID}'`);
   async Filter_WR(req, res, next) {
     try {
       let pool = await sql.connect(config);
-     
+
       let data = await pool
         .request()
 
-        .query(
-          `select RequestStatus , RequestNumber from tblWorkRequest`
-        );
+        .query(`select RequestStatus , RequestNumber from tblWorkRequest`);
       res.status(200).json(data);
     } catch (error) {
       console.log(error);
@@ -8176,13 +8568,11 @@ WHERE EmployeeID='${EmployeeID}'`);
   async Filter_VendorMaster(req, res, next) {
     try {
       let pool = await sql.connect(config);
-     
+
       let data = await pool
         .request()
 
-        .query(
-          `select VendorID , VendorName from tblVendorMaster`
-        );
+        .query(`select VendorID , VendorName from tblVendorMaster`);
       res.status(200).json(data);
     } catch (error) {
       console.log(error);
@@ -8192,13 +8582,11 @@ WHERE EmployeeID='${EmployeeID}'`);
   async Filter_AssetsMaster(req, res, next) {
     try {
       let pool = await sql.connect(config);
-     
+
       let data = await pool
         .request()
 
-        .query(
-          `select AssetItemDescription from tblAssetsMaster`
-        );
+        .query(`select AssetItemDescription from tblAssetsMaster`);
       res.status(200).json(data);
     } catch (error) {
       console.log(error);
@@ -8208,13 +8596,11 @@ WHERE EmployeeID='${EmployeeID}'`);
   async Filter_PurchaseRequestNumber(req, res, next) {
     try {
       let pool = await sql.connect(config);
-     
+
       let data = await pool
         .request()
 
-        .query(
-          `select PurchaseRequestNumber from tblPurchaseRequest`
-        );
+        .query(`select PurchaseRequestNumber from tblPurchaseRequest`);
       res.status(200).json(data);
     } catch (error) {
       console.log(error);
@@ -8224,13 +8610,11 @@ WHERE EmployeeID='${EmployeeID}'`);
   async Filter_PurchaseOrderNumber(req, res, next) {
     try {
       let pool = await sql.connect(config);
-     
+
       let data = await pool
         .request()
 
-        .query(
-          `select PurchaseOrderNumber from tblPurchaseOrder`
-        );
+        .query(`select PurchaseOrderNumber from tblPurchaseOrder`);
       res.status(200).json(data);
     } catch (error) {
       console.log(error);
@@ -8240,14 +8624,12 @@ WHERE EmployeeID='${EmployeeID}'`);
   async Filter_Rooms(req, res, next) {
     try {
       let pool = await sql.connect(config);
-     
+
       let data = await pool
         .request()
 
-        .query(
-          `select RoomDesc , RoomCode from prmRooms`
-        );
-      res.status(200).json({ status:200, data:data.recordsets[0]});
+        .query(`select RoomDesc , RoomCode from prmRooms`);
+      res.status(200).json({ status: 200, data: data.recordsets[0] });
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
@@ -8256,7 +8638,7 @@ WHERE EmployeeID='${EmployeeID}'`);
   async Filter_Approval_Employees(req, res, next) {
     try {
       let pool = await sql.connect(config);
-     
+
       let data = await pool
         .request()
 
@@ -8266,9 +8648,9 @@ WHERE EmployeeID='${EmployeeID}'`);
         FROM tblEmployeeMaster AS EM
         INNER JOIN tblEmployeeRooms AS ER ON EM.EmployeeID = ER.EmployeeID
       `
-      );
-      
-      res.status(200).json({ status:200, data:data.recordsets[0]});
+        );
+
+      res.status(200).json({ status: 200, data: data.recordsets[0] });
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
@@ -8292,45 +8674,19 @@ WHERE EmployeeID='${EmployeeID}'`);
     try {
       const RequestNumber = req.body.RequestNumber;
       const RequestStatus = req.body.RequestStatus;
-      if (RequestStatus=="Closed") {
-         let pool = await sql.connect(config);
+      if (RequestStatus == "Closed") {
+        let pool = await sql.connect(config);
 
-      var today = new Date();
+        var today = new Date();
 
-      let data = await pool
-        .request()
+        let data = await pool
+          .request()
 
-        .input("RequestStatus", sql.VarChar, req.body.RequestStatus)
-        .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
-        .input("WorkType", sql.VarChar, req.body.WorkType)
-        .input("WorkTrade", sql.VarChar, req.body.WorkTrade)
-        .input("WorkPriority", sql.VarChar, req.body.WorkPriority).query(`
-
-    
-   UPDATE [dbo].[tblWorkRequest]
-SET
-
-[WorkType] =@WorkType
-,[WorkTrade] =@WorkTrade
-,[WorkPriority] =@WorkPriority
-,[RequestStatus] =@RequestStatus
- ,[EmployeeID] =@EmployeeID
-WHERE RequestNumber='${RequestNumber}'`);
-      res.status(202).json({message:`Work Request no.'${RequestNumber}'  has been closed`});
-      }
-      else {
-           let pool = await sql.connect(config);
-
-      var today = new Date();
-
-      let data = await pool
-        .request()
-
-        .input("RequestStatus", sql.VarChar, req.body.RequestStatus)
-        .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
-        .input("WorkType", sql.VarChar, req.body.WorkType)
-        .input("WorkTrade", sql.VarChar, req.body.WorkTrade)
-        .input("WorkPriority", sql.VarChar, req.body.WorkPriority).query(`
+          .input("RequestStatus", sql.VarChar, req.body.RequestStatus)
+          .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
+          .input("WorkType", sql.VarChar, req.body.WorkType)
+          .input("WorkTrade", sql.VarChar, req.body.WorkTrade)
+          .input("WorkPriority", sql.VarChar, req.body.WorkPriority).query(`
 
     
    UPDATE [dbo].[tblWorkRequest]
@@ -8342,10 +8698,37 @@ SET
 ,[RequestStatus] =@RequestStatus
  ,[EmployeeID] =@EmployeeID
 WHERE RequestNumber='${RequestNumber}'`);
-      res.status(202).json({message:`Work Request no.'${RequestNumber}'  has been updated`});
+        res.status(202).json({
+          message: `Work Request no.'${RequestNumber}'  has been closed`,
+        });
+      } else {
+        let pool = await sql.connect(config);
 
+        var today = new Date();
+
+        let data = await pool
+          .request()
+
+          .input("RequestStatus", sql.VarChar, req.body.RequestStatus)
+          .input("EmployeeID", sql.VarChar, req.body.EmployeeID)
+          .input("WorkType", sql.VarChar, req.body.WorkType)
+          .input("WorkTrade", sql.VarChar, req.body.WorkTrade)
+          .input("WorkPriority", sql.VarChar, req.body.WorkPriority).query(`
+
+    
+   UPDATE [dbo].[tblWorkRequest]
+SET
+
+[WorkType] =@WorkType
+,[WorkTrade] =@WorkTrade
+,[WorkPriority] =@WorkPriority
+,[RequestStatus] =@RequestStatus
+ ,[EmployeeID] =@EmployeeID
+WHERE RequestNumber='${RequestNumber}'`);
+        res.status(202).json({
+          message: `Work Request no.'${RequestNumber}'  has been updated`,
+        });
       }
-     
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: `${error}` });
@@ -8438,4 +8821,3 @@ WHERE RequestNumber='${RequestNumber}'`);
   },
 };
 export default FATSDB;
-

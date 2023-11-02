@@ -128,7 +128,7 @@ router.post("/Rooms_post", FATSDB.Rooms_post);
 router.post("/Rooms_newpage_post", FATSDB.Rooms_newpage_post);
 router.post("/EmployeeRooms_post", FATSDB.EmployeeRooms_post);
 router.post("/EmployeeRoomTransfers_post", FATSDB.EmployeeRoomTransfers_post);
-
+router.post("/Wordorder_post_week", FATSDB.Wordorder_post_week);
 //--------------------------------------------------------------------------
 
 //-------------------------------GET_API---------------------------------------------
