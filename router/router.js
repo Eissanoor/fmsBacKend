@@ -550,6 +550,7 @@ router.put(
   "/EmployeeRoomTransfers_Put/:TransferRequestNumber",
   FATSDB.EmployeeRoomTransfers_Put
 );
+router.put("/WorkOrderNumberCount_Puts/:No", FATSDB.WorkOrderNumberCount_Puts);
 //--------------------------------------------------------------------------------
 //-----------------------------------DELETE_API-----------------------------------------
 router.delete(
