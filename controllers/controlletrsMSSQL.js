@@ -3392,33 +3392,35 @@ const FATSDB = {
   },
   async Wordorder_post_week(req, res, next) {
     try {
+      // Establish a connection to the SQL database using the `mssql` package.
       let pool = await sql.connect(config);
+
+      // Extract data from the request, including `WorkRequestNumber`, `WorkOrderNumbers`, `StartWorkOrderDateTime`, and `EndWorkOrderDateTime`.
       const WorkRequestNumber = req.body.WorkRequestNumber;
       let WorkOrderNumbers = req.body.WorkOrderNumbers;
+      let StartWorkOrderDateTimes = req.body.StartWorkOrderDateTime; // Assuming it's an array
+      let EndWorkOrderDateTimes = req.body.EndWorkOrderDateTime; // Assuming it's an array
 
-      // Ensure WorkOrderNumbers is an array, even if it's a single value
+      // Ensure `WorkOrderNumbers` is treated as an array, even if it's a single value.
       if (!Array.isArray(WorkOrderNumbers)) {
         WorkOrderNumbers = [WorkOrderNumbers];
       }
 
-      for (const WorkOrderNumber of WorkOrderNumbers) {
+      // Use a `for...of` loop to iterate through `WorkOrderNumbers`, inserting each work order into the `tblWorkOrders` table.
+      for (let i = 0; i < WorkOrderNumbers.length; i++) {
+        const WorkOrderNumber = WorkOrderNumbers[i];
+        const StartWorkOrderDateTime = StartWorkOrderDateTimes[i]; // Corresponding `StartWorkOrderDateTime` for the current work order
+        const EndWorkOrderDateTime = EndWorkOrderDateTimes[i]; // Corresponding `EndWorkOrderDateTime` for the current work order
+
         await pool
           .request()
           .input("WorkRequestNumber", sql.VarChar, WorkRequestNumber)
           .input("WorkOrderNumber", sql.VarChar, WorkOrderNumber)
           .input("WorkStatus", sql.VarChar, "Open")
-          .input(
-            "StartWorkOrderDateTime",
-            sql.VarChar,
-            req.body.StartWorkOrderDateTime
-          )
-          .input(
-            "EndWorkOrderDateTime",
-            sql.VarChar,
-            req.body.EndWorkOrderDateTime
-          )
-          .query(
-            `INSERT INTO [dbo].[tblWorkOrders]
+          .input("StartWorkOrderDateTime", sql.VarChar, StartWorkOrderDateTime)
+          .input("EndWorkOrderDateTime", sql.VarChar, EndWorkOrderDateTime)
+          .query(`
+                    INSERT INTO [dbo].[tblWorkOrders]
                     ([WorkRequestNumber]
                     ,[WorkOrderNumber]
                     ,[WorkStatus]
@@ -3426,19 +3428,21 @@ const FATSDB = {
                     ,[EndWorkOrderDateTime]
                     )
                     VALUES
-                    (@WorkRequestNumber, @WorkOrderNumber,@WorkStatus,@StartWorkOrderDateTime,@EndWorkOrderDateTime)`
-          );
+                    (@WorkRequestNumber, @WorkOrderNumber, @WorkStatus, @StartWorkOrderDateTime, @EndWorkOrderDateTime)
+                `);
       }
 
+      // Retrieve the inserted records from the table based on `WorkRequestNumber`.
       const result = await pool
         .request()
-        .input("WorkRequestNumber", sql.VarChar, WorkRequestNumber)
-        .query(
-          `SELECT * FROM tblWorkOrders WHERE WorkRequestNumber = @WorkRequestNumber`
-        );
+        .input("WorkRequestNumber", sql.VarChar, WorkRequestNumber).query(`
+                SELECT * FROM tblWorkOrders WHERE WorkRequestNumber = @WorkRequestNumber
+            `);
 
+      // Respond with the inserted records in JSON format, and return a 201 status code to indicate that a resource has been created.
       res.status(201).json(result.recordset);
     } catch (error) {
+      // Handle any errors that occur during the process.
       console.log(error);
       res.status(500).json({ error: `${error}` });
     }
