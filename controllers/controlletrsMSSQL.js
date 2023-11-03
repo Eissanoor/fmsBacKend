@@ -3406,12 +3406,14 @@ const FATSDB = {
           .request()
           .input("WorkRequestNumber", sql.VarChar, WorkRequestNumber)
           .input("WorkOrderNumber", sql.VarChar, WorkOrderNumber)
+          .input("WorkStatus", sql.VarChar, "Open")
           .query(
             `INSERT INTO [dbo].[tblWorkOrders]
                     ([WorkRequestNumber]
-                    ,[WorkOrderNumber])
+                    ,[WorkOrderNumber]
+                    ,[WorkStatus])
                     VALUES
-                    (@WorkRequestNumber, @WorkOrderNumber)`
+                    (@WorkRequestNumber, @WorkOrderNumber,@WorkStatus)`
           );
       }
 
