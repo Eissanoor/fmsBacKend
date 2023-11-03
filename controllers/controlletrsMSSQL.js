@@ -3407,13 +3407,26 @@ const FATSDB = {
           .input("WorkRequestNumber", sql.VarChar, WorkRequestNumber)
           .input("WorkOrderNumber", sql.VarChar, WorkOrderNumber)
           .input("WorkStatus", sql.VarChar, "Open")
+          .input(
+            "StartWorkOrderDateTime",
+            sql.VarChar,
+            req.body.StartWorkOrderDateTime
+          )
+          .input(
+            "EndWorkOrderDateTime",
+            sql.VarChar,
+            req.body.EndWorkOrderDateTime
+          )
           .query(
             `INSERT INTO [dbo].[tblWorkOrders]
                     ([WorkRequestNumber]
                     ,[WorkOrderNumber]
-                    ,[WorkStatus])
+                    ,[WorkStatus]
+                    ,[StartWorkOrderDateTime]
+                    ,[EndWorkOrderDateTime]
+                    )
                     VALUES
-                    (@WorkRequestNumber, @WorkOrderNumber,@WorkStatus)`
+                    (@WorkRequestNumber, @WorkOrderNumber,@WorkStatus,@StartWorkOrderDateTime,@EndWorkOrderDateTime)`
           );
       }
 
