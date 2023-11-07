@@ -4280,13 +4280,11 @@ SET
 
 [WorkOrderNumber] =@WorkOrderNumber
 WHERE No='${No}'`
-      );
-       let data1 = await pool
+        );
+      let data1 = await pool
         .request()
 
-        .query(
-          `select * from workRequestCount where No='${No}'`
-        );
+        .query(`select * from workRequestCount where No='${No}'`);
       res.status(201).json({ data1: data1 });
     } catch (error) {
       console.log(error);
