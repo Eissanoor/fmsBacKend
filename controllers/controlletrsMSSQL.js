@@ -1663,6 +1663,42 @@ const FATSDB = {
       res.status(500).json({ error: `${error}` });
     }
   },
+  async systemaccess_ADD_post(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const EmployeeID = req.body.EmployeeID;
+      const SystemModuleCodes = req.body.SystemModuleCodes; // Assuming this is an array
+
+      for (const SystemModuleCode of SystemModuleCodes) {
+        await pool
+          .request()
+          .input("EmployeeID", sql.VarChar, EmployeeID)
+          .input("SystemModuleCode", sql.VarChar, SystemModuleCode)
+          .query(
+            `INSERT INTO [dbo].[tblUserSystemAccessDetails]
+                       ([EmployeeID]
+                       ,[SystemModuleCode]
+                        )
+                 VALUES
+                       (@EmployeeID
+                       ,@SystemModuleCode)`
+          );
+      }
+      let result = await pool
+        .request()
+        .query(
+          `SELECT * FROM tblUserSystemAccessDetails WHERE EmployeeID='${EmployeeID}'`
+        );
+      res.status(201).json({
+        status: 201,
+        successfully: "data created successfully",
+        data: result.recordsets[0],
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   async Designation_post(req, res, next) {
     try {
       let pool = await sql.connect(config);
