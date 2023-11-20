@@ -6863,6 +6863,22 @@ WHERE TransferRequestNumber='${TransferRequestNumber}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async usersystemAccess_get_byid(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const EmployeeID = req.params.EmployeeID;
+      let data = await pool
+        .request()
+
+        .query(
+          `select * from tblUserSystemAccessDetails where EmployeeID='${EmployeeID}'`
+        );
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   async UserSystemAccess_GET_LIST(req, res, next) {
     try {
       let pool = await sql.connect(config);

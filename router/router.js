@@ -447,6 +447,10 @@ router.get(
 router.get("/Total_Capacity", FATSDB.Total_Capacity);
 router.get("/Total_Occupants", FATSDB.Total_Occupants);
 router.get("/workRequest_WTD", FATSDB.workRequest_WTD);
+router.get(
+  "/usersystemAccess_get_byid/:EmployeeID",
+  FATSDB.usersystemAccess_get_byid
+);
 //------------------------------------------------------------------------------//
 //-----------------------------------PUT_API-------------------------------------
 router.put("/WorkTrade_Put/:WorkTypeCode", FATSDB.WorkTrade_Put);
