@@ -780,5 +780,6 @@ router.delete(
   "/GoodsReceipt_count_DELETE_BYID/:PurchaseOrderNumber",
   FATSDB.GoodsReceipt_count_DELETE_BYID
 );
+router.delete("/usersystem_access_DELETE_BY_emid/:EmployeeID",FATSDB.usersystem_access_DELETE_BY_emid)
 //-----------------------------------------------------------------------------//////
 export default router;

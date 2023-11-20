@@ -8225,6 +8225,23 @@ WHERE RequestNumber = '${RequestNumber}'`
       res.status(500).json({ error: `${error}` });
     }
   },
+  async usersystem_access_DELETE_BY_emid(req, res, next) {
+    try {
+      let pool = await sql.connect(config);
+      const EmployeeID = req.params.EmployeeID;
+      let data = await pool
+        .request()
+
+        .query(
+          `delete from tblUserSystemAccessDetails where EmployeeID='${EmployeeID}'`
+        );
+      console.log(data);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: `${error}` });
+    }
+  },
   async Floor_DELETE_BYID(req, res, next) {
     try {
       let pool = await sql.connect(config);
