@@ -6863,7 +6863,7 @@ WHERE TransferRequestNumber='${TransferRequestNumber}'`
       res.status(500).json({ error: `${error}` });
     }
   },
-  async usersystemAccess_get_byid(req, res, next) {
+  async usersystemAccess_get_Em_id(req, res, next) {
     try {
       let pool = await sql.connect(config);
       const EmployeeID = req.params.EmployeeID;
